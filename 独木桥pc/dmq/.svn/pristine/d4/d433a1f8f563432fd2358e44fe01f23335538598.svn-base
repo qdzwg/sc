@@ -1,0 +1,239 @@
+extends layout/pageLayout
+block stylesheetpage
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/remai.css')
+block pagecontent
+   #main
+      #tnav_w
+         #f_hold
+            #f_nav.cf
+               a(href="#tn1").tn1="门票"
+               a(href="#tn2").tn2="酒店"
+               a(href="#tn3").tn3="自由行"
+      a(name="#tn1")
+      .tl1(style="height:60px;")="景点门票"
+      .line_s.line_s1
+         .line_shead
+            a(href="/details/ticket/5093",target="_blank")="杭州宋城景区"
+               span
+         .line_smain.cf
+            a(href="#",target="_blank").line_pic
+               img(src="/images/demo/788653ca-9113-4378-854b-ee0399674481.jpg")
+            .line_tbox
+               p='杭州宋城景区是中国人气非常旺的主题公园，秉承"建筑为形，文化为魂"的经营理念，《宋城千古情》创造了世界演艺史上的奇迹，是杭州宋城景区的灵魂，与拉斯维加斯的"O"秀、巴黎红磨坊并称"世界三大名秀"。'
+               .pribox="价格："
+                  b=280
+                  ="元起"
+      .cw_w1
+         .cw_w1_inner.cf
+            .cbox.cbox1
+               .cbox_head
+                  a(href="#",target="_blank")="杭州宋城烂苹果乐园"
+                     span
+               .cbox_main.cf
+                  a(href="#",target="_blank").cbox_pic
+                     img(src="/images/demo/a70138f2-286a-48e6-b041-fb116920a944.jpg")
+                  .cbox_txt
+                     p="全室内高科技亲子乐园，融汇了近百项世界领先的高科技互动体验项目。在这里没有作业，没有烦恼，只有好看的表演，好玩的游戏，伴随孩子们的成长。"
+                     .cbox_pri="价格："
+                        b=140
+                        ="元起"
+            .cbox.cbox1
+               .cbox_head
+                  a(href="#",target="_blank")="杭州宋城云曼温泉"
+                     span
+               .cbox_main.cf
+                  a(href="#",target="_blank").cbox_pic
+                     img(src="/images/demo/a503c43c-6abf-465e-b5db-cd121bb62aab.jpg")
+                  .cbox_txt
+                     p='杭州宋城云曼温泉位于杭州宋城第一世界大酒店内，毗邻湘湖宋城杭州乐园，是繁华都市里的温泉度假天堂，让您"足不出户"尽享热带雨林温泉浴。'
+                     .cbox_pri="价格："
+                        b=118
+                        ="元起"
+      .cw_w1
+         .cw_w1_inner.cf
+            -var ticketItems=[{"imgUrl":"/images/demo/a5f88d48-f9f1-4d77-9359-18b178721f60.jpg","title":"杭州宋城浪浪浪水公园","desc":"杭州宋城浪浪浪水公园6月24日火热开园！","price":"105"},{"imgUrl":"/images/demo/f89c06d7-c95d-4b0c-997a-4b4466b256d9.jpg","title":"杭州乐园湘湖宋城景区","desc":"杭州乐园湘湖宋城景区是将原湘湖宋城景区和杭州乐园合二为一，更大优惠更多体验！","price":"160"},{"imgUrl":"/images/demo/8ece6ca7-8444-4cfc-8b6f-13f123f5b68d.jpg","title":"三亚宋城旅游区","desc":"2016年，三亚宋城旅游区四大公园，三亚千古情景区，宋城浪浪浪水公园，宋城冰雪世界，宋城彩色动物园开园，优惠联票等你抢购","price":"250"},{"imgUrl":"/images/demo/72cf5991-f3b0-4fd8-9c84-131717cfad5a.jpg","title":"丽江宋城旅游区","desc":"大型歌舞《丽江千古情》，是一生必看的演出。","price":"260"},{"imgUrl":"/images/demo/badbdc7d-1290-41c6-bc79-430ed7b39abd.jpg","title":"九寨宋城藏羌古城","desc":"九寨宋城藏羌古城是九寨沟唯一的主题公园，是一座活着的藏羌古城，是九寨的城市文化中心和夜游首选之地。","price":"260"},{"imgUrl":"/images/demo/55e649f1-ba81-486f-9c81-20428d599f53.jpg","title":"泰山千古情","desc":"大型歌舞《泰山千古情》是由宋城演艺打造的文化视觉盛宴，带给观众无与伦比的视觉体验和心灵震撼。","price":"200"},{"imgUrl":"/images/demo/9629ef84-3037-4e3a-aad6-20f4e2ac2e51.jpg","title":"杭州宋城景区","desc":'<span style="font-family: 微软雅黑, &#39;Microsoft YaHei&#39;;">杭州宋城景区是中国人气最旺的主题公园，秉承&quot;建筑为形，文化为魂&quot;的经营理念，<span style="text-align: justify; text-indent: 32px;">《宋城千古情》创造了世界演艺史上的奇迹</span>，</span><span style="font-family: 微软雅黑, &#39;Microsoft YaHei&#39;;">是杭州宋城景区的灵魂，与拉斯维加斯的&quot;O&quot;秀、巴黎红磨坊并称&quot;世界三大名秀&quot;。</span>',"price":"280"},{"imgUrl":"/images/demo/b93b6084-9e1a-45f6-9791-688361e00701.jpg","title":"宋城中国演艺谷","desc":"","price":"80"}]
+            -each item in ticketItems
+               .mbox.mbox1
+                  a(href="#",target="_blank").mbox_pic
+                     img(src=item.imgUrl,alt=item.title)
+                  .mbox_txt
+                     p
+                        !{item.desc}
+                  .mbox_b
+                     a(href="#",target="_blank").mbox_t=item.title
+                     .mbox_pri="价格："
+                        b=item.price
+                        ="元起"
+      a(name="tn2")
+      .tl2="度假酒店"
+      .line_s.line_s2
+         .line_shead
+            a(href="/details/hotel/5100",target="_blank")="杭州宋城第一世界大酒店"
+               span="浓郁的东南亚风情"
+         .line_smain.cf
+            a(href="#",target="_blank").line_pic
+               img(src="/images/demo/b26e6a7d-938c-4137-a845-5b35641d4f2c.jpg",alt="杭州宋城第一世界大酒店")
+            .line_tbox
+               p="杭州宋城第一世界大酒店坐拥西湖的“姊妹湖”——湘湖，是长三角首家五星级东南亚热带雨林主题酒店，国家金叶级绿色旅游饭店，也是中国具竞争力的会议度假酒店之一。到杭州宋城旅游区，住第一世界大酒店，泡宋城云曼温泉，游湘湖宋城杭州乐园、宋城烂苹果乐园，看世界三大名秀之一《宋城千古情》，已经成为一种流行休闲模式。"
+               .pribox="价格："
+                  b=842
+                  ="元起"
+      .cw_w1
+         .cw_w1_inner.cf
+            .cbox.cbox2
+               .cbox_head
+                  a(href="#",target="_blank")="杭州宋城千古情主题酒店"
+                     span="杭城最大的主题酒店群"
+               .cbox_main.cf
+                  a(href="#",target="_blank").cbox_pic
+                     img(src="/images/demo/1a32ce5e-3e8c-40cb-98aa-5ab94cfe8b20.jpg")
+                  .cbox_txt
+                     p="杭州宋城千古情主题酒店毗邻宋城景区，是杭城较大的旅游度假型酒店，距离西湖仅7公里。住千古情主题酒店，看《宋城千古情》，更有优惠套餐可选。"
+                     .cbox_pri="价格："
+                        b=289
+                        ="元起"
+            .cbox.cbox2
+               .cbox_head
+                  a(href="#",target="_blank")="云和湖宋城云曼酒店"
+                     span="中国的马尔代夫"
+               .cbox_main.cf
+                  a(href="#",target="_blank").cbox_pic
+                     img(src="/images/demo/0d56bef2-0550-4906-882a-0d5c3f1c94ea.jpg")
+                  .cbox_txt
+                     p='云和湖宋城云曼酒店位于浙江丽水云和湖，坐拥6万亩湖泊，17间360度全湖景客房，每间投资600万元，是世界上每间投资较高的酒店之一。住云曼酒店，让你置身中国的马尔代夫。'
+                     .cbox_pri="价格："
+                        b=1500
+                        ="元起"
+      .cw_w1
+         .cw_w1_inner.cf
+            -var hotelItems=[{"imgUrl":"/images/demo/da068877-c73a-4ea8-ba67-aa96ed3f4774.jpg","title":"杭州宋城千古情主题酒店（湘湖店）","desc":"杭州宋城千古情主题酒店（湘湖店）以埃及风情为主题，可眺望休博园的尼斯湖和海盗街，景观独特，拥有各式精致客房，其内象牙白的欧式家具、埃及风情的装饰，为客人营造出惬意而神秘的度假氛围。","price":"550"},{"imgUrl":"/images/demo/811eb381-9cde-44ba-8e83-ffdda95049eb.jpg","title":"宋城龙泉山猎户山庄","desc":"宋城龙泉山猎户山庄座落于浙江丽水龙泉4A级景区——龙泉山景区内，海拔1500米，周边环境优美，是理想的避暑胜地。","price":"380"}]
+            -each item in hotelItems
+               .mbox.mbox2
+                  a(href="#",target="_blank").mbox_pic
+                     img(src=item.imgUrl,alt=item.title)
+                  .mbox_txt
+                     p
+                        !{item.desc}
+                  .mbox_b
+                     a(href="#",target="_blank").mbox_t=item.title
+                     .mbox_pri="价格："
+                        b=item.price
+                        ="元起"
+      a(name="tn3")
+      .tl3="自由行"
+      .line_s.line_s3
+         .line_shead
+            a(href="/details/zyx/1",target="_blank")="宋城，祈福穿越！双人游宋城，游玩灵隐（飞来峰）景区。"
+               span
+         .line_smain.cf
+            a(href="#",target="_blank").line_pic
+               img(src="/images/demo/885a953a-897d-4716-bdf1-f517d9c0770f.jpg",alt="宋城，祈福穿越！双人游宋城，游玩灵隐（飞来峰）景区。")
+            .line_tbox
+               p
+                  !{'<span style="font-size: medium"><span style="font-family: 宋体">体味千年的文化韵味，看一场一生必看的《宋城千古情》，邂逅千古情主题酒店，灵隐祈福。双人游宋城，享受价值310</span></span><span style="font-size: medium"><span style="font-family: 宋体">元/张贵</span></span><span style="font-size: medium"><span style="font-family: 宋体">宾席门票，入住</span></span><span style="font-size: medium"><span style="font-family: 宋体"><span style="font-size: medium"><span style="font-family: 宋体">880元/间</span></span>千古情主题酒店高级房1间，现特惠套餐仅需728元/套</span></span>。'}
+               .pribox="特价："
+                  b=728
+                  ="元起"
+      .cw_w1
+         .cw_w1_inner.cf
+            .cbox.cbox3
+               .cbox_head
+                  a(href="#",target="_blank")="丽江宋城旅游区特惠套餐"
+                     span
+               .cbox_main.cf
+                  a(href="#",target="_blank").cbox_pic
+                     img(src="/images/demo/fef92a8f-9b27-49d8-a92e-83bb104a1ab5.jpg")
+                  .cbox_txt
+                     p="观赏丽江千古情，游玩宋城丽江乐园，原价130元的乐园门票，价值280元/张贵宾席门票，现特惠套餐仅需320元/套。"
+                     .cbox_pri="特价："
+                        b=289
+                        ="元起"
+            .cbox.cbox3
+               .cbox_head
+                  a(href="#",target="_blank")="宋城旅游区欢乐套餐I（含宋城烂苹果乐园）"
+                     span
+               .cbox_main.cf
+                  a(href="#",target="_blank").cbox_pic
+                     img(src="/images/demo/eaf60aeb-72d9-4c8c-8406-eb037bb1f0c3.jpg")
+                  .cbox_txt
+                     p
+                        !{'<span style="font-family: &#39;Microsoft Yahei&#39;; font-size: 14px; line-height: 24px; text-indent: 56px;">杭州宋城烂苹果乐园是中国大型全室内高科技亲子乐园，融汇了近百项高科技互动体验项目。一年四季活动不断，森林奇遇、奇幻泡泡秀、卡通巡游、猴子表演、精灵狂欢派对、课本剧等演出精彩纷呈。</span>'}
+                     .cbox_pri="特价："
+                        b=878
+                        ="元起"
+      .b_box
+         a(href="#",target="_blank").b_box_pic
+            img(src="/images/demo/d83cbe14-0a5f-4281-9625-04d486c9b725.jpg",alt="杭州宋城西溪湿地双人套餐（住千古情主题酒店，相约宋城，船游西溪）")
+         .b_box_txt
+            p="2天1夜双人游宋城，体验西溪慢生活，自由行原价1660元，现特惠套餐仅需816元/套！"
+         .b_box_b.cf
+            a(href="#",target="_blank").b_box_t="杭州宋城西溪湿地双人套餐（住千古情主题酒店，相约宋城，船游西溪）"
+            .b_box_pri="特价"
+               b="816"
+               ="元"
+block scriptspage
+   script.
+      var nArr, pArr, snav, bArr;
+      var ctop;
+      $(function () {
+         snav = $('#f_nav');
+         ctop = $('#f_hold').offset().top;
+         cleft = $('#f_hold').offset().left;
+         check_nav();
+         $(window).scroll(function () {
+            check_nav();
+            ctop = $('#f_hold').offset().top;
+         }).resize(function () {
+            cleft = $('#f_hold').offset().left;
+            check_nav();
+         });
+      });
+      var mtop = 0;
+      function check_nav() {
+         if (ctop <= $(window).scrollTop()) {
+            if ($.browser.version == '6.0') {
+               snav.css({'position': 'absolute', 'left': 0, 'top': $(window).scrollTop() - ctop});
+            } else {
+               snav.css({'position': 'fixed', 'top': 0, 'left': cleft});
+            }
+         }
+         else {
+            if ($.browser.version == '6.0') {
+               snav.css({'position': 'absolute', 'top': 0, 'left': 0});
+            } else {
+               snav.css({'position': 'absolute', 'top': 0, 'left': 0});
+            }
+         }
+      }//fix pos
+      var nArr, pArr, snav, bArr;
+      var ctop;
+      $(function () {
+         snav = $('#f_nav');
+         ctop = $('#f_hold').offset().top;
+         cleft = $('#f_hold').offset().left;
+         check_nav();
+         $(window).scroll(function () {
+            check_nav();
+            ctop = $('#f_hold').offset().top;
+         }).resize(function () {
+            cleft = $('#f_hold').offset().left;
+            check_nav();
+         });
+      });
+      var mtop = 0;
+      function check_nav() {
+         if (ctop <= $(window).scrollTop()) {
+            if ($.browser.version == '6.0') {
+               snav.css({'position': 'absolute', 'left': 0, 'top': $(window).scrollTop() - ctop});
+            } else {
+               snav.css({'position': 'fixed', 'top': 0, 'left': cleft});
+            }
+         }
+         else {
+            if ($.browser.version == '6.0') {
+               snav.css({'position': 'absolute', 'top': 0, 'left': 0});
+            } else {
+               snav.css({'position': 'absolute', 'top': 0, 'left': 0});
+            }
+         }
+      }

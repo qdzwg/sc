@@ -1,0 +1,63 @@
+mixin payheader(mold,items)
+   header.myorder-header.pro-header
+      h3.myorder-title=items.modelName
+      p.myorder-explian
+         span 请在
+            em.c-base 30
+            | 分钟内支付订单，否则订单将被取消
+
+mixin orderdetail(mold,items)
+   div.order-details#orderDetails
+      ul
+         - if(mold!="hotel")
+            li
+               label.lab-title 费用明细
+               div.order-item
+                  - if(mold=="route")
+                     span
+                        | 成人
+                        span.price
+                           em ￥
+                           strong=items.EtPrice
+                           span.ml1
+                              | *
+                              = items.EtAmount
+                     span.ml2
+                        | 儿童
+                        span.price
+                           em ￥
+                           strong=items.CrPrice
+                           span.ml1
+                              | *
+                              = items.CrAmount
+                  - else
+                     span.price
+                        em ￥
+                        strong=items.unitPrice
+                        span.ml1
+                           | *
+                           = items.amount
+         li
+            label.lab-title 游客信息
+            div.order-item
+               p
+                  |联系人
+                  span.ml2=items.linkName
+               p
+                  |手机号
+                  span.ml2=items.linkMobile
+               - if(mold!="repast"&&mold!="goods")
+                  p
+                     |身份证
+                     span.ml2=items.linkIdcard
+   ul.order-list.account-list.bt
+      li#arrow
+         label.lab-title 订单总额
+         div.order-item
+            span.price
+               em ￥
+               strong=items.finalSum
+            a(href="javascript:;").arrow
+               i.font-icon.icon-iconfont-jiantou
+
+

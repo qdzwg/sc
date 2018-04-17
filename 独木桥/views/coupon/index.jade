@@ -1,0 +1,75 @@
+extends ../layout
+block stylesheet
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/coupon.css')
+
+block content
+    include ../common/commonFun
+    header.coupon-head
+        .logo
+        .coupon-img
+        .advert-img
+        if(!user||!user.loginName)
+            form(method="post").coupon-form#myform
+                .form-item
+                    input(type="tel",name="mobile",placeholder="请输入手机号码").coupon-text
+                    input(type="button",value="获取验证码").coupon-card-btn#qcardBtn
+                .form-item
+                    input(type="text",name="mobileCode",placeholder="请输入验证码").coupon-text
+                    input(type="submit",value="点击登录").coupon-submit-btn
+        else
+            a(href="javascript:;",data-idcard=user.idCardBundFlag).getcoupon-btn#getcoupon
+    .coupon-main
+        .activity-explian
+            p="1、每个手机号仅限领取一次，在宋城旅游官网购买三亚千古情成人票时可无门槛抵用，不可兑换现金。"
+            p="2、本优惠券每个身份证仅能使用一次"
+            p="3、使用有效期：2017年12月18日-2018年1月18日"
+            p.center="本活动最终解释权归宋城旅游所有"
+        //.qrcode-info
+        //    img(src="/images/coupon/qr.png")
+        //    p="长按二维码购票"
+        a(href="https://51dmq.com/order/show/5261").coupon-btn3
+        a(href="/").more-btn
+    .coupon-article
+        .video
+            video(src="http://www.zhangxinxu.com/study/media/cat.mp4",controls="controls",style="width:100%; height:9.55rem;")
+        .article
+            p
+                img(src="/images/coupon/article-img1.jpg")
+            p
+                img(src="/images/coupon/article-img2.jpg")
+            p
+                img(src="/images/coupon/article-img3.jpg")
+            p.contact-article
+                span
+                    strong='景区地址：'
+                    ='三亚市迎宾路333号    0898-88658333'
+                span
+                    strong='开园时间：'
+                    ='三亚千古情景区   12:00-21:30'
+                span.indent='三亚冰雪世界      11:00-20:00'
+                span.indent='三亚彩色动物园   11:00-18:00'
+                span
+                    strong='演出时间：'
+                    ='平日演出3场：14:00、17:00、20:00'
+                span='具体以景区现场公告为准，演出票含三亚千古情景区门票。'
+            p
+                img(src="/images/coupon/article-img5.png")
+            p.bottom
+                a(href="https://51dmq.com/order/show/5261").coupon-btn3
+
+    .coupon-dialog#success-coupon
+        .coupon1-title
+        a(href="https://51dmq.com/order/show/5261").coupon-btn4
+        a(href="/user/mycoupon?useflag=1").coupon-btn1
+    .coupon-dialog#bindIdcard
+        .bindIdcard-title
+        .idcard-item
+            input(type="text",name="accIdentification",placeholder="输入身份证")#accIdentification
+        a(href="javascript:;").coupon-btn2#bindIdcard-btn
+    .mask#mask
+    +prompt()
+block scripts
+    script(src=baseUrl+'/javascripts/login.js')
+    script(src=baseUrl + '/javascripts/validate/jquery.validate.min.js')
+    script(src=baseUrl + '/javascripts/validate/messages_zh.min.js')
+    script(src=baseUrl + '/javascripts/validate/additional-methods.js')

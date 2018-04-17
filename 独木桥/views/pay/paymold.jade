@@ -1,0 +1,25 @@
+mixin paymold(mold,proitems)
+	div.page-line
+	form(method="post")#payForm
+		if !isWechat
+			input(type="hidden",value="0",name="state")#state
+		else
+			input(type="hidden",value="1",name="state")#state
+		input(type="hidden",value=proitems.orderNo,name="orderNos")#orderNos
+		ul.order-list.pay-list#pay-mold
+			if !isWechat
+				li.zhifubao
+					a(href="javascript:;",data-state="0")
+						label.lab-title
+							i.font-icon.icon-iconfont-zhifubao
+						| 支付宝
+						i.font-icon.fr.icon-iconfont-gougou.c-base
+			else
+				li.wenxin
+					a(href="javascript:;",data-state="1")
+						label.lab-title
+							i.font-icon.icon-iconfont-weixin
+						| 微信
+						i.font-icon.fr.icon-iconfont-gougou.c-base
+		div.btn-handle
+			a(href="javascript:;").btn#pay-btn 去支付

@@ -1,0 +1,48 @@
+#error_container {
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:1000;
+}
+#error_mask {
+	position:absolute;
+	left:0;
+	top:0;
+	background:#000;
+}
+#error_pop_w {
+	width:346px;
+	border:2px solid #5BB4E5;
+	border-top:none;
+	background:#fff;
+	position:absolute;
+	left:0;
+	top:0;
+}
+#error_pop_h {
+	background:#5BB4E5;
+	height:30px;
+	width:100%;
+}
+#error_pop_close {
+	background:url(../img/close.png) no-repeat 0 0;
+	cursor:pointer;
+	float:right;
+	height:20px;
+	margin:5px 5px 0 0;
+	width:20px;
+}
+#error_tip_pic {
+	background:url(../img/gt.png) no-repeat 0 0;
+	height:66px;
+	width:73px;
+}
+#error_tip_cbtn {
+	border:none;
+	background:url(../img/cbtn.png) no-repeat 0 0;
+	cursor:pointer;
+	height:28px;
+	width:80px;
+}
+
+.page-tips{ margin: 10px; border: 1px solid #ccc; background-color: #f0f0f0; height: 30px; line-height: 30px; padding: 0 10px; color: #fff;}

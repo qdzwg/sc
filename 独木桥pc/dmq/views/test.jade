@@ -1,0 +1,135 @@
+extends layout/testlayout
+block append stylesheet
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/remai.css')
+block append content
+    #main
+        #tnav_w
+            #f_hold
+                #f_nav.cf
+                    a(href="#tn1").tn1="门票"
+                    a(href="#tn2").tn2="酒店"
+                    a(href="#tn3").tn3="自由行"
+        a(name="#tn1")
+        .tl1(style="height:60px;")="景点门票"
+        .line_s.line_s1
+            .line_shead
+                a(href="/details/ticket/5300",target="_blank")="杭州宋城景区"
+                span
+            .line_smain.cf
+                a(href="/details/ticket/5300",target="_blank").line_pic
+                    img(src=baseUrl+"/images/demo/788653ca-9113-4378-854b-ee0399674481.jpg")
+                .line_tbox
+                    p='杭州宋城景区是中国人气非常旺的主题公园，秉承"建筑为形，文化为魂"的经营理念，《宋城千古情》创造了世界演艺史上的奇迹，是杭州宋城景区的灵魂，与拉斯维加斯的"O"秀、巴黎红磨坊并称"世界三大名秀"。'
+                    .pribox="价格："
+                        a(href="/details/ticket/5300")
+                            b=280
+                            ="元起"
+        .cw_w1
+            .cw_w1_inner.cf
+                .cbox.cbox1
+                    .cbox_head
+                        a(href="/details/ticket/5302",target="_blank")="杭州宋城烂苹果乐园"
+                        span
+                    .cbox_main.cf
+                        a(href="/details/ticket/5302",target="_blank").cbox_pic
+                            img(src=baseUrl+"/images/demo/a70138f2-286a-48e6-b041-fb116920a944.jpg")
+                        .cbox_txt
+                            p="全室内高科技亲子乐园，融汇了近百项世界领先的高科技互动体验项目。在这里没有作业，没有烦恼，只有好看的表演，好玩的游戏，伴随孩子们的成长。"
+                            .cbox_pri="价格："
+                                a(href="/details/ticket/5302")
+                                    b=140
+                                    ="元起"
+                .cbox.cbox1
+                    .cbox_head
+                        a(href="/details/ticket/5322",target="_blank")="杭州宋城云曼温泉"
+                        span
+                    .cbox_main.cf
+                        a(href="/details/ticket/5322",target="_blank").cbox_pic
+                            img(src=baseUrl+"/images/demo/a503c43c-6abf-465e-b5db-cd121bb62aab.jpg")
+                        .cbox_txt
+                            p='杭州宋城云曼温泉位于杭州宋城第一世界大酒店内，毗邻湘湖宋城杭州乐园，是繁华都市里的温泉度假天堂，让您"足不出户"尽享热带雨林温泉浴。'
+                            .cbox_pri="价格："
+                                a(href="/details/ticket/5322")
+                                    b=118
+                                    ="元起"
+        .cw_w1
+            .cw_w1_inner.cf
+                -each item in ticketItems
+                    .mbox.mbox1
+                        -var url="#"
+                        -if(item.id!="")
+                        -url="/details/ticket/"+item.id
+                        a(href=url,target="_blank").mbox_pic
+                            img(src=baseUrl+item.imgUrl,alt=item.title)
+                        .mbox_txt
+                            p!=item.desc
+                        .mbox_b
+                            a(href=url,target="_blank").mbox_t=item.title
+                            .mbox_pri="价格："
+                                a(href=url)
+                                    b=item.price
+                                    ="元起"
+        a(name="tn2")
+        .tl2="度假酒店"
+        .line_s.line_s2
+            .line_shead
+                a(href="/details/hotel/5245",target="_blank")="杭州宋城第一世界大酒店"
+                span="浓郁的东南亚风情"
+            .line_smain.cf
+                a(href="/details/hotel/5245",target="_blank").line_pic
+                    img(src=baseUrl + "/images/demo/b26e6a7d-938c-4137-a845-5b35641d4f2c.jpg",alt="杭州宋城第一世界大酒店")
+                .line_tbox
+                    p="杭州宋城第一世界大酒店坐拥西湖的“姊妹湖”——湘湖，是长三角首家五星级东南亚热带雨林主题酒店，国家金叶级绿色旅游饭店，也是中国具竞争力的会议度假酒店之一。到杭州宋城旅游区，住第一世界大酒店，泡宋城云曼温泉，游湘湖宋城杭州乐园、宋城烂苹果乐园，看世界三大名秀之一《宋城千古情》，已经成为一种流行休闲模式。"
+                    .pribox="价格："
+                        a(href="/details/hotel/5245")
+                            b=842
+                            ="元起"
+        .cw_w1
+            .cw_w1_inner.cf
+                .cbox.cbox2
+                    .cbox_head
+                        a(href="/details/hotel/5241",target="_blank")="杭州宋城千古情主题酒店"
+                        span="杭城最大的主题酒店群"
+                    .cbox_main.cf
+                        a(href="/details/hotel/5241",target="_blank").cbox_pic
+                            img(src=baseUrl + "/images/demo/1a32ce5e-3e8c-40cb-98aa-5ab94cfe8b20.jpg")
+                        .cbox_txt
+                            p="杭州宋城千古情主题酒店毗邻宋城景区，是杭城较大的旅游度假型酒店，距离西湖仅7公里。住千古情主题酒店，看《宋城千古情》，更有优惠套餐可选。"
+                            .cbox_pri="价格："
+                                a(href="/details/hotel/5241")
+                                    b=289
+                                    ="元起"
+                .cbox.cbox2
+                    .cbox_head
+                        a(href="/details/hotel/5244",target="_blank")="云和湖宋城云曼酒店"
+                        span="中国的马尔代夫"
+                    .cbox_main.cf
+                        a(href="/details/hotel/5244",target="_blank").cbox_pic
+                            img(src=baseUrl + "/images/demo/0d56bef2-0550-4906-882a-0d5c3f1c94ea.jpg")
+                        .cbox_txt
+                            p='云和湖宋城云曼酒店位于浙江丽水云和湖，坐拥6万亩湖泊，17间360度全湖景客房，每间投资600万元，是世界上每间投资较高的酒店之一。住云曼酒店，让你置身中国的马尔代夫。'
+                            .cbox_pri="价格："
+                                a(href="/details/hotel/5244")
+                                    b=1500
+                                    ="元起"
+        .cw_w1
+            .cw_w1_inner.cf
+                -each item in hotelItems
+                    -var url="#"
+                    -if(item.id!="")
+                    -url="/details/hotel/"+item.id
+                    .mbox.mbox2
+                        a(href=url,target="_blank").mbox_pic
+                            img(src=baseUrl + item.imgUrl,alt=item.title)
+                        .mbox_txt
+                            p!=item.desc
+                        .mbox_b
+                            a(href=url,target="_blank").mbox_t=item.title
+                            .mbox_pri="价格："
+                                a(href=url)
+                                    b=item.price
+                                    ="元起"
+        a(name="tn3")
+        include test/zyx
+block append scripts
+    script(src=baseUrl+'/javascripts/page.js')

@@ -1,0 +1,26 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_common.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/usercenter.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_detail.css')
+block pagecontent
+    include common/comFun
+    #uc_wrapper
+        include user/top
+        #uc_content.cf
+            include user/left
+            #uc_main
+                .t_w
+                    .t_head_w.cf
+                        .t_name 我的奖品
+                    ul.prize-list
+                        each item in items
+                            li
+                                img(src="/images/list/mn.png", alt="")
+                                .stbtn 已使用
+                                .list-content
+                                    h4=item.productName
+                                    span=item.winTime
+block scriptspage
+    script(src=baseUrl+'/javascripts/datepicker/WdatePicker.js')
+    script(src=baseUrl+'/javascripts/uc_common.js')

@@ -1,0 +1,123 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/member.css')
+
+block content
+   include common/commonFun
+   header.user-header
+      a(href="javascript:;").user-face
+        img(src="/images/member/header-bg.png")
+      h3.user-name=users.realname
+      p.header-explian.c-666
+         a(href="/user/userRights").grade-icon.grade-info
+            i.score-icon.icon-member
+            =users.levelname
+         case users.isCanUpGrade
+             when "1"
+                 a(href="javascript:;").grade-icon.grade-btn.grade-disabled
+                     i.score-icon.icon-upgrade
+                     ="正在审核"
+             when "2"
+                 a(href="javascript:;").grade-icon.grade-btn#grade
+                     i.score-icon.icon-upgrade
+                     ="申请升级"
+      .header-bottom
+         .header-bottom-left
+            em=users.totalBuy==null?0:users.totalBuy
+            ="累计消费金额"
+         .header-bottom-right
+            em=users.score
+            ="我的积分"
+         span.header-bottom-line
+
+   section
+      ul.tab.clearfix.member-tab
+         li
+            a(href="/user/myorder/1")
+               i.font-icon.icon-iconfont-yizhifu2.dingdan-pay
+               | 已支付
+         li
+            a(href="/user/myorder/0")
+               i.font-icon.icon-iconfont-daizhifu.dingdan-unpay
+               | 待支付
+         li
+            a(href="/user/myorder/2")
+               i.font-icon.icon-iconfont-gougou.dingdan-complent
+               | 已完成
+         li
+            a(href="/user/myorder/210")
+               i.font-icon.icon-iconfont-tuikuan.dingdan-refund
+               | 退款
+   ul.order-list.member-list
+      li
+         a(href="/user/myorder/all")
+            label.lab-title
+               i.font-icon.icon-iconfont-dingdan
+               | 全部订单
+            i.font-icon.fr.icon-iconfont-jiantou
+   div.page-line
+   ul.order-list.member-list
+        //li
+        //     a(href="/user/scoreorder")
+        //        label.lab-title
+        //           i.score-icon.icon-scoreorder
+        //           | 积分订单
+        //        i.font-icon.fr.icon-iconfont-jiantou
+        //li
+        //    a(href="/user/scoreDetails")
+        //        label.lab-title
+        //            i.score-icon.icon-scoreorder
+        //            | 积分明细
+        //        i.font-icon.fr.icon-iconfont-jiantou
+        //li
+        //    a(href="/user/task")
+        //        label.lab-title
+        //            i.score-icon.icon-scoreorder
+        //            | 每日任务
+        //        i.font-icon.fr.icon-iconfont-jiantou
+        //li
+        //    a(href="/user/prizelist")
+        //        label.lab-title
+        //            i.score-icon.icon-scoreorder
+        //            | 我的奖品
+        //        i.font-icon.fr.icon-iconfont-jiantou
+        li
+            a(href="/user/mycoupon?useflag=1")
+                label.lab-title
+                    i.score-icon.icon-scoreorder
+                    | 我的优惠券
+                i.font-icon.fr.icon-iconfont-jiantou
+        li
+            a(href="/user/convertCoupon")
+                label.lab-title
+                    i.score-icon.icon-scoreorder
+                    | 优惠码兑换
+                i.font-icon.fr.icon-iconfont-jiantou
+   div.page-line
+   ul.order-list.member-list
+      li
+         a(href="/user/myorder/1?flag=tour")
+            label.lab-title
+               i.font-icon.icon-iconfont-xincheng
+               | 我的行程
+            i.font-icon.fr.icon-iconfont-jiantou
+      li
+         a(href="/user/member")
+            label.lab-title
+               i.font-icon.icon-iconfont-zhanghu
+               | 个人中心
+            i.font-icon.fr.icon-iconfont-jiantou
+      li
+         a(href="tel:0851-86653481")
+            label.lab-title
+               i.font-icon.icon-iconfont-kefudianhua
+               | 客服中心
+            i.font-icon.fr.icon-iconfont-jiantou
+   div.member-handle.btn-handle
+      a(href="/logout").btn 退出登录
+   if(users.idCardBundFlag==0)
+    +tipsLayer()
+    .mask(style="display:block;")#mask
+   include common/footer
+block scripts
+    script(src=baseUrl+'/javascripts/user.js')

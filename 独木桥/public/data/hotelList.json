@@ -1,0 +1,44 @@
+{
+  "offset":0,
+  "data":[
+    {
+      "productCode":"dsfedfae21",
+      "productName":"酒店测试2",
+      "mainUrl":"http://luofc.sendinfo.com.cn",
+      "tags":[
+        "酒店标签1"
+      ],
+      "startingPrice":23,
+      "desc":"<p>1222<br/></p>",
+      "levelName":"六星级",
+      "saleNum":2,
+      "id":5,
+      "addr":"122",
+      "location":"[120.210636,30.343395]",
+      "attr":{
+
+      }
+    },
+    {
+      "productCode":"hotel001",
+      "productName":"酒店测试1",
+      "mainUrl":"http://luofc.sendinfo.com.cn/uploadFolder//2016-03-05/cc3522b5-79e4-4621-b4c3-c91354420fe9.jpg",
+      "tags":[
+        "酒店标签1"
+      ],
+      "startingPrice":0.35,
+      "desc":"<p>hotel001hotel001hotel001hotel001hotel001</p>",
+      "levelName":"五星级",
+      "saleNum":22,
+      "id":1,
+      "addr":"hotel001",
+      "location":"[120.481989,30.260503]",
+      "attr":{
+
+      }
+    }
+  ],
+  "limit":20,
+  "count":2,
+  "totalCount":2
+}

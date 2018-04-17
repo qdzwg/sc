@@ -1,0 +1,25 @@
+#sidebar
+    .bar_b
+        .m_t.m_t1 订单管理
+        ul
+            li
+                a(href='/user/order?currPage=1&orderType=ticket' class=nativePage==='ticket'?'m_sel':'') 门票订单
+            li
+                a(href='/user/order?currPage=1&orderType=hotel' class=nativePage==='hotel'?'m_sel':'') 酒店订单
+            li
+                a(href='/user/order?currPage=1&orderType=goods' class=nativePage==='goods'?'m_sel':'') 商品订单
+            li
+                a(href='/user/order?currPage=1&orderType=show' class=nativePage==='show'?'m_sel':'') 演出订单
+            li
+                a(href='/user/order?currPage=1&orderType=zyx' class=nativePage==='zyx'?'m_sel':'') 自由行订单
+            li
+                a(href='/user/order?currPage=1&orderType=combo' class=nativePage==='combo'?'m_sel':'') 套票订单
+    .bar_b
+        .m_t.m_t2 账号管理
+        ul
+            li
+                a(href='/user/userInfo' class=nativePage==='userInfo'?'m_sel':'') 个人资料
+            li
+                a(href='/user/concat' class=nativePage==='concat'?'m_sel':'') 常用联系人
+            li
+                a(href='/user/comment/commentOrder' class=nativePage==='comment'?'m_sel':'') 我的评论

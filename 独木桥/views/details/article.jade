@@ -1,0 +1,20 @@
+mixin article(title,content,div)
+   div.article-panel(id=div)
+      h3.article-title=title
+         a(href="javascript:;").close
+            i.font-icon.icon-iconfont-32pxchaxian
+      div.article-content
+         | !{content}
+
+mixin articleLayer(title,content,div)
+   div.articleLayer-panel
+      h3.articleLayer-title=title
+      div.articleLayer-content
+         | !{content}
+      .articleLayer-form
+         span#checkedBtn.check-btn.checked-btn
+            input#check(type='checkbox',hidden,checked)
+         span="我已了解！"
+      .articleLayer-handle
+         a(href="javascript:;")#cancel-btn.btn-order.background-base="返回"
+         a(href="javascript:;").btn-order.background-base.btn-disabled#enter-btn="下一步"

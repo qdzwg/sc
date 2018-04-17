@@ -1,0 +1,208 @@
+/*²úÆ·»ù±¾ÐÅÏ¢*/
+.details-info{ background-color: #fff; }
+.details-title{ padding: 0.5rem 0.75rem 0.3rem; font-size: 0.75rem; color: #333; word-break:break-all;}
+.details-comment{ display: block; padding:0.5rem 0.75rem; font-size: 0.5rem; color: #999; text-align: right; height: 1rem; line-height: 1rem; border-top: 1px solid #eee; background-color: #fff;}
+.comment-score{ float: left;}
+.comment-score em{ margin-right: 0.5rem; font-size: 0.6rem; display: inline-block; vertical-align: middle;}
+.comment-score i{ font-size: 0.75rem; margin-right: 0.25rem; vertical-align: middle;}
+.comment-score i.not-light{ color: #ccc;}
+.details-comment i.icon-iconfont-jiantou{ font-size: 0.6rem; margin-left: 0.6rem; margin-top: 0.2rem;}
+.details-explian{padding: 0 0.75rem 0.5rem; font-size: 0.55rem; color: #999; overflow: hidden;}
+.comment-title{float: left; font-size: 0.6rem; color: #333;}
+
+/*ÏêÏ¸Ò³ÃæÁÐ±í*/
+.details-list-title{ background-color: #fff; padding: 0.5rem 0.75rem; font-size: 0.65rem; color: #333; border-top: 1px solid #eee;}
+.details-list{ background-color: #fff;}
+.details-list li{padding: 0.4rem 0.75rem; border-top: 1px solid #eee; display: table; width: 100%; box-sizing: border-box;}
+.pro-price{ width: 3rem; text-align: center; display: table-cell; vertical-align: middle; font-size: 0; }
+.pro-price .price{ vertical-align: top; display: block; text-align: center; width: 2.5rem; color:#f66;}
+.pro-price .price strong{ font-size: 0.65rem;}
+.pro-price .original-price {text-align: center; color:#999;}
+.pro-price a,.room-handle a{ display: inline-block; text-align: center; height: 1.25rem; line-height: 1.25rem; font-size: 0.55rem; width: 2.5rem; vertical-align: top; border-radius: 3px;  color: #fff; background-color: #f66;}
+.pro-price a.disable-btn,.room-handle a.disable-btn{ background-color: #999;}
+.pro-info{ min-height: 1.9rem; height: auto; display: table-cell; vertical-align: middle; padding-right: 0.5rem;}
+.pro-info-title{ font-size: 0.55rem; color: #333;}
+.pro-info-explian{ font-size: 0.55rem; color: #999; margin-top: 0.25rem; height: 0.75rem; line-height: 0.75rem;}
+.pro-info-explian span{ margin-right: 0.5rem;}
+.details-explian .price{ font-size: 0.55rem; color: #999; margin-left: 0.5rem;}
+.details-explian .price strong{ margin-right: 0.2rem;}
+.details-explian .original-price{ padding-top: 0.1rem;}
+
+/*ÃÀÊ³ÏêÏ¸Ò³ÃæÁÐ±í*/
+.foods-list{ background-color: #fff;}
+.foods-list li{ padding: 0.5rem 0.75rem; border-bottom: 1px solid #eee;}
+.foods-list-img{ width: 3.25rem; height:2.75rem; overflow: hidden; float: left; }
+.foods-list-img img{ height: 100%;}
+.foods-list-info{ margin-left: 4rem; min-height: 2.5rem; height: auto;}
+.foods-list-title{ font-size: 0.65rem; color: #333; height: 2rem;}
+.foods-list-explian{ font-size: 0.45rem; height: 0.75rem; line-height: 0.75rem; text-align: right; color: #999;}
+.foods-list-explian span{ display: inline-block; vertical-align: bottom;}
+.foods-list-explian .price{ margin-left: 0.5rem;}
+.foods-list-explian span.fl{ margin-top: 0.05rem;}
+
+.myorder-list{ border-top: none;}
+
+/*ÎÄÕÂÏêÏ¸Ò³Ãæ*/
+.article-info{ padding:0.75rem; font-size: 0.6rem; line-height: 1.8; color: #666;}
+.article-info img{ max-width: 100%;}
+.article-flag{ padding-bottom: 0.8rem; margin-bottom: 0.8rem; border-bottom: 1px solid #dcdcdc; font-size: 0.5rem;}
+.article-flag-icon{ float: left; margin-top: 0.2rem;}
+.article-flag-info{ margin-left: 1rem; line-height: 160%;}
+.article-main img{ margin: 0.5rem 0;}
+.artice-header{ padding: 0 0.75rem;}
+.article-body{ background-color: #fff;}
+.article-tags{ padding: 0.5rem 0;}
+.article-tags span{ font-size: 0.55rem; color: #999; margin: 0 0.5rem;}
+
+.page-calendar{ background-color: #fff; font-size: 0.6rem; padding: 0 0.75rem;}
+.page-calendar a{ display: block; height: 2.1rem; line-height: 2.1rem;}
+.page-calendar a span{ margin: 0 0.7rem 0 0.25rem;}
+.page-calendar a i{ margin-top: 0.75rem;}
+
+/*¾ÆµêÏêÇéÁÐ±í*/
+.pro-img{ width: 3.25rem; height: 2.75rem; overflow: hidden; float: left; position: relative;}
+.img-bottom{ position: absolute; bottom: 0; width: 90%; height: 0.6rem; background-color: rgba(0,0,0,.6); line-height: 0.6rem; font-size: 0.45rem; color: #fff; padding: 0 5%;}
+.pro-img img{ height: 100%;}
+.hotel-info{ margin-left: 3.75rem;}
+.order-item span.facility{ padding-top: 0.25rem;}
+.myorder-list .order-item .facility i{ margin: 0 0.125rem; font-size: 0.75rem; width: 1rem; vertical-align: baseline;}
+
+/*·¿ÐÍÏêÏ¸*/
+.room-handle{ height: 2.1rem; line-height: 2.1rem; background-color: #fff; border-bottom: 1px solid #eee; padding: 0 0.75rem; font-size: 0.6rem;}
+.room-handle .price{ margin-left: 1.7rem;}
+.room-handle a{ margin-top: 0.5rem;}
+
+.article-facility{ padding: 0.75rem; margin-top: -0.8rem; border-bottom: 1px solid #dcdcdc; margin-bottom: 0.8rem;}
+.article-facility span{ font-size: 0.6rem; width: 3.75rem; display: inline-block;}
+.article-facility span i{ font-size: 0.65rem; margin-right: 0.25rem;}
+
+.myorder-list .zyx-title{ width: 4.5rem;}
+
+.details-tab{ border-top: 1px solid #eee; }
+.details-triple{ border-top: 1px solid #eee; border-bottom: 1px solid #eee;}
+.details-tab li{ width: 50%;}
+.details-triple li{ width: 33%;}
+.details-tab li a{ height: 1.45rem; line-height: 1.45rem; text-align: center; width: 100%;}
+.details-tab li a.active{ color: #f63;}
+.details-triple li a{ height: 1.45rem; line-height: 1.45rem;}
+.details-tab-item{ font-size: 0.55rem; color: #666; background-color: #fff; padding: 0.5rem 0.75rem; line-height: 180%; border-top: 1px solid #eee;}
+.details-tab-item b{ font-size: 0.6rem; margin-top: 0.5rem; display: inline-block; margin-bottom: 0.25rem;}
+.details-tab.tabs-two li{width: 50%; }
+.details-tab.tabs-tree li{width: 33%; }
+.details-tab.tabs-four li{width: 25%; }
+.details-tab.tabs-five li{width: 20%; }
+
+.trun-down{ border-top: 1px solid #eee; border-bottom: 1px solid #eee;}
+.trun-down a{ height: 2.1rem; line-height: 2.1rem; display: block; text-align: center; background-color: #fff; font-size: 0.6rem;}
+.trun-down a i{-webkit-transform: rotate(90deg);}
+
+/*ÀàÐÍ*/
+.mold-panel{ background-color: #fff;}
+.mold-panel-title{ height: 2.1rem; line-height: 2.1rem; padding: 0 0.75rem; font-size: 0.6rem; color: #333; border-bottom: 1px solid #eee;}
+.mold-panel p{ padding: 0.5rem;}
+.mold-panel p a{ font-size: 0.5rem; color: #999; display: inline-block; height: 1rem; line-height: 1rem; text-align: center; padding: 0 0.5rem; border: 1px solid #999; border-radius: 3px; margin-right: 0.75rem; margin-bottom: 0.5rem;}
+.mold-panel p a.active{ color: #f66; border: 1px solid #f66;}
+/*轮播高度*/
+.block_home_slider .slide { height:8rem; overflow: hidden;}
+.block_home_slider .big { height:12rem; }
+
+/*map*/
+#allmap{ height: 100%;}
+.map-header{ position: fixed; top:0; left: 0; width: 100%; height: 2.1rem; line-height: 2.1rem; background-color: #fff; z-index: 200; font-size: 0.6rem; padding: 0 0.25rem; box-sizing: border-box;}
+.map-header span{ margin: 0 0.5rem; display: inline-block; word-break:break-all; vertical-align: middle; color: #666; font-size: 0.5rem;}
+.map-header span:last-child{ width: 9rem; line-height: 140%; font-size: 0.5rem;}
+.refresh-btn{display: block; font-size: 1rem; margin-right: 0.5rem;}
+.map-footer{ position: fixed; bottom: 0; left: 0; width: 100%; height: 5.1rem; transition:bottom 0.5s; -webkit-transition: bottom 0.5s; }
+.map-fotter-active{ bottom: -4.35rem;}
+.map-btn{ display: block; width: 3.75rem; height: 0.75rem; line-height: 0.75rem; margin: 0 auto; background-color: #fff; border: 1px solid #dcdcdc; font-size: 0.6rem; text-align: center; margin-bottom: -1px; border-top-left-radius: 5px; border-top-right-radius: 5px;}
+.map-btn i{ transform:rotate(90deg); -webkit-transform:rotate(90deg); color: #ab1338; transition:transform 0.3s; -webkit-transition: -webkit-transform 0.3s;}
+.map-btn-active i{ transform:rotate(270deg); -webkit-transform:rotate(270deg); padding-right: 0.25rem;}
+.travel-mold{ background-color: #fff; border-top: 1px solid #dcdcdc; border-bottom: 1px solid #dcdcdc; padding: 0.25rem 0;}
+.travel-mold li{ width: 33%; float: left; border-right: 1px solid #dcdcdc;}
+.travel-mold li a{ height: 1.75rem; line-height: 1.75rem; display: block; font-size: 0.6rem; text-align: center;}
+.travel-mold li a.hover{ color: #ab1338;}
+.travel-mold li a i{ font-size: 0.75rem; margin-right: 0.5rem; vertical-align: middle;}
+.map-explian{ height: 2.1rem; line-height: 2.1rem; text-align: center; font-size: 0.5rem; color: #666; background-color: #fff;}
+.map-explian span{ margin: 0 0.75rem;}
+.map-explian span i{ font-size: 0.65rem; margin-right: 0.25rem; vertical-align: middle;}
+.location{ position: fixed; left: 0.25rem; bottom: 4.5rem; width: 1.5rem; transition:bottom 0.5s; -webkit-transition: bottom 0.5s;}
+.location a{ display: inline-block; width: 1.5rem; height: 1.5rem; line-height: 1.5rem; text-align: center; background-color: #fff; border: 1px solid #999; border-radius: 5px; margin-bottom: 0.5rem; color: #ab1338;}
+.location a i{ vertical-align: middle;}
+.location a:first-child i{ margin-bottom: 0.125rem;}
+.location a:last-child i{ font-size: 0.75rem;}
+.location-active{ bottom: 0.15rem;}
+.amap-copyright, .amap-logo{ display: none;}
+
+/*评论列表*/
+.comment-list{ background-color: #fff; border-bottom: 1px solid #dcdcdc; border-top: 1px solid #dcdcdc;}
+.comment-list li{border-bottom: 1px solid #dcdcdc; padding: 0 0.75rem;}
+.comment-list li:last-child{ border-bottom: none;}
+.comment-list-top{ height: 1.75rem; line-height: 1.75rem; border-bottom: 1px solid #dcdcdc; font-size: 0.5rem; color: #555;}
+.comment-list-info{ padding: 0.25rem 0; line-height: 160%; font-size: 0.5rem; color: #999;}
+.comment-list li .details-comment{ border-top: none; padding: 0.25rem 0;}
+.comment-list li .details-comment strong{ color: #333;}
+.comment-list li .score-num{ font-size: 0.65rem; margin-left: 0.5rem;}
+
+.tabs{ height: 2.1rem; line-height: 2.1rem; background-color: #fff; width: 100%;}
+.tabs a{ display: block; float: left; text-align: center; color: #333; line-height:2rem; font-size: 0.6rem; text-decoration: none; }
+.tabs-two a{width: 50%; }
+.tabs-tree a{width: 33%; }
+.tabs-four a{width: 25%; }
+.tabs-five a{width: 20%; }
+.tabs a.active { color: #ff6633; }
+.wrap { margin: 0 auto; }
+.swiper-container { background-color: #fff; border-top: 1px solid #dcdcdc; }
+.swiper-slide{ font-size: 0.6rem; line-height: 180%;}
+.con{ word-break:break-all;}
+.con img{ max-width: 100%;}
+.travel-info{ margin-bottom: 0.75rem;}
+
+/*商品分类*/
+.goods-mold-panel{ position: fixed; bottom: -20rem; width: 100%; left: 0; background-color: #fff; z-index: 21; transition: bottom 0.5s; -webkit-transition: bottom 0.5s;}
+.goods-show{ bottom: 0;}
+.goods-mold-header{ padding: 0.75rem; border-top: 1px solid #dcdcdc; border-bottom: 1px solid #dcdcdc;}
+.goods-header-img{ width: 4rem; height: 3.15rem; float: left; overflow: hidden;}
+.goods-header-img img{ width: 4rem; height: 3.15rem;}
+.goods-header-info{ margin-left: 4.5rem;}
+.goods-header-info .price{ color: #ff6633;}
+.goods-header-info p{ font-size: 0.65rem; color: #333; padding-top: 0.75rem;}
+.goods-mold-content{ padding: 0.75rem; font-size: 0; border-bottom: 1px solid #dcdcdc; max-height: 5.5rem; overflow-y: auto;}
+.goods-mold-content a{ display: inline-block; height: 1rem; line-height: 1rem; padding: 0 0.5rem; border: 1px solid #ccc; border-radius: 0.25rem; font-size: 0.5rem; color: #666; margin: 0.25rem;}
+.goods-mold-content a.c-base{ color: #f63;}
+.goods-footer-title{ height: 2.1rem; line-height: 2.1rem; padding: 0 0.75rem; font-size: 0.6rem; color: #000; border-bottom: 1px solid #dcdcdc;}
+.goods-footer-tab{ font-size: 0;}
+.goods-footer-tab a{ display: inline-block; width: 50%; box-sizing: border-box; border-right: 1px solid #dcdcdc; height: 2rem; line-height: 2rem; text-align: center; font-size: 0.65rem; color: #999; background-color: #f5f5f5; border-bottom: 1px solid #dcdcdc;}
+.goods-footer-tab a .font-icon{ font-size: 0.8rem; vertical-align: middle; margin-right: 0.25rem; margin-top: -0.125rem;}
+.goods-footer-tab a.cur{ color: #ff6666; background-color: #fff;}
+
+.total-price a.details-tel{ text-decoration: none; color: #666; font-size: 0.65rem;}
+
+.article{ padding: 0.75rem; line-height: 160%;}
+.line-layer,.goods-layer{ bottom: 3.25rem;}
+.line-comment,.goods-comment{ padding-bottom: 3.2rem;}
+
+.hotel-detailsList{min-height: 3.75rem; height: auto;}
+
+.zyx-title{ background-color: #fff; border-top: 1px solid #dcdcdc; height: 2rem; line-height: 2rem; padding: 0 0.5rem; font-size: 0.7rem;}
+.zyx-title a{ float: right; color: #f66; font-size: 0.55rem;}
+
+.page-title{ font-size:0.7rem; background:#fff; height:1.4rem; line-height: 1.4rem; padding:0 0.5rem;}
+.page-title:before{ content:""; display:block; float: left; height:0.5rem; border-left:0.1rem solid #f63; width:0.2rem; margin-top: 0.45rem;}
+.page-title strong{ display: block; height:1.4rem; border-bottom: 1px solid #eee; box-sizing:border-box;}
+
+.detail-menu-box{ height:2.25rem; width:100%;border-bottom: 1px solid #eee;}
+#detailmenu{ z-index:19;}
+
+.share{ margin-left: 0.5rem; color: #333; display: inline-block; vertical-align: middle;}
+.share i{ color: #ff7800; margin-right: 0.25rem; font-size: 0.6rem;}
+
+.articleLayer-panel{ position: fixed; width: 80%; height: 16rem; border-radius: 0.5rem; background-color: #fff; top:50%; left: 50%; margin-left: -40%; margin-top: -8rem; z-index: 30; display: none;}
+.articleLayer-title{ height: 2rem; line-height: 2rem; margin: 0 0.5rem; border-bottom: 1px solid #dcdcdc; font-size: 0.65rem; padding-left: 0.5rem;}
+.articleLayer-content{ height: 9.5rem; overflow: auto; font-size: 0.6rem; color: #333;padding: 0.5rem; line-height: 180%;}
+.articleLayer-content img{ max-width: 100%;}
+.articleLayer-form{ height: 1.5rem; line-height: 1.5rem; font-size: 0.6rem; color: #666; padding: 0 0.75rem;}
+.articleLayer-form span{display: inline-block; vertical-align: middle; margin: 0 0.2rem;}
+.check-btn{  width: 0.65rem; height: 0.65rem; border: 1px solid #ccc; border-radius: 100%;}
+.checked-btn{ background: url("../images/list/ico_checked_03.png") no-repeat; background-size: cover; border: none;}
+.articleLayer-handle{ height: 2.5rem; border-top:1px solid #dcdcdc; margin: 0 0.25rem; text-align: center;}
+.articleLayer-handle a{ display: inline-block; font-size: 0.6rem; width: 3.5rem; height: 1.2rem; line-height: 1.2rem;}

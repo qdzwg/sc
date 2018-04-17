@@ -1,0 +1,60 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/order.css')
+   link(rel='stylesheet', href=baseUrl+'/javascripts/webuploader/webuploader.css')
+
+block content
+   include orderDetails/header
+   include orderDetails/orderInfo
+   include orderDetails/orderUser
+   include orderDetails/orderHandle
+   include common/commonFun
+   include common/msgTips
+   +header(orders,mold)
+   +orderInfo(orders,mold)
+   -if(mold!="score"&&seatsinfo.length>0&&isshowseat)
+      //-.page-line
+      ul.order-list.myorder-list(style="display:none;")
+         li
+            label.lab-title 座位号
+            div.order-item
+               each item in seatsinfo
+                  p
+                     =item.seatName
+   +user(orders,mold)
+   if(mold!="score")
+        +handle(orders.orderStatus,mold,orders.orderId,orders.ticketId,iscomment,retreatNum,orders.refundStatus,orders.allRefund,isshow,orders.receiptFlag,orders.orderNo)
+   else
+        +scoreHnadle(orders)
+   -if(orders.orderStatus!=0&&qrCodeimg)
+      a(href="javascript:;").qr-btn#qrBtn
+         .page-icon.icon-qr
+      .qrCode#qrCode
+         -each item in orders.qrCode
+            .qr-list
+               img(src=qrCodeimg)
+               span=item.name
+   .mask#mask
+   - if(error)
+      +msg(error)
+block scripts
+   script(src=baseUrl+'/javascripts/order.js')
+   script(src=baseUrl+'/javascripts/pageItem.js')
+   script(src=baseUrl+'/javascripts/validate/jquery.validate.min.js')
+   script(src=baseUrl+'/javascripts/validate/messages_zh.min.js')
+   script(src=baseUrl+'/javascripts/validate/additional-methods.js')
+   script(src=baseUrl+'/javascripts/webuploader/webuploader.js')
+   script(src=baseUrl+'/javascripts/upload.js')
+   script.
+      $(function () {
+         $("#qrBtn").click(function (e) {
+            $("#qrCode,#mask").show();
+            e.stopPropagation();
+         });
+         $("#qrCode").click(function () {
+            $("#qrCode,#mask").hide();
+         });
+          $("#qrCode").find("img").click(function (e) {
+              e.stopPropagation();
+          });
+      })

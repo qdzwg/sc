@@ -1,0 +1,172 @@
+extends ../layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_common.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/usercenter.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_detail.css')
+block pagecontent
+    include ../common/comFun
+    #uc_wrapper
+        include top
+        #uc_content.cf
+            include left
+            #uc_main
+                .t_w
+                    .t_head_w.cf
+                        -var status=''
+                        case detailData.orderStatus
+                                when '0'
+                                    -status='待支付'
+                                when '1'
+                                    -status='已支付'
+                                when '2'
+                                    -status='已过期'
+                                when '3'
+                                    -status='已完成'
+                                when '4'
+                                    -status='已关闭'
+                                when '5'
+                                    -status='退单中'
+                                when '6'
+                                    -status='已部分退单'
+                                when '7'
+                                    -status='已全部退单'
+                                when '100'
+                                    -status='退单失败'
+                        .t_name
+                            | 当前订单状态：
+                            span.dor=status
+                        .t_name.lm30
+                            | 订单总金额：
+                            span.dor=detailData.finalSum
+                        if detailData.orderStatus==='0'
+                            a.ogbtn(href='/pay/'+nativePage+'/'+detailData.orderId) 去付款
+                        if detailData.orderStatus==='1'
+                            a.ogbtn(href='/user/refund/'+detailData.orderId) 去退款
+                    #info_w
+                        .info_cw
+                            .info_chead
+                                b 基本信息
+                            case nativePage
+                                when 'ticket'
+                                    ul.info_list.cf
+                                        li
+                                            span 子订单号：
+                                            | #{detailData.orderNo}
+                                        li
+                                            span 门票名称：
+                                            | #{detailData.info}
+                                        li
+                                            span 门票张数：
+                                            | #{detailData.amount}
+                                        li
+                                            span 游玩日期：
+                                            +formatDate(detailData.startDate)
+                                        li
+                                            span 门票单价：
+                                            | #{detailData.finalSum/detailData.amount}
+                                        li
+                                            span 订单总价：
+                                            | #{detailData.finalSum}
+                                when 'hotel'
+                                    ul.info_list.cf
+                                        li
+                                            span 子订单号：
+                                            | #{detailData.orderNo}
+                                        li
+                                            span 房型名称：
+                                            | #{detailData.info}
+                                        li
+                                            span 房间数量：
+                                            | #{detailData.amount}
+                                        li
+                                            span 入住日期：
+                                            +formatDate(detailData.startDate)
+                                        li
+                                            span 离开日期：
+                                            +formatDate(detailData.endDate)
+                                        li
+                                            span 门票单价：
+                                            | #{detailData.finalSum/detailData.amount}
+                                        li
+                                            span 订单总价：
+                                            | #{detailData.finalSum}
+                                when 'show'
+                                    ul.info_list.cf
+                                        li
+                                            span 子订单号：
+                                            | #{detailData.orderNo}
+                                        li
+                                            span 订单名称：
+                                            | #{detailData.info}
+                                        li
+                                            span 数量：
+                                            | #{detailData.amount}
+                                        li
+                                            span 演出日期：
+                                            +formatDate(detailData.startDate)
+                                        li
+                                            span 单价：
+                                            | #{detailData.finalSum/detailData.amount}
+                                        li
+                                            span 订单总价：
+                                            | #{detailData.finalSum}
+                                when 'zyx'
+                                    ul.info_list.cf
+                                        li
+                                            span 子订单号：
+                                            | #{detailData.orderNo}
+                                        li
+                                            span 订单名称：
+                                            | #{detailData.info}
+                                        li
+                                            span 门票张数：
+                                            | #{detailData.amount}
+                                        li
+                                            span 游玩日期：
+                                            +formatDate(detailData.startDate)
+                                        li
+                                            span 门票单价：
+                                            | #{detailData.finalSum/detailData.amount}
+                                        li
+                                            span 订单总价：
+                                            | #{detailData.finalSum}
+                                when 'combo'
+                                    ul.info_list.cf
+                                        li
+                                            span 订单号：
+                                            | #{detailData.orderNo}
+                                        li
+                                            span 套票名称：
+                                            | #{detailData.info}
+                                        li
+                                            span 数量：
+                                            | #{detailData.amount}
+                                        li
+                                            span 游玩日期：
+                                            +formatDate(detailData.startDate)
+                                        li
+                                            span 单价：
+                                            | #{detailData.finalSum/detailData.amount}
+                                        li
+                                            span 订单总价：
+                                            | #{detailData.finalSum}
+                        .info_cw
+                            .info_chead
+                                b 联系人信息
+                            ul.info_list.cf
+                                li
+                                    span 联系人：
+                                    | #{detailData.linkName}
+                                li
+                                    span 手机号码：
+                                    | #{detailData.linkMobile}
+                                li
+                                    span 身份证号码：
+                                    | #{detailData.linkIdcard}
+                        .info_cw
+                            ul.info_list.cf
+                                li.save
+                                    input.comfirm_btn(type='button', value='返回', onclick='history.back();')
+block scriptspage
+    
+    script(src=baseUrl+'/javascripts/uc_common.js')

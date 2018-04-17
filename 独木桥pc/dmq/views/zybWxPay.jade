@@ -1,0 +1,8 @@
+doctype html
+html(lang="en")
+   head
+   body(onload="document.E_FORM.submit()")
+      form(action="http://weixin.zhiyoubao.com/zybpay/prePay.htm",method="post",name="E_FORM")
+         textarea(name="req_data")
+            =proitems
+

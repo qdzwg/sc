@@ -1,0 +1,120 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/dropload.css')
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/list.css')
+
+block content
+   include common/commonFun
+   include common/msgTips
+   -if(items.length>0)
+      ul.cart-list
+         -each item in items
+            li
+               .cart-info
+                  i(data-id=item.id).page-icon.icon-checkbox
+                  .cart-img
+                     img(src=item.url)
+                  .cart-content.flex1
+                     h4.cart-title=item.name
+                     -if(typeof item.beginDate!="undefined")
+                        p="游玩时间："
+                           +nDate(item.beginDate)
+                     p=item.modelName
+               .cart-explian
+                  span.price
+                     em="￥"
+                     strong=item.finalSum
+                  span.num="数量："
+                     em=item.amount
+               a(href="javascript:;").del-btn
+                  i.page-icon.icon-del
+   - else
+      .no-data="购物车为空！"
+   .footer-box
+      .footer-layer
+         .total-price-box.flex1
+            span.check-all
+               i.page-icon.icon-checkbox
+               ="全部"
+            span.price
+               em="￥"
+               strong#total="0"
+         form(method="post")#orderForm
+            input(type="hidden",name="ids")#hid-ids
+            a(href="javascript:;").settle-btn="结算"
+               em#total-num="(0)"
+   - if(error)
+      +msg(error)
+   script.
+      $(function(){
+         $(".cart-list").find(".icon-checkbox").click(function(){
+            var len=$(".cart-list").find("li").length;
+            if($(this).hasClass("icon-checkbox-checked")){
+               $(this).removeClass("icon-checkbox-checked");
+            }else{
+               $(this).addClass("icon-checkbox-checked");
+            }
+            var checkednum=$(".cart-list").find(".icon-checkbox-checked").length;
+            if(checkednum==len){
+               $(".check-all").find(".icon-checkbox").addClass("icon-checkbox-checked");
+            }else{
+               $(".check-all").find(".icon-checkbox").removeClass("icon-checkbox-checked");
+            }
+            if(checkednum>0){
+               $(".settle-btn").addClass("settle-btn-operable");
+            }else{
+               $(".settle-btn").removeClass("settle-btn-operable");
+            }
+            $("#total-num").text("("+checkednum+")");
+            totalPrice();
+         });
+         $(".check-all").find(".icon-checkbox").click(function(){
+            if($(this).hasClass("icon-checkbox-checked")){
+               $(".cart-list").find(".icon-checkbox").removeClass("icon-checkbox-checked");
+               $(this).removeClass("icon-checkbox-checked");
+               $(".settle-btn").removeClass("settle-btn-operable");
+            }else{
+               $(".cart-list").find(".icon-checkbox").addClass("icon-checkbox-checked");
+               $(this).addClass("icon-checkbox-checked");
+               if($(".cart-list").find(".icon-checkbox-checked").length>0){
+                  $(".settle-btn").addClass("settle-btn-operable");
+               }
+            }
+            var checkednum=$(".cart-list").find(".icon-checkbox-checked").length;
+            $("#total-num").text("("+checkednum+")");
+            totalPrice();
+         });
+
+         $(".del-btn").click(function(){
+            var id=$(this).siblings(".cart-info").find("i").data("id"),_this=$(this),length=$(".cart-list").find("li").length;
+            $.get('/order/cart/del',{ids:id},function(data){
+                console.log(length);
+               if(data.flag=="success"){
+                  _this.parent().remove();
+                   var num=length-1;
+                   $("#total-num").html("("+num+")");
+                   totalPrice();
+               }
+            },"json");
+         });
+
+         $("#orderForm").find("a").click(function(){
+            if($(this).hasClass("settle-btn-operable")){
+               var ids="";
+               $(".cart-list").find(".icon-checkbox-checked").each(function(){
+                  var id=$(this).data("id");
+                  ids+=id+",";
+               });
+               $("#hid-ids").val(ids);
+               $("#orderForm").submit();
+            }
+         });
+      });
+      function totalPrice(){
+         var total=0;
+         $(".cart-list").find(".icon-checkbox-checked").each(function(){
+            var obj=$(this).parent().next();
+            total=operation.accAdd(parseFloat(total),parseFloat(obj.find("strong").text()));
+         });
+         $("#total").text(total);
+      }

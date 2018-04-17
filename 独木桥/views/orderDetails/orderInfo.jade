@@ -1,0 +1,226 @@
+mixin orderInfo(orders,mold)
+   div.page-line
+   case mold
+      when "ticket"
+         +orderInfoTicket(orders)
+      when "hotel"
+         +orderInfohotel(orders)
+      when "route"
+         +orderInforoute(orders)
+      when "show"
+         +orderInfoshow(orders)
+      when "combo"
+         +orderInfocombo(orders)
+      when "zyx"
+         +orderInfoline(orders)
+      when "repast"
+         +orderInforepast(orders)
+      when "goods"
+         +orderInfogoods(orders)
+      when "score"
+         +orderInfoscore(orders)
+   - if(mold!="score"&&orders.refund.length>0)
+      +refundInfo(orders.refund)
+
+//- 景区订单详情
+mixin orderInfoTicket(orders)
+   ul.order-list.myorder-list
+      li
+         label.lab-title 游玩日期
+         div.order-item
+            span
+               +nDate(orders.startDate)
+      li
+         label.lab-title 购买份数
+         div.order-item
+            span=orders.amount
+            | 份
+
+//- 酒店订单详情
+mixin orderInfohotel(orders)
+   ul.order-list.myorder-list
+      li
+         label.lab-title 入住日期
+         div.order-item
+            span
+               +nDate(orders.startDate)
+               ="至"
+               +nDate(orders.endDate)
+      li
+         label.lab-title 房间数量
+         div.order-item
+            span=orders.amount
+            | 间
+
+//- 跟团游订单详情
+mixin orderInforoute(orders)
+   ul.order-list.myorder-list
+      li
+         label.lab-title 出行日期
+         div.order-item
+            span
+               =orders.startDate
+      li
+         label.lab-title 游玩人数
+         div.order-item
+            span.route-num="成人"+orders.crAmount+"人"
+            span.route-num="儿童"+orders.etAmount+"人"
+
+//- 自由行订单详情
+mixin orderInfoline(orders)
+   ul.order-list.myorder-list
+      li
+         label.lab-title 游玩日期
+         div.order-item
+            span
+               +nDate(orders.startDate)
+      li
+         label.lab-title 购买份数
+         div.order-item
+            span=orders.amount
+            | 份
+
+//- 演艺订单详情
+mixin orderInfoshow(orders)
+   ul.order-list.myorder-list
+      li
+         label.lab-title 参看日期
+         div.order-item
+            span
+               +nDate(orders.startDate)
+      //li
+      //   label.lab-title 场次
+      //   div.order-item
+      //      span=orders.amount
+      //      | 份
+      li
+         label.lab-title 购买份数
+         div.order-item
+            span=orders.amount
+            | 份
+
+//- 套餐订单详情
+mixin orderInfocombo(orders)
+   ul.order-list.myorder-list
+      li
+         label.lab-title 游玩日期
+         div.order-item
+            span
+               +nDate(orders.startDate)
+      li
+         label.lab-title 购买份数
+         div.order-item
+            span=orders.amount
+            | 份
+
+//- 餐饮订单详情
+mixin orderInforepast(orders)
+   ul.order-list.myorder-list
+      li
+         label.lab-title 有效日期
+         div.order-item
+            span
+               =orders.startDate
+      li
+         label.lab-title 购买数量
+         div.order-item
+            span=orders.amount
+            | 份
+
+//- 商品订单详情
+mixin orderInfogoods(orders)
+   ul.order-list.myorder-list
+      li
+         label.lab-title 购买数量
+         div.order-item
+            span=orders.amount
+            | 份
+      - if(orders.goodsItem.freight!="0")
+         li
+            label.lab-title 配送方式
+            div.order-item
+               span
+                  if(orders.goodsItem.postageOrder)
+                    +postType(orders.goodsItem.postageOrder.postType)
+                  else
+                     ="包邮"
+         li
+            label.lab-title 快递单号
+            div.order-item
+               span=orders.goodsItem.expBill
+
+//- 积分订单详情
+mixin orderInfoscore(orders)
+    ul.order-list.myorder-list
+        case orders.productType
+            when "ticket"
+                li
+                    label.lab-title 使用时间
+                    div.order-item
+                        span
+                            +nDate(orders.travelDate)
+            when "hotel"
+                li
+                    label.lab-title 使用时间
+                    div.order-item
+                        span
+                            +nDate(orders.travelDate)
+                            ="至"
+                            +nDate(orders.leaveDate)
+            when "show"
+                li
+                    label.lab-title 使用时间
+                    div.order-item
+                        span
+                            +nDate(orders.travelDate)
+                li
+                    label.lab-title 场次
+                    div.order-item
+                        span=orders.showTime
+
+//-退款信息
+mixin refundInfo(items)
+   - each item in items
+      .page-line
+      ul.order-list.myorder-list
+         li
+            label.lab-title="状态"
+            div.order-item
+               span
+                  +refundStatus(item.refundStatus)
+         li
+            label.lab-title="退款日期"
+            div.order-item
+               span
+                  +nDate(item.createTime)
+         li
+            label.lab-title="退款数量"
+            div.order-item
+               span=item.refundNum
+         li
+            label.lab-title="退款金额"
+            div.order-item
+               span=item.refundSum
+         li
+            label.lab-title="手续费"
+            div.order-item
+               span=item.fee
+
+mixin refundStatus(num)
+   case num
+      when '0'
+         ="退票中"
+      when '1'
+         ="退票中"
+      when '2'
+         ="退票中"
+      when '3'
+         ="退款中"
+      when '4'
+         ="已退款"
+      when '100'
+         ="退款失败"
+      when '200'
+         ="退单失败"
+      when '300'
+         ="退单失败"

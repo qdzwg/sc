@@ -1,0 +1,37 @@
+.footer-box
+   footer.footer-nav.clearfix
+      -if (!mold)
+         a(href="/").active
+            i.page-icon.index-home
+            p="首页"
+      -else
+         a(href="/")
+            i.page-icon.index-home
+            p="首页"
+      -if(mold=="raiders")
+         a(href="/list/raiders").active
+            i.page-icon.icon-nav-gonglve
+            p="攻略"
+      -else
+         a(href="/list/raiders")
+            i.page-icon.icon-nav-gonglve
+            p="攻略"
+      a(href="/order/cart")
+         i.page-icon.icon-nav-shopping-cart
+         p="购物车"
+      -if(mold=="score")
+          a(href="/list/score").active
+             i.score-icon.icon-score
+             p="积分商城"
+      -else
+           a(href="/list/score")
+               i.score-icon.icon-score
+               p="积分商城"
+      -if(mold=="user")
+         a(href="/user").active
+            i.page-icon.index-use
+            p="我的"
+      -else
+         a(href="/user")
+            i.page-icon.index-use
+            p="我的"

@@ -1,0 +1,53 @@
+mixin user(orders,mold)
+   div.page-line
+   ul.order-list.myorder-list
+      - if(mold=="goods"&&orders.goodsItem.freight=="0")
+         li
+            label.lab-title.addre-title=orders.goodsItem.goodsSinceOrder.name
+            div.order-item
+               a(href="tel:"+orders.goodsItem.goodsSinceOrder.telephone).address-tel
+                  i.font-icon.icon-iconfont-dianhua
+         li
+            div.order-item
+               =orders.goodsItem.goodsSinceOrder.address
+         li
+            label.lab-title 提货时间
+            div.order-item
+               span=orders.goodsItem.goodsSinceOrder.deliveryBeginDate+"~"+orders.goodsItem.goodsSinceOrder.deliveryEndDate
+      -else
+         li
+            label.lab-title 联系人
+            div.order-item
+               span=orders.linkName
+         li
+            label.lab-title 手机号
+            div.order-item
+               span=orders.linkMobile
+      -if(mold!="repast"&&mold!="goods")
+         li
+            if(mold!="score")
+                label.lab-title=orders.certificateType
+            else
+                label.lab-title="身份证"
+            div.order-item
+               span=orders.linkIdcard
+      -if(mold=="goods"&&orders.goodsItem.freight!="0")
+         li
+            label.lab-title 收货地址
+            div.order-item
+               span=orders.goodsItem.linkAddr
+      if(mold=="score"&&orders.productType=="goods"||mold=="score"&&orders.productType=="entity")
+          li
+              label.lab-title 收货地址
+              div.order-item
+                  span=orders.linkAddr
+          if(orders.dealResult=="1")
+                li
+                   label.lab-title 快递单号
+                   div.order-item
+                      span=orders.expressBill
+      -if(mold=="hotel"||mold=="route"||mold=="line"||mold=="goods"||mold=="score")
+         li
+            label.lab-title 备注
+            div.order-item
+               span=orders.remark

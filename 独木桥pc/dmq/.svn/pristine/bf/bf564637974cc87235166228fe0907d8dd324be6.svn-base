@@ -1,0 +1,39 @@
+$(function () {
+    $("#mask").click(function () {
+        $("#calendar-box,#mask,#tipsLayer").hide();
+    });
+    $("#tipsClose").click(function () {
+        $("#mask,#tipsLayer").hide();
+    });
+    $('.ft2').live('click', function () {
+        $(this).parents(".ft_w").find('.ft2').removeClass('ft_sel');
+        $(this).addClass('ft_sel');
+        var sessionId = $(this).find("input[name='session']").val();
+        $(this).parents(".ft_w").eq(0).prev('#sessionId').val(sessionId);
+    });
+    getStock($("#hid-stockDate").val());
+    if($("#address").length>0){
+        $("#address").distpicker();
+    }
+    $("#saveBtn").click(function () {
+        $("#tipsLayer,#mask").show();
+    });
+});
+function getStock(date) {
+    $.get('/order/getStock/' + $('#mold').val(), {nowDate: date}, function (data) {
+        var html = "", obj = "";
+        $.each(data[0].datas.session, function (i) {
+            html+='<div onclick="same('+i+');" class="ft2">' +
+                '<input type="hidden" name="session" value='+data[0].datas.session[i].stockId+'>' +
+                data[0].datas.session[i].playTime+' 场<br>余位'+data[0].datas.session[i].leftAmount+'</div>';
+        });
+        if(data[0].datas.session>0){
+            $("#sessionId").val(data[0].datas.session[0].stockId);
+        }
+        $("#ft_w").html(html);
+    }, "json");
+}
+
+function orderFill(){
+    $("#sum").html($("#amount").val()*$("#price").text());
+}

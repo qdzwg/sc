@@ -1,0 +1,87 @@
+.cart-box {
+	width: 1000px;
+	margin: 40px auto 100px;
+	border: 1px solid #ddd;
+	border-top: 3px solid #82B200;
+	overflow: hidden;
+	padding-bottom: 40px;
+}
+.cart-box .box-title {
+	height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    background: #F9FFEA;
+    border-bottom: 1px solid #E4EDCC;
+    font-size: 14px;
+    font-weight: bold;
+}
+.cart-box .box-content {
+	padding: 40px 20px;
+}
+.cart-box .box-content table {
+	width: 100%;
+	font-size: 14px;
+	color: #666;
+	text-align: center;
+}
+.cart-box .box-content table td { min-width: 70px;}
+.cart-box .box-content table .info {
+	padding: 20px 0;
+	overflow: hidden;
+}
+.cart-box .box-content table .info-text {
+	display: inline-block;
+	vertical-align: top;
+	width: 300px;
+	text-align: left;
+}
+.cart-box .box-content table .info-text {}
+.cart-box .box-content table img {
+	width: 120px;
+	height: 80px;
+	border: 1px solid #ddd;
+	margin-right: 10px;
+}
+.cart-box .box-content table input {
+	vertical-align: middle;
+}
+.cart-box .box-content table thead {
+	background: #FFF6DE;
+	font-size: 16px;
+}
+.cart-box .box-content table thead td { height: 40px;}
+.cart-box .box-content table tbody tr {
+	border-bottom: 1px solid #ddd;
+}
+.cart-box .box-balance {
+	float: right;
+	padding-right: 20px;
+}
+.cart-box .box-balance span {
+	color: red;
+    font-size: 24px;
+    font-weight: bold;
+}
+.cart-box .box-balance i {
+	font-size: 18px;
+    font-weight: bold;
+    color: #FF6600;
+    font-style: normal
+}
+.cart-box .box-balance a {
+	display: inline-block;
+	text-align: center;
+	background: url("../images/common/t_btnbg.png") no-repeat scroll 0 0 transparent;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: Microsoft Yahei;
+    font-size: 14px;
+    height: 27px;
+    line-height: 27px;
+    text-align: center;
+    width: 83px;
+    margin: 0 auto;
+    margin-left: 20px;
+}
+

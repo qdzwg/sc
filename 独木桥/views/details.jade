@@ -1,0 +1,57 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/details.css')
+   - if(mold=="route"||mold=="line"||mold=="goods")
+      link(rel='stylesheet', href=baseUrl+'/stylesheets/swiper.min.css')
+
+block content
+   include common/headPic
+   include details/header
+   include details/shortcut
+   include details/main
+   include details/article
+   include  details/comment
+   include  details/footer
+   include common/commonFun
+   +carouselPic("details",imgitems)
+   +detailsHeader(mold,mainitem)
+   +shortcut(mold,code,mainitem)
+   case mold
+      when "ticket"
+         +detaileList(mold,proitem)
+         +article("景区介绍",mainitem.content,"jqjs")
+         +article("预订须知",mainitem.orderNotice,"ydxz")
+      when "hotel"
+         +detaileList(mold,proitem,mainitem)
+         include order/orderCalendar
+         +calendar()
+         +article("酒店介绍",mainitem.content,"jdjs")
+         +article("预订须知",mainitem.orderNotice,"ydxz")
+      when "route"
+         - var articleitem=[{"title":"行程介绍","content":mainitem.travelDays},{"title":"产品特色","content":mainitem.featureDesc},{"title":"费用说明","content":mainitem.costDesc}]
+         +detaisarticle(articleitem)
+         +article("预订须知",mainitem.orderDesc,"ydxz")
+      when "line"
+         - var articleitem=[{"title":"产品特色","content":mainitem.featureDesc},{"title":"费用说明","content":mainitem.costDesc}]
+         +detaisarticle(articleitem)
+         +article("预订须知",mainitem.orderDesc,"ydxz")
+      when "repast"
+         +detaileList(mold,proitem)
+         +article("餐厅介绍",mainitem.content,"cdjs")
+         +article("预订须知",mainitem.orderNotice,"ydxz")
+      when "goods"
+         - var articleitem=[{"title":"商品介绍","content":mainitem.content},{"title":"购买说明","content":mainitem.orderNotice}]
+         +detaisarticle(articleitem)
+         - if(mainitem.goodType=="1"||mainitem.freight=="2"||mainitem.freight=="3")
+            +goodsMold(mainitem.data,mainitem.freight,mainitem.id)
+   +comment("detail",comment,mainitem.productCode,mold)
+   if(mold=="route"||mold=="line"||mold=="goods")
+      +footer(mold,code,mainitem.goodType,mainitem.freight)
+   div.mask#mask
+block scripts
+   - if(mold=="hotel")
+      script(src=baseUrl+'/javascripts/jquery.wap-calendar.js')
+   script(src=baseUrl+'/javascripts/jquery.flexslider-min.js')
+   script(src=baseUrl+'/javascripts/details.js')
+   - if(mold=="route"||mold=="line"||mold=="goods")
+    script(src=baseUrl+'/javascripts/swiper.min.js')

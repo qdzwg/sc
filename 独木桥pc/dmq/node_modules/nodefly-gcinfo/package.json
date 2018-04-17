@@ -1,0 +1,54 @@
+{
+  "_args": [
+    [
+      "nodefly-gcinfo@latest",
+      "E:\\工作区\\nodejs\\myfirstproject\\node_modules\\nodefly"
+    ]
+  ],
+  "_from": "nodefly-gcinfo@latest",
+  "_id": "nodefly-gcinfo@0.0.15",
+  "_inCache": true,
+  "_location": "/nodefly-gcinfo",
+  "_npmUser": {
+    "email": "support@nodefly.com",
+    "name": "nodefly"
+  },
+  "_npmVersion": "1.1.62",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "nodefly-gcinfo",
+    "raw": "nodefly-gcinfo@latest",
+    "rawSpec": "latest",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "/nodefly"
+  ],
+  "_resolved": "https://registry.npmjs.org/nodefly-gcinfo/-/nodefly-gcinfo-0.0.15.tgz",
+  "_shasum": "87024b442a3267bb5771f7fcd75c909b093a428c",
+  "_shrinkwrap": null,
+  "_spec": "nodefly-gcinfo@latest",
+  "_where": "E:\\工作区\\nodejs\\myfirstproject\\node_modules\\nodefly",
+  "dependencies": {},
+  "description": "NodeFly Garbage Collection Inspector",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "87024b442a3267bb5771f7fcd75c909b093a428c",
+    "tarball": "https://registry.npmjs.org/nodefly-gcinfo/-/nodefly-gcinfo-0.0.15.tgz"
+  },
+  "installable": true,
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "nodefly",
+      "email": "support@nodefly.com"
+    }
+  ],
+  "name": "nodefly-gcinfo",
+  "optionalDependencies": {},
+  "readme": "# NodeFly Garbage Collection Inspector\n\n\n",
+  "version": "0.0.15"
+}

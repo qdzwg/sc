@@ -1,0 +1,99 @@
+$(function(){
+		/*var area1 = new area();
+        var v = $("#areaCode").val();
+        area1.setupById("country","city","province","areaCode",1,v);
+        $('.chang_pw_op').click(function(){
+        addShowObj($('#change_pw_box'));
+        });
+        $('.u_img_txt').click(function(){
+        addShowObj($('#change_pic_box'));
+        });*/
+
+		$('.info_cw .c_op').each(function() {
+			$(this).click(function() {
+				$('.info_cw .info_list').show();
+				$('.info_cw .info_edit').hide();
+				$('.info_cw .c_op').show();
+				$(this).hide();
+				var pare = $(this).parents('.info_cw').eq(0);
+				pare.find('.info_list').hide();
+				pare.find('.info_edit').show();
+			});
+		});
+
+		$('.info_cw .cancel_btn').each(function(){
+			$(this).click(function(){
+				var pare = $(this).parents('.info_cw').eq(0);
+				pare.find('.c_op').show();
+				pare.find('.info_list').show();
+				pare.find('.info_edit').hide();
+			});
+		});
+		
+		//绑定手机
+		/*$('.getCode').click(function(){
+			var mobile_bind = $("#mobile_bind").val();
+			window.location.href="/user/bindMobile.htm?mobile="+mobile_bind;
+		});*/
+
+		$('#validatePhoneForm').on('click','.getCode',function (){
+			var mobile = $('#validatePhoneForm input[name=mobile]').val();
+			var _this = $(this);
+			$.post('/user/mobileCode',{mobile:mobile})
+				.success(function (data){
+					if (data.flag === 'success'){
+						_this.prev('input').val(data.checkCode);
+						var s = 5 * 60, t;
+						function times(){
+							s--;
+							_this.text(s).css('background','#ccc').prop('disabled','true');
+							t = setTimeout(times, 1000);
+							if ( s <= 0 ){
+								s = 60;
+								_this.text('免费获取').css('background','#0066cc').prop('disabled','false');
+								clearTimeout(t);
+							}
+						}
+						 
+						times();
+					}else{
+						alert(data.msg)
+					}
+				})
+				.error(function (err){
+					console.log(err)
+				});
+		});
+
+		$('#validateEmailForm').on('click','.getCode',function (){
+			var email = $('#validateEmailForm input[name=email]').val();
+			var _this = $(this);
+
+			$.post('/user/emailCode',{email:email})
+				.success(function (data){
+					if (data.flag === 'success'){
+						_this.prev('input').val(data.checkCode);
+						var s = 5 * 60, t;
+						function times(){
+							s--;
+							_this.text(s).css('background','#ccc').prop('disabled','true');
+							t = setTimeout(times, 1000);
+							if ( s <= 0 ){
+								s = 60;
+								_this.text('免费获取').css('background','#0066cc').prop('disabled','false');
+								clearTimeout(t);
+							}
+						}
+						 
+						times();
+					}else{
+						alert(data.msg)
+					}
+					
+				})
+				.error(function (err){});
+		});
+		/*$("#validateForm").validate();
+		$("#validatePhoneForm").validate();
+		$("#validateEmailForm").validate();*/
+	});

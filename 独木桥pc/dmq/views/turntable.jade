@@ -1,0 +1,63 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/draw.css')
+block pagecontent
+    .draw
+        .draw-detail
+            p.draw-chance-num
+                if(user.idCardBundFlag==0)
+                    | "您还没有绑定身份证"
+                else
+                    | 您还有
+                    i#leftNum= items.leftNum
+                    | 次抽奖机会
+            a.draw-my-award(href='#') 查看我的中奖纪录
+            .draw-text
+                h2 奖品介绍
+                p.award-info
+                    each item,i in items.dialProduct
+                        -var text=""
+                        case i
+                            when 0
+                                -text="给"
+                            when 1
+                                -text="我"
+                            when 2
+                                -text="一"
+                            when 3
+                                -text="天"
+                            when 4
+                                -text="还"
+                            when 5
+                                -text="你"
+                            when 6
+                                -text="千"
+                            when 7
+                                -text="年"
+                        span=text + ":"
+                            em=item.productName
+                p
+                    | !{items.description}
+            #rotate.draw-wheel
+            div(data-id=id,data-user=user.idCardBundFlag).draw-arrow
+    .winning-box#winningBox
+        p
+        a(href="/user/prizelist")="查看详情"
+    .winning-box.error-box#errorBox
+        p="别灰心再来一次"
+        a(href="javascript:;")="再来一次"
+    if(user.idCardBundFlag==0)
+        .tips-layer(style="display:block; z-index:60;")#tipsLayer
+            .tips-layer-header
+                a(href="javascript:;")#tipsLayerClose
+                    i.font-icon.icon-iconfont-32pxchaxian
+            .tips-content="抱歉！抽将活动只支持已绑定身份证的会员，您还为绑定身份证！"
+            .tips-handle
+                a(href="/user/member").ent-btn="去绑定"
+                a(href="javascripts:;").cancel-btn="取消"
+        .mask(style="display:block;")
+    else
+        .mask#mask
+block scriptspage
+    script(src=baseUrl+'/javascripts/awardRotate.js')
+    script(src=baseUrl+'/javascripts/turntable.js')

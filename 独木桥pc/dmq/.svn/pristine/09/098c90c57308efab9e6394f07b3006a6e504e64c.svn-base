@@ -1,0 +1,59 @@
+extends layout/pageLayout
+block stylesheetpage
+   link(rel='stylesheet', href=baseUrl + '/stylesheets/common.css')
+   link(rel='stylesheet', href=baseUrl + '/stylesheets/mcommon.css')
+   link(rel='stylesheet', href=baseUrl + '/stylesheets/tip.css')
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/ticket_succ.css')
+block pagecontent
+   include pay/commonModules
+   #content
+      .bh1.cf
+         .bhl
+            +payTitle(mold)
+      .czone
+         .step_t.cf
+            .t1 1、选择景点
+            .t2 2、选择门票
+            .t3 3、填写订单
+            .t4.son 4、在线支付
+            .t5 5、预订成功
+         .cm_wrapper
+            .cm_title 预订结果
+            .cm_content.cf
+               .succ
+                  p="恭喜您，订单成功。订单号："+proitems.orderNo
+                  p="您此次的订单总金额为："
+                     span.or="¥"+proitems.finalSum
+                  p
+                     a(href='/pay/alipay/'+proitems.orderNo) 点此进行支付>>>>
+                  p
+                     | 如果有什么疑问，请致电400-8888-518联系客服解决。另外,游玩之后，对该景区发表点评还可获得
+                     span.or 10
+                     | 的点评积分。
+               table.book_table(cellspacing='0', cellpadding='0')
+                  tbody
+                     tr
+                        th 订单编号
+                        th 店铺名称
+                        th 门票名称
+                        th 张数
+                        th 出游日期
+                        th 订单金额
+                        th 点评返积分
+                        th 操作
+                     tr
+                        td=proitems.orderNo
+                        td=proitems.parkName
+                        td=proitems.modelName
+                        td=proitems.amount+"张"
+                        td(style='font-weight:bold;color:red')=proitems.startDate
+                        td="¥"+proitems.finalSum
+                        td 10
+                        td
+                           #bdshare.bdshare_t.bds_tools.get-codes-bdshare
+                              span.bds_more 分享
+                           script#bdshare_js(type='text/javascript', data='type=tools&uid=0', src='http://bdimg.share.baidu.com/static/js/bds_s_v2.js?cdnversion=410361')
+                           script(type='text/javascript').
+                              document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+
+

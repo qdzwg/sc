@@ -1,0 +1,54 @@
+extends ../layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_common.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/usercenter.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_cinfo.css')
+block pagecontent
+    #uc_wrapper
+        include top
+        #uc_content.cf
+            include left
+            #uc_main
+                .t_w
+                    .t_head_w.cf
+                        .t_name 修改常用联系人
+                    form#validateForm(action='/user/concat/edit', method='post', name='validateForm')
+                        input(type='hidden', name='link.id', value=linkMan.id)
+                        #info_w
+                            .info_cw
+                                .info_chead
+                                    b 基本信息
+                                ul.info_list.info_edit.cf(style='display:block;')
+                                    li
+                                        span 姓名：
+                                        input#textfield.i_s(type='text', name='link.realname', style='width:180px;', value=linkMan.realname)
+                                    li
+                                        span 性别：
+                                        |                           男
+                                        input#radio(type='radio', name='link.sex', value=linkMan.sex===0?'true':'false', checked='checked')
+                                        |                           女
+                                        input#radio(type='radio', name='link.sex', value=linkMan.sex===0?'true':'false')
+                                    li
+                                        span 身份证号码：
+                                        input.i_s(type='text', name='link.idCard', style='width:180px;', value=linkMan.idCard, validate='{idcardno:true}')
+                            .info_cw
+                                .info_chead
+                                    b 联系信息
+                                ul.info_list.info_edit.cf(style='display:block;')
+                                    li
+                                        span 手机：
+                                        input.i_s(type='text', name='link.mobile', style='width:180px;', validate='{mobile:true}', value=linkMan.mobile)
+                                    li
+                                        span 固定电话：
+                                        input.i_s(type='text', name='link.telephone', style='width:180px;', validate='{phone:true}', value=linkMan.telephone)
+                                    li
+                                        span 邮箱：
+                                        input.i_s(type='text', name='link.email', style='width:180px;', validate='{email:true}', value=linkMan.email)
+                            .info_cw
+                                .gbtn_w.cf
+                                    input.gbtn(type='submit', value='保   存')
+                                    input.gbtn(type='reset', value='请   空')
+                                    input.gbtn(type='button', value='取   消', onclick='history.back()')
+
+block scriptspage
+    script(src=baseUrl+'/javascripts/uc_common.js')

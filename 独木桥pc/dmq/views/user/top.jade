@@ -1,0 +1,77 @@
+include ../common/comFun
+
+#uc_head_w
+    .s_info_w.cf
+        .s_info_l
+            | 欢迎进入会员中心，独木桥测试  [
+            a(href='/user/userInfo') 管理账户资料
+            | ] [
+            a.chang_pw_op(href='javascript:void(0)') 修改密码
+            | ]
+        .s_info_r 上次登录时间：
+            +formatDate(member.lastLoginTime)
+    .m_info_w.cf
+        #u_img.u_img
+            img(src='/images/common/person.jpg', alt='')
+            span.u_img_mask
+            span.u_img_txt 修改头像
+        ul.base_info
+            li
+                label 真实姓名：#{member.realName}
+                a(href="#").grade=member.accLevelName
+            li
+                label 电子邮箱：
+                if member.email
+                    | #{member.email}[
+                    a(href='/user/userInfo?flag=email') 修改邮箱
+                    | ]
+                else
+                    | [
+                    a(href='/user/userInfo?flag=email') 绑定邮箱
+                    | ]
+            li
+                label 手机号码：
+                | #{member.mobile}  [
+                a(href='/user/userInfo?flag=mobile') 修改手机
+                | ]
+        ul.total_count
+            li
+                | 累计消费金额：
+                br
+                b=member.totalBuy
+                | 元
+        a(href="javascript:;").upgrade-btn="申请升级"
+    // change_pw_box begin
+    #change_pw_box(style='display:none;')
+        .cp_title.cf
+            span.cp_title_txt 修改密码
+            a.cp_close(href='javascript:void(0);') 关闭
+        form(action='/user/changePass' method="get")#changePass
+            .content_wrap
+                .e_content#info_w
+                    p.info.cf
+                        label.infoname 当前账户：
+                        span=member.mobile
+                    p.info.cf
+                        label.infoname 验证码：
+                        input.i_s(type='password', maxlength='45', style='width:80px;', name='mobileCode')
+                        a.getCode(href='javascript:void(0)') 免费获取
+                    p.info.cf
+                        label.infoname 新密码：
+                        input.i_s(type='password', maxlength='45', style='width:210px;', name='loginPass')#password
+                    p.info.cf
+                        label.infoname 确认密码：
+                        input.i_s(type='password', maxlength='45', style='width:210px;', name='eqloginPass')
+            ul.info_list.info_edit.cf(style='display: block;padding:0 0 10px 0;')
+                li.save(style='padding-left:120px;')
+                    input.comfirm_btn(type='submit', value='确定')
+                    a.cancel_btn(href='javascript:void(0)') 取 消
+    // change_pw_box begin end
+    // change_pic_box begin
+    #change_pic_box(style='display:none;')
+        .cp_title.cf
+            span.cp_title_txt 修改头像
+            a#parent_close.cp_close(href='javascript:void(0);') 关闭
+        iframe(style='width:734px;height:550px;', frameborder='0', url='/user/imgUpload', src='about:blank')
+    // change_pic_box end
+        

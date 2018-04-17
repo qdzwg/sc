@@ -1,0 +1,149 @@
+extends layout/layout
+block stylesheet
+    link(rel='stylesheet', href=baseUrl+'/javascripts/share/share.css')
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/index.css')
+block content
+    #sidebar
+        #snav_w
+            .n_nav
+                a(href="/")=">首页"
+                a(href="/list/djrm")=">独家热卖"
+                a(href="/list/djxl")=">独家线路"
+                a(href="/list/djjx")=">独家精选"
+                a(href="/list/djbl")=">独家爆料"
+                a(href="/list/score")=">积分商城"
+            #qnav
+                if member
+                   a(href="/user/order")=member.realName
+                else
+                   a(href="/login")="登录"
+                a(href="/register")="抢优惠，立即加入"
+            #tshare.cf
+                a(href="#").tsina
+                a(href="#").tqq
+                a(href="#").tal
+        .t_news
+            ul.news_li
+                -each item in newsItems
+                    li
+                        a(href=item.url,title=item.title,target="_blank")=item.title
+            ul.swap
+    #line_list
+        .line_w
+            -each item in specialItems
+                a(href=item.url)
+                    img(src=baseUrl+"/images/index/s.gif",data_src=baseUrl+item.imgUrl).simg
+                    span.fc
+                        span=item.title
+                        =item.subtitle
+    .quick_links_wrap
+        .quick_links_panel
+            .quick_links#quick_links
+                a(href="/")
+                    i.home
+                    span="首页"
+                a(href="/cart/list")
+                    i.cart
+                    span="购物车"
+                a(href="/user/order?currPage=1&orderType=ticket")
+                    i.myorder
+                    span="我的订单"
+
+block scripts
+    script(src=baseUrl+'/javascripts/index.js')
+    script(src="https://qiyukf.com/script/f570a5eb049eb803b086e45829b07e48.js",charset="UTF-8")
+    style.
+        #YSF-BTN-HOLDER {
+            right: 25px;
+            bottom: 220px;
+            max-width: none;
+            max-height: none;
+        }
+
+        #YSF-BTN-HOLDER #YSF-CUSTOM-ENTRY-0 {
+            right: 0;
+            bottom: 0;
+            box-shadow: none;
+        }
+
+        #YSF-BTN-HOLDER #YSF-CUSTOM-ENTRY-0 {
+            right: 0;
+            bottom: 0;
+            box-shadow: none;
+        }
+
+        #YSF-BTN-HOLDER #YSF-CUSTOM-ENTRY-0
+        img {
+            width: 36px;
+            height: 66px;
+            max-width: none;
+            max-height: none;
+        }
+    script.
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?7d99e274c30e8bb4458132cb4f2df97a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    -if(member)
+        script.
+            function acctype(string) {
+                var text = "";
+                switch (string) {
+                    case "sys":
+                        text = "系统管理员";
+                        break;
+                    case "user":
+                        text = "散客";
+                        break;
+                    case "supplier":
+                        text = "供应商";
+                        break;
+                    case "general_agent":
+                        text = "代理商";
+                        break;
+                    case "distributor":
+                        text = "分销商";
+                        break;
+                    case "superSys":
+                        text = "超级管理员";
+                        break;
+                }
+                return text;
+            }
+            ysf.on({
+                onload: function () {
+                    ysf.config({
+                        "uid": "#{member.loginId}",
+                        "data": JSON.stringify([{
+                            "key": "real_name",
+                            "value": "#{member.realName}"
+                        }, {
+                            "key": "mobile_phone",
+                            "value": "#{member.mobile}"
+                        }, {
+                            "key": "email",
+                            "value": "#{member.email}"
+                        }, {
+                            "index": 0,
+                            "key": "acc_type",
+                            "label": "用户类型",
+                            "value": acctype("#{member.accType}")
+                        }, {
+                            "index": 1,
+                            "key": "reg_date",
+                            "label": "注册日期",
+                            "value": "#{member.accType}"
+                        },
+                            {
+                                "index": 2,
+                                "key": "last_login",
+                                "label": "上次登录时间",
+                                "value": "#{member.lastLoginTime}"
+                            }
+                        ])
+                    });
+                }
+            });

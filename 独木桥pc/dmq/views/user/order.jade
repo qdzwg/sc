@@ -1,0 +1,116 @@
+extends ../layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_common.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/usercenter.css')
+    script.
+        var currentPage=#{orderList.currentPage};
+        var totalPage=#{orderList.totalPage};
+block pagecontent
+    include ../common/comFun
+    #uc_wrapper
+        include top
+        #uc_content.cf
+            include left
+            #uc_main
+                .date_sel_w.cf
+                    form#searchForm(method='get')
+                        input#orerStatusType(type='hidden', name='orerStatusType', value='4')
+                        label 下单时间
+                        .date_txt_w
+                            input#orderStarDate.date_txt(name='corderInfo.orderStarDate', type='text', value='', onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',skin:'blue'})")
+                            |  - 
+                            input#orderEndDate.date_txt(name='corderInfo.orderEndDate', type='text', value='', onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',skin:'blue'})")
+                        input#date_search_btn(type='button', name='button', value='查询')
+                .t_w
+                    .t_head_w.cf
+                        .t_name 门票订单
+                    #t_filter.filter
+                        a.f_sel(href='javascript:filterUrl("orderStatus=")') 所有订单
+                        em |
+                        a(href='javascript:filterUrl("orderStatus=3")') 进行中的订单
+                        em |
+                        a(href='javascript:filterUrl("orderStatus=4")') 已成功订单
+                        em |
+                        a(href='javascript:filterUrl("orderStatus=5")')#checkStatus 已检订单
+                        em |
+                        a(href='javascript:filterUrl("orderStatus=7")') 已取消订单
+                    table.common_t(cellpadding='0', cellspacing='0')
+                        tr
+                            th.c1 订单编号
+                            th.c2 景区/门票
+                            th.c3 游玩日期
+                            th.c4 订单金额
+                            th.c4 是否开票
+                            th.c5 下单时间
+                            th.c6 订单状态
+                            th.c7 操作
+                        each item in orderList.items
+                            tr
+                                td.c1=item.orderNo
+                                td.c2 #{item.info}X#{item.num}张
+                                td.c3
+                                    b.dor
+                                        =item.startDate
+                                td.c4
+                                    b.dor ¥#{item.finalSum}
+                                td.c4
+                                    case item.receiptFlag
+                                        when 0
+                                            ="未开票"
+                                        when 1
+                                            ="已开票"
+                                td.c5
+                                    =item.createTime
+                                -var status=''
+                                case item.orderStatus
+                                        when '0'
+                                            -status='初始化'
+                                        when '1'
+                                            -status='订单失败'
+                                        when '2'
+                                            -status='订单失败'
+                                        when '3'
+                                            -status='订单成功'
+                                        when '4'
+                                            -status='订单成功'
+                                        when '5'
+                                            -status='订单成功'
+                                        when '6'
+                                            -status='订单成功'
+                                        when '7'
+                                            -status='消费中'
+                                        when '8'
+                                            -status='已消费'
+                                        when '9'
+                                            -status='已退单'
+                                        when '110'
+                                            -status='待消费'
+                                        when '210'
+                                            -status='退单中'
+                                td.c6=status
+                                td.op.c7
+                                    a.opebutton(href='/user/order/'+nativePage+'/'+item.id) 详情
+                                    -if(item.isCommentOrder)
+                                        a(href="/user/comment/listComment/"+item.id)="评论"
+                    .pagings
+                        ul.slide-page#slidePage
+block scriptspage
+    script(src=baseUrl+'/javascripts/datepicker/WdatePicker.js')
+    script(src=baseUrl+'/javascripts/uc_common.js')
+    script.
+        $(function (){
+            var winUrl = window.location.search;
+            if (winUrl.indexOf('begDate') >= 0){
+                var winArr = winUrl.split('&');
+                var begDate ='',endDate='';
+                $.each(winArr,function (index,value){
+                    if (value.indexOf('begDate') >= 0){
+                        begDate = value.split('=')[1];
+                    }else if (value.indexOf('endDate') >= 0){
+                        endDate = value.split('=')[1];
+                    }
+                });
+                $('#orderStarDate').val(begDate);
+                $('#orderEndDate').val(endDate);
+            }
+        });

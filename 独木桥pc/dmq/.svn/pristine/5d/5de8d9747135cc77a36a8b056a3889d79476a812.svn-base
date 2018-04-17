@@ -1,0 +1,82 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/top.css')
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/float.css')
+   block stylesheetpage
+block content
+   #h_w
+      #h.cf
+         a(href="/")#logo="宋城旅游旅游网"
+         ul#m_nav
+            li.n1
+               a(href="/")="首页"
+            li.n2
+               a(href="/list/djrm")="独家热卖"
+            li.n3
+               a(href="/list/djxl")="独家线路"
+            li.n4
+               a(href="/list/djjx")="独家精选"
+            li.n5
+               a(href="/list/djbl")="独家爆料"
+         #h_r
+         #top_nav
+            if member
+               a(href="/user/order")=member.realName
+            else
+               a(href="/login")="登录"
+            span="|"
+            a(href="/register")="免费注册"
+            span="|"
+            a(href="/cart/list")="购物车"
+            if member
+               span="|"
+               a(href="/logout") 注销
+         #tshare
+            //- a(href="http://www.51dmq.com/toWeiboLogin.htm",target="_blank" ).tsina
+            //- a(href="http://www.51dmq.com/QQlogin.jsp",target="_blank" ).tqq
+            //- a(href="http://www.51dmq.com/alipayMemberLogin.htm",target="_blank" ).tal
+   block pagecontent
+   -var linkItems=[{"title":"杭州宋城旅游区(西湖片区)：",datas:[{"url":"http://www.51dmq.com/songcheng.htm","title":"杭州宋城景区"},{"url":"http://www.51dmq.com/qianguqinghotel.htm","title":"宋城千古情主题酒店（西湖店）"}]},{"title":"杭州宋城旅游区(湘湖片区)：",datas:[{"url":"http://www.51dmq.com/damiaohui.htm","title":"杭州乐园湘湖宋城景区"},{"url":"http://www.51dmq.com/lanpingguo.htm","title":"杭州宋城烂苹果乐园"},{"url":"http://www.51dmq.com/langlanglang.htm","title":"杭州宋城浪浪浪水公园"},{"url":"http://www.51dmq.com/yunmanwenquan.htm","title":"杭州宋城云曼温泉"},{"url":"http://www.51dmq.com/hotel/hotel_3880.htm","title":"宋城千古情主题酒店（湘湖店）"},{"url":"http://www.51dmq.com/thefirstworldhotel.htm","title":"杭州宋城第一世界大酒店"}]},{"title":"三亚宋城旅游区：",datas:[{"url":"http://www.51dmq.com/siyuanhebi.htm","title":"三亚千古情景区、三亚宋城冰雪世界、三亚宋城彩色动物园、三亚宋城浪浪浪水公园"}]},{"title":"丽江宋城旅游区：",datas:[{"url":"http://www.51dmq.com/siyuanhebi.htm","title":"宋城茶马古城、宋城丽江乐园"}]},{datas:[{"url":"http://www.51dmq.com/jiuzhai.htm","title":"九寨宋城藏羌古城"},{"url":"http://www.51dmq.com/ticket/ticket_1366.htm","title":"泰山千古情"},{"url":"http://51dmq.com/yunmanhotel.htm","title":"云和湖宋城云曼酒店"},{"url":"http://www.51dmq.com/1929.htm","title":"宋城龙泉山旅游区"}]}]
+   #bto_w
+      #bto.cf
+         -each item in linkItems
+            ul.quick_links1
+               -if(item.title)
+                  li=item.title
+               -each sitem in item.datas
+                  li
+                     a(href=sitem.url)=sitem.title
+         a(href="/")#bto_logo
+         #bto_link
+            #bto_nav.cf
+               a(href="/about")="关于我们"
+               span="|"
+               a(href="/contactus")="联系我们"
+               span="|"
+               a(href="/agreement")="用户协议"
+               span="|"
+               a(href="/sitemap")="网站地图"
+               span="|"
+               a(href="/help")="帮助中心"
+            #friend_link.cf
+               span="友情链接："
+               a(href="http://www.songcn.com",target="_blank")="宋城集团"
+               a(href="http://www.songcn.com/Shares",target="_blank")="宋城演艺"
+            #friend_link.cf
+               div(style="width:400px;margin:0 auto; padding:20px 0;")
+                  a(href="http://www.miibeian.gov.cn/",target="_blank")="浙ICP备12045707号-11"
+                  a(href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602004339",target="_blank",style="display:inline-block;text-decoration:none;height:20px;line-height:20px;")
+                     img(src="/images/common/gongan.png",style="float:left;")
+                     p(style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;")="浙公网安备 33010602004339号"
+            #wb.cf
+               a(href="http://e.weibo.com/chinascgf").wb_sina
+               a(href="http://t.qq.com/dmq510").wb_qq
+               .official_ph_pic
+               span.o_ph="客服电话："
+                  b="400-8888-518"
+         a(href="http://www.songcn.com/Shares",target="_blank").bto_song
+block scripts
+   script(src=baseUrl+'/javascripts/float.js')
+   script.
+      $(function(){commonFloat(1000);});
+   block scriptspage

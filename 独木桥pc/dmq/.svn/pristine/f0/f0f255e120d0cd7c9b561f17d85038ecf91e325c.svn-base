@@ -1,0 +1,21 @@
+extends ../layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_common.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/usercenter.css')
+block pagecontent
+    form(action="/user/myorderDetails" method="post")#formRefund
+        .form-box
+            label 可退数量:
+            span=refundData.retreatNum
+        .form-box
+            label 选择退款数量：
+            div.input-box.order-num-box
+                input(type="text" class="operation-num" data-min="1" name="number" data-max=refundData.retreatNum value="1")
+        .form-box
+
+            label 手续费：
+            input(type="text" name="fee" value="")
+        .form-box
+            input(type="submit" value="提交")
+block scriptspage
+    script(src=baseUrl+'/javascripts/refund.js')

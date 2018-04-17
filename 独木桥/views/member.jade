@@ -1,0 +1,180 @@
+extends layout
+block stylesheet
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/order.css')
+
+block content
+    ul.order-list.account-list
+      li
+         label.lab-title.user-title#imgupload
+            img(src=users.headProtraitUrl)
+         div.order-item
+            a(href="/user/userForm/base")
+               div.user-panel
+                  h3=users.realName
+                  p
+                     -if(users.sex==0)
+                        | 女
+                     - else
+                        | 男
+               i.font-icon.icon-iconfont-jiantou
+    div.page-line
+    ul.order-list.account-list
+      li
+         label.lab-title 手机号
+         div.order-item
+            a(href="/user/userForm/tel")
+               -if(users.mobile==null)
+                  span 未绑定
+               -else
+                  span=users.mobile
+               i.font-icon.icon-iconfont-jiantou
+      li
+         label.lab-title 身份证
+         div.order-item
+            -if(users.idCardBundFlag==0)
+                a(href="javascript:;")#bindIdCard
+                    span=users.idCard
+                    span.bind-status.c-base="未绑定"
+                    i.font-icon.icon-iconfont-jiantou
+            -else
+                span=users.idCard
+                span.bind-status.c-090="已绑定"
+      li
+         label.lab-title 地址
+         div.order-item
+            a(href="/user/userForm/addr")
+               -if(users.addr==null)
+                  span.bind-status.c-base 未绑定
+               -else
+                  span=users.addr.split("_").join("")
+               i.font-icon.icon-iconfont-jiantou
+      li
+         label.lab-title 邮箱
+         div.order-item
+            a(href="/user/userForm/email")
+               -if(users.email==null)
+                  span.bind-status.c-base 未绑定
+               -else
+                  span=users.email
+               i.font-icon.icon-iconfont-jiantou
+      li
+         label.lab-title 车牌号
+         div.order-item
+            a(href="/user/userForm/carNumber")
+                -if(users.carNumber==null)
+                   span.bind-status.c-base 未绑定
+                -else
+                   span=users.carNumber
+                i.font-icon.icon-iconfont-jiantou
+    div.page-line
+    ul.order-list.account-list
+      li
+         label.lab-title 修改密码
+         div.order-item
+            a(href="/user/userForm/password")
+               i.font-icon.icon-iconfont-jiantou
+    .mask#mask
+    div.article-panel.idCard-panel#layer
+      h3.article-title="身份证绑定"
+         a(href="javascript:;").close
+            i.font-icon.icon-iconfont-32pxchaxian
+      div.article-content
+        input(type="text",name="accIdentification",placeholder="请输入您的身份证号")#accIdentification
+        p="1、绑定身份证后可享受会员权益"
+        p="2、身份证绑定后不得修改"
+      .article-handle
+        input(type="button",value="立即绑定").btn#idCard-btn
+        input(type="button",value="取消").btn#cancel-btn
+    .article-panel.idCard-panel#uploadlayer
+        h3.article-title="头像上传"
+            a(href="javascript:;").close
+                i.font-icon.icon-iconfont-32pxchaxian
+        div.article-content
+            .upload-btn
+                input(type="file" name="file" accept="image/*")#file
+                i.score-icon.icon-upload
+                p="上传头像"
+            .upload-preview
+                img#upload-img
+        .article-handle
+            input(type="button",value="保存").btn#headProtrait-btn
+            input(type="button",value="取消").btn#cancel-btn
+    //if(users.idCardBundFlag == 1)
+    //    .tips-layer(style="display:block;")#tipsLayer
+    //        .tips-layer-header
+    //            a(href="javascript:;")
+    //                i.font-icon.icon-iconfont-32pxchaxian
+    //        .tips-content="已完善信息，去领取优惠券"
+    //        .tips-handle
+    //            a(href="/user/task").ent-btn="领取"
+    //            a(href="javascript:;").cancel-btn="取消"
+    //    .mask(style="display:block;")#mask
+    //-分享完提示
+    .share-layer#shareLayer
+        .share-header
+            a(href="javascript:;")#shareClose
+                i.font-icon.icon-iconfont-32pxchaxian
+        .share-panel="恭喜您！获得积分！"
+        .tips-handle
+            a(href="javascript:;").ent-btn="确定"
+    script.
+        $(function(){
+            $("#bindIdCard").click(function(){
+                var text=$(this).find("span:first").text();
+                $("input[name='accIdentification']").val(text);
+                $("#layer,#mask").show();
+            });
+            $("#layer").click(function(e){
+                e.stopPropagation();
+            });
+            $("#idCard-btn").click(function(){
+                if(IdentityCodeValid($("#accIdentification").val())){
+                    $.post('/user/idCard', {accIdentification: $("#accIdentification").val()}, function (data) {
+                        if (data.flag == "error") {
+                            alert(data.msg);
+                        } else {
+                            $("#layer").hide();
+                            $("#shareLayer,#mask").show();
+                            setTimeout("window.location.reload()", 5000);
+                        }
+                    });
+                }
+            });
+            $("#cancel-btn").click(function(){
+                $("#layer,#mask").hide();
+            });
+            $("#imgupload").click(function(){
+                $("#uploadlayer,#mask").show();
+            });
+            $("input[type='file']").on('change',function(){
+                var file = document.getElementById("file");
+                var formData = new FormData();
+                formData.append('file', file.files[0]);
+                $.ajax({
+                    url: '/user/upload', /*这是处理文件上传的servlet*/
+                    type: 'POST',
+                    data: formData,
+                    async: false,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (returndata) {
+                       console.log(returndata);
+                       $("#upload-img").attr("src",returndata.result.path);
+                    },
+                    error: function (returndata) {
+                        alert(returndata);
+                    }
+                });
+            });
+            $("#headProtrait-btn").click(function () {
+                $.post('/user/headProtrait', {headProtraitUrl: $("#upload-img").attr("src")}, function (data) {
+                    if (data.flag == "error") {
+                        alert(data.msg);
+                    } else {
+                        $("#shareLayer").show();
+                        window.location.reload();
+                    }
+                });
+            });
+        });

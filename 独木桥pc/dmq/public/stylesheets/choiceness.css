@@ -1,0 +1,196 @@
+#main{
+	width: 1000px;
+	margin: 10px auto;
+}
+#tmain{
+width: 1000px;
+height:1838px;
+margin: 10px auto;
+position:relative;
+background:url(../images/list/tbg.jpg) no-repeat 0 0;
+}
+#slideshow1{
+        width: 1000px;
+        height: 395px;
+        overflow: hidden;
+        position: relative;
+        margin-bottom: 20px;
+    }
+    #slideshow1 a img{vertical-align: top;}
+    #slideshow1 span{background-color: #333;color:#fff;cursor:pointer;padding:0 6px;height:20px;line-height:20px;font-size:12px;text-align:center;position: absolute;font-family: Arial;}
+    #slideshow1 span.koosel{
+        background-color: #ff6600;
+    }
+
+.list_h1{
+	width: 1000px;
+	height: 42px;
+	text-indent: -999px;
+	overflow: hidden;
+	background: url(../images/list/snav_bg.png) scroll no-repeat 0 0;
+}
+.list_h2{
+	width: 1000px;
+	height: 42px;
+	text-indent: -999px;
+	overflow: hidden;
+	background: url(../images/list/snav_bg.png) scroll no-repeat 0 -42px;
+}
+.list_h3{
+	width: 1000px;
+	height: 42px;
+	text-indent: -999px;
+	overflow: hidden;
+	background: url(../images/list/snav_bg.png) scroll no-repeat 0 -84px;
+}
+
+.list_cw{
+	width: 1020px;
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+.list_c{
+	width: 1050px;
+}
+
+.product_w{
+	width: 318px;
+	margin:20px 20px 0 0;
+	float: left;
+	border:1px solid #cdcdcd;
+}
+.pic_link{
+	display: block;
+	margin: 9px 9px 0;
+}
+.pic_link img{
+	vertical-align: top;
+	width: 300px;
+	height: 254px;
+}
+.h_title{
+	display: block;
+	font-size: 16px;
+	font-weight: bold;
+	color: #666;
+	line-height: 24px;
+	height: 72px;
+	margin: 10px 9px;
+	overflow:hidden;
+	font-family: Microsoft Yahei;
+}
+.h_title b{
+	color: #333;
+}
+
+.product_price{
+	margin:10px 9px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #666;
+	line-height: 24px;
+	font-family: Microsoft Yahei;
+}
+.f_price{
+	float: left;
+	margin-right: 30px;
+}
+.s_price{
+	float: left;
+}
+.s_price b{
+	color: #f00;
+	font-size: 18px;
+}
+.book_w{
+	background: #CC3300;
+	padding: 10px 9px;
+	height: 44px;
+}
+.book_w .lj {
+	float: left;
+	color: #fff;
+	font-size: 16px;
+	float: left;
+	line-height: 44px;
+	font-weight: bold;
+}
+.lj b{font-size: 30px;font-weight: normal;}
+.book_btn1{
+	display: block;
+	width: 127px;
+	height: 44px;
+	float: right;
+	background: url(../images/list/book_btn_jx.png) no-repeat 0 0;
+}
+
+
+.hotel_w{
+	width: 318px;
+	margin:20px 20px 0 0;
+	float: left;
+	border:1px solid #cdcdcd;
+}
+.hotel_pic{
+	display: block;
+	margin: 1px 1px 0;
+}
+.hotel_pic img{
+	vertical-align: top;
+	width: 316px;
+	height: 283px;
+}
+.hotel_h{
+	font-size: 20px;
+	color: #666;
+	font-weight: bold;
+	margin:5px 10px;
+	display: block;
+	height:60px;
+	overflow:hidden;
+	font-family: Microsoft Yahei;
+}
+.hotel_des{
+	font-family: Microsoft Yahei;
+	color: #666;
+	display: block;
+	font-size: 16px;
+	margin: 0 10px;
+}
+.hotel_book_w{
+	background:#F9F9F9;
+	padding:5px 10px;
+	height: 34px;
+	margin-top: 10px;
+}
+.hotel_book_w .lj{
+	float: left;
+	line-height: 34px;
+	font-size: 22px;
+	color: #f00;
+	padding-left: 25px;
+	background: url(../images/list/mn.png) no-repeat 0 8px;
+
+}
+.hotel_book_w .lj span{
+	font-size: 12px;
+	color: #666;
+	font-family: Arial;
+	padding-left: 5px;
+}
+
+.shop_book_btn2{
+	display: block;
+	width: 94px;
+	height: 40px;
+	float: right;
+	background: url(../images/list/book_btn3.png) no-repeat 0 0;
+}
+
+.book_btn2{
+	display: block;
+	width: 76px;
+	height: 34px;
+	float: right;
+	background: url(../images/list/book_jx_btn2.png) no-repeat 0 0;
+}

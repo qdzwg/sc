@@ -1,0 +1,15 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/order.css')
+block content
+   div.seat-results
+        if(flag==0)
+            p="订单已取消，当前状态不支持选座。"
+                br
+                ="如有疑问，请联系客服。"
+        else
+            p="座位信息未取到！"
+   div.btn-bottom
+      .btn-handle
+         a(href="/").btn-RP 返回首页
+

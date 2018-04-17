@@ -1,0 +1,61 @@
+mixin orderheader(mold,items)
+   -var reg = new RegExp("<[^<]*>", "gi")
+   header.myorder-header.pro-header
+      case mold
+         when "ticket"
+            h3.myorder-title=items.name
+            p.myorder-explian
+               -if(items.description!=null)
+                  +strcut(items.description.replace(reg,''),50)
+                  a(href="javascript:;" data-url="notice").c-base.notice-btn 详细>
+         when "hotel"
+            h3.myorder-title=items.hotelName
+            p.myorder-explian.myorder-hotel-explian
+               span=items.roomName
+               span
+                  +breakfast(items.isBreakfast)
+                  | /
+                  +bedtype(items.bedType)
+            p.myorder-explian
+               -if(items.description!=null)
+                  +strcut(items.description.replace(reg,''),50)
+                  a(href="javascript:;" data-url="notice").c-base.notice-btn 详细>
+         when "route"
+            h3.myorder-title=items.name
+            p.myorder-explian
+               -if(items.description!=null)
+                  +strcut(items.description.replace(reg, ''),50)
+                  a(href="javascript:;" data-url="notice").c-base.notice-btn 详细>
+         when "line"
+            h3.myorder-title=items.zyxName
+            p.myorder-explian
+               -if(items.info!=null)
+                  +strcut(items.info.replace(reg, '').replace(/&nbsp;/ig,''),50)
+                  a(href="javascript:;" data-url="notice").c-base.notice-btn 详细>
+         when "combo"
+            h3.myorder-title=items.comboName
+            p.myorder-explian
+               -if(items.info!=null)
+                  +strcut(items.info.replace(reg, '').replace(/&nbsp;/ig,''),50)
+                  a(href="javascript:;" data-url="notice").c-base.notice-btn 详细>
+         when "show"
+            h3.myorder-title=items.datas.ticketName
+            p.myorder-explian
+               -if(items.description!=null)
+                  +strcut(items.description.replace(reg, ''),50)
+                  a(href="javascript:;" data-url="notice").c-base.notice-btn 详细>
+         when "repast"
+            h3.myorder-title=items.repastName
+            p.myorder-explian
+               -if(items.description!=null)
+                  +strcut(items.description.replace(reg, ''),50)
+                  a(href="javascript:;" data-url="notice").c-base.notice-btn 详细>
+         when "goods"
+            h3.myorder-title=items.datas.modelName
+            p.myorder-explian
+               -if(items.freight==0)
+                  span.c-base 商家承诺72小时内发货
+               -else
+                  span.c-base 请在提货时间内前往自提点
+         when "score"
+            h3.myorder-title=items.datas.productName

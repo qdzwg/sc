@@ -1,0 +1,53 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/'+mold+'.css')
+block pagecontent
+    include common/comFun
+    include details/article
+    #main
+        +breadcrumb(item.parkName)
+        #intro
+            #scroll_w
+                -each item in imgItems
+                    img(src=item.imgurl)
+            #imask
+            #intro_detail
+                .hotel_name=item.parkName
+                .bm_w.cf
+                    -each bitem,i in item.tags
+                        div(class="bm_c"+((i+1)%4))=bitem
+                ul.main_d
+                    li
+                        b="所在地区："
+                        =item.regionName
+                    li
+                        b="详细地址："
+                        =item.address
+                    li
+                        b="营业时间："
+                        =item.openTime
+                .s_ul
+                    b="用户点评："
+                    .st_w
+                        - var percent=(item.commentScore/5)*100+"%"
+                        #topAvg.st_w_i(style="width:"+percent+";")
+                    .s_sum="("+item.commentScore+"分，共"+item.commentCount+"条点评)"
+                .s_price.cf="价格："
+                    b="¥"+item.startingPrice
+                    span="起"
+                .d_btn.cf
+                    a(href="#p2")="景区介绍"
+                    a(href="#p1")="预订须知"
+                    a(href="#p4")="用户点评"
+                #add_bs
+        -var tickettableHead=[{"title":"门票名称","className":"w1",dataKey:"name",islink:true},{"title":"支付方式","className":"w3",dataKey:"payMold"},{"title":"门市价","className":"w4",dataKey:"originalPrice"},{"title":"网销价","className":"w5",dataKey:"price"},{"title":"点评返积分","className":"w6",dataKey:"score"},{"title":"操作","className":"w7",dataKey:"handle"}]
+        -var showHead=[{"title":"演出票名称","className":"w1",dataKey:"ticketName",islink:true},{"title":"支付方式","className":"w3",dataKey:"payMold"},{"title":"门市价","className":"w4",dataKey:"showPrice"},{"title":"网销价","className":"w5",dataKey:"price"},{"title":"点评返积分","className":"w6",dataKey:"score"},{"title":"操作","className":"w7",dataKey:"handle"}]
+        -var packagesHead=[{"title":"套票名称","className":"w1",dataKey:"comboName",islink:true},{"title":"支付方式","className":"w3",dataKey:"payMold"},{"title":"门市价","className":"w4",dataKey:"showPrice"},{"title":"宋城旅游价","className":"w5",dataKey:"price"},{"title":"点评返积分","className":"w6",dataKey:"score"},{"title":"操作","className":"w7",dataKey:"handle"}]
+        -var articeItems=[{"title":"产品列表","id":"ticket_intro","content":[{"tableHead":tickettableHead,"info":item.ticketModelInfos,"mold":"ticket"},{"tableHead":showHead,"info":showItems.items,"mold":"show"},{"tableHead":packagesHead,"info":comboItems,"mold":"combo"}],"mold":"ticket"},{"title":"预定须知","id":"hotel_intro","content":item.ordrNotice,"mold":"notice"},{"title":"景区介绍","id":"pic_intro","content":item.desc,"mold":"intro"},{"title":"交通信息","id":"jq_trafic","content":"1","mold":"trafic"},{"title":"用户点评","id":"comment","content":commentItems.datas,"mold":"comment"}]
+        +detailsArticle(articeItems)
+block scriptspage
+    script(src=baseUrl+'/javascripts/koobox.js')
+    script(src=baseUrl+'/javascripts/kooslide.js')
+    script(src=baseUrl+'/javascripts/datepicker/WdatePicker.js')
+    script(src=baseUrl+'/javascripts/comment.js')
+    script(src=baseUrl+'/javascripts/details.js')

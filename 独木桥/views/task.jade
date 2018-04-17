@@ -1,0 +1,33 @@
+extends layout
+block stylesheet
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/member.css')
+
+block content
+    header.task-header
+        img(src="/images/member/task-img.jpg")
+    ul.task-list
+        each item in items.memberTask
+            -var url="#"
+            case item.taskType
+                when "0"
+                    -url=item.wapUrl+"?flag=rw"
+                when "1"
+                    -url="/user/myorder/2"
+                when "2"
+                    -url="/user/member"
+            li
+                if(item.finishNum==item.dayNum)
+                    a(href="javascript:;").task-btn.complete-btn="已完成"
+                else
+                    a(href=url).task-btn="去完成"
+                .task-info
+                    h4.task-info-title=item.taskName
+                    .task-bar-info
+                        p.task-bar
+                            span(style="width:"+(item.finishNum/item.dayNum)*100+"%;")
+                        span
+                            em=item.finishNum
+                            ="/ "+item.dayNum
+                    p.task-explian
+                        ="奖励："
+                        span="单次X"+item.singleScore+"积分"

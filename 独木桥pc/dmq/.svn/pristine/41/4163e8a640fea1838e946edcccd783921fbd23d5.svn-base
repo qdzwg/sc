@@ -1,0 +1,304 @@
+var express = require('express');
+var router = express.Router();
+var async = require('async');
+
+var querystring = require('querystring');
+var common=require("../common_modules/common");
+
+/* GET users listing. */
+router.get('/:mold/:code', function(req, res, next) {
+    if(req.params.mold=="getStock"){
+        next();
+        return false;
+    }
+    var mold=req.params.mold,
+        code=req.params.code,
+        imgUrl=common.getUrl(mold,"details").img,
+        prourl=common.getUrl(mold,"order").getpro+"?id="+code,
+        query=req.query,
+        title=common.pageCommon(mold).title+"订单";
+    if(mold=="line"){
+        if(query.step==1){
+            var options={ title: '独木桥旅游网',mold:mold};
+            common.viewPage(mold+"orderstep1",options,req,res);
+            imgUrl+="?zyxId="+code;
+            async.parallel([function(callback){
+                common.needleGet(imgUrl,req,res,callback);
+            },function(callback){
+                common.needleGet(prourl,req,res,callback);
+            }],function(err, results){
+                var options={title:title,mold:mold,item:results[1],code:code,imgItems:results[0].datas,hrefquery:query};
+                common.viewPage("zyxorderstep1",options,req,res);
+            });
+        }else{
+            var options={ title: '独木桥旅游网',mold:mold};
+            common.viewPage("zyxorderstep2",options,req,res);
+        }
+    }else{
+        async.parallel([function(callback){
+            common.needleGet(prourl,req,res,callback);
+        }],function(err, results){
+            var options={ title: '独木桥旅游网',mold:mold,code:code,item:results[0]};
+            if(mold=="hotel"){
+                options.beginDate=req.session.beginDate;
+                options.endDate=req.session.endDate;
+            }
+            common.viewPage(mold+"order",options,req,res);
+        });
+    }
+}).get("/getStock/:mold",function(req,res){
+    var mold=req.params.mold,query=req.query,url=common.getUrl(mold,"order").getdate;
+    for(var key in query){
+        url=common.changeURLPar(url,key,query[key]);
+    }
+    async.parallel([function(callback){
+        common.needleGet(url,req,res,callback);
+    }],function(err, results){
+        res.json(results);
+    });
+}).post('/:mold/:code',function(req, res, next){
+    var code=req.params.code,mold=req.params.mold,posturl=common.getUrl(mold,"order").postpro,formdata={},query=req.query,address="";
+
+    if (req.body.toType === 'cart'){
+        if(typeof req.body.area!="undefined"){
+            address=req.body.area+req.body.address;
+        }else{
+            address=req.body.address;
+        }
+        posturl=common.getUrl('cart',"add");
+        switch (mold){
+            case "ticket":
+                formdata={
+                    beginDate:req.body.playDate,
+                    endDate:req.body.endDate,
+                    price:req.body.price,
+                    amount:req.body.amount,
+                    idcard:req.body.linkIdcard,
+                    endDate:req.body.endDate,
+                    remark:req.body.remark,
+                    modelId:code,
+                    bnsType:mold,
+                    userName:req.body.linkMan,
+                    mobile:req.body.linkMobile,
+                    showTicketIds:req.body.zyxShowIds,
+                    ticketIds:req.body.zyxTicketIds,
+                    hotelIds:req.body.hotelIds,
+                    stockId:req.body.stockId,
+                    address:address,
+                    postId:req.body.postId,
+                    sinceId:req.body.postId
+                };
+                break;
+            case "hotel":
+                formdata={
+                    beginDate:req.body.playDate,
+                    endDate:req.body.endDate,
+                    price:req.body.price,
+                    amount:req.body.amount,
+                    idcard:req.body.linkIdcard,
+                    endDate:req.body.endDate,
+                    remark:req.body.remark,
+                    modelId:code,
+                    bnsType:mold,
+                    userName:req.body.linkMan,
+                    mobile:req.body.linkMobile,
+                    showTicketIds:req.body.zyxShowIds,
+                    ticketIds:req.body.zyxTicketIds,
+                    hotelIds:req.body.hotelIds,
+                    stockId:req.body.stockId,
+                    address:address,
+                    postId:req.body.postId,
+                    sinceId:req.body.postId
+                };
+                break;
+            case "line":
+                formdata={
+                    beginDate:req.body.playDate,
+                    endDate:req.body.endDate,
+                    price:req.body.price,
+                    amount:req.body.amount,
+                    idcard:req.body.linkIdcard,
+                    endDate:req.body.endDate,
+                    remark:req.body.remark,
+                    modelId:code,
+                    bnsType:mold,
+                    userName:req.body.linkMan,
+                    mobile:req.body.linkMobile,
+                    showTicketIds:req.body.zyxShowIds,
+                    ticketIds:req.body.zyxTicketIds,
+                    hotelIds:req.body.hotelIds,
+                    stockId:req.body.stockId,
+                    address:address,
+                    postId:req.body.postId,
+                    sinceId:req.body.postId
+                };
+                break;
+            case "combo":
+                formdata={
+                    beginDate:req.body.playDate,
+                    endDate:req.body.endDate,
+                    price:req.body.price,
+                    amount:req.body.amount,
+                    idcard:req.body.linkIdcard,
+                    endDate:req.body.endDate,
+                    remark:req.body.remark,
+                    modelId:code,
+                    bnsType:mold,
+                    userName:req.body.linkMan,
+                    mobile:req.body.linkMobile,
+                    showTicketIds:req.body.zyxShowIds,
+                    ticketIds:req.body.zyxTicketIds,
+                    hotelIds:req.body.hotelIds,
+                    stockId:req.body.stockId,
+                    address:address,
+                    postId:req.body.postId,
+                    sinceId:req.body.postId
+                };
+                break;
+            case "show":
+                formdata={
+                    beginDate:req.body.playDate,
+                    endDate:req.body.endDate,
+                    price:req.body.price,
+                    amount:req.body.amount,
+                    idcard:req.body.linkIdcard,
+                    endDate:req.body.endDate,
+                    remark:req.body.remark,
+                    modelId:code,
+                    bnsType:mold,
+                    userName:req.body.linkMan,
+                    mobile:req.body.linkMobile,
+                    showTicketIds:req.body.zyxShowIds,
+                    ticketIds:req.body.zyxTicketIds,
+                    hotelIds:req.body.hotelIds,
+                    stockId:req.body.stockId,
+                    address:address,
+                    postId:req.body.postId,
+                    sinceId:req.body.postId
+                };
+                break;
+            case "goods":
+                formdata={
+                    beginDate:req.body.playDate,
+                    endDate:req.body.endDate,
+                    price:req.body.price,
+                    amount:req.body.amount,
+                    idcard:req.body.linkIdcard,
+                    endDate:req.body.endDate,
+                    remark:req.body.remark,
+                    modelId:code,
+                    bnsType:mold,
+                    userName:req.body.linkMan,
+                    mobile:req.body.linkMobile,
+                    showTicketIds:req.body.zyxShowIds,
+                    ticketIds:req.body.zyxTicketIds,
+                    hotelIds:req.body.hotelIds,
+                    stockId:req.body.stockId,
+                    address:address,
+                    postId:req.body.postId,
+                    sinceId:req.body.postId
+                };
+                break;
+        }
+        
+        
+    }else{
+        switch (mold){
+            case "ticket":
+                formdata.stockDate=req.body.playDate;
+                formdata.price=req.body.price;
+                formdata.amount=req.body.amount;
+                formdata.idcard=req.body.linkIdcard;
+                break;
+            case "hotel":
+                formdata.beginDate=req.body.begDate;
+                formdata.endDate=req.body.endDate;
+                formdata.price=req.body.price;
+                formdata.amount=req.body.amount;
+                formdata.idcard=req.body.linkIdcard;
+                formdata.remark=req.body.remark;
+                break;
+            case "line":
+                formdata.kid=req.body.kid;
+                formdata.zyxTicketIds=req.body.zyxTicketIds;
+                formdata.hotelIds=req.body.hotelIds;
+                formdata.zyxShowIds=req.body.zyxShowIds;
+                formdata.nowDate=req.body.stockDate;
+                formdata.price=req.body.price;
+                formdata.amount=req.body.number;
+                formdata.idcard=req.body.accIdentification;
+                formdata.linkName=req.body.consumer;
+                break;
+            case "combo":
+                formdata.kid=req.body.showIds;
+                formdata.showTicketIds=req.body.sessionIds;
+                formdata.nowDate=req.body.playDate;
+                formdata.price=req.body.price;
+                formdata.amount=req.body.amount;
+                formdata.idcard=req.body.linkIdcard;
+                formdata.linkName=req.body.linkMan;
+                break;
+            case "show":
+                formdata.ticketId=req.body.ticketId;
+                formdata.stockId=req.body.sessionId;
+                formdata.nowDate=req.body.playDate;
+                formdata.price=req.body.price;
+                formdata.amount=req.body.amount;
+                formdata.idcard=req.body.linkIdcard;
+                formdata.linkName=req.body.linkMan;
+                break;
+            case "goods":
+                formdata.price=req.body.price;
+                formdata.stockId=req.body.stockId;
+                formdata.amount=req.body.number;
+                formdata.remark=req.body.remark;
+                if(query.freight==0){
+                    formdata.address=req.body.area+req.body.address;
+                    formdata.postId=req.body.postId;
+                }else{
+                    formdata.sinceId=req.body.sinceId;
+                }
+                break;
+        }
+        formdata.id=code;
+        formdata.userName=req.body.linkMan;
+        formdata.mobile=req.body.linkMobile;
+    }
+    
+    if(!req.session.member){
+        req.session.curUrl=req.originalUrl;
+        res.redirect('/login');
+    }else{
+        common.needlePost(posturl,formdata,req,res,function(error,result){
+            if (req.body.toType === 'cart'){
+                res.redirect('/cart/list');
+            }else{
+                res.redirect('/pay/'+mold+'/'+result.orderId);
+            }
+            
+        });
+    }
+});
+
+// 下单
+router.get('/cart/info/:code',function(req,res,next){  
+    var orderNos = req.params.code;
+    var url = common.getUrl('cart','reorder') + '?orderNos=' + orderNos;
+
+    common.needleGet(url,req,res,function (err,results){
+        var options={ title: '独木桥旅游网',listData:results.orderInfoVoList,orderNos:orderNos};
+
+        common.viewPage("orderInfo",options,req,res);
+    });
+});
+
+// 支付
+router.get('/pay', function(req, res, next) {  
+    var url = common.getUrl('cart','pay') + '?' + unescape(querystring.stringify(req.query));
+
+    common.needleGet(url,req,res,function (err,results){
+        res.send(results.datas);
+    });
+});
+
+module.exports = router;

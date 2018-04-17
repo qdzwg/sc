@@ -1,0 +1,65 @@
+extends ../layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_common.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/usercenter.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_cinfo.css')
+block pagecontent
+<<<<<<< .mine
+    form(action="/user/myorderDetails" method="post")#formRefund
+        .form-box
+            label 可退数量:
+            span=refundData.retreatNum
+        .form-box
+            label 选择退款数量：
+            div.input-box.order-num-box
+                input(type="text" class="operation-num" data-min="1" name="number" data-max=refundData.retreatNum value="1")
+        .form-box
+
+            label 手续费：
+            input(type="text" name="fee" value="")
+        .form-box
+            input(type="submit" value="提交")
+||||||| .r90454
+    form(action="/user/myorderDetails" method="post")#formRefund
+        .form-box
+            label 可退数量:
+            span=refundData.retreatNum
+        .form-box
+            label 选择退款数量：
+            div.input-box.order-num-box
+                input(type="text" class="operation-num" data-min="1" name="number" data-max=refundData.retreatNum value="1")
+        .form-box
+            label 手续费：
+            input(type="text" name="fee" value="")
+        .form-box
+            input(type="submit" value="提交")
+=======
+    include ../common/comFun
+    #uc_wrapper
+        include top
+        #uc_content.cf
+            include left
+            #uc_main
+                .t_w
+                    .t_head_w.cf
+                        .t_name 申请退款
+                    #info_w
+                        form(action="/user/myorderDetails" method="post")#formRefund.info_cw
+                            ul.info_list.info_edit.cf(style='display:block;')
+                                li
+                                    span 
+                                        | 可退数量:
+                                        | #{refundData.retreatNum}
+                                li
+                                    span 选择退款数量：
+                                    input(type="text" class="operation-num" data-min="1" name="number" data-max=refundData.retreatNum value="1")
+                                li
+                                    span 手续费：
+                                    input(type="text" name="fee" value="")
+                                li.save
+                                    input.comfirm_btn(type="submit" value="提交")
+                                    input.cancel_btn(type='button', value='取 消', onclick='history.back()')
+>>>>>>> .r93966
+block scriptspage
+    script(src=baseUrl+'/javascripts/uc_common.js')
+    script(src=baseUrl+'/javascripts/refund.js')

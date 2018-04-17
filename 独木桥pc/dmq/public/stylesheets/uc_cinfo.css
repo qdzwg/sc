@@ -1,0 +1,133 @@
+#info_w{
+	padding: 30px 20px;
+}
+
+#u_img2{
+	position: relative;
+	float: left;
+}
+.show_name{
+	float: left;
+	font-size: 14px;
+}
+.show_name{
+	line-height: 24px;
+	padding: 91px 0 0 20px;
+}
+.chang_pw{margin-left: 30px;font-size: 12px;}
+.info_sp{
+	margin: 10px 0 30px 0;
+	border-bottom: 4px solid #82B200;
+	padding-top: 5px;
+	background-position: 48px -222px;
+}
+
+.info_chead{
+	border-bottom: 1px solid #e5e5e5;
+	font-size: 14px;
+	line-height: 30px;
+	margin-left: 57px;
+}
+.info_chead b{
+	margin-right: 20px;
+}
+.c_op{
+	font-size: 12px;
+}
+.info_list{
+	padding: 15px 0 30px 0;
+}
+.info_list li{
+	float: left;
+	clear: both;
+	line-height: 32px;
+	font-size: 14px;
+}
+.info_edit{display: none;}
+.info_edit li{
+	padding: 10px 0;
+}
+.info_list li span{
+	display: block;
+	float: left;
+	color: #999;
+	font-size: 12px;
+	width: 125px;
+	text-align: right;
+	margin-right: 13px;
+}
+
+.ph{margin-right: 5px;}
+.sfor{padding-left: 2px;margin-right: 15px;}
+.adr{
+	background-position: 65px -242px;
+}
+em.s{float: left;padding: 0 3px;}
+
+.info_edit li.save{padding-left: 138px;padding-top: 15px;}
+#info_w .comfirm_btn,#change_pw_box .comfirm_btn,#change_pic_box .comfirm_btn{
+	float: left;
+	display: block;
+	height: 28px;
+	line-height: 28px;
+	border:1px solid #FF6600;
+	color: #fff;
+	font-size: 14px;
+	margin-right: 15px;
+	background-position: 0 -280px;
+	background-repeat: repeat-x;
+	padding: 0 20px;
+	border-radius: 3px;
+	white-space:nowrap;
+}
+#info_w .comfirm_btn:hover,#change_pw_box .comfirm_btn:hover,#change_pic_box .comfirm_btn:hover{
+	color: #fff;
+	text-decoration: none;
+	background-position: 0 -309px;
+}
+
+#info_w .cancel_btn,#change_pw_box .cancel_btn,#change_pic_box .cancel_btn{
+	float: left;
+	display: block;
+	height: 28px;
+	line-height: 28px;
+	border: 1px solid #DBDBDB;
+	color: #666;
+	font-size: 14px;
+	margin-right: 15px;
+	background-position: 0 -341px;
+	background-repeat: repeat-x;
+	padding: 0 20px;
+	border-radius: 3px;
+	white-space:nowrap;
+}
+#info_w .cancel_btn:hover,#change_pw_box .cancel_btn:hover,#change_pic_box .cancel_btn:hover{
+	color: #000;
+	text-decoration: none;
+	border: 1px solid #ccc;
+}
+#info_w .getCode{
+	display: block;
+	height: 22px;
+	line-height: 22px;
+	color: #fff;
+	float: left;
+	padding: 0 10px;
+	background-position: 0 -370px;
+	background-repeat: repeat-x;
+	font-size: 12px;
+	width: 75px;
+	text-align: center;
+	margin: 5px 0 0 5px;
+	border-radius: 3px;
+}
+#info_w .getCode:hover{
+	color: #fff;
+	background-position: 0 -391px;
+	text-decoration: none;
+}
+
+#uc_wrapper .gbtn{
+	border:none;
+	cursor:pointer;
+}

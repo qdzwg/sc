@@ -1,0 +1,18 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/order.css')
+
+block content
+   include pay/paymold
+   include common/msgTips
+   .totals
+      label="订单金额"
+      span.price
+         em="￥"
+         strong=item.finalSum
+   +paymold(mold,item)
+   - if(error)
+      +msg(error)
+block scripts
+   script(src=baseUrl+'/javascripts/pay.js')
+

@@ -1,0 +1,203 @@
+.member-header{ height: 8.5rem; background: url("../images/member/header.jpg") no-repeat; background-size: cover;}
+.user-name{ font-size: 0.6rem; padding-top: 0.25rem; text-align: center; color: #fff;}
+.header-explian{ font-size: 0.4rem; padding-top: 0.3rem; text-align: center;}
+.user-face{ width: 2.6rem; height: 2.6rem; display: block; margin: 0.5rem auto 0; text-align: center; border: 3px solid rgba(255,255,255,.6); border-radius: 100%; overflow: hidden;}
+.user-face img{ width: 2.6rem; height: 2.6rem;border-radius: 100%; background: url("../images/member/header-bg.png") center center no-repeat #fff; background-size: 80%;  display: block; box-sizing: border-box;}
+
+.member-tab li{ width: 25%; position: relative;}
+.member-tab li a i{ display: block; margin: 0 auto 0.25rem; font-size: 0.9rem;}
+.dingdan-pay{ color: #3c9;}
+.dingdan-unpay{ color: #f66;}
+.member-tab li a i.dingdan-complent{ color: #3c9; font-size: 1.2rem; margin-top: -0.25rem; margin-bottom: 0;}
+.dingdan-refund{ color: #f66;}
+.member-tab li em{ position: absolute; display: block; width: 0.75rem; height: 0.75rem; border-radius: 100%; background-color: #f66; color: #fff; text-align: center; line-height: 0.75rem; top:0; right:1rem; font-size: 0.6rem;}
+
+.member-list{ border-top: none;}
+.member-list li{ text-align: right;}
+.vantages,.bonus{ font-size: 0.5rem; color: #666; margin-right: 0.5rem;}
+.vantages em,.bonus em{ font-size: 0.7rem; margin-right: 0.25rem; }
+.bonus{ color: #f00;}
+
+.member-handle .btn i{ font-size: 0.6rem;}
+
+.header-bottom{ height: 1.5rem; background-color: rgba(51,51,51,.3); margin-top: 0.5rem; padding: 0.25rem 0; font-size: 0; color: #fff; position: relative;}
+.header-bottom-left,.header-bottom-right{ display: inline-block; width: 50%; box-sizing: border-box; text-align: center; font-size: 0.5rem;}
+.header-bottom em{ display: block; font-size: 0.75rem;}
+
+.grade-icon{ display: inline-block; width: 4rem; height: 1.1rem;line-height: 1.1rem; text-align: center; border-radius: 0.5rem; margin: 0 0.5rem; vertical-align: middle;}
+.grade-icon i{ vertical-align: middle; margin-right: 0.25rem; font-size: 0.75rem;}
+.grade-info{ background-color: #fff;}
+.grade-info i{  color: #ffc000;}
+.grade-btn{ background-color: #ffc000; color: #fff;}
+.grade-disabled{ background-color: #e0e0e0; color: #a0a0a0;}
+
+.user-header{ height: 8.3rem; background: url("../images/member/user-header.jpg") no-repeat; background-size: cover; overflow: hidden;}
+.header-bottom-line{ display: inline-block; width: 1px; height: 0.85rem; background-color: rgba(255,255,255,.3); position: absolute; top:50%; margin-top: -0.425rem; left: 50%; margin-left: -0.5px;}
+.scoreRight-item{display:block; font-size: 0.6rem; padding: 0.3rem; overflow: hidden;}
+.scoreRight-item-head{ width: 3.85rem; height: 3.85rem; background-color: #ca0202; text-align: center; color: #fff; float: left; border-bottom: 1px solid #fff;}
+.scoreRight-item-head img{ height: 1.75rem; margin: 0.5rem 0;}
+.scoreRight-item-head span{overflow: hidden;text-overflow: clip;white-space: nowrap; width: 4rem; margin: 0 auto; display: block; font-size: 0.6rem;}
+.scoreRight-item p{ background-color: #f4cccc; height: 3.85rem; margin-left: 3.85rem;  display: flex; flex-direction: column; justify-content: center; padding: 0 1.25rem; border-bottom: 1px solid #fff;}
+.gray{ color: #999;}
+.gray img{ -webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);-o-filter: grayscale(100%);filter: grayscale(100%);filter: gray;}
+.gray .scoreRight-item-head{background-color: #373737;}
+.gray p{ background-color: #d7d7d7;}
+
+.score-content{ background-color: #fff;}
+.score-title{ font-size: 0.65rem; padding: 0.5rem;}
+
+.task-header img{ width: 100%;}
+.task-list{ background-color: #fff; padding: 0 0.5rem;}
+.task-list li{height: 2.5rem; padding: 0.5rem 0; border-bottom: 1px solid #ebebeb;}
+.task-btn{ float: right; width: 4rem; height: 1.25rem; line-height: 1.25rem; text-align: center; background-color: #f66; border-radius: 0.5rem; display: block; font-size: 0.65rem; color: #fff;  margin-top: 0.75rem;}
+.complete-btn{ background-color: #a0a0a0;}
+.task-info{ margin-right: 4.5rem;}
+.task-info-title{ font-size: 0.7rem; margin-bottom: 0.25rem; text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}
+.task-bar-info{ height: 0.75rem; font-size: 0.6rem;}
+.task-bar{ float: left; height: 0.25rem; width: 8.25rem; background:#ccc; border-radius: 0.5rem; position: relative; margin-top: 0.15rem; margin-right: 0.25rem;}
+.task-bar span{ position: absolute; top:0; left: 0; display: block; height: 100%; border-radius: 0.5rem; background: -webkit-linear-gradient(left,#fdec8f,#ffc000);}
+.task-bar-info span em{ color: #ffc000;}
+.task-explian{ font-size: 0.55rem;}
+.task-explian span{ color: #ff7e00;}
+
+/*新版个人中心*/
+.member-heard{ height: 9.5rem; background: url("../images/member/header.jpg") no-repeat; background-size: 100% 100%; position: relative;}
+.heard-img{ width: 4.6rem; height: 4.6rem; float: left; margin: 0.25rem 1.75rem 0 1.2rem;}
+.heard-img a{ display: block; width: 4.6rem; height: 4.6rem; border-radius: 100%; border: 0.25rem solid #dadada; background: url("../images/member/10.png") no-repeat #ccc; background-size: contain; overflow: hidden; position: relative; z-index: 1;}
+.heard-img img{ height: 100%; position:absolute;top:50%;left:50%;transform:translate3D(-50%,-50%,0); z-index: 0;}
+.heard-info{ color: #fff; font-size: 0.5rem; padding-top: 1.5rem; float: left; width: 5rem;}
+.heard-info h3{ font-size: 0.8rem; margin-bottom: 0.25rem;}
+.heard-info h4{ font-size: 0.85rem; margin-bottom: 0.25rem;}
+.heard-score{ height: 0.85rem; line-height: 0.85rem; background-color: rgba(255,255,255,.3); color: #fff; padding: 0 0.5rem; border-radius: 0.25rem; display: inline-block;}
+.heard-link{ font-size: 0.6rem; color: #fff;}
+.grade-list{ clear: both; padding-top: 1.5rem; position: relative; width: 13.5rem; margin: 0 auto; }
+.grade-list ul{  background: url("../images/member/grade.png") center 1rem no-repeat; background-size: 100% auto; height: 2.75rem; font-size: 0;}
+.grade-list ul li{ display: inline-block; color: #fff; font-size: 0.5rem; vertical-align: top; }
+.grade-list ul li span{ display: block; text-align: center;}
+.grade-num{ padding-top: 0.3rem;}
+.grade-name{ padding-top: 1.5rem; height: 1.4rem;}
+.grade-name em{ display: block; font-size: 0.45rem; color: #a8a7a7;}
+.grade-list ul li.g1{ width: 3rem;}
+.grade-list ul li.g2{ width: 4rem;}
+.grade-list ul li.g3{ width: 2.75rem;}
+.grade-list ul li.g4{ width: 3.75rem;}
+
+.member-main{ background-color: #dedcdc; padding:0.5rem;}
+.member-nav{ font-size: 0;}
+.member-nav li{ width: 4.85rem; display: inline-block; vertical-align: top; margin-right: 0.2rem; margin-bottom: 0.25rem;}
+.member-nav li:nth-child(3n){margin-right:0;}
+.member-nav li a{ display: block; height: 4.85rem; font-size: 0.6rem; color: #333; background-color: #fff; text-align: center; overflow: hidden;}
+.member-nav li a p em{ display: block; font-size: 0.5rem; color: #858484;}
+.member-nav li a img{ display: block; width: 1.5rem; height: 1.5rem; margin: 1.25rem auto 0.5rem;}
+.member-nav-icon{ display: block; width: 1.5rem; height: 1.5rem; margin: 1.25rem auto 0.25rem; background-position: center center; background-repeat: no-repeat; background-size: 100% auto;}
+.member-nav li.more .member-nav-icon{ margin-top: 1.5rem;}
+.member-icon-privilege{ background-image: url("../images/member/icon/icon-privilege.png");}
+.member-icon-coupon{ background-image: url("../images/member/icon/icon-coupon.png");}
+.member-icon-score{ background-image: url("../images/member/icon/icon-score.png");}
+.member-icon-reward{ background-image: url("../images/member/icon/icon-reward.png");}
+.member-icon-odds{ background-image: url("../images/member/icon/icon-odds.png");}
+.member-icon-gift{ background-image: url("../images/member/icon/icon-gift.png");}
+.member-icon-cake{ background-image: url("../images/member/icon/icon-cake.png");}
+.member-icon-park{ background-image: url("../images/member/icon/icon-park.png");}
+.member-icon-more{ background-image: url("../images/member/icon/icon-more.png");}
+.member-icon-bag{ background-image: url("../images/member/icon/icon-bag.png");}
+.member-icon-tel{ background-image: url("../images/member/icon/icon-tel.png");}
+.member-icon-ticket{ background-image: url("../images/member/icon/icon-ticket.png");}
+.member-icon-more1{ display: block; width: 1.4rem; height: 0.25rem; background: url("../images/member/icon/icon-more1.png") center center no-repeat; background-size: 100% auto; margin: 0 auto 0.25rem;}
+.member-title{ height: 1.5rem; line-height: 1.5rem; text-align: center; background-color: #fff; margin-bottom: 0.25rem; font-size: 0.6rem; color: #333;}
+.member-handle{ height: 1.5rem; line-height: 1.5rem; text-align: center; display: block; background-color: #efeeee; font-size: 0.6rem; margin-bottom: 0.25rem;}
+.member-link{ padding: 0.4rem 0; background-color: #fff; display: block; text-align: center; font-size: 0.6rem; margin-bottom: 0.25rem;}
+.member-link em{ display: block; font-size: 0.5rem; color: #666;}
+.grade-location{ display: block; width: 0.65rem; height: 0.875rem; background: url("../images/member/icon/icon-location.png") no-repeat; background-size: contain; position: absolute; top:1.5rem; left: 0;}
+
+/*特权*/
+.right-header{ height: 5.075rem; background: url("../images/member/right-head.png") no-repeat; background-size: contain; overflow: hidden; position: relative;}
+.right-head-img{ width: 2.8rem; height: 2.8rem; margin: 0.5rem 0.75rem 0 0.6rem; float: left;}
+.right-head-img img{ width: 100%; height: 100%; border-radius: 100%;}
+.right-head-info{ font-size: 0.6rem;}
+.right-head-info h3{ padding-top: 0.5rem; font-size: 0.75rem; color: #fff; margin-bottom: 0.25rem;}
+.right-grade-info{ width: 13.8rem; text-align: center; color: #fff; font-size: 0.75rem; margin: 0.25rem auto 0;}
+.grade-bar{ height: 0.25rem; background-color:rgba(255,255,255,.5); border-radius: 0.15rem; margin-top: 0.25rem; width: 100%;}
+.grade-bar span{height: 0.25rem; display: block; background-color: #ffde00; border-radius: 0.15rem;}
+
+/*会员攻略*/
+.member-info-title{ height: 3rem; background: url("../images/member/member-title.jpg") no-repeat; background-size: contain; text-align: center; overflow: hidden;}
+.member-info-title h3{ font-size: 1rem; color: #fff; font-weight: bold; margin: 0.5rem 0 0.25rem 0; letter-spacing: 0.25rem;}
+.member-info-title em{ color: #dedcdc; font-size: 0.5rem; vertical-align: top; letter-spacing: 0.15rem;}
+.member-info-content{ margin: 0.5rem 0.25rem; background: #fff; overflow: hidden;}
+.member-grade-list{ padding-top: 2.1rem; text-align: center;}
+.member-grade-list li{ height: 3.625rem; width: 3.4rem; background-color: #e2e2e2; display: inline-block; margin: 0 0.1rem; vertical-align: top; font-size: 0.5rem; font-weight: 600; position: relative; padding-top: 2rem;}
+.member-grade-icon{ width: 2.575rem; height: 2.575rem; position: absolute; top:-0.85rem; left: 50%; margin-left: -1.29rem;}
+.icon-copper{ background: url("../images/member/grade1.png") no-repeat; background-size: contain;}
+.icon-silver{ background: url("../images/member/grade2.png") no-repeat; background-size: contain;}
+.icon-platinum{ background: url("../images/member/grade3.png") no-repeat; background-size: contain;}
+.icon-diamond{ background: url("../images/member/grade4.png") no-repeat; background-size: contain;}
+.member-grade-list li em{ color: #d70000;}
+.member-grade-explian{ margin: 0.25rem; background-color: #e2e2e2; padding: 0.25rem 0.75rem; line-height: 140%; font-size: 0.6rem;}
+
+.member-score-list{ text-align: center; padding: 1.4rem 0;}
+.score-list-item{ width: 3.15rem; display: inline-block; vertical-align: top;  border-right: 1px solid #dedcdc; padding: 0 0.2rem;}
+.member-score-list div:last-child{ border-right: none;}
+.member-score-icon{ display: inline-block; width: 2.1rem; height: 2.1rem;}
+.score-list-item p{ font-size: 0.6rem; font-weight: 600;}
+.score-list-item p:last-child{ font-size: 0.5rem; color: #333;}
+.score-list-item p em{ color: #bd070b;}
+.score-icon1{ background: url("../images/member/score-icon1.png") no-repeat; background-size: contain;}
+.score-icon2{ background: url("../images/member/score-icon2.png") no-repeat; background-size: contain;}
+.score-icon3{ background: url("../images/member/score-icon3.png") no-repeat; background-size: contain;}
+.score-icon4{ background: url("../images/member/score-icon4.png") no-repeat; background-size: contain;}
+
+.exchange-item{ padding: 0.125rem 0.5rem; font-size: 0.6rem; color: #272636; overflow: hidden;}
+.exchange-info{ padding: 0.25rem 0;}
+.icon-num{ width: 1.275rem; height: 1.375rem; display: inline-block; vertical-align: middle; margin-right:0.25rem; float: left; margin-bottom: 0.25rem;}
+.icon-num1{ background: url("../images/member/1-icon.png") no-repeat; background-size: contain;}
+.icon-num2{ background: url("../images/member/2-icon.png") no-repeat; background-size: contain;}
+.icon-num3{ background: url("../images/member/3-icon.png") no-repeat; background-size: contain;}
+.icon-num4{ background: url("../images/member/4-icon.png") no-repeat; background-size: contain;}
+.icon-num5{ background: url("../images/member/5-icon.png") no-repeat; background-size: contain;}
+.exchange-info span{ display: block; min-height: 1.375rem;}
+.exchange-title{ width: 4.5rem; height: 1.25rem; line-height: 1.25rem; background-color: #272636; border-radius: 0.5rem; margin: 0.5rem auto; color: #fff; font-size: 0.65rem; text-align: center;}
+.exchange-info span em{ color: #bd0c10;}
+.member-right-list{padding: 0.75rem;}
+.member-right-list li{  height: 2.575rem; padding: 0.25rem 0;}
+.member-right-list li span:first-child{width: 2.575rem; height: 2.575rem; display: block; padding-right: 0.5rem; float: left; border-right: 1px solid #d0cfcf;}
+.member-right-icon{ height: 100%; width: 100%; display: inline-block;}
+.member-right-list li span:last-child{ font-size: 0.6rem; padding-left: 1rem; margin-left: 3.075rem; display: block;}
+.conImg{ margin:0.25rem;}
+.conImg img{ width: 100%;}
+.notes-info{ padding: 0.75rem;}
+.notes-info p{text-indent: 2em; line-height: 160%; font-size: 0.6rem;}
+.notes-info p strong{ font-weight: bold;}
+
+.right-nav li:nth-child(n+4){ display: none;}
+.userRightContent{ width: 15.25rem; margin: 0.75rem auto; height: 27.275rem; background: url("../images/member/right_bg.png") no-repeat; background-size: contain; padding: 4.6rem 1.75rem 0 1.75rem; box-sizing: border-box;}
+.userRightContent h5{ width: 5.75rem; height: 5.75rem; border-radius: 100%; background-color: #ca0202; text-align: center; color: #fff; overflow: hidden; margin: 0 auto;}
+.userRightContent img{ width: 2.5rem; display: inline-block; margin: 0.75rem 0 0.5rem;}
+.userRightContent span{ display: block;}
+.article-info{ border: 1px solid #474747; padding: 0.5rem 0; border-right: none; border-left: none; margin-top: 1.5rem; text-align: center; font-size: 0.75rem; line-height: 160%;}
+.logout-btn{ height: 2rem; line-height: 2rem; text-align: center; font-size: 0.6rem; background-color: #fff; display: block;}
+
+.book-head{ height: 7.85rem; background: url("../images/member/shuba/header.png") no-repeat; background-size: contain; color: #fff; text-align: center; overflow: hidden;}
+.book-head h3{ font-size: 1.4rem; margin: 1.5rem 0 0.5rem 0;}
+.book-head h4{ font-size: 1rem;}
+.book-head span{ display: block; width: 2rem; height: 2px; overflow: hidden; background-color: #fff; margin: 0.5rem auto;}
+
+.book-link{ text-align: center; font-size: 0; padding: 0.75rem 0;}
+.book-link a{ display: inline-block; width: 4.8rem; padding-top: 5.3rem; text-align: center; font-size: 0.6rem; margin: 0 0.25rem;}
+.book-link a.link1{ background: url("../images/member/shuba/link1.png") no-repeat; background-size: contain;}
+.book-link a.link2{ background: url("../images/member/shuba/link2.png") no-repeat; background-size: contain;}
+.book-link a.link3{ background: url("../images/member/shuba/link3.png") no-repeat; background-size: contain;}
+
+.book-content{ background-color: #fff; padding: 0.75rem;}
+.book-content-title{ font-size: 0.6rem; margin-bottom: 0.5rem;}
+.book-content-title span{ display: inline-block; vertical-align: middle; height: 0.65rem; width: 0.1rem; background-color: #89ae54; margin-right: 0.3rem;}
+.banner img{ width: 100%;}
+.book-list li{ overflow: hidden; height: 6.1rem; margin-top: 0.5rem;}
+.book-list-img{ width: 10.6rem;}
+.book-list-img img{ width: 100%;}
+.book-list-right{ text-align: center; padding-top: 1.85rem; font-size: 0.6rem;}
+.book-icon{ display: inline-block; margin-bottom: 0.25rem;}
+.icon1{ width: 1.875rem; height: 1.45rem; background: url("../images/member/shuba/icon1.png") no-repeat; background-size: contain;}
+.icon2{ width: 1.65rem; height: 1.65rem; background: url("../images/member/shuba/icon2.png") no-repeat; background-size: contain;}
+.icon3{ width: 1.775rem; height: 1.3rem; background: url("../images/member/shuba/icon3.png") no-repeat; background-size: contain;}
+.book-list-right span{ display: block;}

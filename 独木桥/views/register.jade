@@ -1,0 +1,36 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/login.css')
+
+block content
+   include details/article
+   include common/msgTips
+   div.login-panel.register-panel
+      form(action="",method="post")#myform
+         ul.login-list
+            li
+               input(type="tel",placeholder="请输入您的手机号码",name="tel")
+            li
+               input(type="tel",placeholder="请输入您的验证码",name="cardcode",value=checkCode)
+               input(type="button",value="发送验证码").card-btn#cardBtn
+            li
+               input(type="password",placeholder="请输入您的密码",name="password",id="password")
+               p.form-explian 6-20位字母、数字或符号
+            li
+               input(type="password",placeholder="请确认您的密码",name="enterpassword")
+         p.register-explian
+            input(type="checkbox",checked="checked")#check
+            | 我已阅读，并同意
+            a(href="javascript:;",data-url="zcxy").article-btn 注册协议
+         div.login-handle.btn-handle
+            button(type="submit").btn.c-base#saveBtn 注册
+   - var registerInfo="注册协议注册协议注册协议"
+   +article("注册协议",registerInfo,"zcxy")
+   div.mask#mask
+   - if(error!="")
+      +msg(error)
+block scripts
+   script(src=baseUrl+'/javascripts/login.js')
+   script(src=baseUrl+'/javascripts/validate/jquery.validate.min.js')
+   script(src=baseUrl+'/javascripts/validate/messages_zh.min.js')
+   script(src=baseUrl+'/javascripts/validate/additional-methods.js')

@@ -1,0 +1,73 @@
+.mycoupon-header-tab{ padding-bottom: 0;}
+.mycoupon-tab li{ width: 50%; height: 1.4rem; line-height: 1.4rem;}
+.coupon-list{ padding: 0.5rem; }
+.coupon-list li{ width:15.25rem; height: 4rem; background: url("../images/coupon/coupon-bg.png") no-repeat; background-size: 100% auto; margin-bottom: 0.5rem; box-shadow: 0 0 0.25rem rgba(0,0,0,.2); }
+.coupon-left{ width: 25%; float: left; text-align: center; font-size: 0.6rem; color: #999;}
+.coupon-left .cost-num{ font-size: 1.4rem; color: #f0303f; margin: 0.5rem 0 0.25rem 0; display: inline-block;}
+.coupon-left .cost-num em{ font-size: 0.9rem;}
+.coupon-right{margin-left: 25%;  padding: 0.5rem; background-position: 95% center; background-repeat: no-repeat; background-size:auto 75%;}
+.coupon-title{ font-size: 0.75rem; color: #333; }
+.coupon-right p{ min-height: 0.6rem;}
+.coupon-subtitle{ font-size: 0.6rem; color: #666; margin-top:0.15rem; height: 1.2rem;}
+.coupon-explian{ font-size: 0.5rem; color: #999;}
+.coupon-unuse{ background-image: url("../images/coupon/user1.png");}
+.coupon-used{ background-image: url("../images/coupon/user3.png");}
+.coupon-expired{ background-image: url("../images/coupon/user2.png");}
+.coupon-checked{background-image: url("../images/coupon/user4.png"); background-size:auto 0.95rem; background-position: 90% center;}
+.coupon-unchecked .cost-num,.coupon-unchecked .coupon-title{ color: #666;}
+
+.coupon-body{ background: #fbe5b6;}
+.packets{ height: 16.1rem; background: url("../images/coupon/getcoupon.png") no-repeat; background-size: contain;}
+.value{ display: block; position: absolute; top:7.7rem; left: 4.6rem; color: #fff; font-size:1.7rem; font-weight: 700; width: 3.4rem; text-align: center; overflow: hidden; height: 3rem; line-height: 3rem;}
+.coupon-info p{ position: absolute; top:10.6rem; font-size: 0.5rem; color: #fff; text-align: center; width: 100%;}
+.coupon-btn{ display: block; width: 12.5rem; height: 1.75rem; line-height: 1.75rem; text-align: center; margin: 1.5rem auto; background-color: #eb1f44; border-radius: 1rem; color: #fff; font-size: 0.75rem;}
+.coupon-info{background: url("../images/coupon/coupon-info.png") no-repeat; background-size: contain; position: relative;}
+.coupon-info-explian{ text-align: center; font-size: 0.8rem; padding-top: 0.5rem; color: #eb1f44;}
+.view-btn{ background:none; border: 1px solid #eb1f44; color: #eb1f44; box-sizing: border-box;}
+
+.coupon-layer{ width: 90%; height: 16rem; position: fixed; left: 5%; top:50%; margin-top: -8rem; background-color: #fff; z-index: 50; display: none; }
+.coupon-layer-list{ height: 12.3rem;overflow: hidden; overflow-y: auto;}
+.coupon-layer-list li{ width: 13.3rem;}
+.coupon-handle{border-top: 1px solid #dcdcdc;text-align: center; background-color: #fff;}
+.coupon-handle a{display: inline-block; height: 1.2rem; line-height: 1.2rem; font-size: 0.6rem; width: 3.5rem;}
+.coupon-layer-list .coupon-right{ padding: 0.25rem 0.5rem;}
+
+.coupon-head{ height: 13.825rem; background: url("../images/coupon/heard.jpg") top no-repeat; background-size: auto 100%; padding-top: 0.8rem;}
+.coupon-main{ height: 21.775rem; background: url("../images/coupon/main.jpg") top no-repeat; background-size: auto 100%; margin-top: -1px;}
+.logo{ height: 1.425rem; background: url("../images/coupon/logo.png") top center no-repeat; background-size: auto 100%; margin: 0 auto;}
+.coupon-img{ height: 2.9rem; background: url("../images/coupon/image1.png") top center no-repeat; background-size: auto 100%; margin-top: 0.5rem;}
+.advert-img{ height: 1.05rem; background: url("../images/coupon/image2.png") top center no-repeat; background-size: auto 100%; margin-top: 0.5rem;}
+.coupon-form{ width: 13.2rem; margin: 0.9rem auto 0; padding-left: 0.8rem;}
+.form-item{ margin: 0.4rem 0; position: relative;}
+.form-item label.error{ color: #fff;}
+.coupon-text{ height: 1.625rem; width: 7.85rem; padding: 0 0.5rem; background-color: #fff; border: 1px solid #8d8d8d;}
+.coupon-card-btn,.coupon-submit-btn{ width: 3.575rem; height: 1.6rem; background-color:#fcc300; border: none;}
+.activity-explian{ height: 7.9rem; width: 11rem; margin: 0 auto; padding: 2.6rem 0.6rem 0; font-size: 0.6rem; color: #6e4602;}
+.activity-explian p{ margin-bottom: 0.75rem;}
+.activity-explian p.center{ text-align: center;}
+.qrcode-info{ width: 4.9rem; margin: 1.5rem auto 0; font-size: 0.6rem; color: #333; text-align: center;}
+.qrcode-info img{ width: 100%; margin-bottom: 0.25rem;}
+.more-btn,.coupon-btn3{ display: block; width: 9.475rem; height: 2.15rem; margin: 0.5rem auto; background: url("../images/coupon/btn3.png") no-repeat; background-size: contain;}
+.coupon-article{ background-color: #fcf6dc; padding-top: 1rem;}
+.video{ width: 13.325rem; margin: 0 auto 1rem;}
+.video img,.article img{ width: 100%;}
+.getcoupon-btn{ width: 6.825rem; height: 1.6rem; background: url("../images/coupon/btn3.jpg") no-repeat; background-size: contain; display: block; margin: 2rem auto;}
+
+.coupon-dialog{ position: fixed; width: 15rem; height: 13.1rem; top:50%; left: 50%; margin: -6rem 0 0 -7.5rem; background: url("https://static.51dmq.com/coupon-layer.png") no-repeat; background-size: contain; overflow: hidden; z-index: 22; display: none;}
+.coupon1-title{ width: 5.925rem; height: 1.375rem; margin: 1.6rem auto 0; background: url("../images/coupon/layer-header.png") no-repeat; background-size: contain; }
+.bindIdcard-title{ width: 7.55rem; height: 3.1rem; margin: 2.1rem auto 0; background: url("../images/coupon/bindIdcard.png") no-repeat; background-size: contain;}
+.layer-qr{ width: 4rem; margin: 0.8rem auto; text-align: center; color: #f3d499; font-size: 0.5rem;}
+.layer-qr img{ width: 100%; margin-bottom: 0.25rem;}
+.coupon-btn1,.coupon-btn2,.coupon-btn4{ width: 7.05rem; height: 2.025rem; display: block; margin: 0.25rem auto; background: url("../images/coupon/btn4.png") no-repeat; background-size: contain;}
+.idcard-item{ padding: 1rem 0; text-align: center;}
+.idcard-item input{ width: 11.275rem; border: 1px solid #8d8d8d; height: 2.1rem; padding: 0 0.25rem; font-size: 0.75rem;}
+.coupon-btn2{ background: url("../images/coupon/btn5.png") no-repeat; background-size: contain;}
+.coupon-btn3{ background: url("../images/coupon/btn6.png") no-repeat; background-size: contain; margin-top: 2.5rem;}
+.coupon-btn4{ background: url("../images/coupon/btn7.png") no-repeat; background-size: contain; margin-bottom: 1rem; margin-top: 3.5rem;}
+
+.article p.contact-article{ height: 6.2rem; background: url("https://static.51dmq.com/sy-article-img4.jpg") no-repeat; background-size: contain; font-size: 0.55rem; padding: 2.5rem 0 0 1.5rem; line-height: 180%;}
+.article p.contact-article span{ display: block;}
+.article p.contact-article span.indent{ padding-left: 2.6rem;}
+.article p.contact-article span strong{ font-weight: bold;}
+.article p.bottom{ height: 5rem; background: url("../images/coupon/article-img6.png") no-repeat; background-size: contain; overflow: hidden;}
+.article p.bottom a{ margin-top: 1.5rem;}

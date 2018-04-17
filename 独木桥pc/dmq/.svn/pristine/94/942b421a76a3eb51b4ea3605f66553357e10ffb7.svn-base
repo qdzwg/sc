@@ -1,0 +1,78 @@
+var express = require('express');
+var router = express.Router();
+var async = require('async');
+var fs = require('fs');
+var querystring = require('querystring');
+var common=require("../common_modules/common");
+
+var cardimgUrl="../public/images/login/logo.png";
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  var newsItems=[{"url":"http://www.51dmq.com/news/news_1062.htm","title":"小编带你去看《三亚千古情》"},{"url":"http://www.51dmq.com/news/news_1121.htm","title":"第一世界大酒店：东南亚热带雨林酒店"},{"url":"http://www.51dmq.com/news/news_1011.htm","title":"宋城美食大盘点"},{"url":"http://www.51dmq.com/news/news_1040.htm","title":"千古情主题酒店:杭城最大的主题酒店群"}];
+  var specialItems=[{"url":"http://www.51dmq.com/sc_lxdr.htm",imgUrl:"/images/demo/898fee15-70f3-438c-afaf-3274d730b7d8.jpg","title":"宋城旅游达人季","subtitle":"达人同款，邀你好玩~"},{"url":"http://www.51dmq.com/ticket/ticket_1045.htm",imgUrl:"/images/demo/54c84de2-b0b7-448b-9d0d-e229ce8bf24e.jpg","title":"看三亚千古情—","subtitle":"免费游三亚浪浪浪水公园了！"},{"url":"http://www.51dmq.com/ticket/ticket_1045.htm",imgUrl:"/images/demo/3e454422-4297-4ff8-a021-cd0252545de5.jpg","title":"三亚自由行","subtitle":"观看三亚千古情演出 入住豪华海滨大酒店"},{"url":"http://www.51dmq.com/dujiaxianlu.htm",imgUrl:"/images/demo/d1848135-0742-459a-b163-85db648ee30a.jpg","title":"爆款推荐","subtitle":"宋城旅游特色线路，诚品邀您共享"},{"url":"http://www.51dmq.com/damiaohui.htm",imgUrl:"/images/demo/f3fc1144-af50-4541-90cc-66edb4cea117.jpg","title":"杭州乐园湘湖宋城景区","subtitle":"万圣惊悚大巡游，鬼马狂欢从这开始"},{"url":"http://www.51dmq.com/songcheng.htm",imgUrl:"/images/demo/90263eba-6904-4a65-bee5-c9dfdeed892f.jpg","title":"杭州宋城景区","subtitle":"给我一天，还你千年！"},{"url":"http://www.51dmq.com/siyuanhebi.htm",imgUrl:"/images/demo/ce39b624-8eb5-411b-bb0e-6a175b8c134a.jpg","title":"三亚宋城旅游区","subtitle":"一生必看的演出"},{"url":"http://www.51dmq.com/lijiang.htm",imgUrl:"/images/demo/6b79fe75-972f-4fec-a92b-687e3d6917f8.jpg","title":"丽江宋城旅游区","subtitle":"玩的就是穿越，成全你的穿越梦"},{"url":"http://www.51dmq.com/jiuzhai.htm",imgUrl:"/images/demo/f08361cd-2b30-4946-8629-d288460c5ac4.jpg","title":"九寨千古情","subtitle":"我在这等你！ 九寨宋城藏羌古城！"},{"url":"http://51dmq.com/zangmi.htm",imgUrl:"/images/demo/23fa18e3-c64e-45aa-b5b2-2ee94a29b09b.jpg","title":"《藏谜》","subtitle":"艺术大舞台，神秘藏文化"},{"url":"http://www.51dmq.com/ticket/ticket_1366.htm",imgUrl:"/images/demo/74746e52-2dad-4c5b-a4c9-1b4d3b7d5c45.jpg","title":"泰山千古情","subtitle":"文化视觉盛宴，一生必看的演出"},{"url":"http://www.51dmq.com/lanpingguo.htm",imgUrl:"/images/demo/0d81ea6d-4c35-415e-b0bf-4d88dbb024b8.jpg","title":"杭州宋城烂苹果乐园","subtitle":"万圣狂欢大巡游，亲子互动寓教于乐"},{"url":"http://www.51dmq.com/yunmanwenquan.htm",imgUrl:"/images/demo/b3b37420-4ac0-4a41-a14a-cf95672c2c06.jpg","title":"杭州宋城云曼温泉","subtitle":"都市热带雨林，温泉养生天堂。"},{"url":"http://www.51dmq.com/qianguqinghotel.htm",imgUrl:"/images/demo/7869a30c-ee95-4aec-8a22-b5cc3ca1a748.jpg","title":"杭州宋城千古情主题酒店（西湖店）","subtitle":"含九寨千古情楼、丽江千古情楼、三亚千古情楼"},{"url":"http://www.51dmq.com/hotel/hotel_3880.htm",imgUrl:"/images/demo/6c71a5dc-94d4-4405-b79d-b41f15e7b6f9.jpg","title":"杭州宋城千古情主题酒店（湘湖店）","subtitle":"欧式家具、埃及风情"},{"url":"http://www.51dmq.com/thefirstworldhotel.htm",imgUrl:"/images/demo/76947ac2-ce06-4c62-baaa-2e076ff9ef8b.jpg","title":"杭州宋城第一世界大酒店","subtitle":"东南亚热带雨林风情"},{"url":"http://51dmq.com/yunmanhotel.htm",imgUrl:"/images/demo/eeb869af-9731-41df-b2b9-b5850f6759cb.jpg","title":"云和湖宋城云曼酒店","subtitle":"中国的马尔代夫"},{"url":"http://www.51dmq.com/1929.htm",imgUrl:"/images/demo/b2ab1f5d-b7ef-4d74-a827-7829a3317280.jpg","title":"宋城龙泉山旅游区","subtitle":"登高悟人生"},{"url":"http://www.songcn.com/Show/index.aspx",imgUrl:"/images/demo/afff63f5-41f4-4717-bfeb-ef8e4cf1cc5e.jpg","title":"宋城中国演艺谷","subtitle":"让生活有戏！"}];
+  var options={ title: '独木桥旅游网',newsItems:newsItems,specialItems:specialItems};
+  common.viewPage("index",options,req,res);
+});
+
+router.get('/login',function(req, res, next){
+  var url=common.getUrl("login","checkCode");
+  var rs = fs.createWriteStream(cardimgUrl);
+  common.needleGet(url,req,res,function(err,results){
+    var options={ title: '独木桥旅游网',code:"../images/login/logo.png",error:req.flash('error').toString()};
+    common.viewPage("login",options,req,res);
+  },rs);
+}).post('/login',function(req, res){
+  var users={},url=common.getUrl("login","post");
+  users.loginName=req.body.loginName;
+  users.loginPass=req.body.password;
+  users.checkCode=req.body.checkCode;
+  common.needlePost(url,users,req,res,function(error,result){
+    req.session.member=result.user;
+    if(!req.session.curUrl){
+      res.redirect("/user/order?currPage=1&orderType=ticket");
+    }else{
+      res.redirect(req.session.curUrl);
+    }
+  });
+});
+
+//ajax获取验证码
+router.get("/checkCard",function(req,res){
+  var url=common.getUrl("login","checkCode");
+  var rs = fs.createWriteStream(cardimgUrl);
+  async.parallel([function(callback){
+    common.needleGet(url,req,res,callback,rs);
+  }],function(err, results){
+    res.json({code:"../images/login/logo.png?img="+Math.random()});
+  });
+});
+
+
+// 注册
+router.get('/register',function(req, res, next){
+  var options={ title: '独木桥旅游网'};
+  common.viewPage("register",options,req,res);
+});
+
+// 发送手机验证码
+router.get('/mobileCode', function(req, res, next) {
+  console.log('1111111111111111111111111')
+  var url = common.getUrl('register','checkCode') + '?' + querystring.stringify(req.query);
+
+  common.needleGet(url,req,res,function (rerr,esults){
+    res.send(results);
+  });
+  
+});
+
+// 注册
+router.post('/register',function(req, res, next){
+  var url = common.getUrl('register','post');
+  var data = req.body;
+
+  common.needlePost(url,data,req,res,function (err,results){
+    common.viewPage("/login",options,req,res);
+  });
+});
+
+module.exports = router;

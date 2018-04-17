@@ -1,0 +1,43 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/member.css')
+
+block content
+   header.user-header
+      a(href="javascript:;").user-face
+        img()
+      h3.user-name=users.realname
+      p.header-explian.c-666
+        a(href="/user/userRights").grade-icon.grade-info
+            i.score-icon.icon-member
+            =users.levelname
+        case users.isCanUpGrade
+          when "1"
+              a(href="javascript:;").grade-icon.grade-btn.grade-disabled
+                  i.score-icon.icon-upgrade
+                  ="正在审核"
+          when "2"
+              a(href="javascript:;").grade-icon.grade-btn#grade
+                  i.score-icon.icon-upgrade
+                  ="申请升级"
+      .header-bottom
+         .header-bottom-left
+            em=users.totalBuy==null?0:users.totalBuy
+            ="累计消费金额"
+         .header-bottom-right
+            em=users.score
+            ="我的积分"
+         span.header-bottom-line
+   .score-content
+       h4.score-title="会员权益"
+       .scoreRight-list
+           each item in items
+               -var className="",url=item.productImgUrl
+               if(item.have=="1")
+                   -className="gray"
+                   -url="javascript:;"
+               div(class=className).scoreRight-item
+                   a(href=url)
+                        img(src=item.imgUrl)
+                        span=item.privilegeName
+   include common/footer

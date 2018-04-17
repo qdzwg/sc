@@ -1,0 +1,132 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel='stylesheet', href=baseUrl + '/stylesheets/line.css')
+block pagecontent
+    #main
+        .hot_box.hb1.cf
+            .hot_c
+                .hot_txt
+                    p.hot_t1(style='font-size:17px') 宋城休闲套餐I（赏千古情表演，玩杭州乐园湘湖宋城）
+                    p.hot_t2
+                    p.hot_t3
+                .hot_price.hot_p1
+                    | 仅需
+                    span 788
+                    | 元
+                    | 		         	起
+                a.hot_book(href='/details/line/5142', target='_blank') 立即预订
+            a.hot_link(href='/details/line/5142')
+                img(src=baseUrl+'/images/demo/2f516bdd-c893-4d59-84fd-5d3201a34ca4.jpg', alt='')
+        .hot_box.hb2.cf
+            .hot_c
+                .hot_txt
+                    p.hot_t1(style='font-size:17px') 宋城休闲套餐II（赏千古情表演，玩宋城浪浪浪水公园）
+                    p.hot_t2
+                    p.hot_t3
+                .hot_price.hot_p2
+                    | 仅需
+                    span 788
+                    | 元
+                    | 		         	起
+                a.hot_book(href='#', target='_blank') 立即预订
+            a.hot_link(href='#')
+                img(src=baseUrl+'/images/demo/e41ffeb1-813b-474e-b3c1-1b8806660f74.jpg', alt='')
+        .fstep1
+        .line_box.cf
+            a.pic_link(href='#', target='_blank')
+                img(src=baseUrl+'/images/demo/6b1ad99d-622f-43fd-b6fb-821fa4da2a62.jpg', alt='')
+            .des_zone.dz1
+                .tj_tip
+                a.des_t(href='#', target='_blank', style='font-size:16px') 杭州宋城天伦之乐家庭套餐（住千古情主题酒店，相约宋城，赠3份自助早）
+                .tj_rs
+                    span 推荐理由：
+                    | 全家一起嗨！观赏绝美的宋城千古情演出，入住极具特色的宋城千古情主题酒店（西湖店），享受与家人在一起的快乐时光。
+                .price_zone.cf
+                    .price_des
+                        span 889
+                        | 元起
+                    a.line_book(href='#', target='_blank') 立即预订
+        .sline_box
+            .sline_box_i.cf
+                .sbox
+                    a.spic_link(href='#', target='_blank')
+                        img(src=baseUrl+'/images/demo/9594bc9f-68a4-46a5-a082-4554dadf19c6.jpg', alt='')
+                    .sdes_zone
+                        a.sdes_t(href='#', target='_blank', style='font-size:15px') 烂苹果特惠家庭套餐（住萧山国达商务酒店，玩主题乐园）
+                        .sdes_price
+                            span 498
+                            | 元起
+                        a.sdes_book(href='#', target='_blank') 立即预订
+                .sbox
+                    a.spic_link(href='#', target='_blank')
+                        img(src=baseUrl+'/images/demo/eabd83b9-2326-410e-a2e4-6e242de6d706.jpg', alt='')
+                    .sdes_zone
+                        a.sdes_t(href='#', target='_blank', style='font-size:15px') 全家总动员家庭套餐      【杭州】宋城千古情贵宾席（含宋城景区）套票四张+宋城千古情主题酒店（西湖店）家庭套房一间一晚（含四早）
+                        .sdes_price
+                            span 1448
+                            | 元起
+                        a.sdes_book(href='#', target='_blank') 立即预订
+        .fstep2
+        .line_box.cf
+            a.pic_link(href='#', target='_blank')
+                img(src=baseUrl+'/images/demo/82833953-bf2e-4078-9c9f-92218e648ac0.jpg', alt='')
+            .des_zone.dz2
+                .tj_tip
+                a.des_t(href='#', target='_blank', style='font-size:15px') 浪浪浪水公园情侣独享套餐
+                .tj_rs
+                    span 推荐理由：
+                    | 双人游宋城，入住杭州开元名都大酒店，玩转宋城浪浪浪水公园。
+                .price_zone.cf
+                    .price_des
+                        span 699
+                        | 元起
+                    a.line_book(href='#', target='_blank') 立即预订
+        .sline_box
+            .sline_box_i.cf
+                .sbox
+                    a.spic_link(href='#', target='_blank')
+                        img(src=baseUrl+'/images/demo/68076c85-5562-4dd4-9d6a-4f9544c05acd.jpg', alt='')
+                    .sdes_zone
+                        a.sdes_t(href='#', target='_blank') 烂苹果乐园/杭州乐园/水公园三选一双人套餐
+                        .sdes_price
+                            span 798
+                            | 元起
+                        a.sdes_book(href='#', target='_blank') 立即预订
+                .sbox
+                    a.spic_link(href='#', target='_blank')
+                        img(src=baseUrl+'/images/demo/b79079ea-26eb-44e8-982e-c2a2bd28f551.jpg', alt='')
+                    .sdes_zone
+                        a.sdes_t(href='#', target='_blank') 杭州乐园情侣独享套餐
+                        .sdes_price
+                            span 699
+                            | 元起
+                        a.sdes_book(href='#', target='_blank') 立即预订
+        .fstep3
+        .line_box.cf
+            .des_zone.dz3
+                .tj_tip
+                a.des_t(href='#', target='_blank', style='font-size:17px') 杭州宋城西溪湿地双人休闲套餐（住千古情主题酒店，相约宋城，船游西溪）
+                .tj_rs
+                    span 推荐理由：
+                    | 双人游宋城，观看宋城千古情（原价310元/张的贵宾席演出票），入住宋城千古情主题酒店（西湖店）高级房（原价880元/间），享受西溪慢生活
+                .price_zone.cf
+                    .price_des
+                        span 816
+                        | 元起
+                    a.line_book(href='#', target='_blank') 立即预订
+            a.pic_link(href='#', target='_blank')
+                img(src=baseUrl+'/images/demo/8a56c163-c4bd-4a12-8ce4-c9e071eeb6f5.jpg', alt='')
+        .line_box.cf
+            .des_zone.dz3
+                .tj_tip
+                a.des_t(href='#', target='_blank', style='font-size:17px') 宋城旅游区“3天2晚”休闲套餐（宋城千古情+灵隐飞来峰景区+云栖竹径+浙江西湖外事游船）
+                .tj_rs
+                    span 推荐理由：
+                    | 3天2晚双人游，观看宋城千古情（原价310元/张的贵宾席演出票），入住宋城千古情主题酒店（西湖店）高级房（原价880元/间），晚西湖周边景点，过愉快的假期。
+                .price_zone.cf
+                    .price_des
+                        span 972
+                        | 元起
+                    a.line_book(href='#', target='_blank') 立即预订
+            a.pic_link(href='#', target='_blank')
+                img(src=baseUrl+'/images/demo/2313d3c8-eebc-45cf-a742-3b6084ad454f.jpg', alt='')

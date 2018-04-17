@@ -1,0 +1,6 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/details.css')
+block content
+   include  details/comment
+   +comment("all",comment,code,mold)

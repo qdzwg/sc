@@ -1,0 +1,39 @@
+extends layout
+block stylesheet
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/member.css')
+
+block content
+    .book-head
+        h3="宋城旅游会员书吧"
+        h4="BOOKS"
+        span
+    .book-link
+        a(href="#").link1="杭州宋城站书吧"
+        a(href="#").link2="三亚宋城站书吧"
+        a(href="#").link3="敬请期待"
+    .book-content
+        .book-content-title
+            span
+            ="宋城千古情-会员书吧"
+        .banner
+            img(src="/images/member/shuba/img1.jpg")
+        ul.book-list
+            li
+                .book-list-img.fl
+                    img(src="/images/member/shuba/img2.jpg")
+                .book-list-right
+                    i.book-icon.icon1
+                    span="会员权益"
+            li
+                .book-list-img.fr
+                    img(src="/images/member/shuba/img3.jpg")
+                .book-list-right
+                    i.book-icon.icon2
+                    span="免费特饮"
+            li
+                .book-list-img.fl
+                    img(src="/images/member/shuba/img4.jpg")
+                .book-list-right
+                    i.book-icon.icon3
+                    span="免费网络"
+    include common/footer

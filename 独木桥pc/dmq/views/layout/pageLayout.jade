@@ -1,0 +1,187 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/top.css')
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/float.css')
+   link(rel='stylesheet', href=baseUrl+'/javascripts/share/share.css')
+   block stylesheetpage
+block content
+   .box-bac
+   .task-box
+      .box-title
+         | 每日任务
+         img(src='/images/common/images/iconcore.png', alt='')
+         a(href='') 任务规则说明
+      .box-conetnt
+         table
+            thead
+               tr
+                  td 任务内容
+                  td 次数／每次
+                  td 单次积分
+                  td 操作
+            tbody
+   #h_w
+      #h.cf
+         a(href="/")#logo="宋城旅游旅游网"
+         ul#m_nav
+            li.n1
+               a(href="/")="首页"
+            //li.n2
+            //   a(href="/list/djrm")="独家热卖"
+            //li.n3
+            //   a(href="/list/djxl")="独家线路"
+            //li.n4
+            //   a(href="/list/djjx")="独家精选"
+            //li.n5
+            //   a(href="/list/djbl")="独家爆料"
+            li.n5
+             a(href="/list/score")="积分商城"
+            li.n6
+               a(href="javascript:;")#dayTask="每日任务"
+         #h_r
+         #top_nav
+            if member
+               a(href="/user/order?currPage=1&orderType=ticket")=((member.realName===null||member.realName==='')? member.loginName:member.realName)
+            else
+               a(href="/login")="登录"
+               span="|"
+               a(href="/register")="免费注册"
+            span="|"
+            a(href="/cart/list")="购物车"
+            if member
+               span="|"
+               a(href="/logout") 注销
+         #tshare
+            //- a(href="http://www.51dmq.com/toWeiboLogin.htm",target="_blank" ).tsina
+            //- a(href="http://www.51dmq.com/QQlogin.jsp",target="_blank" ).tqq
+            //- a(href="http://www.51dmq.com/alipayMemberLogin.htm",target="_blank" ).tal
+   block pagecontent
+   #bto_w
+      #bto.cf
+         ul.quick_links1
+            li 杭州宋城旅游区(西湖片区)：
+            li
+               a(href='http://www.51dmq.com/songcheng.htm') 杭州宋城景区
+            li
+               a(href='http://www.51dmq.com/qianguqinghotel.htm') 宋城千古情主题酒店（西湖店）
+         ul.quick_links1
+            li 杭州宋城旅游区(湘湖片区)：
+            li
+               a(href='http://www.51dmq.com/damiaohui.htm') 杭州乐园湘湖宋城景区
+            li
+               a(href='http://www.51dmq.com/lanpingguo.htm') 杭州宋城烂苹果乐园
+            li
+               a(href='http://www.51dmq.com/langlanglang.htm') 杭州宋城浪浪浪水公园
+            li
+               a(href='http://www.51dmq.com/yunmanwenquan.htm') 杭州宋城云曼温泉
+            li
+               a(href='http://www.51dmq.com/hotel/hotel_3880.htm') 宋城千古情主题酒店（湘湖店）
+            li
+               a(href='http://www.51dmq.com/thefirstworldhotel.htm') 杭州宋城第一世界大酒店
+         ul.quick_links1
+            li 三亚宋城旅游区 ：
+            li
+               a(href='http://www.51dmq.com/siyuanhebi.htm') 三亚千古情景区、三亚宋城冰雪世界、三亚宋城彩色动物园、三亚宋城浪浪浪水公园
+         ul.quick_links1
+            li 丽江宋城旅游区 ：
+            li
+               a(href='http://www.51dmq.com/lijiang.htm') 宋城茶马古城、宋城丽江乐园
+         ul.quick_links1
+            li
+               a(href='http://www.51dmq.com/jiuzhai.htm') 九寨宋城藏羌古城
+            li
+               a(href='http://www.51dmq.com/ticket/ticket_1366.htm') 泰山千古情
+            li
+               a(href='http://51dmq.com/yunmanhotel.htm') 云和湖宋城云曼酒店
+            li
+               a(href='http://www.51dmq.com/1929.htm') 宋城龙泉山旅游区
+         ul.quick_links1
+         ul.quick_links1
+         ul.quick_links1
+         a(href="/")#bto_logo
+         #bto_link
+            #bto_nav.cf
+               a(href="/help/aboutus")="关于我们"
+               span="|"
+               a(href="/help/contactus")="联系我们"
+               span="|"
+               a(href="/help/agreement")="用户协议"
+               span="|"
+               a(href="/help/sitemap")="网站地图"
+               span="|"
+               a(href="/help/helpcenter")="帮助中心"
+            #friend_link.cf
+               span="友情链接："
+               a(href="http://www.songcn.com",target="_blank")="宋城集团"
+               a(href="http://www.songcn.com/Shares",target="_blank")="宋城演艺"
+            #friend_link.cf
+               div(style="width:400px;margin:0 auto; padding:20px 0;")
+                  a(href="http://www.miibeian.gov.cn/",target="_blank")="浙ICP备12045707号-11"
+                  a(href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602004339",target="_blank",style="display:inline-block;text-decoration:none;height:20px;line-height:20px;")
+                     img(src="/images/common/gongan.png",style="float:left;")
+                     p(style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;")="浙公网安备 33010602004339号"
+            #wb.cf
+               a(href="http://e.weibo.com/chinascgf").wb_sina
+               a(href="http://t.qq.com/dmq510").wb_qq
+               .official_ph_pic
+               span.o_ph="客服电话："
+                  b="400-8888-518"
+         a(href="http://www.songcn.com/Shares",target="_blank").bto_song
+   .quick_links_wrap
+      .quick_links_panel
+         .quick_links#quick_links
+            a(href="/")
+               i.home
+               span="首页"
+            a(href="/cart/list")
+               i.cart
+               span="购物车"
+            a(href="/user/order?currPage=1&orderType=ticket")
+               i.myorder
+               span="我的订单"
+            a(href="javascript:;")
+
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/ysf.css')
+block scripts
+   script(src=baseUrl+'/javascripts/float.js',type="text/javascript")
+   script(src="https://qiyukf.com/script/f570a5eb049eb803b086e45829b07e48.js",charset="UTF-8")
+   script(src=baseUrl+'/javascripts/ysf.js',type="text/javascript")
+   -if(member)
+      script.
+          ysf.on({
+              onload: function () {
+                  ysf.config({
+                      "uid": "#{member.loginId}",
+                      "data": JSON.stringify([{
+                          "key": "real_name",
+                          "value": "#{member.realName}"
+                      }, {
+                          "key": "mobile_phone",
+                          "value": "#{member.mobile}"
+                      }, {
+                          "key": "email",
+                          "value": "#{member.email}"
+                      }, {
+                          "index": 0,
+                          "key": "acc_type",
+                          "label": "用户类型",
+                          "value": acctype("#{member.accType}")
+                      }, {
+                          "index": 1,
+                          "key": "reg_date",
+                          "label": "注册日期",
+                          "value": "#{member.accType}"
+                      },
+                          {
+                              "index": 2,
+                              "key": "last_login",
+                              "label": "上次登录时间",
+                              "value": "#{member.lastLoginTime}"
+                          }
+                      ])
+                  });
+              }
+          });
+   script.
+      commonFloat(1000);
+   block scriptspage

@@ -1,0 +1,34 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_common.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/usercenter.css')
+block pagecontent
+    include common/comFun
+    #uc_wrapper
+        include user/top
+        #uc_content.cf
+            include user/left
+            #uc_main
+                .t_w
+                    .t_head_w.cf
+                        .t_name 我的优惠券
+                    .coupon-content
+                        .coupon-title
+                            a(href="/user/mycoupon?useflag=1")(class=useFlag==0?'':'active') 可用优惠券
+                            a(href="/user/mycoupon?useflag=0")(class=useFlag==1?'':'active') 不可用优惠券
+                        ul.coupon-list
+                            li
+                                .list-content 面值
+                                .list-content 使用范围
+                                .list-content 有效期
+                            each item in orderList.items
+                                li
+                                    .list-content ¥#{item.cutSum}
+                                    .list-content=item.couponName
+                                    .list-conten
+                                        +formatDate(item.useBegDate)
+                                        ="至"
+                                        +formatDate(item.useEndDate)
+block scriptspage
+    script(src=baseUrl+'/javascripts/datepicker/WdatePicker.js')
+    script(src=baseUrl+'/javascripts/uc_common.js')

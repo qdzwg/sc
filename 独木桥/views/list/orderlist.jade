@@ -1,0 +1,99 @@
+mixin orderlist(items)
+   div(data-mold="order").inner
+      - if(items.length!=0)
+         - each item in items
+            - var busmod=""
+            div.page-line
+            div.myorder-item.opacity
+               div.myorder-header
+                     span.order-info
+                        case item.orderType
+                           when "ticket"
+                              i.font-icon.icon-iconfont-menpiao
+                              - busmod="门票"
+                           when "hotel"
+                              i.font-icon.icon-iconfont-jiudian
+                              - busmod="酒店"
+                           when "repast"
+                              i.font-icon.icon-iconfont-meishi
+                              - busmod="美食"
+                           when "combo"
+                              i.font-icon.icon-iconfont-gentuanyou
+                              - busmod="套票"
+                           when "zyx"
+                              i.font-icon.icon-iconfont-ziyouxing
+                              - busmod="自由行"
+                           when "show"
+                              i.font-icon.icon-iconfont-shangping
+                              - busmod="演出"
+                           when "goods"
+                              i.font-icon.icon-iconfont-shangping
+                              - busmod="特产"
+                        em=busmod
+                        | |
+                        -var paymold=""
+                        case item.orderStatus
+                           when "0"
+                              - paymold="unpay"
+                           when "1"
+                              - paymold="payed"
+                           when "2"
+                              - paymold=""
+                           when "3"
+                              - paymold="uesd"
+                           when "4"
+                              - paymold=""
+                        em(class=paymold)
+                           +orderStatus(item.orderStatus)
+                     span
+                        |下单日期：
+                        +nDate(item.createTime)
+                     span.price.fr
+                        em ￥
+                           =item.finalSum
+               a(href="/user/myorderDetails/"+item.orderType+"/"+item.id)
+                  h3.myorder-item-title=item.info
+                  p
+                     case item.checkStatus
+                        when "0"
+                           em
+                              +nDate(item.startDate)
+                           | 未核销
+                        when "1"
+                           em
+                              +nDate(item.startDate)
+                           | 核销中
+                        when "2"
+                           em
+                              +nDate(item.startDate)
+                           | 已核销
+                        when "3"
+                           em
+                              +nDate(item.startDate)
+                           | 已过期
+                        when "4"
+                           em
+                              +nDate(item.startDate)
+                           | 到付
+                     case item.receiptFlag
+                        when 0
+                           em="未开票"
+                        when 1
+                           em="已开票"
+                  p
+                     - var unit=""
+                     -if(item.orderType=="景区")
+                        - unit="张"
+                     -else if(item.orderType=="酒店")
+                        - unit="间"
+                     - else
+                        - unit="份"
+                     i.font-icon.fr.icon-iconfont-jiantou
+                     =item.num+unit
+
+
+      - else
+         div.no-data
+            i.font-icon.icon-iconfont-gantanhaom
+            p 您还没有订单
+               em you do not have order

@@ -1,0 +1,124 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport',content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    meta(name='apple-mobile-web-app-capable',content="yes")
+    meta(name='apple-mobile-web-app-status-bar-style',content="black")
+    meta(name='format-detection',content="telephone=no")
+    meta(name='format-detection',content="email=no")
+    //-meta(http-equiv="Content-Security-Policy",content="upgrade-insecure-requests")
+    title= title
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/reset.css')
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/common.css')
+    block stylesheet
+    script(src=baseUrl+'/javascripts/jquery-1.11.0.min.js')
+    script(src=baseUrl+'/javascripts/touch-0.2.14.min.js')
+    script(src=baseUrl+'/javascripts/jquery.LoadImage.js')
+    script(src=baseUrl+'/javascripts/public.js')
+
+  body(class=mold+"-body")
+    block content
+    .fix-box
+        if mold=="seat"
+            a(href="/")
+                i.page-icon.index-home
+            a(href="/order/cart")
+              i.font-icon.icon-iconfont-cart
+        else
+            a(href="/")
+                i.page-icon.index-home
+            a(href="/order/cart")
+                i.font-icon.icon-iconfont-cart
+        a(href="javascript:;",style="height:55px;")
+            i.font-icon
+    script(src="https://qiyukf.com/script/f570a5eb049eb803b086e45829b07e48.js",charset="UTF-8")
+    style.
+        #YSF-BTN-HOLDER {
+            right: 0;
+            top: 4.2rem;
+            max-width: none;
+            max-height: none;
+            height: 2rem;
+        }
+
+        #YSF-BTN-HOLDER #YSF-CUSTOM-ENTRY-0 {
+            right: 0;
+            bottom: 0;
+            box-shadow: none;
+        }
+
+        #YSF-BTN-HOLDER #YSF-CUSTOM-ENTRY-0 {
+            right: 0;
+            bottom: 0;
+            box-shadow: none;
+        }
+
+        #YSF-BTN-HOLDER #YSF-CUSTOM-ENTRY-0
+        img {
+            width: 32px;
+            height: 60px;
+            max-width: none;
+            max-height: none;
+        }
+    -if(logined)
+      script.
+          function acctype(string) {
+              var text="";
+              switch (string){
+                  case "sys":
+                      text="系统管理员";
+                      break;
+                  case "user":
+                      text = "散客";
+                      break;
+                  case "supplier":
+                      text = "供应商";
+                      break;
+                  case "general_agent":
+                      text = "代理商";
+                      break;
+                  case "distributor":
+                      text = "分销商";
+                      break;
+                  case "superSys":
+                      text = "超级管理员";
+                      break;
+              }
+              return text;
+          }
+          ysf.on({
+              onload: function () {
+                  ysf.config({
+                      "uid": "#{user.loginId}",
+                      "data": JSON.stringify([{
+                          "key": "real_name",
+                          "value": "#{user.realName}"
+                      }, {
+                          "key": "mobile_phone",
+                          "value": "#{user.mobile}"
+                      }, {
+                          "key": "email",
+                          "value": "#{user.email}"
+                      }, {
+                          "index": 0,
+                          "key": "acc_type",
+                          "label": "用户类型",
+                          "value": acctype("#{user.accType}")
+                      }, {
+                          "index": 1,
+                          "key": "reg_date",
+                          "label": "注册日期",
+                          "value": "#{user.accType}"
+                      },
+                      {
+                          "index":2,
+                          "key":"last_login",
+                          "label":"上次登录时间",
+                          "value":"#{user.lastLoginTime}"
+                      }
+                  ])
+              });
+              }
+          });
+    block scripts

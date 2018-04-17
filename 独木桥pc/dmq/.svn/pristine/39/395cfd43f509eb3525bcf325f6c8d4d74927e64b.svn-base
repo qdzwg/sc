@@ -1,0 +1,15 @@
+extends layout/pageLayout
+block stylesheetpage
+	link(rel="stylesheet", href=baseUrl+'/stylesheets/register.css')
+block pagecontent
+	.regcontent
+		.topregtit
+			| 系统提示
+		.topregcon
+			.tipscon
+				h3
+					| #{message==='undefined'||message==='null'||message===undefined||message===null?'哎呀！出错了！':message}
+				p 你可以选择
+				.regoperatec
+					input.btnregc(name='', type='button', onclick='window.location.href=document.referrer;', value='返         回')
+		.topregbot

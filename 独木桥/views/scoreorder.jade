@@ -1,0 +1,37 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/dropload.css')
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/list.css')
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/coupon.css')
+
+block content
+   include list/orderlist
+   include common/commonFun
+   header.header-tab.mycoupon-header-tab
+      ul.tab.clearfix.mycoupon-tab
+         li
+            a(href="/user/scoreorder").c-base 积分订单
+         li
+            a(href="/user/scoreDetails") 积分明细
+   div(data-mold="order",data-type="score").inner
+      - if(items.items.length!=0)
+         ul.score-list
+            - each item in items.items
+               li.opacity
+                  a(href="/user/scoreorderDetails/" + item.id)
+                     .score-list-left
+                        h3.score-list-title=item.info
+                        p="兑换日期："+item.createTime
+                     .score-list-right
+                        ="+"
+                        span=item.paySum
+                        ="分"
+      - else
+         div.no-data
+            i.font-icon.icon-iconfont-gantanhaom
+            p 您还没有订单
+               em you do not have order
+   input(type="hidden",value=items.page.offset)#offset
+block scripts
+   script(src=baseUrl+'/javascripts/dropload.min.js')
+   script(src=baseUrl+'/javascripts/list.js')

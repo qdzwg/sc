@@ -1,0 +1,388 @@
+mixin list(mold,items)
+   -if(items.data=="undefined"||items.data==""||items.data==null)
+      div.no-info 暂无信息！
+   -else
+      div(data-mold=mold).inner#detailsList
+         ul(class=mold+"-list").page-list.clearfix
+            - each item in items.data
+               li.opacity
+                  a(href='../details/'+mold+'/'+item.id)
+                     div.page-list-img
+                        img(src=item.mainUrl,width="100%")
+                     case mold
+                        when "ticket"
+                           +ticketlist(item)
+                        when "hotel"
+                           +hotellist(item)
+                        when "route"
+                           +routelist(item)
+                        when "line"
+                           +linelist(item)
+                        when "repast"
+                           +repastlist(item)
+                        when "goods"
+                           +goodslist(item)
+
+mixin strcut(str,num)
+   - if(str.length>num)
+      = str.substr(0, num)+"..."
+   -else
+      = str
+
+//- 门票列表
+mixin ticketlist(item)
+   div.page-list-info
+      h3.page-list-title=item.parkName
+      -var reg = new RegExp("<[^<]*>", "gi")
+      - if(item.subTitle!="")
+         p.page-list-article
+            +strcut(item.subTitle.replace(reg,''),15)
+         p.page-list-explian
+            - each tag,i in item.tags
+               - if(i<2)
+                  span.pro-flag.c-base.border-base=tag
+         p.page-list-explian
+            span.c-base=item.saleNum
+            | 人已购买
+            span.price.fr
+               em ￥
+               strong=item.startingPrice
+//- 酒店列表
+mixin hotellist(item)
+   div.page-list-info
+      h3.page-list-title=item.productName
+      -var reg = new RegExp("<[^<]*>", "gi")
+      - if(item.subTitle!="")
+         p.page-list-article
+            +strcut(item.subTitle.replace(reg,''),15)
+      p.page-list-explian
+         - each tag,i in item.tags
+            - if(i<2)
+               span.pro-flag.c-base.border-base=tag
+         span.price.fr
+            em ￥
+            strong=item.startingPrice
+
+//- 跟团游列表
+mixin routelist(item)
+   div.page-list-info
+      h3.page-list-title=item.productName
+      -var reg = new RegExp("<[^<]*>", "gi")
+      - if(item.subTitle!="")
+         p.page-list-article
+            +strcut(item.subTitle.replace(reg,''),30)
+      p.page-list-explian
+         span.c-base
+            -if(item.saleNum==null)
+               =0
+            -else
+               =item.saleNum
+         | 人出游
+         span.price.fr
+            em ￥
+            strong=item.startingPrice
+         span.original-price.fr
+            em ￥
+            strong=item.originalPrice
+
+//- 自由行列表
+mixin linelist(item)
+   div.page-list-info
+      h3.page-list-title=item.productName
+      -var reg = new RegExp("<[^<]*>", "gi")
+      - if(item.subTitle!="")
+         p.page-list-article
+            +strcut(item.subTitle.replace(reg,''),30)
+      p.page-list-explian
+         span.c-base=item.mockSale
+         | 人出游
+         span.price.fr
+            em ￥
+            strong=item.startingPrice
+            | 起
+         span.original-price.fr
+            em ￥
+            strong=item.originalPrice
+
+//- 餐饮列表
+mixin repastlist(item)
+   div.page-list-info
+      h3.page-list-title=item.productName
+      -var reg = new RegExp("<[^<]*>", "gi")
+      - if(item.addr!="")
+         p.page-list-article
+            +strcut(item.addr.replace(reg,''),15)
+      p.page-list-explian
+         - each tag,i in item.tags
+            - if(i<2)
+               span.pro-flag.c-base.border-base=tag
+         span.price.fr
+            em ￥
+            strong=item.perCapita
+            | /人
+
+//- 商品列表
+mixin goodslist(item)
+   div.page-list-info
+      h3.page-list-title
+         +strcut(item.productName,20)
+      p.page-list-explian
+         span.price
+            em ￥
+            strong=item.startingPrice
+         span.fr
+            em.c-base=item.mockSale
+            | 件已售
+
+
+//- 攻略列表
+mixin raidersList(items)
+   - if(items.length==0)
+      div.no-info 暂无信息！
+   - else
+      div(data-mold="raiders").inner#detailsList
+         ul.page-list.clearfix.raiders-list
+            -each item in items
+               li.opacity
+                  a(href='../details/raiders/'+item.id)
+                     img(src=item.titleImgUrl)
+                     div.raiders-info
+                        h3.raiders-title=item.title
+
+//-独木桥列表
+mixin pageticketList(items)
+   .list-tab.ticket-tab
+      -if(city=="杭州")
+         a(href="/list/ticket?city=杭州",class="active")="杭州"
+      -else
+         a(href="/list/ticket?city=杭州")="杭州"
+      -if(city=="三亚")
+         a(href="/list/ticket?city=三亚",class="active")="三亚"
+      -else
+         a(href="/list/ticket?city=三亚")="三亚"
+      -if(city=="丽江")
+         a(href="/list/ticket?city=丽江",class="active")="丽江"
+      -else
+         a(href="/list/ticket?city=丽江")="丽江"
+      -if(city=="九寨")
+         a(href="/list/ticket?city=九寨",class="active")="九寨"
+      -else
+         a(href="/list/ticket?city=九寨")="九寨"
+      -if(city=="龙泉")
+         a(href="/list/ticket?city=龙泉",class="active")="龙泉"
+      -else
+         a(href="/list/ticket?city=龙泉")="龙泉"
+      -if(city=="宁波")
+         a(href="/list/ticket?city=宁波",class="active")="宁波"
+      -else
+         a(href="/list/ticket?city=宁波")="宁波"
+      -if(city=="长沙")
+         a(href="/list/ticket?city=长沙",class="active")="宁乡"
+      -else
+         a(href="/list/ticket?city=长沙")="宁乡"
+   //-.list-tab
+   //-   -each item,i in items
+   // -     -var className=""
+   //-         -if(i==0)
+   //-         -className="active"
+   //-      -if((i+1)%3==1)
+   //-         p
+   //-      a(href="javascript:;",class=className)=item.sliceName
+   .list-panel
+      -if(items.length>0)
+         -each item in items
+            .list-item
+               a(href="/detail/ticket/"+item.id)
+                  img(src=item.mainUrl+"?imageMogr2/thumbnail/640x/strip/quality/50")
+                  h3.pageList-title=item.parkName
+      -else
+         .no-data="暂无数据"
+
+mixin pagepromotionList(items)
+   if(items[0].datas.length==0&&items[1].datas.length==0&&items[2].datas.length==0&&items[4].data.length==0&&items[3].datas==null&&items[5].datas==null)
+      .no-info 暂无信息！
+   esle
+      .list-panel
+         div.list-panel-item.active
+            each item,index in items
+               case index
+                  when 1
+                     each list in item.datas
+                        .list-item
+                           a(href="/order/ticket/"+list.id)
+                              img(src=list.img+"?imageMogr2/thumbnail/640x/strip/quality/50", alt="")
+                              h3.pageList-title=list.name
+                  when 2
+                     each list in item.datas
+                        .list-item
+                           a(href="/order/hotel/"+list.id)
+                              img(src=list.img+"?imageMogr2/thumbnail/640x/strip/quality/50", alt="")
+                              h3.pageList-title=list.roomName
+                  when 3
+                     each list in item.data
+                        .list-item
+                           a(href="/order/line/"+list.id)
+                              img(src=list.mainUrl+"?imageMogr2/thumbnail/640x/strip/quality/50", alt="")
+                              h3.pageList-title=list.zyxName
+                  when 4
+                     -if(item.data!=null)
+                        each list in item.data
+                           .list-item
+                              a(href="/order/combo/"+list.id)
+                                 img(src=list.mainUrl+"?imageMogr2/thumbnail/640x/strip/quality/50", alt="")
+                                 h3.pageList-title=list.comboName
+                  when 0
+                     -if(item.datas!=null)
+                        each list in item.datas
+                           .list-item
+                              a(href="/order/show/" + list.id)
+                                 img(src=list.img+"?imageMogr2/thumbnail/640x/strip/quality/50", alt="")
+                                 h3.pageList-title=list.ticketName
+
+
+mixin pagehotelList(items)
+   .list-tab
+      -if(city=="杭州")
+         a(href="/list/hotel?city=杭州",class="active")="杭州"
+      -else
+         a(href="/list/hotel?city=杭州")="杭州"
+      -if(city=="三亚")
+         a(href="/list/hotel?city=三亚",class="active")="三亚"
+      -else
+         a(href="/list/hotel?city=三亚")="三亚"
+      -if(city=="丽水")
+         a(href="/list/hotel?city=丽水",class="active")="丽水"
+      -else
+         a(href="/list/hotel?city=丽水")="丽水"
+      -if(city=="九寨")
+         a(href="/list/hotel?city=九寨",class="active")="九寨"
+      -else
+         a(href="/list/hotel?city=九寨")="九寨"
+      -if(city=="宁波")
+         a(href="/list/hotel?city=宁波",class="active")="宁波"
+      -else
+         a(href="/list/hotel?city=宁波")="宁波"
+      -if(city=="长沙")
+         a(href="/list/hotel?city=长沙",class="active")="宁乡"
+      -else
+         a(href="/list/hotel?city=长沙")="宁乡"
+   .list-panel
+      -if(items.length>0)
+         - each item,i in items
+            .list-item
+               a(href="/detail/hotel/"+item.id)
+                  img(src=item.mainUrl+"?imageMogr2/thumbnail/640x/strip/quality/50")
+                  h3.pageList-title=item.productName
+      -else
+         .no-data="暂无数据"
+
+mixin pagecomboList(items,mold)
+   div(class=mold+"-panel").list-panel
+      -each item in items
+         .list-item
+            a(href="/detail/combo/" + item.id)
+               img(src=item.mainUrl.replace('http://odl5az86x.bkt.clouddn.com','//static.51dmq.com')+"?imageMogr2/thumbnail/640x/strip/quality/50")
+               h3.pageList-title.combo-title=item.comboName
+
+mixin pagelineList(items,mold)
+   div(class=mold+"-head-tab").list-tab.line-list-tab
+      -each item,i in items
+         -var className=""
+         -if(i==0)
+            -className="active"
+         -if((i+1)%3==1)
+            p
+         a(href="javascript:;",class=className)=item.sliceName
+   div(class=mold+"-panel").list-panel
+      - each item,i in items
+         -var className=""
+         -if(i==0)
+            -className="active"
+         div(class=className).list-panel-item
+            -if(item.sliceList!=null)
+               -each sitem in item.sliceList
+                  .list-item
+                     a(href="/detail/line/"+sitem.id)
+                        img(src=sitem.imgUrl.replace('http://odl5az86x.bkt.clouddn.com','//static.51dmq.com')+"?imageMogr2/thumbnail/640x/strip/quality/50")
+                        h3.pageList-title=sitem.name
+            -else
+               .no-data="暂无数据"
+
+mixin pageshowList(items)
+   - each item in items
+      .list-item
+         h3.pageList-title=item.theaterName
+         ul.pageList
+            -each ritem in item.ticketList
+               li
+                  span.flex1=ritem.ticketName
+                  span.price="￥"+ritem.price
+                  del="￥"+ritem.showPrice
+                  a(href="/order/show/"+ritem.id).btn-order="预定"
+      .page-line
+
+mixin pagegoodsList(items)
+   .list-panel
+      -if(items.length!=0)
+         ul(class="goods-list").page-list.clearfix
+            -each item in items
+               li.opacity
+                  a(href='../detail/goods/'+item.id)
+                     div.page-list-img
+                        img(src=item.mainUrl.replace('http://odl5az86x.bkt.clouddn.com','//static.51dmq.com')+"?imageMogr2/thumbnail/640x/strip/quality/50",width="100%")
+                     div.page-list-info
+                        h3.page-list-title
+                           +strcut(item.modelName,13)
+                        p.page-list-explian
+                           span.price
+                              em ￥
+                              strong=item.price
+                           span.fr
+                              em.c-base=item.salesNum
+                              | 件已售
+      -else
+         .no-data="暂无数据"
+
+mixin pagescoreList(items)
+    .list-panel.inner(data-mold="score")
+        -if(items.length!=0)
+            ul(class="goods-list").page-list.clearfix
+                -each item in items.items
+                    -var scoreobj={}
+                    if(item.canBuy==0)
+                        -scoreobj={"className":"unbuy","url":"javascript:;"}
+                    else
+                        -scoreobj={"className":"","url":"../order/score/" + item.id}
+                    li(class=scoreobj.className).opacity
+                        a(href=scoreobj.url)
+                            div.page-list-img
+                                img(src=item.imgurl+"?imageMogr2/thumbnail/640x/strip/quality/50",width="100%")
+                            div.page-list-info
+                                h3.page-list-title
+                                    +strcut(item.productName,13)
+                                p.page-list-explian
+                                    span.price
+                                        em="积分："
+                                        strong=item.price
+                                    span.fr.exchange-btn="立即兑换"
+                            span.score-mark
+                              +productType(item.productType)
+        -else
+            .no-data="暂无数据"
+
+mixin productType(str)
+   case str
+      when "ticket"
+         ="景区"
+      when "hotel"
+         ="酒店"
+      when "show"
+         ="演出"
+      when "goods"
+         ="商品"
+      when "coupon"
+         ="优惠券"
+      when "entity"
+         ="实物"
+      when "specialGoods"
+         ="权益"

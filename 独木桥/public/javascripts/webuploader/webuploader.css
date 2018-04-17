@@ -1,0 +1,40 @@
+.webuploader-container {
+	position: relative; display: inline-block;vertical-align: middle;
+}
+.webuploader-element-invisible {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px,1px,1px,1px);
+}
+.webuploader-pick {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+    width: 3.45rem; height: 3.15rem;
+    border: 1px dashed #c8c8c8;
+	color: #cdcdcd;
+	text-align: center;
+	overflow: hidden;
+    font-size: 0.75rem;
+    line-height: 140%;
+    vertical-align: middle;
+}
+.webuploader-pick i{ font-size: 1.2rem;}
+.webuploader-pick p{ padding-top: 0;}
+.webuploader-pick-hover {
+
+}
+
+.webuploader-pick-disable {
+	opacity: 0.6;
+	pointer-events:none;
+}
+.uploader-list{ display: inline-block; vertical-align: middle;}
+.uploader-list li{ display: inline-block; width: 3.45rem; height: 3.45rem; font-size: 0.6rem; margin-right: 0.25rem; position: relative;}
+.uploader-list li .imgWrap{ padding-top: 0;}
+.uploader-list li img{ width: 100%; height: 100%;}
+.file-panel{ position: absolute; top:-0.2rem; right: -0.2rem;}
+.file-panel .cancel{ background-color: rgba(0,0,0,.8); width: 0.75rem; height: 0.75rem; line-height: 0.75rem; text-align: center; color: #fff; border-radius: 100%; font-size: 0.5rem; display: block;}
+.uploadBtn{ display: inline-block; width: 3.45rem; height: 3.15rem;  border: 1px solid #f66; color: #f66; text-align: center;overflow: hidden; font-size: 0.75rem; line-height: 140%; vertical-align: middle; margin-left: 0.25rem;}
+.uploadBtn i{ font-size: 0.75rem; margin-top: 0.5rem; margin-bottom: 0.5rem;}
+.uploadBtn p{ padding-top: 0;}

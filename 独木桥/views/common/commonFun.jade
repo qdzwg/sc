@@ -1,0 +1,142 @@
+mixin breakfast(num)
+   case num
+      when "0"
+         | 无早
+      when "1"
+         | 单早
+      when "2"
+         | 双早
+      when "3"
+         | 三早
+
+mixin bedtype(num)
+   case num
+      when "0"
+         ="大床"
+      when "1"
+         ="双床"
+      when "2"
+         ="三床"
+
+mixin postType(num)
+   -if(num=="1")
+      ="包邮"
+   -else
+      ="快递"
+
+mixin nDate(time)
+   -var date=new Date(time)
+   =date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+
+mixin getDate(num)
+   -var date=new Date()
+   - date.setDate(date.getDate()+num)
+   -var month=(date.getMonth()+1)>9?(date.getMonth()+1):"0"+(date.getMonth()+1)
+   -var day=date.getDate()>9?date.getDate():"0"+date.getDate()
+   =date.getFullYear()+"-"+month+"-"+day
+
+mixin formatDate(date)
+   -var mydate=new Date(date)
+   -var month=(mydate.getMonth()+1)>9?(mydate.getMonth()+1):"0"+(mydate.getMonth()+1)
+   -var day=mydate.getDate()>9?mydate.getDate():"0"+mydate.getDate()
+   =mydate.getFullYear() + "-" + month + "-" + day
+
+mixin orderStatus(num)
+   case num
+      when "0"
+         ="初始化"
+      when "1"
+         ="订单失败"
+      when "2"
+         ="订单失败"
+      when "3"
+         ="订单成功"
+      when "4"
+         ="订单成功"
+      when "5"
+         ="订单成功"
+      when "6"
+         ="订单成功"
+      when "7"
+         ="消费中"
+      when "8"
+         ="已消费"
+      when "9"
+         ="已退单"
+      when "110"
+         ="待消费"
+      when "210"
+         ="退单中"
+
+mixin scoreStatus(num)
+    case num
+        when "0"
+            ="未兑换"
+        when "1"
+            ="兑换成功"
+        when "2"
+            ="兑换失败"
+
+mixin compareDate(d1,d2)
+   -var date1 = new Date(d1)
+   -var date2 = new Date(d2)
+   if(Date.parse(date1) - Date.parse(date2) == 0)
+      =0
+   if(Date.parse(date1) - Date.parse(date2)<0)
+      =-1
+   if(Date.parse(date1) - Date.parse(date2)>0)
+      =1
+
+mixin strcut(str,num)
+   - if(str.length>num)
+      = str.substr(0, num)+"..."
+   -else
+      = str
+
+mixin seats(str)
+   -var seatArray=str.split(",")
+   =seatArray[0]+"排"+seatArray[1]+"座"
+
+//-返回上级页面
+mixin goreturn(type,mold,code,item)
+   -var line1="/",line2="/",line3="/",code=code;
+   -if (mold==="")
+      -var line2=""
+   -if (code==="")
+      -var line3=""
+   //-↑全为空的时候，链接为"/"
+   -if(type==="detail")
+      -if (mold==="hotel"||mold==="ticket"||mold==="repast")
+         -var code=item
+      -if(mold==="line"||mold==="route")
+         -var type="javascript:history.go(-1);",line1="",code="",line2="",mold="",line3=""
+   //-↑需要跳回详情，链接为"/details/mold/code"，其中门酒餐code=item.id，其中跟团、自由行2级下单为“后退”页面。
+   -if(type==="calendar")
+      -if(mold==="line"||mold==="route")
+         -var type="detail"
+      //-↑需要跳回详情，其中跟团、自由行1级下单页为“跳回”详情。
+   -if(type==="other")
+      -var type="javascript:history.go(-1);",line1="";
+   //-↑其他流程，全部为后退。
+   div.topreturn#topreturn
+      a(href=line1+type+line2+mold+line3+code)
+         i.font-icon.icon-iconfont-jiantou
+
+mixin tipsLayer()
+   .tips-layer(style="display:block;")#tipsLayer
+      .tips-layer-header
+         a(href="javascript:;")
+            i.font-icon.icon-iconfont-32pxchaxian
+      .tips-content="您未绑定身份证，请绑定身份证"
+      .tips-handle
+         a(href="/user/member").ent-btn="去绑定"
+         a(href="javascript:;").cancel-btn="取消"
+
+mixin prompt()
+   .tips-layer#prompt
+      .tips-layer-header
+         a(href="javascript:;")
+            i.font-icon.icon-iconfont-32pxchaxian
+      .tips-content="您未绑定身份证，请绑定身份证"
+      .tips-handle
+         a(href="https://51dmq.com/order/show/5600").ent-btn="确定"

@@ -1,0 +1,53 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_common.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/usercenter.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_detail.css')
+block pagecontent
+    include common/comFun
+    #uc_wrapper
+        include user/top
+        #uc_content.cf
+            include user/left
+            #uc_main
+                .t_w
+                    .t_head_w.cf
+                        .t_name
+                            | 当前订单状态：
+                            span.dor
+                                +scoreStatus(orders.dealResult)
+                        .t_name.lm30
+                            | 订单总积分：
+                            span.dor=orders.finalSum
+                    #info_w
+                        .info_cw
+                            .info_chead
+                                b 基本信息
+                            ul.info_list.cf
+                                li
+                                    span 积分兑换时间：
+                                    | #{orders.createTime}
+                            .info_cw
+                                .info_chead
+                                    b 联系人信息
+                                ul.info_list.cf
+                                    li
+                                        span 联系人：
+                                        | #{orders.linkName}
+                                    li
+                                        span 手机号码：
+                                        | #{orders.linkMobile}
+                                    li
+                                        span 身份证号码：
+                                        | #{orders.linkIdcard}
+                                    li
+                                        span 备注：
+                                        | #{orders.remark}
+                            if orders.productType!=='entity'&&orders.productType!="coupon"
+                                .info_cw
+                                    ul.info_list.cf
+                                        li.save
+                                            input.comfirm_btn(type='button', value='查看订单', onclick='location.href="/user/order/'+orders.productType+'/'+orders.id+'"')
+
+block scriptspage
+    script(src=baseUrl+'/javascripts/uc_common.js')

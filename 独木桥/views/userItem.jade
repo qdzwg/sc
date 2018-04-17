@@ -1,0 +1,18 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/order.css')
+   link(rel='stylesheet', href=baseUrl+'/javascripts/select-area/mobile-select-area.min.css')
+
+block content
+   include user/userForm
+   include common/msgTips
+   +userFrom(mold,formdata)
+   - if(error!="")
+      +msg(error)
+block scripts
+   script(src=baseUrl+'/javascripts/validate/jquery.validate.min.js')
+   script(src=baseUrl+'/javascripts/validate/messages_zh.min.js')
+   script(src=baseUrl+'/javascripts/validate/additional-methods.js')
+   script(src=baseUrl+'/javascripts/order.js')
+   script(src=baseUrl + '/javascripts/select-area/mobile-select-area.min.js')
+   script(src=baseUrl + '/javascripts/select-area/dialog.min.js')

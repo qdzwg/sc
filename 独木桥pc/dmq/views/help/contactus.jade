@@ -1,0 +1,28 @@
+extends ../layout/pageLayout
+block stylesheetpage
+	link(rel="stylesheet", href=baseUrl+'/stylesheets/help.css')
+block pagecontent
+	include ../common/helpList
+	#main.cf
+		+helpList(page)
+		#help_c_zone
+			.help_t 联系我们　Contact Us
+			.help_c
+				h2 杭州宋城  宋城旅游发展有限公司
+				p
+					| 地址：杭州市西湖区之江路148号宋城白宫
+					br
+					| 邮编：310008
+					br
+					| 电话：400-8888-518 客服
+					br
+					| 传真：0571-87096007
+				h2 商务合作
+				p
+					| 电子邮箱：business AT 51dmq.com
+				h2 投诉与建议
+				p
+					| 如果您对我们的网站有任何意见或建议，请发送邮件给我们，欢迎您的反馈
+					br
+					| 电子邮箱：cs AT 51dmq.com
+

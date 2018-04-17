@@ -1,0 +1,65 @@
+#commonFloat{
+	background:#898989;
+	width: 50px;
+	height:101px;
+	z-index: 1001;
+}
+#commonFloat .cf1,#commonFloat .cf2{
+	width:50px;
+	height: 50px;
+	display: block;
+	cursor: pointer;
+}
+#commonFloat .cf1{
+	margin-bottom: 1px;
+	position:relative;
+	background: url(../images/common/float.png) no-repeat scroll 0 0;
+}
+#commonFloat .cf1 span{
+	width:162px;
+	height:362px;
+	position:absolute;
+	left:-162px;
+	display:none;
+	bottom:-51px;
+	background: url(../images/common/code.jpg) no-repeat 0 0;
+}
+#commonFloat .cf1:hover{background: url(../images/common/float.png) no-repeat scroll -50px 0;}
+#commonFloat .cf2{
+	background: url(../images/common/float.png) no-repeat scroll 0 -50px;
+}
+#commonFloat .cf2:hover{background: url(../images/common/float.png) no-repeat scroll -50px -50px;}
+
+#commonFloat .cf3{
+	display: block;
+	width:50px;
+	height:68px;
+	border-top:1px solid #aaa;
+	position:relative;
+}
+#commonFloat .cf3 img{vertical-align:top;}
+#commonFloat .cf3 .codetip{
+	position:absolute;
+	right:50px;
+	top:0;
+	display:none;
+}
+
+.slide-page {
+	overflow: hidden;
+}
+.slide-page li {
+	float: left;
+	line-height: 20px;
+	color: #0066cc;
+	padding: 0 6px;
+	border: 1px solid #ff6600;
+	border-radius: 2px;
+	margin: 0 5px;
+	cursor: pointer;
+}
+.slide-page .active {
+	background: #ff6600;
+	color: #fff;
+}
+.share-box{ position: absolute; opacity: 0;}

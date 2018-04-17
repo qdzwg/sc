@@ -1,0 +1,15 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/dropload.css')
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/list.css')
+
+block content
+   include list/search
+   include list/pagelist
+   +raiderSearch(searchitems)
+   div.page-line
+   +raidersList(listitems)
+   input(type="hidden",value=listitems.offset)#offset
+block scripts
+   script(src=baseUrl+'/javascripts/dropload.min.js')
+   script(src=baseUrl+'/javascripts/list.js')

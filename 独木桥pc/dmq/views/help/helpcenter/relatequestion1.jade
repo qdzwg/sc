@@ -1,0 +1,41 @@
+extends ../../layout/pageLayout
+block stylesheetpage
+	link(rel="stylesheet", href=baseUrl+'/stylesheets/help.css')
+block pagecontent
+	include ../../common/helpList
+	#main.cf
+		+helpList(page)
+		#help_c_zone
+			.help_t 帮助中心　Help Center
+			.help_c.help_tvb
+				.bread
+					a(href='/help/helpcenter') 帮助中心首页
+					|  > 会员相关问题
+				dl
+					dt
+						a(name='q1') 1、如何注册宋城旅游会员账户？
+					dd
+						| 您可以直接通过注册页面进行注册
+						a(href='/register') http://www.51dmq.com/register
+						| ，填写好您的用户名、邮箱、手机号和密码后提交即可完成注册。另外，您也可以直接使用新浪微博或qq账号直接登录。
+				dl
+					dt
+						a(name='q2') 2、注册时提示手机号已被占用怎么办？
+					dd
+						| 如果注册时提示您手机号已被占用，说明您的手机号已经注册过我们的会员，您通过手机找回密码之后直接登录。
+				dl
+					dt
+						a(name='q3') 3、忘记密码了怎么办？
+					dd
+						| 您好，我们提供了通过手机找回密码和通过邮箱找回密码两种方式，您可以按照页面提示操作即可成功找回密码，如有疑问，您可以拨打我们的客服热线（400-8888-518）进行咨询。
+				dl
+					dt
+						a(name='q4') 4、能够注销账户吗？
+					dd
+						| 注销账户会将您的账户信息全部清除，以后无法恢复，为避免会员误操作，目前注销仅能通过客服进行操作，我们强烈建议您不要注销账户。
+				dl
+					dt
+						a(name='q5') 5、成为会员有什么优惠吗？
+					dd
+						| 您好，成为宋城旅游会员后，预订相关产品以及参与宋城旅游的活动均会获得一定的积分奖励，积分累积到一定程度将可以兑换相应的奖品。
+		

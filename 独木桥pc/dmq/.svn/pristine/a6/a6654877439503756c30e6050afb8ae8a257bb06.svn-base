@@ -1,0 +1,316 @@
+﻿var win = $(window);
+var line_list = $('#line_list');
+
+var l_part, r_part;
+
+var num = 0;
+var arr = $('.line_w a');
+
+var initNum = 1; //从第几个开始显示
+
+var line_w = $(".line_w").eq(0);
+
+var l_min = 0,l_max = 0;
+var r_min = 0,r_max = 0;
+
+var pic_width = 180, pic_height = 800;
+
+var maxspeed = 30;
+var realspeed = 0;
+
+var swidth = 225;
+
+var ks = 0;
+
+var nwidth = 0;
+
+var half = parseInt((win.width() - swidth - pic_width) / 2);
+
+jQuery.fx.interval = 10;
+
+var loadNum = 0;
+var iLen = 0;
+var sout;
+
+win.load(function() {
+
+    iLen = $('.line_w a .simg').length;
+
+    $('.line_w a .simg').load(function(){
+        loadNum++;
+        if (loadNum == iLen)
+            prepare();
+    });
+    
+    pic_pre();
+
+    $("#socialShare").socialShare({
+        content: $("p").text().trim(),
+        url: "http://blog.csdn.net/libin_1/article/details/51935944",
+        titile: $("h1").text().trim()
+    });
+});
+
+function pic_pre(){
+    $('.line_w a .simg').each(function(){
+         $(this).attr('src',$(this).attr('data_src'));
+    });
+}
+
+function prepare(){
+
+    $('body').css({'background-image': 'none'});
+
+    nwidth = pic_width * arr.length;
+   
+    line_w.css({
+        'width': nwidth,
+        'left': (-pic_width * (initNum - 1))
+    });
+
+    //防止line_w内的链接过少
+    line_w.append(line_w.html());
+
+    l_part = $('<div id="l_part"></div').appendTo(line_list).hide();
+    r_part = $('<div id="r_part"></div').appendTo(line_list).hide();
+
+    $('#sidebar').animate({
+        left: 0
+    }, 'slow', function() {
+        fixWidth();
+        show_list();
+        InitScroll();
+    });
+
+
+    win.resize(function() {
+        half = parseInt((win.width() - swidth - pic_width) / 2);
+
+        set_zone();
+
+        ks = line_w.width() + line_w.offset().left;
+        if (ks <= line_list.width()) {
+            line_w.css({
+                'left': line_list.width() - line_w.width()
+            });
+        }
+    });
+
+}
+
+var fwidth;
+
+function fixWidth() {
+    fwidth = win.width() - swidth;
+    if (fwidth < (1000-swidth)) fwidth = 1000-swidth;
+    line_list.width(fwidth);
+}
+
+function show_list() {
+    arr.each(function(i) {
+        $(this).css({
+            'left': i * pic_width
+        });
+    });
+    ival = setInterval('showLine()', 100);
+}
+
+var spointX = null;
+
+function showLine() {
+    arr.eq(num).fadeIn(100);
+    num++;
+    if (num == arr.length) {
+        clearInterval(ival);
+        line_w.find('a:hidden').each(function(i){
+            $(this).css({'left':180*(arr.length+i)}).show();
+        });
+
+        set_zone();
+        bind_evt();
+    }
+}
+
+var showpop =function(){
+	var ofw = $('body').innerWidth();
+	var ofh = $('body').innerHeight();
+	
+	var pw = $('#pop').width();
+	var ph = $('#pop').height();
+	
+	if ($('#popmask').is(':visible')){
+		$('#popmask').css({'width':ofw,'height':ofh});
+		$('#pop').css({'left':(ofw-pw)/2,'top':(ofh-ph)/2});
+		return;
+	}
+	
+	$('#popmask').css({'width':ofw,'height':ofh}).fadeTo('slow',0.8);
+	
+	$('#pop').css({'left':(ofw-pw)/2,'top':(ofh-ph)/2}).fadeIn();
+	
+}
+
+var line_list_width = 0;
+var line_w_width = 0;
+
+var picwidth, picheight;
+
+function set_zone() {
+    l_min = swidth;
+    l_max = swidth + half;
+    r_min = swidth + half + pic_width;
+    r_max = win.width();
+
+    fixWidth();
+
+    line_list_width = line_list.width();
+    var ys = pic_width - (line_list_width%pic_width);
+
+    if (nwidth < line_list_width){
+        line_w.width(line_list_width + ys)
+    }else{
+        line_w.width(nwidth)
+    }
+    line_w_width = line_w.width();
+
+    $('#l_part,#r_part').width(half);
+
+    picheight = line_w.height();
+    if (picheight < pic_height) {
+        picwidth = pic_width;
+        picheight = pic_height;
+    } else {
+        picwidth = 'auto';
+    }
+
+    line_w.find('a .simg').css({
+        'width': picwidth,
+        'height': picheight
+    });
+
+}
+
+function bind_evt() {
+    line_list.bind('mousemove', function(e) {
+        firstMove(e);
+    });
+}
+
+var pointX;
+var OpointX;
+var maxspeed = 50;
+var realspeed = 0;
+var rate;
+
+function firstMove(e) {
+    line_list.unbind('mousemove');
+    pointX = e.pageX;
+
+    if ((l_min < pointX && pointX < l_max) || (r_min < pointX && pointX < r_max)) {
+        if (l_min < pointX && pointX < l_max) {
+            l_part.hide();
+            r_part.show();
+            go('l');
+        }
+        else {
+            r_part.hide();
+            l_part.show();
+            go('r');
+        }
+    }
+
+
+    l_part.mouseenter(function() {
+        line_w.clearQueue();
+        line_w.stop();
+        $(this).hide();
+        r_part.show();
+        go('l');
+    });
+    r_part.mouseenter(function() {
+        line_w.clearQueue();
+        line_w.stop();
+        $(this).hide();
+        l_part.show();
+        go('r');
+    });
+
+
+    line_list.mousemove(function(e) {
+        pointX = e.pageX;
+        if (OpointX == pointX) return;
+
+        if (do_use == 'l') {
+            rate = (l_max - pointX) / half;
+            if (rate < 0) {
+                line_w.clearQueue();
+                line_w.stop();
+                l_part.show();
+            } else {
+                realspeed = parseInt(maxspeed * rate);
+            }
+
+        } else if (do_use == 'r') {
+            rate = (pointX - r_min) / half;
+            if (rate < 0) {
+                line_w.clearQueue();
+                line_w.stop();
+                r_part.show();
+            } else {
+                realspeed = parseInt(maxspeed * rate);
+            }
+
+        } else {}
+    });
+
+    line_list.mouseleave(function() {
+        line_w.clearQueue();
+        line_w.stop();
+        l_part.show();
+        r_part.show();
+    });
+}
+
+var fh = 0;
+var do_use = 'l';
+
+function go(direct) {
+    do_use = direct;
+
+    if (direct == 'l') {
+        if ((line_w.position().left + realspeed) > 0) fh = 0
+        else fh = '+=' + realspeed;
+    } else {
+        if ((line_w.position().left - realspeed) < (line_list_width - line_w_width)) fh = line_list_width - line_w_width;
+        else fh = '-=' + realspeed;
+    }
+
+    line_w.animate({
+        left: fh
+    }, 100, 'linear', function() {
+        go(direct);
+    });
+
+}
+
+var to;
+function b(){	
+	t = parseInt(x.css('top'));
+	y.css('top','19px');	
+	x.animate({top: t - 19 + 'px'},'slow');	//19为每个li的高度
+	if(Math.abs(t) == h-19){ //19为每个li的高度
+		y.animate({top:'0px'},'slow');
+		z=x;
+		x=y;
+		y=z;
+	}
+	to = setTimeout(b,3000);//滚动间隔时间 现在是3秒
+}
+function InitScroll(){
+	$('.swap').html($('.news_li').html());
+	x = $('.news_li');
+	y = $('.swap');
+	h = $('.news_li li').length * 19; //19为每个li的高度
+	to = setTimeout(b,3000);//滚动间隔时间 现在是3秒
+	$('.news_li li').hover(function(){if(to) clearTimeout(to);},function(){to = setTimeout(b,3000);});	
+}

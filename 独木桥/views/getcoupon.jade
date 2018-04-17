@@ -1,0 +1,22 @@
+extends layout
+block stylesheet
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/coupon.css')
+
+block content
+    include common/msgTips
+    include common/commonFun
+    .packets
+    form(method="post")#couponForm
+        a(href="javascript:;").coupon-btn="立即领取"
+    if(user&&user.idCardBundFlag==0)
+        +tipsLayer()
+        .mask(style="display:block;")#mask
+    - if(error!="")
+        +msg(error)
+block scripts
+    script.
+        $(function () {
+            $(".coupon-btn").click(function () {
+                $("#couponForm").submit();
+            });
+        })

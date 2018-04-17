@@ -1,0 +1,133 @@
+mixin detailsHeader(mold,items,flag)
+   div.details-info
+      case mold
+         when "ticket"
+            +ticketheader(items,flag)
+         when "hotel"
+            +hotelheader(items,flag)
+         when "route"
+            +routeheader(items,flag)
+         when "line"
+            +lineheader(items,flag)
+         when "combo"
+            +comboheader(items,flag)
+         when "repast"
+            +repastheader(items,flag)
+         when "goods"
+            +goodsheader(items,flag)
+
+//- 门票
+mixin ticketheader(items,flag)
+   h3.details-title=items.parkName
+   p.details-explian#subTitle=items.subTitle
+   p.details-explian
+      - if(items.tags!="")
+         - each item,i in items.tags
+            - if(i<2)
+               span.pro-flag.c-base.border-base=item
+      span(data-flag=flag).share#sharebtn
+        i.score-icon.icon-share
+        ="分享"
+      span.price.fr
+         em ￥
+         strong=items.startingPrice
+         | 起
+
+//- 酒店
+mixin hotelheader(items)
+   h3.details-title=items.productName
+   p.details-explian=items.subTitle
+   p.details-explian
+      - if(items.tags!="")
+         - each item,i in items.tags
+            - if(i<2)
+               span.pro-flag.c-base.border-base=item
+      span(data-flag=flag).share#sharebtn
+         i.score-icon.icon-share
+         ="分享"
+      span.price.fr
+         em ￥
+         strong=items.originalPrice
+         | 起
+
+//- 跟团游
+mixin routeheader(items)
+   h3.details-title=items.name
+   p.details-explian=items.subName
+   p.details-explian
+      span.c-base=items.mockSale
+      | 人出游
+      span(data-flag=flag).share#sharebtn
+        i.score-icon.icon-share
+        ="分享"
+      span.price.fr
+         em ￥
+         strong=items.startingPrice
+         | 起
+      span.original-price.fr
+         em ￥
+         strong=items.originalPrice
+
+//- 自由行
+mixin lineheader(items)
+   h3.details-title=items.title
+   p.details-explian
+       span(data-flag=flag).share#sharebtn
+           i.score-icon.icon-share
+           ="分享"
+       span.price.fr
+         em ￥
+         strong=items.price
+         | 起
+
+//- 套票
+mixin comboheader(items)
+   h3.details-title=items.comboName
+   p.details-explian
+      - if(items.tags!="")
+         - each item,i in items.tags
+            - if(i<2)
+               span.pro-flag.c-base.border-base=item
+      span(data-flag=flag).share#sharebtn
+         i.score-icon.icon-share
+         ="分享"
+      span.original-price.fr
+         em ￥
+         strong=items.showPrice
+      span.price.fr
+         em ￥
+         strong=items.price
+
+//- 餐饮
+mixin repastheader(items)
+   h3.details-title=items.productName
+   p.details-explian=items.subName
+   p.details-explian
+      - if(items.tags!="")
+      - each item,i in items.tags
+         - if(i<2)
+            span.pro-flag.c-base.border-base=item
+      span(data-flag=flag).share#sharebtn
+         i.score-icon.icon-share
+         ="分享"
+      span.price.fr
+         em ￥
+         strong=items.perCapita
+         | /人
+
+//- 商品
+mixin goodsheader(items)
+   h3.details-title=items.modelName
+   p.details-explian
+      span.c-base=items.salesNum
+      | 件已售
+      span(data-flag=flag).share#sharebtn
+        i.score-icon.icon-share
+        ="分享"
+      span.price.fr
+         em ￥
+         strong=items.price
+         | 起
+      span.original-price.fr
+         em ￥
+         strong=items.salePrice

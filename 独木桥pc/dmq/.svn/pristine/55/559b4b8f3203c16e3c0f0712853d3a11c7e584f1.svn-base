@@ -1,0 +1,81 @@
+{
+  "_args": [
+    [
+      "domain-middleware",
+      "E:\\工作区\\nodejs\\myfirstproject"
+    ]
+  ],
+  "_from": "domain-middleware@*",
+  "_id": "domain-middleware@0.1.0",
+  "_inCache": true,
+  "_location": "/domain-middleware",
+  "_npmUser": {
+    "email": "fengmk2@gmail.com",
+    "name": "fengmk2"
+  },
+  "_npmVersion": "1.2.18",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "domain-middleware",
+    "raw": "domain-middleware",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "*",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/domain-middleware/-/domain-middleware-0.1.0.tgz",
+  "_shasum": "c29c5524069e75717c22e0a471431b2a5ab40e15",
+  "_shrinkwrap": null,
+  "_spec": "domain-middleware",
+  "_where": "E:\\工作区\\nodejs\\myfirstproject",
+  "author": {
+    "email": "fengmk2@gmail.com",
+    "name": "fengmk2"
+  },
+  "dependencies": {},
+  "description": "uncaughtException middleware for connect, base on `domain` module.",
+  "devDependencies": {
+    "connect": "*",
+    "jscover": "*",
+    "mocha": "*",
+    "should": "*",
+    "supertest": "*"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "c29c5524069e75717c22e0a471431b2a5ab40e15",
+    "tarball": "https://registry.npmjs.org/domain-middleware/-/domain-middleware-0.1.0.tgz"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "installable": true,
+  "keywords": [
+    "cluster",
+    "connect",
+    "domain",
+    "error",
+    "uncaughtException"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "fengmk2",
+      "email": "fengmk2@gmail.com"
+    }
+  ],
+  "name": "domain-middleware",
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fengmk2/domain-middleware.git"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "version": "0.1.0"
+}

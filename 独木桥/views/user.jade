@@ -1,0 +1,91 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/member.css')
+
+block content
+   include common/commonFun
+   .member-heard
+        .heard-img
+            a(href="/user/member")
+                img(src=users.headProtraitUrl)
+        .heard-info
+            h3=users.realName
+            h4=users.levelname
+            p.heard-score="积分："+users.score
+        a(href="/user/memberInfo").heard-link="会员攻略"
+        .grade-list
+            ul
+                each item,i in users.allLevel
+                    if(i<4)
+                        -var className='',str='',num=0
+                        case i
+                            when 0
+                                -className="g1"
+                                -str=0
+                            when 1
+                                -className="g2"
+                                -str=users.allLevel[0].moneymax
+                            when 2
+                                -className="g3"
+                                -str=users.allLevel[1].moneymax
+                            when 3
+                                -className="g4"
+                                -str=users.allLevel[2].moneymax+"(需审核)"
+                        li(class=className)
+                            span.grade-name=item.levelname
+                                em=str
+            span(data-score=users.totalBuy).grade-location#location
+   .member-main
+        ul.member-nav
+            li
+                a(href="/user/userRights")
+                    i.member-nav-icon.member-icon-privilege
+                    p="我的特权"
+            li
+                a(href="/user/mycoupon?useflag=1")
+                    i.member-nav-icon.member-icon-coupon
+                    p="我的优惠券"
+                        em=couponItems.numRows+"张优惠券"
+            li
+                a(href="/user/scoreDetails")
+                    i.member-nav-icon.member-icon-score
+                    p="我的积分"
+                        em=users.score+"积分"
+        h4.member-title="会员权益"
+        ul.member-nav.right-nav
+            each item in rightItems
+                li
+                    a(href=item.productImgUrl)
+                        img(src=item.imgUrl)
+                        p=item.privilegeName
+            li.more
+                a(href="/user/userRights")
+                    i.member-nav-icon.member-icon-more
+        a(href="javascript:;").member-handle="展开"
+        h4.member-title="会员服务"
+        ul.member-nav
+            li
+                a(href="/user/myorder/all")
+                    i.member-nav-icon.member-icon-bag
+                    p="我的订单"
+            li
+                a(href="tel:400-8888-518")
+                    i.member-nav-icon.member-icon-tel
+                    p="客服中心"
+                        em="400-8888-518"
+            li
+                a(href="/user/convertCoupon")
+                    i.member-nav-icon.member-icon-ticket
+                    p="券码兑换"
+        a(href="/user/task").member-link="每日任务"
+            em="分享领积分"
+        a(href="/").member-link
+            i.member-icon-more1
+            ="点击查看更多"
+        a(href="/logout").logout-btn="退出登录"
+   if(users.idCardBundFlag == 0)
+        +tipsLayer()
+        .mask(style="display:block;")#mask
+   include common/footer
+block scripts
+    script(src=baseUrl+'/javascripts/user.js')

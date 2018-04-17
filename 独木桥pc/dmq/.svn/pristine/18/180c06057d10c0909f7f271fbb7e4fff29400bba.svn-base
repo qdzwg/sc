@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    meta(http-equiv="Content-Type",content="text/html; charset=utf-8")
+    title= title
+    meta(name="Keywords",content="宋城旅游,杭州自由行，杭州自助游，杭州演出，杭州夜游，杭州亲子酒店，湘湖夜游，藏谜门票，宋城旅游")
+    meta(name="Description",content="杭州热门景区【宋城旅游官网】打造最具个性的旅游电子商务平台。为您提供最具独特体验的杭州自由行，杭州自助游，杭州演出，杭州夜游，杭州亲子酒店，湘湖夜游，藏谜门票。")
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/reset-min.css')
+    block stylesheet
+  body
+    block content
+    script(src=baseUrl+'/javascripts/jquery-1.8.0.min.js')
+    block scripts

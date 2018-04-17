@@ -1,0 +1,43 @@
+body{ background-color: #ffc11e;}
+header{ height: 8rem; background: url("../images/turntable/header.png") no-repeat; background-size: cover;}
+.turntable-bg{ height: 14rem; position: relative; background: url("../images/turntable/turntable-bg.png") center center no-repeat; background-size: auto 100%;}
+.turntable-bg .pointer{ width: 3.6rem; height: 5.15rem; position: absolute; top:50%; left: 50%; margin-left: -1.8rem; margin-top: -3.3rem; background: url("../images/turntable/pointer.png") no-repeat; background-size: cover;}
+.turntable-bg .rotate{ width: 12rem; height: 12rem; position: absolute; top:50%; left: 50%; margin-top: -6.1rem; margin-left: -6rem; background: url("../images/turntable/rotate.png") no-repeat; background-size: cover;}
+/*.prize-list{ position: relative; width: 12rem; height: 12rem;}
+.prize-list li{ position: absolute; width: 3.5rem; height: 5.25rem; padding-top: 0.75rem; text-align: center; }
+.prize-list li span{  font-size: 0.5rem; color: #dc2d2a; display: block; line-height: 140%;}
+.prize-list li img{ max-width: 1.5rem; margin: 0 auto; display: block;}
+.prize-list li.item0{ transform:rotate(0deg); top:0; left: 2.5rem;}
+.prize-list li.item1{ transform:rotate(0deg); top:0; right: 2.5rem;}
+.prize-list li.item2{ transform:rotate(45deg); top:2.15rem; right: 0.95rem;}
+.prize-list li.item3{ transform:rotate(90deg); top:4.75rem; right: 1.25rem;}
+.prize-list li.item4{ transform:rotate(135deg); top:6.4rem; right: 3.35rem;}
+.prize-list li.item5{ transform:rotate(-135deg); top:6.4rem; left: 3.35rem;}
+.prize-list li.item6{transform:rotate(-90deg); top:4.75rem; left: 1.25rem;}
+.prize-list li.item7{ transform:rotate(-45deg); top:2.15rem; left: 0.95rem;}*/
+
+.turnNum{ width: 10rem; height: 1.5rem; line-height: 1.5rem; text-align: center; background-color: #f66; border-radius: 0.75rem; color: #fff; font-size: 0.6rem; margin: 0.5rem auto;}
+.turnNum em{ color: #ffd800;}
+.turntable-title{ width: 15rem; height: 0.6rem; margin: 0.5rem auto; background: url("../images/turntable/turntable-title.png") no-repeat; background-size: contain;}
+.turntable-content{ width: 15rem; margin: 0.5rem auto; background-color: #ffae00; line-height: 180%; font-size: 0.6rem; color: #fff; padding: 0.5rem; box-sizing: border-box;}
+.turntable-content p{ margin-bottom: 0.5rem;}
+
+.winning-box{ position: fixed; width: 14.7rem; height: 4.85rem; top:4rem; left: 50%; margin-left: -7.35rem;z-index: 30; background: url("../images/turntable/layer.png") no-repeat; background-size: contain; padding-top: 8.5rem; text-align: center; display: none;}
+.winning-box p{ font-size: 0.75rem; color: #ff5645;  padding: 0.9rem 0;}
+.winning-box a{ display: inline-block; width: 8.75rem; height: 1.5rem; line-height: 1.5rem; background-color: #ff5645; font-size: 0.7rem; border-radius: 0.5rem; color: #fff;}
+.error-box{ width: 12rem; height: 4.6rem; top:5.5rem; margin-left: -6rem; background: url("../images/turntable/layer-error.png") no-repeat; background-size: contain;  padding-top: 8.2rem;}
+.error-box p{ color: #666; font-size: 0.6rem;}
+
+.header{ height: 2.1rem; text-align: center; background: url("../images/turntable/top.png") no-repeat; background-size: cover; color: #fff; font-size: 0.8rem; padding-top: 1rem;}
+.prize-list{ padding: 0 0.5rem;}
+.prize-list li{ background-color: #fff; border-radius: 0.25rem; height: 4.5rem; margin-bottom: 0.5rem; overflow: hidden;}
+.prize-list-icon{ width: 2.25rem; height: 2.25rem; border-radius: 100%; background: url("../images/turntable/prize-icon.png") center center no-repeat; background-size: 55% 55%; background-color: #ffc11e; margin-top: 1rem; margin-left: 0.7rem; float: left;}
+.prize-list-info{ margin-left: 2.95rem; margin-right: 3.4rem; padding: 1.1rem 0.5rem 0;}
+.prize-list-title{ font-size: 0.75rem; margin-bottom: 0.25rem;}
+.prize-list-info p{ font-size: 0.6rem;color: #999;}
+.prize-list-right{ width: 3.4rem; float: right; border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem; background-color: #ffe680; height: 4.5rem; font-size: 0.75rem; text-align: center; line-height: 4.5rem; color: #ff8a00;}
+.prize-list li.used .prize-list-icon{ background-color: #fff4c6;}
+.prize-list li.used .prize-list-right{ background-color: #fff4c6;}
+
+.price-info span{ display: inline-block;margin-right:0.5rem; }
+.price-info span em{color: #d8251e;}

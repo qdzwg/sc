@@ -1,0 +1,26 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_common.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/usercenter.css')
+block pagecontent
+    include common/comFun
+    #uc_wrapper
+        include user/top
+        #uc_content.cf
+            include user/left
+            #uc_main
+                .t_w
+                    .t_head_w.cf
+                        .t_name 会员权益
+                    ul.userRights-list
+                        each item in items
+                            -var className=""
+                            if(item.have=="1")
+                                -className="gray"
+                            li
+                                a(href=item.productImgUrl class=className).scoreRight-item
+                                    img(src=item.imgUrl)
+                                    p=item.privilegeName
+block scriptspage
+    script(src=baseUrl+'/javascripts/datepicker/WdatePicker.js')
+    script(src=baseUrl+'/javascripts/uc_common.js')

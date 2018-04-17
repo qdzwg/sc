@@ -1,0 +1,53 @@
+extends layout
+block stylesheet
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/dropload.css')
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/list.css')
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/coupon.css')
+
+block content
+    include common/commonFun
+    header.header-tab.mycoupon-header-tab
+        ul.tab.clearfix.mycoupon-tab
+            li
+                - if(useFlag==1)
+                    a(href="/user/mycoupon?useflag=1").c-base 可用优惠券
+                -else
+                    a(href="/user/mycoupon?useflag=1") 可用优惠券
+            li
+                - if(useFlag==0)
+                    a(href="/user/mycoupon?useflag=0").c-base 不可用优惠券
+                -else
+                    a(href="/user/mycoupon?useflag=0") 不可用优惠券
+    .inner(data-mold="coupon",data-useflag=useFlag)
+        if(items.items.length>0)
+            ul.coupon-list
+                each item in items.items
+                    -var useflag={}
+                    case item.status
+                        when "unuse"
+                            -useflag={"text":"未使用","className":"coupon-unuse"}
+                        when "used"
+                            -useflag={"text":"已使用","className":"coupon-used"}
+                        when "expired"
+                            -useflag={"text":"已过期","className":"coupon-expired"}
+                    li.opacity
+                        a(href="/")
+                            .coupon-left
+                                span.cost-num
+                                    em="￥"
+                                    =item.cutSum
+                                p=useflag.text
+                            div(class=useflag.className).coupon-right
+                                h4.coupon-title=item.couponName
+                                p.coupon-subtitle=item.info
+                                p.coupon-explian="有效期："
+                                    +formatDate(item.useBegDate)
+                                    ="至"
+                                    +formatDate(item.useEndDate)
+        else
+            div.no-data
+                i.font-icon.icon-iconfont-gantanhaom
+                p 您还没有优惠券
+block scripts
+    script(src=baseUrl+'/javascripts/dropload.min.js')
+    script(src=baseUrl+'/javascripts/list.js')

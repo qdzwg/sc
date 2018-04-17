@@ -1,0 +1,41 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/dropload.css')
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/list.css')
+
+block content
+   include list/orderlist
+   include common/commonFun
+   -if(flag!='tour')
+      header.header-tab
+         ul.tab.clearfix.myorder-tab#searchtab
+            li
+               - if(mold=="")
+                  a(href="/user/myorder/all").c-base 全部订单
+               -else
+                  a(href="/user/myorder/all") 全部订单
+            li
+               - if(mold=="1")
+                  a(href="/user/myorder/1").c-base 已支付
+               -else
+                  a(href="/user/myorder/1") 已支付
+            li
+               - if(mold=="0")
+                  a(href="/user/myorder/0").c-base 待支付
+               -else
+                a(href="/user/myorder/0") 待支付
+            li
+               - if(mold=="2")
+                  a(href="/user/myorder/2").c-base 已完成
+               -else
+                  a(href="/user/myorder/2") 已完成
+            li
+               - if(mold=="210")
+                  a(href="/user/myorder/210").c-base 退款
+               -else
+                  a(href="/user/myorder/210") 退款
+   +orderlist(items.items)
+   input(type="hidden",value=items.page.offset)#offset
+block scripts
+   script(src=baseUrl+'/javascripts/dropload.min.js')
+   script(src=baseUrl+'/javascripts/list.js')

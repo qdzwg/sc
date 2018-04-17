@@ -1,0 +1,56 @@
+extends ../layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/cart.css')
+block pagecontent
+    include ../common/comFun
+    .cart-box#cart-box
+        .box-title 购物车
+        .box-content
+            table
+                thead.total-table
+                    tr
+                        td 
+                            input(type="checkbox")
+                            | 全选
+                        td 产品信息
+                        td 单价
+                        td 数量
+                        td 合计
+                        td 操作
+                tbody.pay-table
+                    each item in listData
+                        tr
+                            td
+                                input(type="checkbox" data-orderid=item.id)
+                            td(style="padding:20px 0;")
+                                img(src=item.url, alt="")
+                                .info-text
+                                    h5=item.productName
+                                    p=item.modelName
+                                    .time 下单时间：
+                                        +formatDate(item.createTime)
+                                    case item.bnsType 
+                                        when 'ticket'
+                                            .beginDate 游玩日期：
+                                                +formatDate(item.beginDate)
+                                        when 'hotel'
+                                            .beginDate 入住日期：
+                                                +formatDate(item.beginDate)
+                                        when 'zyx'
+                                            .beginDate 游玩日期：
+                                                +formatDate(item.beginDate)
+                            td ￥#{(item.finalSum/item.amount).toFixed(2)}
+                            td=item.amount
+                            td 
+                                | ￥
+                                span.sub-price=(item.finalSum).toFixed(2)
+                            td
+                                a(href="/cart/dele?ids="+item.id).dele 删除
+        .box-balance
+            span 合计：
+            i.sub-price ￥0.00
+            a(href="javascript:;").balance 结算
+
+
+block scriptspage
+    script(src=baseUrl+'/javascripts/cart.js')

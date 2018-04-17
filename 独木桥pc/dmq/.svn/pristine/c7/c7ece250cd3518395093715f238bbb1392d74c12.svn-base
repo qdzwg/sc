@@ -1,0 +1,35 @@
+extends ../layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_common.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/usercenter.css')
+block pagecontent
+    #uc_wrapper
+        include top
+        #uc_content.cf
+            include left
+            #uc_main
+                .t_w
+                    .t_head_w.cf
+                        .t_name 常用联系人
+                        a.add_contact(href='/user/concat/add') 新增联系人
+                    table.common_t(cellpadding='0', cellspacing='0',style="text-align:center")
+                        tr
+                            th.c1 姓名
+                            th.c2 性别
+                            th.c3 身份证号码
+                            th.c4 手机号码
+                            th.c5 邮箱
+                            th.c6 操作
+                        each item in listData.datas
+                            tr
+                                td.c1=item.realname
+                                td.c2=item.sex===0?'男':'女'
+                                td.c3=item.idCard
+                                td.c4=item.mobile
+                                td.c5=item.email
+                                td.op.c6
+                                    a(href='/user/concat/edit?id='+item.id) 修改
+                                    span |
+                                    a.opebutton.deleConcat(href="javascript:;" data-proid=item.id) 删除
+block scriptspage
+    script(src=baseUrl+'/javascripts/uc_common.js')

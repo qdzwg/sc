@@ -1,0 +1,32 @@
+extends ../../layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl + '/stylesheets/help.css')
+block pagecontent
+    include ../../common/helpList
+    #main.cf
+        +helpList(page)
+        #help_c_zone
+            .help_t 帮助中心　Help Center
+            .help_c.help_tvb
+                .bread
+                    a(href='/help/helpcenter') 帮助中心首页
+                    |  > 付款和发票：
+                dl
+                    dt
+                        a(name='q1') 1、付款方式有哪些？
+                    dd 您好，目前只提供网上付款的方式，您可以通过第三方支付平台支付宝进行支付。
+                dl
+                    dt
+                        a(name='q2') 2、可以提供发票吗？
+                    dd 您好，我们严格按照国家税务规定提供发票，请您在出游归来后一个月内联系客服索要发票。
+                dl
+                    dt
+                        a(name='q3') 3、发票该如何获取？
+                    dd 您好，发票需要您在出游归来后联系客服索要，请届时提供您的详细收件地址，我们会在您提交申请的3个工作日内将发票邮寄给您。
+                dl
+                    dt
+                        a(name='q4') 4、发票内容可以选择吗？
+                    dd
+                        | 您好，通过宋城旅游旅游网预订门票、酒店以及自由行线路，目前只能给您开具旅游费发票。
+
+

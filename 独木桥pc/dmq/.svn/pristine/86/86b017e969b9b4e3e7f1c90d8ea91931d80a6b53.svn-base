@@ -1,0 +1,15 @@
+var express = require('express');
+var router = express.Router();
+var async = require('async');
+var common=require("../common_modules/common");
+
+/* GET users listing. */
+router.get('/:mold', function(req, res, next) {
+    var mold=req.params.mold;
+    var options={ title: '独木桥旅游网',mold:mold};
+    	common.viewPage("list"+mold,options,req,res);
+    
+});
+
+module.exports = router;
+

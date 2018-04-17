@@ -1,0 +1,28 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/member.css')
+
+block content
+   header.right-header
+        .right-head-img
+            img(src=users.headProtraitUrl)
+        .right-head-info
+            h3=users.realName
+            p.heard-score="积分："+users.score
+        .right-grade-info
+            p=users.levelname
+            p.grade-bar
+                span(style="width:"+(users.score/500)+"%")
+   .scoreRight-list
+       each item in items
+           -var className="",url=item.productImgUrl
+           if(item.have=="1")
+               -className="gray"
+               -url="javascript:;"
+           div(class=className).scoreRight-item
+               a(href=url)
+                    .scoreRight-item-head
+                        img(src=item.imgUrl)
+                        span=item.privilegeName
+                    p=item.remark
+   include common/footer

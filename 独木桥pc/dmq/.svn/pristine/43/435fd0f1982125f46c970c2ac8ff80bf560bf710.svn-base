@@ -1,0 +1,38 @@
+extends layout/layout
+block stylesheet
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/index.css')
+block content
+    #sidebar
+        #snav_w
+            .n_nav
+                a(href="/")=">首页"
+                a(href="/list/djrm")=">独家热卖"
+                a(href="/list/djxl")=">独家线路"
+                a(href="/list/djjx")=">独家精选"
+                a(href="/list/djbl")=">独家爆料"
+            #qnav
+                if member
+                   a(href="/user/order?currPage=1&orderType=ticket")=((member.realName===null||member.realName==='')? member.loginName:member.realName)
+                else
+                   a(href="/login")="登录"
+                a(href="/register")="抢优惠，立即加入"
+            #tshare.cf
+                a(href="#").tsina
+                a(href="#").tqq
+                a(href="#").tal
+        .t_news
+            ul.news_li
+                -each item in newsItems
+                    li
+                        a(href=item.url,title=item.title,target="_blank")=item.title
+            ul.swap
+    #line_list
+        .line_w
+            -each item in specialItems
+                a(href=item.url)
+                    img(src="/images/index/s.gif",data_src=item.imgUrl).simg
+                    span.fc
+                        span=item.title
+                        =item.subtitle
+block scripts
+    script(src=baseUrl+'/javascripts/index.js')

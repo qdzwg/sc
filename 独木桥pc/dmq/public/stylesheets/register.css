@@ -1,0 +1,156 @@
+@charset "utf-8";
+/* CSS Document */
+.regtop{ height:22px; width:100%; background-color:#b8080a;}
+
+.regtopCon{height:22px; width: 950px; line-height:22px; margin:0 auto;}
+.regtopCon a,.regtopCon a:link,.regtopCon a:visited{ color:#FFF;}
+.regtopCon a:hover{ color:#FFF;}
+
+.logoCon{ width:960px; margin:0 auto; padding:10px 0 0 0; overflow:hidden;}
+.logosub{ float:left; }
+.reglogo{float:left;}
+.reglogo a{ display:inline-block; width:244px; height:54px; background:url(../images/login/logo_user.png) left bottom;}
+.logosub{ display:inline-block; width:187px; height:54px; background:url(../images/login/logo_sub_user.png) left bottom;}
+
+
+.regcontent{width:1000px; margin:0 auto;margin-top:15px;}
+.regwarp{  border:#FDCACA 1px solid; overflow:hidden;  border-top-left-radius:3px;border-top-right-radius:3px;zoom:1;}
+
+.reglside{ float:left; width:650px; padding:30px 20px 0 20px;}
+.regrside{ float:right; width:257px; overflow:hidden; margin-bottom:-1px;margin-right: 15px; }
+.regrside ul li{width:257px;}
+.inputlist h4{ font-size:14px; margin-bottom:25px;font-family: Microsoft Yahei;font-size: 20px;font-weight: normal;}
+.inputlist span.name{ width:110px; display:inline-block; text-align:right; font-size:14px;}
+input.text{ height:30px; line-height:30px; border:#CCC 1px solid; padding-left:3px; vertical-align:middle;}
+input.text:hover{ border:#ff9999 1px solid; }
+.inputlist li{ height:38px; line-height:38px; text-align:left; margin-bottom:12px;}
+.inputlist .input_tips{ display:inline-block; padding-left:15px; font-size:12px;}
+#sendCode {
+	display: inline-block;
+	width: 83px;
+	line-height: 27px;
+	text-align: center;
+	background: url(../images/common/t_btnbg.png);
+	color: #fff;
+	margin-left: 5px;
+}
+
+.regrside ul li{ display:block;  padding:15px 25px 15px 25px; overflow:hidden; }
+.regrside ul li.intro{border-top:#eaeaea dashed 1px;}
+.regrside ul li.intro span{ width:35px; height:45px; display:inline-block; float:left;}
+.regrside ul li.intro h4{display:inline-block; font-family:"微软雅黑"; font-size:14px; margin-bottom:6px;}
+.regrside ul li.intro p{display:inline-block;font-family:"微软雅黑"; color:#878686;}
+.icontext{ float:left; display:inline-block; width:155px; }
+.service{padding-left:115px;}
+.user_c{
+	width: 520px;
+	height:100px;
+	overflow-y:scroll;
+	padding: 5px;
+	border:1px solid #ccc;
+}
+
+.icon1,.icon2,.icon3,.icon4,.icon5,.icon6{ background:url(../images/login/icon.jpg) 0 0 no-repeat;}
+span.icon1{ background-position:-9px -6px;}
+span.icon2{ background-position:-5px -122px;}
+span.icon3{ background-position:-5px -233px;}
+span.icon4{ background-position:-3px -346px;}
+span.icon5{ background-position:-5px -457px;}
+span.icon6{ background-position:-5px -554px;}
+
+
+
+
+.btnregr{ display:inline-block;*display:inline; padding-right:28px; background: url(../images/login/btn.jpg) right -63px no-repeat; height:42px;cursor:pointer; margin-right:15px;}
+.btnreg{ display:inline-block; padding-left:28px; height:42px; line-height:42px; color: #fff; border:none; cursor: pointer;  background: url(../images/login/btn.jpg) left -6px no-repeat; outline:none;  font-size:14px; font-weight:bold; cursor:pointer;  }
+.regoperate{ padding:20px 0 35px 115px;}
+
+
+
+
+/*注册成功页面*/
+.topregtit{ background:url(../images/login/topregtit.jpg) center top; border:1px solid #fad8d8; border-bottom:2px solid #b90708; height:32px; line-height:32px; padding-left:25px; font-family:微软雅黑; color:#4a0506; font-size:18px;}
+.topregcon{  border:#eeeeee 1px solid; border-top:none; border-bottom:none; padding:120px 0 190px; zoom:1;  }
+.topregcon2{  border:#eeeeee 1px solid; border-top:none; border-bottom:none; padding:40px 125px 190px;  }
+.topregcon2 h3{ background:url(../images/login/smilebg.jpg) left center no-repeat; height:78px; line-height:78px; padding-left:110px; font-family:微软雅黑; font-size:18px; font-weight:normal; color:#666; margin-bottom:25px;}
+
+.passlist2{ margin-left:110px;}
+
+
+
+.tipscon{ width:360px; height:206px; background: url(../images/common/tipscon.jpg) no-repeat; margin:0 auto ; font-family:微软雅黑;}
+.tipscon h3{ margin-top:8px; height:49px; line-height:52px; text-align:center; font-size:18px; font-weight:normal;}
+.tipscon p{ padding:25px 0 30px 0; text-align:center;font-size:18px; color:#666; }
+.topregbot{ height:19px;background:url(../images/common/bottombg.jpg) center bottom no-repeat ; }
+
+
+.regoperatec{ text-align:center;}
+.btnregr{ display:inline-block;*display:inline; padding-right:18px; background:url(../images/login/regbtn.png) right -51px no-repeat; height:43px;cursor:pointer; margin-right:15px;}
+.btnreg{ display:inline-block; padding-left:18px; height:43px; line-height:43px; color: #fff; border:none; cursor: pointer; background:url(../images/login/regbtn.png) left 0px no-repeat; outline:none;  font-size:14px; font-weight:bold;  }
+.btnregc{ background:url(../images/login/regbtn.png) left -107px; height:43px; line-height:43px; width:137px;color: #fff; border:none; cursor: pointer;font-size:14px; font-weight:bold; margin-right:9px; }
+
+
+
+
+/*登录*/
+.loginwarp{ width:1000px; margin:20px auto 0;}
+.loginbg{ height:385px; background:url(../images/login/loginbg.jpg) no-repeat bottom;}
+.loginarea{ width:310px; background-color:#FFF; float:left; height:385px; border:#fdcaca 1px solid; border-top-left-radius:3px;border-top-right-radius:3px;}
+.logintit{ height:40px; background:url(../images/login/logintit.jpg) repeat-x top; border-bottom:#fdcaca 1px solid; padding:0 15px 0 15px;line-height:40px;}
+.logintit h4{ float:left; line-height:40px; font-size:14px; font-weight:bold; width:120px; background:url(../images/login/regbtn.png) -1px -155px no-repeat; padding-left:20px;}
+.logintit span{ float:right;}
+
+.loginlist{ padding:20px 20px 10px 20px;_padding:10px 20px 10px 20px;}
+.loginlist ul li{ height:26px; line-height:26px; margin-top:9px;}
+.loginlist ul li input{ vertical-align:middle;}
+.loginlist ul li label{ display:inline-block; width:60px; text-align:right;}
+.yzmdl img{ vertical-align:middle; width:52px; height:21px; margin:0 5px;}
+input.text2{ height:22px; border:#CCC 1px solid; padding-left:3px;}
+input.text2:hover{border:#1696b9 1px solid; }
+
+.btnlogin{ border:none; text-align:center; color:#FFF ; font-size:12px; font-weight:bold; cursor:pointer; background:url(../images/login/btn.jpg) 0 -118px no-repeat; height:30px; line-height:30px; width:115px;}
+.cooaccunt{ margin:20px 30px 0 30px; _margin:10px 30px 0 30px; border-top:#CCC 1px solid; padding-top:10px;}
+.cooaccunt h4{ font-weight:normal; color: #999; margin-bottom:5px;}
+.cooaccunt a{ display:inline-block; padding-left:20px; margin-right:6px; color:#666; background:url(../img/register/btn.jpg) 0 0 no-repeat;}
+.cooaccunt a.bg1{ background-position:-8px -161px;}
+.cooaccunt a.bg2{ background-position:-6px -202px;}
+.cooaccunt a.bg3{ background-position:-8px -239px;}
+.cooaccunt a:link,.cooaccunt a:visited{color:#666;}
+.cooaccunt a:visited{color:#666; text-decoration:underline;}
+.loginlist ul  li.tips{ height:24px; padding-left:50px; margin-top:3px; }
+
+#login_error{background:#FFF5D1;text-indent:60px;line-height:24px;border:1px solid #ff9900;color:#ff6600;}
+
+
+
+/*找回密码页面*/
+.passcon{ border:#eeeeee 1px solid; border-top:none; padding:30px 0 0 0px; overflow:hidden;}
+.findcon{ margin:0 45px; overflow:hidden;}
+.findcon1{ border-right:#CCC 1px solid;}
+.findcon h3{ font-family:微软雅黑; font-size:18px; color:#333; font-weight:normal; margin-bottom:15px;}
+.passlist p{ height:36px; line-height:36px; margin:4px 0 5px; display:block; *zoom:1; text-align:left;}
+.passlist p .yzmf img{ vertical-align:middle;   *vertical-align: baseline; display:inline-block; margin:0 8px;}
+.submit{  height:45px; margin-top:25px; text-align:left;}
+
+.passlist .typename{ line-height:24px; display:inline-block; margin-right:10px;}
+.questiontips{ clear:left; margin:0 auto; background:url(../images/login/questiontips.jpg) bottom no-repeat; height:200px; padding:40px 65px 20px; margin-top:50px; color:#656565; line-height:24px;}
+.questiontips h5{ font-weight:normal; margin-top:20px; }
+.questiontips li{}
+.findtype{ overflow:hidden; width:870px; margin:0 auto; }
+
+
+ul.find_type_change{ width:820px; margin:0 0 25px 90px; display:block;  border-bottom: #CCC 1px solid; height:40px; line-height:40px;}
+ul.find_type_change li { float:left; width:120px; text-align:center; height:40px; display:inline-block;  }
+ul.find_type_change li a{ font-size:14px; color:#999; font-weight:bold;}
+ul.find_type_change li.current{ border:#CCC 1px solid; border-bottom:#FFF; margin-bottom:-1px; background-color:#FFF; }
+
+
+.tipsstatus{ overflow:hidden; padding:0 0 0 160px;}
+.tipsstatext h3,.tipsstatext p{ font-family:微软雅黑; font-size:18px; font-weight:normal; display:block; overflow:hidden; zoom:1;}
+.tipsimg{ width:130px; height:130px; float:left; background: url(../images/login/tipsimg.jpg) no-repeat center; margin-left:-100%;_margin-left:-90%;}
+.tipsstatext{ margin-left:150px; overflow:hidden; padding-top:10px;}
+.tipsstacon{ width:100%; float:left;}
+
+.text-tip{ margin-left: 10px; color: #999;}
+
+label.error{ position: absolute;}

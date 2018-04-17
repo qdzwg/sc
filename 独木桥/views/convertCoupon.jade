@@ -1,0 +1,19 @@
+extends layout
+block stylesheet
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/order.css')
+
+block content
+    include common/msgTips
+    form(method="post")#orderForm
+        ul.order-list-big.order-list.form-list
+            li
+                input(type="text",placeholder="请输入优惠码",name="code").w100
+        .member-handle.btn-handle
+            button(type="button").btn#saveBtn 确认兑换
+    - if(error!="")
+        +msg(error)
+block scripts
+    script(src=baseUrl+'/javascripts/validate/jquery.validate.min.js')
+    script(src=baseUrl+'/javascripts/validate/messages_zh.min.js')
+    script(src=baseUrl+'/javascripts/validate/additional-methods.js')
+    script(src=baseUrl+'/javascripts/order.js')

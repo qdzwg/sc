@@ -1,0 +1,158 @@
+mixin shortcut(mold,code,proitems)
+   case mold
+      when "ticket"
+         div.page-line
+         +ticketitem(proitems)
+         .page-line
+      when "hotel"
+         div.page-line
+         +hotelitem(proitems)
+         .page-line
+      when "route"
+         div.page-line
+         +routeitem(mold,code,proitems)
+         .page-line
+      when "line"
+         div.page-line
+         +lineitem(mold,code,proitems)
+      when "combo"
+         div.page-line
+         +comboitem(mold,code,proitems)
+         .page-line
+      when "repast"
+         div.page-line
+         +repastitem(proitems)
+         .page-line
+      when "goods"
+         -if(proitems.freight!="0"&&proitems.freight!="1")
+            div.page-line
+            +goodsitem(proitems)
+         .page-line
+
+//-门票操作
+mixin ticketitem(proitems)
+   ul.order-list.myorder-list
+      li
+         label.lab-title 地址
+         div.order-item
+            a(href="/map")
+               span=proitems.address
+               i.font-icon.icon-iconfont-jiantou
+      li
+         label.lab-title 景区介绍
+         div.order-item
+            a(href="javascript:;",data-url="jqjs").article-btn
+               i.font-icon.icon-iconfont-jiantou
+   div.page-line
+   ul.order-list.myorder-list
+      li
+         label.lab-title 预订须知
+         div.order-item
+            a(href="javascript:;",data-url="ydxz").article-btn
+               i.font-icon.icon-iconfont-jiantou
+
+//-酒店操作
+mixin hotelitem(proitems)
+   ul.order-list.myorder-list
+      li
+         label.lab-title 地址
+         div.order-item
+            a(href="/map")
+               span=proitems.addr
+               i.font-icon.icon-iconfont-jiantou
+      li
+         label.lab-title 酒店介绍
+         div.order-item
+            a(href="javascript:;",data-url="jdjs").article-btn
+               span
+               i.font-icon.icon-iconfont-jiantou
+   div.page-line
+   ul.order-list.myorder-list
+      li
+         label.lab-title 预订须知
+         div.order-item
+            a(href="javascript:;",data-url="ydxz").article-btn
+               i.font-icon.icon-iconfont-jiantou
+
+//-跟团游操作
+mixin routeitem(mold,code,proitems)
+   ul.order-list.myorder-list
+      li
+         label.lab-title 预订须知
+         div.order-item
+            a(href="javascript:;",data-url="ydxz").article-btn
+               i.font-icon.icon-iconfont-jiantou
+   div.page-line
+   ul.order-list.myorder-list
+      li
+         label.lab-title.zyx-title 选择出发日期
+         div.order-item
+            a(href="/order/calendar/"+mold+"/"+code)
+               span.order-time=proitems.initTime
+               i.font-icon.icon-iconfont-jiantou
+
+//-自由行操作
+mixin lineitem(mold,code,proitems)
+   ul.order-list.myorder-list
+      li
+         label.lab-title 预订须知
+         div.order-item
+            a(href="javascript:;",data-url="ydxz").article-btn
+               i.font-icon.icon-iconfont-jiantou
+      li
+         label.lab-title 行程介绍
+         div.order-item
+            a(href="javascript:;",data-url="xcjs").article-btn
+               i.font-icon.icon-iconfont-jiantou
+      li
+         label.lab-title 交通信息
+         div.order-item
+            a(href="javascript:;",data-url="jtxx").article-btn
+               i.font-icon.icon-iconfont-jiantou
+      li
+         label.lab-title 简介
+         div.order-item
+            a(href="javascript:;",data-url="jj").article-btn
+               i.font-icon.icon-iconfont-jiantou
+
+//-套票操作
+mixin comboitem(mold,code,proitems)
+   ul.order-list.myorder-list
+      li
+         label.lab-title 预订须知
+         div.order-item
+            a(href="javascript:;",data-url="ydxz").article-btn
+               i.font-icon.icon-iconfont-jiantou
+
+//-餐饮操作
+mixin repastitem(proitems)
+   ul.order-list.myorder-list
+      li
+         label.lab-title 地址
+         div.order-item
+            a(href="/map")
+               span=proitems.addr
+               i.font-icon.icon-iconfont-jiantou
+      li
+         label.lab-title 餐厅介绍
+         div.order-item
+            a(href="javascript:;",data-url="cdjs").article-btn
+               span
+               i.font-icon.icon-iconfont-jiantou
+   div.page-line
+   ul.order-list.myorder-list
+      li
+         label.lab-title 预订须知
+         div.order-item
+            a(href="javascript:;",data-url="ydxz").article-btn
+               i.font-icon.icon-iconfont-jiantou
+
+//-商品操作
+mixin goodsitem(proitems)
+   ul.order-list.myorder-list
+      li
+         label.lab-title 选择分类
+         div.order-item
+            a(href="javascript:;")#sort-btn
+               span
+               i.font-icon.icon-iconfont-jiantou

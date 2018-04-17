@@ -1,0 +1,21 @@
+#YSF-BTN-HOLDER {
+    right: 0;
+    top: 4.2rem;
+    max-width: none;
+    max-height: none;
+    height: 2rem;
+}
+
+#YSF-BTN-HOLDER #YSF-CUSTOM-ENTRY-0 {
+    right: 0;
+    bottom: 0;
+    box-shadow: none;
+}
+
+#YSF-BTN-HOLDER #YSF-CUSTOM-ENTRY-0
+img {
+    width: 32px;
+    height: 60px;
+    max-width: none;
+    max-height: none;
+}

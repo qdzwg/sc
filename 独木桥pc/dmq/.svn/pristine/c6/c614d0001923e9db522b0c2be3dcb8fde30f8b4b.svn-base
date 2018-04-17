@@ -1,0 +1,152 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/common.css')
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/mcommon.css')
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/zt.css')
+block pagecontent
+    #main
+        #topbn
+        #c1.lz(lzimg='http://www.51dmq.com/template/w/news/img/c1.jpg')
+            .hold
+                .f_w(style='width:370px;left:615px;top:170px;')
+                    a.f_pic(href='/details/djbl/102', style='left:0; top:-150px;')
+                        img(src='/upload/201606/27c60154-3950-4e52-8731-e28a3da44fe2.jpg', alt='', width='361', height='143')
+                    .f_c
+                        a.f_t2(href='/details/djbl/102', target='_blank') “宋城辣椒节”
+                        |                                   辣，不仅用来形容味道，我们也常常把那些面容姣好、身材火爆的妹子称为辣妹。东西方辣妹穿上南美风情的性感大羽毛和各式穿越人物，……
+                    .f_m
+                        a(href='/details/djbl/102', target='_blank') >>查看更多
+                .f_w(style='width:370px;left:570px;top:295px;')
+                    a.f_pic(href='http://www.51dmq.com/news/news_1280.htm', style='left:165px;top:35px;')
+                        img(src='/upload/201605/7741881f-a6e4-4a5b-84c4-9c99cbd4d82c.jpg', alt='', width='262', height='149')
+                    div(style='float:left;width:160px;')
+                        .f_c
+                            | IP宋城、网红宋城、科技宋城、国际宋城，宋城集团召开20周年员工大会
+                        .f_m
+                            a(href='http://www.51dmq.com/news/news_1280.htm', target='_blank') >>查看更多
+                    div(style='float:right;width:203px;')
+                        a.f_t(href='http://www.51dmq.com/news/news_1280.htm', target='_blank') 修炼20载终成大器，再出发宋城演艺“野心”爆棚
+                .f_w(style='width:155px;left:200px;top:200px;')
+                    a.f_pic(href='http://www.51dmq.com/news/news_1040.htm', style='left:-198px;top:0;')
+                        img(src='/upload/201601/17546a4e-49d9-46e0-9047-fb67a3951bba.jpg', alt='', width='189', height='255')
+                    a.f_t(href='http://www.51dmq.com/news/news_1040.htm', target='_blank') 杭州宋城千古情主题酒店延续宋城“建筑为形，文化为魂”的理念
+                    .f_c
+                        | 以建筑为形，以文化为魂。在这个诗情画意的季节，来天堂杭州的宋城邂逅不一样的自己，感受不一样的千古情……
+                    .f_m
+                        a(href='http://www.51dmq.com/news/news_1040.htm', target='_blank') >>查看更多
+        #c2.lz(lzimg='http://www.51dmq.com/template/w/news/img/c2.jpg')
+            .hold
+                .f_w(style='width:160px;left:835px;top:275px;')
+                    a.f_pic(href='http://www.51dmq.com/news/news_1100.htm', style='left:-212px;top:0px;')
+                        img(src='/upload/201310/e9eaded5-1d23-4c41-8e98-50628e02639a.jpg', alt='', width='201', height='172')
+                    .f_c
+                        a.f_t2(href='http://www.51dmq.com/news/news_1100.htm', target='_blank') 杭州宋城第一世界大酒店：美食之旅
+                        |                                   五星级东南亚热带雨林主题酒店餐厅、国家金叶级绿色旅游饭店、给你不一样的美食之旅......
+                    .f_m
+                        a(href='http://www.51dmq.com/news/news_1100.htm', target='_blank') >>查看更多
+                .f_w(style='width:170px;left:220px;top:220px;')
+                    a.f_pic(href='http://www.51dmq.com/news/news_1043.htm', style='top:0px;left:-210px;')
+                        img(src='/upload/201601/5d7ee7fa-e8e2-417d-88a0-e97c0245bcda.jpg', alt='', width='200', height='215')
+                    a.f_t(href='http://www.51dmq.com/news/news_1043.htm', target='_blank') 吃货嘉年华—大宋八方小吃
+                    .f_c
+                        | 美味的绕绕糖，用糖果做的脑残片、开心药、后悔药，包装精美的千古情饼适合作为礼品带给亲朋好友。
+                    .f_m
+                        a(href='http://www.51dmq.com/news/news_1043.htm', target='_blank') >>查看更多
+                .f_w(style='width:370px;left:615px;top:20px;')
+                    a.f_pic(href='http://www.51dmq.com/news/news_1011.htm', style='left:-50px;top:80px;')
+                        img(src='/upload/201601/2c0e2dd1-18ad-40f2-8ba4-e47a8664e67b.jpg', alt='', width='397', height='135')
+                    .f_c
+                        a.f_t2(href='http://www.51dmq.com/news/news_1011.htm', target='_blank') 宋城美食大盘点
+                        |                                   宋城位于杭州，杭州当地美食种类众多，口味齐全，那么，到底杭州宋城有什么好吃的，跟着小编去尝尝吧......
+                    .f_m(style='margin-top:-20px;')
+                        a(href='http://www.51dmq.com/news/news_1011.htm', target='_blank') >>查看更多
+        #c3.lz(lzimg='http://www.51dmq.com/template/w/news/img/c3.jpg')
+            .hold
+                .f_w(style='left:625px;top:35px;width:335px;')
+                    a.f_pic(href='http://www.51dmq.com/news/news_1240.htm', style='left:-2px;top:39px;')
+                        img(src='/upload/201605/352f413f-0a45-4b34-ac72-a6f9fcd7fd85.png', alt='', width='201', height='172')
+                    a.f_t(href='http://www.51dmq.com/news/news_1240.htm', target='_blank') 宋城旅游攻略
+                    .f_c(style='margin-left:205px;')
+                        | 有一种情怀在宋城流传千古，有一段爱恋在宋城穿越千年，这是一场跨越千年的文化之旅，杭州、三亚、丽江、九寨，你又岂能错过？  ……
+                    .f_m(style='margin-left:205px;')
+                        a(href='http://www.51dmq.com/news/news_1240.htm', target='_blank') >>查看详情
+                .f_w(style='width:300px;left:650px;top:430px;')
+                    a.f_pic(href='http://www.51dmq.com/news/news_1062.htm', style='left:-2px;top:-138px;')
+                        img(src='/upload/201403/0b8727a8-37ab-4ee7-899a-4c9856dd206b.jpg', alt='', width='331', height='137')
+                    a.f_t(href='http://www.51dmq.com/news/news_1062.htm', target='_blank') 小编带你去看《三亚千古情》
+                    .f_c
+                        | 大型歌舞《三亚千古情》是获得海南省"五个一工程"奖的旅游演艺作品。
+                    .f_m
+                        a(href='http://www.51dmq.com/news/news_1062.htm', target='_blank') >>查看更多
+                .f_w(style='width:240px;left:220px;top:255px;')
+                    a.f_pic(href='http://www.51dmq.com/news/news_1044.htm', style='left:-220px;top:-9px;')
+                        img(src='/upload/201309/7a5c7810-4752-4fbd-988e-4d5dc0882247.jpg', alt='', width='210', height='200')
+                    a.f_t(href='http://www.51dmq.com/news/news_1044.htm', target='_blank') 江南烟雨中，宋城千古情
+                    .f_c
+                        | 江南烟雨醉美在杭州，有一段千万不能错过的旅途那就是宋城。而在宋城中，最不能错过的就是宋城千古情演绎……
+                    .f_m
+                        a(href='http://www.51dmq.com/news/news_1044.htm', target='_blank') >>查看更多
+        #c4.lz(lzimg='http://www.51dmq.com/template/w/news/img/c4.jpg')
+            .hold
+                .f_w(style='width:200px;left:595px;top:295px;')
+                    a.f_pic(href='http://www.51dmq.com/news/news_1262.htm', style='left: 226px; top: -7px;')
+                        img(src='/upload/201605/205cce53-f5fa-4888-9393-734a3573e12d.jpg', alt='', width='177', height='176')
+                    a.f_t(href='http://www.51dmq.com/news/news_1262.htm', target='_blank') 杭州90后宋城集体“裸婚”，开启浪漫之旅
+                    .f_c
+                        | 他们不要房子，不要车子，鲜花为衣，绿草为裙，在宋城景区的爱情隧道里深情拥吻，宣誓裸婚。
+                    .f_m
+                        a(href='http://www.51dmq.com/news/news_1262.htm', target='_blank') >>查看更多
+                .f_w(style='width:240px;top:165px;left:215px;')
+                    a.f_pic(href='http://www.51dmq.com/news/news_1261.htm', style='left:-215px;top:-10px;')
+                        img(src='/upload/201407/19e0fdaa-3fa2-4cf2-8cd4-58d3214a6a22.jpg', alt='', width='202', height='171')
+                    a.f_t(href='http://www.51dmq.com/news/news_1261.htm', target='_blank') 宋城特色民间纪念品——糖画
+                    .f_c
+                        | 糖画是一种汉族民间手工艺，以糖为材料来进行造型的。所用的工具仅一勺一铲，糖料一般是红、白糖加上少许饴糖放在炉子上用温火熬制……
+                    .f_m
+                        a(href='http://www.51dmq.com/news/news_1261.htm', target='_blank') >>查看更多
+                .f_w(style='left:795px;width:200px;top:45px;')
+                    a.f_pic(href='http://www.51dmq.com/news/news_1017.htm', style='left: -188px; top: -1px;')
+                        img(src='/upload/201605/6bca004f-ac61-45c3-9b61-55adbf927f7b.jpg', alt='', width='177', height='176')
+                    a.f_t(href='http://www.51dmq.com/news/news_1017.htm', target='_blank') 玩的就是穿越，杭州湘湖宋城景区开园引爆网络
+                    .f_c
+                        | 玩的就是穿越，杭州湘湖宋城景区开园引爆网络。邀请千名金刚芭比穿越成《宋城千古情》里的“岳家军”，共摆健美造型创下纪录。
+                    .f_m
+                        a(href='http://www.51dmq.com/news/news_1017.htm', target='_blank') >>查看更多
+        #c5.lz(lzimg='http://www.51dmq.com/template/w/news/img/c5.jpg')
+            .hold
+                .f_w(style='width:370px;left:345px;top:55px;')
+                    a.f_t(href='http://www.51dmq.com/news/news_1300.htm', style='font-size:20px;margin-bottom:5px;') 寻宋记
+                    .f_c(style='line-height:22px;')
+                        | 这算是一篇周末游玩小记，一家人来到了一个有春暖花开、有精彩演出、有历史建筑、还有儿童乐园的好玩地。这是哪儿呢？卖个关子，往下看吧......
+                    .f_m
+                        a(href='http://www.51dmq.com/news/news_1300.htm', target='_blank') >>查看更多
+block scriptspage
+    script(src=baseUrl+'/javascripts/login.js')
+    script(type='text/javascript').
+            var win = $(window);
+            var doc = $(document);
+            $(function(){
+            check_load();
+            win.scroll(function(){
+            check_load();
+            }).resize(function(){
+            check_load();
+            });
+            });
+            function check_load(){
+            $('.lz').each(function(){
+            if ((win.height()+doc.scrollTop())>$(this).offset().top){
+            var img = new Image();
+            var tval = $(this).attr('lzimg');
+            var tobj = $(this);
+            img.onload = function(){
+            tobj.hide();
+            tobj.find('.hold').show();
+            tobj.width('auto').css({'background':'url('+tval+') no-repeat center top'});
+            tobj.fadeIn('fast');
+            tobj.removeClass('lz');
+            }
+            img.src = tval;
+            }
+            });
+            }

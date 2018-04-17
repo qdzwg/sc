@@ -1,0 +1,33 @@
+extends ../../layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl + '/stylesheets/help.css')
+block pagecontent
+    include ../../common/helpList
+    #main.cf
+        +helpList(page)
+        #help_c_zone
+            .help_t 帮助中心　Help Center
+            .help_c.help_tvb
+                .bread
+                    a(href='/help/helpcenter') 帮助中心首页
+                    |  > 预订常见问题：
+                dl
+                    dt
+                        a(name='q1') 1、如何预订门票？
+                    dd 您好，门票预订的流程为：选择景区——》选择票型——》点击预订，填写订单信息——》在线支付——》预订成功。如预订过程中有任何疑问，可随时联系客服人员进行咨询。
+                dl
+                    dt
+                        a(name='q2') 2、如何预订酒店
+                    dd
+                        | 您好，酒店预订的流程为：选择酒店——》选择入住日期和退房日期——》选择房型——》点击预订，填写订单信息——》在线支付——》预订成功。如预订过程中有任何疑问，可随时联系客服人员进行咨询。
+                dl
+                    dt
+                        a(name='q3') 3、怎么进行网上支付？
+                    dd
+                        | 您好，提交订单成功后，页面上会显示立即支付链接，您可以点击该链接跳转至支付宝平台进行支付；您也可以登录后进入会员中心，找到相应订单后，点击该订单右侧的支付链接进行支付。
+                dl
+                    dt
+                        a(name='q4') 4、网上预订有什么优惠吗？
+                    dd
+                        | 您好，目前通过宋城旅游旅游网在线预订景区门票，平均至少能够享受到门市价9折的优惠幅度；另外，我们还将不定期的举办各种促销活动，为您提供更多的优惠，请多多关注我们。
+

@@ -1,0 +1,113 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/order.css')
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/coupon.css')
+   -if(mold=="goods"||mold=="score")
+      link(rel='stylesheet', href=baseUrl+'/javascripts/select-area/mobile-select-area.min.css')
+
+block content
+   include order/header
+   include order/orderForm
+   include order/orderCalendar
+   include order/coupon
+   include details/article
+   include common/msgTips
+   include common/commonFun
+   +orderheader(mold,proitems)
+   form(method="post")#orderForm
+      - if(mold=="goods")
+        +form(mold,proitems.datas,userdata,code)
+      -else if(mold=="score")
+         -var civ=proitems.civ?proitems.civ:"";
+         +form(mold,proitems.datas,userdata,code,stockPriceMap,civ)
+      -else
+         +form(mold,proitems,userdata,code)
+      if(mold!="score")
+        +coupon(mold,code)
+      div.page-line
+   - if(proitems.stockLeft>proitems.minNum||proitems.stockLeft==proitems.minNum||proitems.stockLeft==null)
+      footer.order-footer
+         div.order-total.float-layer
+            - if(mold=="show")
+               -if(proitems.datas.stockPriceMap.length>0)
+                  a(href="javascript:;",data-type="yw").fr.btn-order.background-base#saveBtn 提交订单
+                  a(href="javascript:;").fr.btn-order.background-base#addCart 加入购物车
+               -else
+                  a(href="javascript:;").fr.btn-order.background-base.btn-disabled 提交订单
+                  a(href="javascript:;").fr.btn-order.background-base.btn-disabled 加入购物车
+            - else if(mold=="goods")
+               a(href="javascript:;",data-type="yw").fr.btn-order.background-base#saveBtn 提交订单
+               a(href="javascript:;").fr.btn-order.background-base#addCart 加入购物车
+            -else if(mold=="score")
+                if(proitems.datas.productType=="entity"&&proitems.datas.leftAmount==0)
+                    a(href="javascript:;").fr.btn-order.background-base.btn-disabled 提交订单
+                else
+                    a(href="javascript:;",data-canbuy=proitems.datas.canBuy).fr.btn-order.background-base#saveBtn 提交订单
+            -else
+               -if(proitems.stockPriceMap.length>0)
+                  a(href="javascript:;").fr.btn-order.background-base#saveBtn 提交订单
+                  a(href="javascript:;").fr.btn-order.background-base#addCart 加入购物车
+               -else
+                  a(href="javascript:;").fr.btn-order.background-base.btn-disabled 提交订单
+                  a(href="javascript:;").fr.btn-order.background-base.btn-disabled 加入购物车
+            if(mold!="score")
+                p.total-price 订单总额：
+                   span.price
+                      em ￥
+                      strong#totalprice
+            else
+                p.total-price 订单总积分：
+                    span.price
+                        strong#totalprice=proitems.datas.price
+               //- if(mold=="hotel")
+               //   a(href="javascript:;").c-base#costDetail="费用明细"
+   -else
+      footer.order-footer
+         div.order-total.float-layer
+            a(href="javascript:;").fr.btn-order.background-base.btn-disabled 提交订单
+   +calendar()
+   - if(mold=="line")
+      +article("预订须知",proitems.notice,"notice")
+   -else if(mold=="combo")
+      +article("预订须知",proitems.info,"notice")
+   -else
+      +article("预订须知",proitems.orderNotic,"notice")
+   - if(mold=="hotel")
+      +costDetai(mold,proitems.stockPriceMap,defaultDate,proitems.minNum)
+   .tips-layer#couponLayer
+      .tips-layer-header
+         a(href="javascript:;")
+            i.font-icon.icon-iconfont-32pxchaxian
+      .tips-content="使用优惠券需绑定身份证！"
+      .tips-handle
+         a(href="/user/member").ent-btn="去绑定"
+         a(href="javascripts:;").cancel-btn="取消"
+   div.mask#mask
+   - if(error!="")
+      +msg(error)
+   if(mold=="score"&&userdata.idCardBundFlag=='0')
+        .tips-layer(style="display:block;")#tipsLayer
+            .tips-layer-header
+                a(href="javascript:;")
+                    i.font-icon.icon-iconfont-32pxchaxian
+            .tips-content="兑换积分商城产品需绑定身份证"
+            .tips-handle
+                a(href="/user/member").ent-btn="去绑定"
+                a(href="javascripts:;").cancel-btn="取消"
+        .mask(style="display:block;")#mask
+   -if(mold=="combo"||mold=="show"||mold=="score")
+      +goreturn("other","","","")
+   -else
+      +goreturn("detail",mold,code,proId)
+block scripts
+   script(src=baseUrl+'/javascripts/jquery.wap-calendar.js')
+   script(src=baseUrl+'/javascripts/pageItem.js')
+   script(src=baseUrl+'/javascripts/validate/jquery.validate.min.js')
+   script(src=baseUrl+'/javascripts/validate/messages_zh.min.js')
+   script(src=baseUrl+'/javascripts/validate/additional-methods.js')
+   script(src=baseUrl+'/javascripts/order.js')
+   -if(mold=="goods"||mold=="score")
+      script(src=baseUrl+'/javascripts/select-area/mobile-select-area.min.js')
+      script(src=baseUrl+'/javascripts/select-area/dialog.min.js')
+   script.
+      var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1262993814'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1262993814%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));

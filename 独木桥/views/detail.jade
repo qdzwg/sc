@@ -1,0 +1,102 @@
+extends layout
+block stylesheet
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/details.css')
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/swiper.min.css')
+
+block content
+    include common/headPic
+    include details/header
+    include details/shortcut
+    include details/main
+    include details/article
+    include  details/comment
+    include  details/footer
+    include common/commonFun
+    -if(mold=="goods")
+        +carouselPic("details",item.picList)
+    -else if(mold=="line")
+        +carouselPic("details",item.imgUrl,"line")
+    -else
+        +carouselPic("details",imgItems)
+    +detailsHeader(mold,item,flag)
+    case mold
+        when "ticket"
+            +shortcut(mold,code,item)
+            - var tabitem=[{"title":"门票","content":item.ticketModelInfos,"mold":"ticket"},{"title":"演出票","content":showItems.items,"mold":"show"},{"title":"套票","content":comboItems,"mold":"combo"}]
+            +newtabList(tabitem)
+            //+article("景区介绍",item.desc,"jqjs")
+            //+article("预订须知",item.ordrNotice,"ydxz")
+            +article("弹出层","","layer")
+            +articleLayer("预定须知","","layer")
+        when "hotel"
+            +shortcut(mold,code,item)
+            - var tabitem=[{"title":"房型","content":item,"mold":"hotel"},{"title":"自由行","content":lineItems,"mold":"line"}]
+            +tabList(tabitem)
+            include order/orderCalendar
+            +calendar()
+            //+article("酒店介绍",item.desc,"jdjs")
+            //+article("预订须知",item.orderNoticeString,"ydxz")
+            +article("弹出层","","layer")
+            +articleLayer("预定须知","","layer")
+        when "line"
+            +zyxDetailsList(item.tcAndZyx)
+            +shortcut(mold,code,item)
+            +article("弹出层","","layer")
+            +articleLayer("预定须知","","layer")
+            //+article("预定须知",item.notice,"ydxz")
+            //+article("行程介绍",item.tripIntroduce,"xcjs")
+            //+article("交通信息",item.traffic,"jtxx")
+            //+article("简介",item.introduction,"jj")
+        when "combo"
+            .page-line
+            - var articleitem=[{"title":"预定须知","content":item.featureDesc},{"title":"产品介绍","content":item.cinfo}]
+            +detaisarticle(articleitem)
+            +articleLayer("预定须知","","layer")
+        when "goods"
+            +shortcut(mold,code,item)
+            - var articleitem=[{"title":"商品介绍","content":item.content},{"title":"购买说明","content":item.orderNotice}]
+            +detaisarticle(articleitem)
+            - if(item.freight=="2"||item.freight=="3")
+                +goodsMold(item.freight,item.id)
+            +articleLayer("预定须知","","layer")
+    -if(mold=="goods")
+        +comment("detail",commentItems,item.modelCode,mold)
+    -else
+        +comment("detail",commentItems,item.productCode,mold)
+    if(mold=="goods")
+        +footer(mold,code,item.freight)
+    -if(mold=="combo")
+        footer.order-footer
+            div.order-total.float-layer.line-layer
+                a(href="/order/" + mold + "/" + code).fr.btn-order.background-base 提交订单
+                p.total-price
+                    a(href="tel:400-8888-518").details-tel="电话咨询"
+    //-分享完提示
+    .share-layer#shareLayer
+        .share-header
+            a(href="javascript:;")#shareClose
+                i.font-icon.icon-iconfont-32pxchaxian
+        .share-panel="恭喜您！获得"
+            em#shareNum=10
+            ="个积分！"
+        .tips-handle
+            a(href="javascript:;").ent-btn="确定"
+    .sharetip#sharetip
+    include common/footer
+    div.mask#mask
+    if(code=="5300"||code=="5302"||code=="5322")
+        #adv-layer.adv-layer
+            a(href="https://51dmq.com/order/ticket/5621")
+                img(src="/images/index/adv.png")
+        #mask(style="display:block;").mask
+    +goreturn("list",mold,"")
+    - if(mold=="hotel")
+        script(src=baseUrl + '/javascripts/jquery.wap-calendar.js')
+    script(src=baseUrl + '/javascripts/jquery.flexslider-min.js')
+    script(src='https://res.wx.qq.com/open/js/jweixin-1.0.0.js')
+    script(src=baseUrl + '/javascripts/details.js')
+    script(src=baseUrl + '/javascripts/swiper.min.js')
+    script(src=baseUrl + '/javascripts/share/soshm.min.js')
+block scripts
+
+

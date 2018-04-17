@@ -1,0 +1,12 @@
+mixin carouselPic(mold,items)
+    -var flag=!arguments[2]
+    div.block_home_slider(class=mold+"-slider")
+        div#home_slider.flexslider
+            ul.slides
+                - each item in items
+                    li
+                        div.slide
+                            -if(flag)
+                                img(src=item.imgurl.replace('http://odl5az86x.bkt.clouddn.com','//static.51dmq.com')+"?imageMogr2/thumbnail/640x/strip/quality/50")
+                            -else
+                                img(src=item.replace('http://odl5az86x.bkt.clouddn.com','//static.51dmq.com')+"?imageMogr2/thumbnail/640x/strip/quality/50")

@@ -1,0 +1,48 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel='stylesheet', href=baseUrl + '/stylesheets/choiceness.css')
+    link(rel='stylesheet', href=baseUrl + '/stylesheets/score.css')
+block pagecontent
+    include common/comFun
+    #main
+        #slideshow1
+            a(href='http://www.51dmq.com/songcheng.htm', target='_blank', title='宋城千古情')
+                img(src=baseUrl + '/images/demo/c8fb4ca7-aa76-48e4-b2a1-7351c315cda3.jpg', alt='')
+            a(href='http://www.51dmq.com/siyuanhebi.htm', target='_blank', title='三亚千古情')
+                img(src=baseUrl + '/images/demo/aa7aef16-60d6-4e50-9189-c0d15bcd7538.jpg', alt='')
+            a(href='http://www.51dmq.com/lijiang.htm', target='_blank', title='丽江千古情')
+                img(src=baseUrl + '/images/demo/d32522ed-56e9-48ad-bcc8-99bc195a2a5d.jpg', alt='')
+            a(href='http://www.51dmq.com/jiuzhai.htm', target='_blank', title='九寨千古情')
+                img(src=baseUrl + '/images/demo/24bf1f1d-47f3-4ebe-a3e0-4df52bfd35a6.jpg', alt='')
+            a(href='http://www.51dmq.com/ticket/ticket_1366.htm', target='_blank', title='泰山千古情')
+                img(src=baseUrl + '/images/demo/98a1450c-b8ed-48c5-8e11-f77a0e265484.jpg', alt='')
+            a(href='http://51dmq.com/yunmanhotel.htm', target='_blank', title='云和湖宋城云曼酒店')
+                img(src=baseUrl + '/images/demo/f4376fdc-8490-4e11-aad9-eca8139fd676.jpg', alt='')
+            a(href='http://www.51dmq.com/yunmanwenquan.htm', target='_blank', title='宋城云曼温泉')
+                img(src=baseUrl + '/images/demo/84a52cc2-4a5f-4352-ad31-75a73d1df3dc.jpg', alt='')
+            p(style='width:400px;height:30px;background:url(about:blank);position:absolute;left:0;bottom:0;z-index:8')
+            span.koosel(style='right: 155px; bottom: 5px; z-index: 9;') 1
+            span(style='right: 130px; bottom: 5px; z-index: 9;') 2
+            span(style='right: 105px; bottom: 5px; z-index: 9;') 3
+            span(style='right: 80px; bottom: 5px; z-index: 9;') 4
+            span(style='right: 55px; bottom: 5px; z-index: 9;') 5
+            span(style='right: 30px; bottom: 5px; z-index: 9;') 6
+            span(style='right: 5px; bottom: 5px; z-index: 9;') 7
+        .list_b
+            .list_score
+            .score_cw
+                each item,i in listitems.items
+                    -var className=""
+                    if((i+1)%3==0)
+                        -className="last-item"
+                    div(class=className).score-item
+                        .score-item-img
+                            img(src=item.imgurl)
+                        h3.score-item-title
+                            +strcut(item.productName,14)
+                        p.score-item-explian
+                            ="兑换价："
+                            em=item.price
+                            ="积分"
+                        a(href="/order/score/"+ item.id).exchange-btn="立即兑换"
+block scriptspage

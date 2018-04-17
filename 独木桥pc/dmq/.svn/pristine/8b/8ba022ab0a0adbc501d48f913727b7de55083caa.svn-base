@@ -1,0 +1,54 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_common.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/usercenter.css')
+    script.
+        var currentPage=#{orderList.currentPage};
+        var totalPage=#{orderList.totalPage};
+block pagecontent
+    include common/comFun
+    #uc_wrapper
+        include user/top
+        #uc_content.cf
+            include user/left
+            #uc_main
+                .date_sel_w.cf
+                    form#searchForm(method='get')
+                        input#orerStatusType(type='hidden', name='orerStatusType', value='4')
+                        label 下单时间
+                        .date_txt_w
+                            input#orderStarDate.date_txt(name='corderInfo.orderStarDate', type='text', value='', onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',skin:'blue'})")
+                            |  - 
+                            input#orderEndDate.date_txt(name='corderInfo.orderEndDate', type='text', value='', onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',skin:'blue'})")
+                        input#date_search_btn(type='button', name='button', value='查询')
+                .t_w
+                    .t_head_w.cf
+                        .t_name 积分订单
+                    table.common_t(cellpadding='0', cellspacing='0')
+                        tr
+                            th.c1 产品名称
+                            th.c2 购买份数
+                            th.c3 处理状态
+                            th.c4 兑换时间
+                            th.c7 操作
+                        each item in orderList.items
+                            tr
+                                td.c1=item.info
+                                td.c2 #{item.initAmount}份
+                                -var status=''
+                                case item.dealResult
+                                        when '0'
+                                            -status='未处理'
+                                        when '1'
+                                            -status='已处理'
+                                td.c3=status
+                                td.c3
+                                    b.dor
+                                        =item.createTime
+                                td.op.c7
+                                    a.opebutton(href='/user/order/'+nativePage+'/'+item.id) 详情
+                    .pagings
+                        ul.slide-page#slidePage
+block scriptspage
+    script(src=baseUrl+'/javascripts/datepicker/WdatePicker.js')
+    script(src=baseUrl+'/javascripts/uc_common.js')

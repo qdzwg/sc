@@ -1,0 +1,76 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/common.css')
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/mcommon.css')
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/register.css')
+block pagecontent
+    .regcontent
+        .topregtit
+            | 找回登录密码
+        // topregtit
+        .passcon
+            ul.find_type_change
+                li
+                    a(href='/findByMobile') 通过手机找回
+                li.current
+                    a(href='/findByEmail') 通过邮箱找回
+            .findtype
+                .findcon
+                    #mobileForm.passlist
+                        form#validateForm( method='post', name='validateForm', novalidate='novalidate')
+                            input(name='opType', value='1', type='hidden')
+                            p
+                                span.typename.wid70.tealgnl 邮箱地址：
+                                input.text.wid200(name='access', type='text', validate='{required:true,email:true}')
+                            p
+                                span.typename.wid70.tealgnl 验证码：
+                                span.inlineblock.tealgnl
+                                    input(type="text",name="emailCode" validate="{required:true}").text.wid70
+                                    a(href="javascript:;")#sendCode 发送验证码
+                            p
+                                span.typename.wid70.tealgnl="密码："
+                                span.inlineblock.tealgnl
+                                    input(type="text",name="loginPass",validate="{required:true,minlength:6}")#password.text.wid200
+                            p
+                                span.typename.wid70.tealgnl="确认密码："
+                                span.inlineblock.tealgnl
+                                    input(type="text",name="",validate="{required:true,minlength:6,equalTo:'#password'}").text.wid200
+                            p.submit.mt30
+                                input.btnregc(name='', type='submit', value='保存')
+                    // passlist
+                // findcon
+            // findtype
+            .questiontips
+                h4
+                    | 遇到问题？
+                ul
+                    h5
+                        | 1,邮箱找回密码流程
+                    li
+                        | 答：提交申请 -> 登录邮箱接受邮件 -> 点击邮件中的链接 -> 设置您的新密码 -> 用新密码登录
+                    h5
+                        | 2.手机找回密码流程
+                    li
+                        | 答：提交申请 -> 系统发送校验码短信至您填写的手机号 -> 在新的页面中输入4位校验码，确认提交 -> 设置您的新密码 ->
+                        | 用新密码登录
+block scriptspage
+    script(src=baseUrl+'/javascripts/jquery/jquery.form.js')
+    script(src=baseUrl+'/javascripts/jquery/jquery.validator.js')
+    script(src=baseUrl+'/javascripts/jquery/jquery.validate.js')
+    script(src=baseUrl+'/javascripts/jquery/validateExtend.js')
+    script(src=baseUrl+'/javascripts/jquery/jquery.metadata.js')
+    script(src=baseUrl+'/javascripts/formExtends.js')
+    script.
+        $(function () {
+            $('#validateForm').validate();
+            $('#sendCode').on('click', function () {
+                var email = $('#validateForm input[name=emailCode]').val();
+                $.get('/emailCode?email='+email)
+                        .success(function (data) {
+                            document.write(data);
+                        })
+                        .error(function (err) {
+                        });
+            });
+        })
+

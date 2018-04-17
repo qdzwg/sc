@@ -1,0 +1,15 @@
+extends layout
+block stylesheet
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/coupon.css')
+
+block content
+    include common/commonFun
+    .packets.coupon-info
+        span.value=item.cutSum
+        p="有效时间："
+            +formatDate(item.useBegDate)
+            ="至"
+            +formatDate(item.useEndDate)
+    p.coupon-info-explian="恭喜您的获得"+item.cutSum+"元优惠券！"
+    a(href="/getcoupon?id="+item.id).coupon-btn="再来一次"
+    a(href="/user/mycoupon?useflag=1").coupon-btn.view-btn="查看优惠券"

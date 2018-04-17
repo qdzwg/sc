@@ -1,0 +1,40 @@
+extends layout
+block stylesheet
+	link(rel='stylesheet', href=baseUrl+'/stylesheets/dropload.css')
+	link(rel='stylesheet', href=baseUrl+'/stylesheets/list.css')
+
+block content
+	include list/pagelist
+	include common/commonFun
+	case mold
+		when "ticket"
+			+pageticketList(listitems)
+		when "hotel"
+			+pagehotelList(listitems)
+		when "combo"
+			.line-tab
+				a(href="/list/combo").cur="景+景"
+				a(href="/list/line")="景+酒"
+			+pagecomboList(listitems,"combo")
+		when "line"
+			.line-tab
+				a(href="/list/combo")="景+景"
+				a(href="/list/line").cur="景+酒"
+			+pagelineList(listitems,"line")
+		when "show"
+			+pageshowList(listitems)
+		when "goods"
+			+pagegoodsList(listitems)
+		when "promotion"
+			+pagepromotionList(listitems)
+		when "score"
+			+pagescoreList(listitems)
+	div.mask#mask
+	include common/footer
+	+goreturn("","","")
+block scripts
+	script(src=baseUrl+'/javascripts/dropload.min.js')
+	script(src=baseUrl+'/javascripts/list.js')
+	if(mold=="promotion")
+		script.
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1262993814'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1262993814%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));

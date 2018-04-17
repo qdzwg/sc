@@ -1,0 +1,383 @@
+extends layout
+block stylesheet
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/seat.css')
+block content
+    include common/commonFun
+    include common/msgTips
+    input(type="hidden",value=areaInfo[0].DATA[0].ROWCOUNTS)#rowCounts
+    input(type="hidden",value=areaInfo[0].DATA[0].COLCOUNTS)#colCounts
+    input(type="hidden",value=areaInfo[0].DATA[0].TOTALCOUNT)#totalCount
+    input(type="hidden",value=areaInfo[0].DATA[0].AREACODE)#areaCode
+    #header.header
+        h3.date-title=orderInfo[0].showName
+        span.date-shownumber
+            span#travelDate
+                +formatDate(orderInfo[0].travelDate)
+            font=orderInfo[0].showSessionTime+"场"
+            em#ticketNum=orderInfo[0].initAmount
+            //-em#ticketNum=3
+            | 张
+    .ticket-panel(style="display:none;")
+        .select-type-box
+            label#select-type="票型选择"
+            select(name="select-type").select-ticket-type#select-ticket-type
+                each item,i in orderInfo
+                    option(value=item.orderDetailNo,data-type=item.ticketName,data-showSessionTime=item.showSessionTime,data-traveldate=item.travelDate,data-num=item.initAmount,data-selectnum=0,data-theaterid=item.theaterId,data-areacode=item.areaCode,data-areainfo=areaInfo[i].DATA[0])=item.ticketName
+    .wrapper
+        .seat-panel#seatPanel
+            .scroller#seats
+            .seat-mark#seatMark
+                .seat-load
+                    span.loading
+                    ="座位正在加载中......"
+        //-.side#side
+        //-    ol
+        .stage-tit
+            img(src="/images/common/stage_tit.png")
+        .seat-explian
+            .seat-iden
+                p
+                    span.iconfont.icon-seat.clicked
+                    span="可选"
+                p
+                    span.iconfont.icon-seat.sold
+                    span="不可选"
+            .seat-handle
+                a(href="javascript:;")#enlarge-btn
+                    i.iconfont.icon-enlarge
+                a(href="javascript:;")#narrow-btn
+                    i.iconfont.icon-narrow
+    //-.seatarea-list#seatarea
+    //-    each item in anchorList
+    //-       a(href="javascript:;",data-row=item.anchorRow,data-col=item.anchorCol)=item.theaterName
+    footer.seat-footer
+        .total
+            .select-btm
+                form(method="post")#validateForm
+                    input(type="hidden",name="seats")#seatInfos
+                    a(href="javascript:;").enter-btn.disabled#saveBtn="确认选座"
+                    .total-price
+                        p
+                        p="共计："
+                            span.num#num=0
+                            | 张
+    .select-seat#selectSeat
+        ul
+    .tips-warning#tipsWarning
+        .tips-warning-header
+            i.iconfont.icon-warning
+            ="温馨提醒"
+        .tips-warning-content
+            p="1. 游玩当天不支持选座。"
+            p="2. 具体演出时间会根据当日景区情况作出适当调整, 如有不便,敬请谅解。"
+            p="3、已选座的订单，不支持部分退。"
+    .tips-warning-close#warningClose
+        i.iconfont.icon-del
+        span="知道了"
+    .mask(style="display:block;")#maskWarning
+    - if(error)
+        +msg(error)
+block scripts
+    script(src=baseUrl+'/javascripts/async.min.js')
+    script(src=baseUrl+'/javascripts/jquery.seats.js')
+    script.
+        $('.show-area').click(function () {
+            $('.show-area-img').show();
+            $('.show-area-img .close').click(function () {
+                $(this).parent().hide();
+            })
+        });
+        var golab_selectNum = $('#select-ticket-type').find("option:selected").data("selectnum");
+        var selectedSeat = [], parameter =[{}, {
+            orderCode: $("#select-ticket-type option:selected").val(),
+            showSessionTime: $("#select-ticket-type option:selected").data("showsessiontime"),
+            travelDate: $("#travelDate").text()
+        }] ;
+        $(window).load(function () {
+            //var seatUrl='http://show.51dmq.com/wap/show/querySeatInfo.htm';
+            //var seatUrl='http://scshow.sendinfo.com.cn/wap/show/querySeatInfo.htm';
+            //var seatUrl='/data/seat/'+$("#areaCode").val()+'.json';
+            var selectitme=$("#select-ticket-type").find("option:selected");
+            //var seatUrl=['/data/seat/t'+selectitme.data("theaterid")+'s'+selectitme.data("areacode")+'.json','/seats/seatBooking'];
+            var seatUrl='/seats/seatBooking';
+            $('#select-ticket-type').change(function () {
+                var $val = $(this).val(),selectedobj=$(this).find("option:selected");
+                $("#travelDate").text(selectedobj.data("traveldate").split(" ")[0]);
+                $("#ticketNum").text(selectedobj.data("num"));
+                $("#areaCode").val(selectedobj.data("areacode"));
+                $(".date-shownumber").find("font").text(selectedobj.data("showsessiontime")+"场");
+                $("#rowCounts").val(selectedobj.data("areainfo").ROWCOUNTS);
+                $("#colCounts").val(selectedobj.data("areainfo").COLCOUNTS);
+                $("#totalCount").val(selectedobj.data("areainfo").TOTALCOUNT);
+                //seatUrl=['/data/seat/t'+selectedobj.data("theaterid")+'s'+selectedobj.data("areacode")+'.json','/seats/seatBooking'];
+                seatUrl='/seats/seatBooking';
+                parameter =[{}, {
+                    orderCode: selectedobj.val(),
+                    showSessionTime: selectedobj.data("showsessiontime"),
+                    travelDate: $("#travelDate").text()
+                }];
+                $("#seats").seats({
+                    url: seatUrl,
+                    selected: selectedSeat,
+                    param: parameter,
+                    line: "#side ol",
+                    limit: $("#ticketNum").text(),
+                    selectNum: selectedobj.data("selectnum"),
+                    handle: function (row, col, id, areaname, areacode, seatname, selectNum,selected) {
+                        if (selected) {
+                            selectedobj.data("selectnum",selectedobj.data("selectnum") + 1);
+                            //golab_selectNum = golab_selectNum + 1;
+                            selectSeat(row, col, id, areaname, $("#areaCode").val(), seatname);
+                        } else {
+                            selectedobj.data("selectnum",selectedobj.data("selectnum") - 1);
+                            //golab_selectNum -= 1;
+                            var spliceNum = "";
+                            $.each(selectedSeat, function (i) {
+                                if (selectedSeat[i].seatid == id) {
+                                    spliceNum = i;
+                                }
+                            });
+                            selectedSeat.splice(spliceNum, 1);
+                            $("#" + id+"r"+row+"c"+col).remove();
+                        }
+                        $("#seats").seats("selectNum", selectedobj.data("selectnum"));
+                        calTotal();
+                        if (selectedobj.data("selectnum")-1 < $("#ticketNum").text()) {
+                            //selectedobj.data("selectnum",golab_selectNum);
+                            return false;
+                        } else {
+                            $("#seat_" + id+"r"+row+"c"+col).attr('class', 'iconfont icon-seat clicked');
+                            //selectedobj.data("selectnum",golab_selectNum - 1);
+                            //golab_selectNum -= 1;
+                            var spliceNum = "";
+                            $.each(selectedSeat, function (i) {
+                                if (selectedSeat[i].seatid == id) {
+                                    spliceNum = i;
+                                }
+                            });
+                            selectedSeat.splice(spliceNum, 1);
+                            $("#" + + id+"r"+row+"c"+col).remove();
+                            //golab_selectNum = selectNum
+                            selectedobj.data("selectnum",selectedobj.data("selectnum")-1);
+                            alert('最多只能选择' + $("#ticketNum").text() + '个座位');
+                        }
+                        calTotal();
+                    }
+                });
+            });
+            $("#seats").seats({
+                url: seatUrl,
+                selected: selectedSeat,
+                param: parameter,
+                line: "#side ol",
+                limit: $("#ticketNum").text(),
+                selectNum: golab_selectNum,
+                handle: function (row, col, id, areaname, areacode, seatname, selectNum,selected) {
+                    //console.log(golab_selectNum);
+                    if (selected) {
+                        golab_selectNum = golab_selectNum + 1;
+                        selectSeat(row, col, id, areaname, $("#areaCode").val(), seatname);
+                    } else {
+                        golab_selectNum -= 1;
+                        var spliceNum = "";
+                        $.each(selectedSeat, function (i) {
+                            if (selectedSeat[i].seatid == id) {
+                                spliceNum = i;
+                            }
+                        });
+                        selectedSeat.splice(spliceNum, 1);
+                        $("#" + id+"r"+row+"c"+col).remove();
+                    }
+                    $("#seats").seats("selectNum", golab_selectNum);
+                    calTotal();
+                    console.log(golab_selectNum);
+                    if(golab_selectNum-1<$("#ticketNum").text()){
+                        $('#select-ticket-type').find("option:selected").data("selectnum",golab_selectNum);
+                        return false;
+                    }else{
+                        $("#seat_"+ id+"r"+row+"c"+col).attr('class','iconfont icon-seat clicked');
+                        golab_selectNum -= 1;
+                        var spliceNum = "";
+                        $.each(selectedSeat, function (i) {
+                            if (selectedSeat[i].seatid == id) {
+                                spliceNum = i;
+                            }
+                        });
+                        selectedSeat.splice(spliceNum, 1);
+                        $("#" + id+"r"+row+"c"+col).remove();
+                        //golab_selectNum = selectNum
+                        $('#select-ticket-type').find("option:selected").data("selectnum",golab_selectNum);
+                        alert('最多只能选择'+$("#ticketNum").text()+'个座位');
+                    }
+                    calTotal();
+                }
+            });
+
+            $("#selectSeat").on("click","a.icon-close", function () {
+                var id = $(this).parent().attr("id"),orderno=$(this).parent().data("orderno");
+                var spliceNum;
+                $.each(selectedSeat, function (i) {
+                    if (selectedSeat[i].seatid+"r"+selectedSeat[i].srow+"c"+selectedSeat[i].scol == id) {
+                        spliceNum = i;
+                    }
+                });
+                selectedSeat.splice(spliceNum, 1);
+                $("#" + id).remove();
+                $("#seats").seats("unselect", id);
+                calTotal();
+                golab_selectNum -= 1;
+                $('#select-ticket-type').find("option").each(function () {
+                    var _thisno=$(this).val(),selectnum=$(this).data("selectnum");
+                    if(_thisno==orderno){
+                        $(this).data("selectnum",selectnum-1)
+                    }
+                });
+            });
+            //提交选座
+            $("#saveBtn").click(function () {
+                if (!$(this).hasClass('disabled')) {
+                    var totalseats=0,selsectedSeats=$("#selectSeat").find("li").length,selectObj=false;
+                    $(".seat-table").find("span.selected").each(function () {
+                        var interleaveNext=$(this).parent().next().next(),nextObj=$(this).parent().next(),interleavePrev=$(this).parent().prev().prev(),prevObj=$(this).parent().prev();
+                        if(nextObj.find("span").length==0||prevObj.find("span").length==0){
+                            selectObj = false;
+                            return false;
+                        }else{
+                            if (interleaveNext.find("span").hasClass("selected") && !nextObj.find("span").hasClass("selected") || interleavePrev.find("span").hasClass("selected") && !prevObj.find("span").hasClass("selected") || interleaveNext.find("span").hasClass("sold") && !nextObj.find("span").hasClass("selected") && !nextObj.find("span").hasClass("sold") || interleavePrev.find("span").hasClass("sold") && !prevObj.find("span").hasClass("selected") && !prevObj.find("span").hasClass("sold")) {
+                                selectObj = true;
+                                return false;
+                            }
+                        }
+                    });
+                    if(selectObj){
+                        alert("座位旁边不要留空位！");
+                        return false;
+                    }
+                    $("#select-ticket-type").find("option").each(function () {
+                        var seatnum=$(this).data("num");
+                        totalseats+=seatnum;
+                    });
+                    if(totalseats!=selsectedSeats){
+                        alert("您还有座位未选择，请先选座!");
+                        return false;
+                    }
+                    console.log(JSON.stringify(selectedSeat));
+                    $("#seatInfos").val(JSON.stringify(selectedSeat));
+                    //window.localStorage.setItem('ticket_json', JSON.stringify(selectedSeat));
+                    $("#validateForm").submit();
+                    $(this).addClass("disabled");
+                }
+            });
+            $("#seatarea").on('click','a',function () {
+                var row=$(this).data("row"),
+                    col=$(this).data("col"),
+                    coe=$(window).width()/640*40;
+                var top=-row*coe+$("#seatPanel").height()*0.5,
+                    left=-col*coe+$("#seatPanel").width()*0.5
+                $("#seats").find(".seat-table").addClass("movetransition").css({
+                    top:top,
+                    left:left
+                });
+                $("#side").addClass("movetransition").css({
+                    top:top+30
+                });
+                $("#seatarea").find("a").removeClass("hover");
+                $(this).addClass("hover");
+            });
+
+            //座位图高度
+            (function () {
+                var header = $('.header');
+                var ticketPanel = $('.ticket-panel');
+                var total = $('.total');
+                var stage_head = $('.stage-tit');
+                var wh = $(window).height();
+                var wrapper = $('.wrapper');
+                var seatPanel = $('.seat-panel');
+                var selectSeat=$("#selectSeat");
+                var mH = wh - header.outerHeight(true) - ticketPanel.outerHeight(true)- selectSeat.outerHeight(true);
+                wrapper.height(mH-16);
+                seatPanel.height(mH -10);
+            })();
+            var multipleX=1,multipleY=1;
+            $("#enlarge-btn").click(function(){
+                multipleX=multipleX<1.5?operation.accAdd(multipleX,0.1):1.5;
+                multipleY=multipleY<1.5?operation.accAdd(multipleY,0.1):1.5;
+                $(".seat-table").css({
+                    "-webkit-transform":"scale("+multipleX+","+multipleY+")",
+                    "-webkit-transform-origin": "50% 50% 0"
+                });
+            });
+            $("#narrow-btn").click(function () {
+                multipleX =multipleX>0.3?operation.accSub(0.1,multipleX):0.3;
+                multipleY =multipleY>0.3?operation.accSub(0.1,multipleY):0.3;
+                $(".seat-table").css({
+                    "-webkit-transform": "scale(" + multipleX + "," + multipleY + ")",
+                    "-webkit-transform-origin": "50% 50% 0"
+                });
+            });
+        });
+
+        function selectedHtml(seatobj) {
+            var html = "";
+            $.each(seatobj, function (i) {
+                html += "<li id='" + seatobj[i].seatid +"r"+seatobj[i].srow +"c"+seatobj[i].scol + "' data-orderno='"+seatobj[i].orderDetailNo+"'>";
+                //html += "<span class='seat-type'>票型：" + seatobj[i].ticketName + "</span>";
+                html += "<span class='seat-num'>" +seatobj[i].seatname+ seatobj[i].srow + "排" + seatobj[i].scol + "座</span></span>";
+                html += "<a href='javascript:;' class='icon-close'>X</a>";
+                html += "</li>";
+            });
+            return html;
+        }
+        function selectSeat(row, col, id, areaname, areacode, seatname) {
+            var selectType = $("#select-ticket-type option:selected"),
+                text = selectType.data('type');
+            var seatObj = {
+                seatid: id,
+                areaname: areaname,
+                areacode: areacode,
+                srow: row,
+                scol: col,
+                ticketName:selectType.data("type"),
+                orderDetailNo:selectType.val(),
+                seatname:seatname
+            };
+            if (isinobj(seatObj, selectedSeat)) {
+                selectedSeat.push(seatObj);
+            }
+            console.log(selectedSeat);
+            $("#selectSeat ul").html(selectedHtml(selectedSeat));
+        }
+        function isinobj(item, array) {
+            var flag = true;
+            $.each(array, function (i) {
+                if (array[i].seatid+"r"+array[i].srow+"c"+array[i].scol == item.seatid+"r"+item.srow+"c"+item.scol) {
+                    flag = false;
+                    return false;
+                }
+            });
+            return flag;
+        }
+        //计算数量和总价
+        function calTotal() {
+            var li = $('#selectSeat').find('li');
+            var num = li.length;
+            //控制提交按钮点击状态
+            if (num > 0) {
+                $('#saveBtn').removeClass('disabled');
+            } else {
+                $('#saveBtn').addClass('disabled');
+            }
+            $('#num').text(num);
+        }
+
+        function round(num, precision) {
+            return Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision)
+        }
+        function formatDate(date) {
+            var dateArry=date.split(" ")[0].split("-");
+            var mydate=new Date(dateArry[0],dateArry[1],dateArry[2]);
+            var month = (mydate.getMonth() + 1) > 9 ? (mydate.getMonth() + 1) : "0" + (mydate.getMonth() + 1);
+            var day = mydate.getDate() > 9 ? mydate.getDate() : "0" + mydate.getDate();
+            return mydate.getFullYear() + "-" + month + "-" + day
+        }

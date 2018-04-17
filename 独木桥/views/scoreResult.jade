@@ -1,0 +1,19 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/order.css')
+block content
+   div.pay-results
+      img(src="/images/member/success.png").font-icon
+      p 兑换成功！
+   div.results-info
+      p
+         =items.info
+   div.btn-bottom
+      div.btn-handle
+         if(items.productType=="coupon")
+            a(href="/user/mycoupon?useflag=1").btn-RP 查看兑换记录
+         else
+            a(href="/user/scoreorder").btn-RP 查看兑换记录
+      div.btn-handle
+         a(href="/list/score").btn-RP 继续兑换
+

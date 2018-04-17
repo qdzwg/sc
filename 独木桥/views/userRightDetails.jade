@@ -1,0 +1,32 @@
+extends layout
+block stylesheet
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/member.css')
+
+block content
+    .userRightContent
+        h5
+            -var content={}
+            case mold
+                when "1"
+                    -content={img:"icon-reward1.png",title:"购票奖励",info:"在线任意消费便产生相应，积分可抵现使用"}
+                when "2"
+                    -content={img:"icon-odds1.png",title:"专属特权",info:"会员专属优惠活动，不定期开放优惠票价"}
+                when "3"
+                    -content={img:"icon-gift1.png",title:"会员活动",info:"5月18日为会员日，各景区特别活动大放送"}
+                when "4"
+                    -content={img:"icon-cake1.png",title:"生日权益",info:"白银会员以上等级的会员生日当天凭身份证享特别活动"}
+                when "5"
+                    -content={img:"icon-park1.png",title:"免费停车",info:"铂金以上等级会员可凭积分换购停车免费活动"}
+                when "6"
+                    -content={img:"icon-score1.png",title:"积分抵现",info:"积分商城内凭积分可换购相应商品含演出票、门票、书籍等"}
+                when "7"
+                    -content={img:"5.png",title:"VIP接待",info:"砖石会员可用积分换购VIP接待服务"}
+                when "8"
+                    -content={img:"3.png",title:"互动体验",info:"可享受参与外景演出特殊角色的服务 铂金以上等级会员专享体验"}
+                when "9"
+                    -content={img:"4.png",title:"免押金",info:"会员可以享受穿越活动免押金穿古装"}
+            img(src="/images/member/icon/"+content.img)
+            span=content.title
+        .article-info
+            =content.info
+    include common/footer

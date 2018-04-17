@@ -1,0 +1,65 @@
+mixin comment(parameter,comment,code,mold)
+   div(class=mold+"-comment").comment-box
+      - if(parameter=="detail")
+         div.page-line
+         a(href="/detail/comment/"+mold+"/"+code).details-comment
+            span.comment-title 用户评论
+            i.font-icon.fr.icon-iconfont-jiantou
+      p.details-comment
+         -if(comment.count>0)
+            span.comment-score
+               em.c-base=comment.score
+               - for (var x = 0; x < 5; x++)
+                  -if(x<comment.score)
+                     i.font-icon.icon-iconfont-aixin.c-base
+                  -else
+                     i.font-icon.icon-iconfont-aixin
+            =comment.count
+            | 条评论
+         - else
+            span.comment-score
+               i.font-icon.icon-iconfont-aixin
+               i.font-icon.icon-iconfont-aixin
+               i.font-icon.icon-iconfont-aixin
+               i.font-icon.icon-iconfont-aixin
+               i.font-icon.icon-iconfont-aixin
+            | 暂无评论！
+      - if(parameter=="all")
+         div.page-line
+      -if(comment.count>0)
+         ul.comment-list
+            each item,i in comment.data
+               -if(parameter=="detail")
+                  - if(i<3)
+                     li
+                        div.comment-list-top 用户名：
+                           =item.commentName
+                           span.fr=item.commentTime
+                        p.details-comment
+                           span.comment-score.c-base
+                              strong 评分：
+                              +commentScore(item.score)
+                              em.score-num=item.score
+                        p.comment-list-info
+                           =item.commentContent
+               -else
+                  li
+                     div.comment-list-top 用户名：
+                        =item.commentName
+                        span.fr=item.commentTime
+                     p.details-comment
+                        span.comment-score.c-base
+                           strong 评分：
+                           +commentScore(item.score)
+                           em.score-num=item.score
+                     p.comment-list-info
+                        =item.commentContent
+      -else
+         div.no-info 还没有人评论！
+
+mixin commentScore(num)
+   - for(var i=0;i<5;i++)
+      - if(i<num)
+         i.font-icon.icon-iconfont-aixin
+      -else
+         i.font-icon.icon-iconfont-aixin.c-999

@@ -1,0 +1,203 @@
+function isHave(url,query){
+    var urlArr1 = url.split('?')[1];
+    if (!urlArr1) return false;
+    var array_url = urlArr1.split('&');
+
+    return array_url.some(function (item,index,array){
+        return query.indexOf(item.split('=')[0]) >= 0
+    });
+}
+
+
+function filterUrl(query){
+    var url = window.location.href;
+    var new_url = '';
+    var queryArr = query.split('&');
+    var urlArray = new Array();
+
+    if(url.indexOf('?') >= 0){
+        var originalUrl = url.split('?')[1].split('&');
+
+        queryArr.forEach(function (item,tags){
+        	originalUrl.forEach(function (val,ind){
+        		if (item.indexOf('orderStatus') >= 0 && val.indexOf('checkStatus') >= 0){
+        			originalUrl.splice(ind,1);
+        		}else if (item.indexOf('checkStatus') >= 0 && val.indexOf('orderStatus') >= 0){
+        			originalUrl.splice(ind,1);
+        		}
+        	});
+        	
+            if (isHave(url,item)){
+                originalUrl.forEach(function (value,index){
+                    if (value.split('=')[0] === item.split('=')[0]){
+                        if (item.split('=')[1] === ''){
+                            originalUrl.splice(index,1);
+                        }else{
+                            originalUrl.splice(index,1,item);
+                        }
+                    }
+                });
+                
+            }else if(item.split('=')[1] !== ''){
+                urlArray.push(item);
+            }
+        });
+        var newArr = originalUrl.concat(urlArray);
+        if (!newArr.length){
+            new_url = url.split('?')[0]
+        }else{
+            new_url = url.split('?')[0] + '?' + newArr.join('&');
+        }
+    }else{
+        queryArr.forEach(function (value,index){
+            if (!value.split('=')[1]){
+                queryArr.splice(index,1);
+            }
+        });
+        new_url = url + '?' + queryArr.join('&');
+    }
+    window.location.href = new_url;
+}
+
+
+function commonFloat(swidth){
+	var tlen= arguments.length;
+	var fobj;
+	
+	if (tlen == 1){
+		fobj = $('<div id="commonFloat"><a class="cf1" href="javascript:void(0);"><span></span></a><a class="cf2"></a></div>').appendTo('body');
+	}else if (tlen == 3){
+		fobj = $('<div id="commonFloat"><a class="cf2"></a><a class="cf3"><img src="'+arguments[1]+'/style/w/img/code/code'+arguments[2]+'.jpg" /><img src="'+arguments[1]+'/style/w/img/code/p.png" class="codetip" /></a></div>').appendTo('body');
+		$('.cf3').hover(function(){$('.codetip').show();},function(){$('.codetip').hide();});
+	}
+	else{
+		fobj = $('<div id="commonFloat" style="height:50px;"><a class="cf2"></a></div>').appendTo('body');
+	}
+	fobj.find('.cf1').hover(function(){$(this).find('span').css({'display':'block'});},function(){$(this).find('span').css({'display':'none'});});
+	fobj.find('.cf2').click(function(){$(window).scrollTop(0);});
+	
+	commonSetPos(fobj,swidth);
+	$(window).resize(function(){
+		commonSetPos(fobj,swidth);
+	});
+
+	if ($.browser.msie && ($.browser.version == "6.0") && !$.support.style){
+		$(window).scroll(function(){
+			commonSetPos(fobj,swidth);
+		});
+	}
+	
+}
+
+function commonSetPos(fobj,swidth){
+
+
+	var winWidth = $(document).width();
+	var winHeight = $(window).outerHeight();
+	var cnum2,posType;
+
+	if ($.browser.msie && ($.browser.version == "6.0") && !$.support.style){
+		cnum2 = winHeight - fobj.outerHeight() + $(window).scrollTop();	
+		posType = 'absolute';	
+	}else{
+		cnum2 = winHeight - fobj.outerHeight();
+		posType = 'fixed';
+	}
+	fobj.css({'position':posType,'right':10,'top':cnum2-10});
+
+}
+
+//四则运算
+var operation={
+	accMul:function(arg1,arg2){
+		var m=0,s1=arg1.toString(),s2=arg2.toString();
+		try{m+=s1.split(".")[1].length}catch(e){}
+		try{m+=s2.split(".")[1].length}catch(e){}
+		return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m);
+	},
+	accDiv:function(arg1,arg2){
+		var t1=0,t2=0,r1,r2;
+	    try{t1=arg1.toString().split(".")[1].length}catch(e){}
+	    try{t2=arg2.toString().split(".")[1].length}catch(e){}
+	    with(Math){
+	        r1=Number(arg1.toString().replace(".",""));
+	        r2=Number(arg2.toString().replace(".",""));
+	        return (r1/r2)*pow(10,t2-t1);
+	    }
+	},
+	accAdd:function(arg1,arg2){
+		var r1,r2,m;
+	    try{r1=arg1.toString().split(".")[1].length;}catch(e){r1=0;}
+	    try{r2=arg2.toString().split(".")[1].length;}catch(e){r2=0;}
+	    m=Math.pow(10,Math.max(r1,r2));
+	    return (arg1*m+arg2*m)/m;
+	},
+	accSub:function(arg1,arg2){
+		var r1,r2,m,n;
+	     try{
+	         r1=arg1.toString().split(".")[1].length;
+	         }catch(e){
+	             r1=0;
+	             }
+	     try{
+	         r2=arg2.toString().split(".")[1].length;
+	         }catch(e){
+	             r2=0;
+	             }
+	     m=Math.pow(10,Math.max(r1,r2));
+	     //last modify by deeka
+	     //动态控制精度长度
+	     n=(r1>=r2)?r1:r2;
+	     return ((arg2*m-arg1*m)/m).toFixed(n);
+	}};
+
+// 翻页
+var viewPage = function (dom,page,total){
+	if (total <= 5){
+		for (var i = 1; i <= total; i += 1){
+			var pageDom = '<li>' + i + '</li>';
+			dom.append(pageDom);
+		}
+	}else if (total > 5 && page <= 3){
+		for (var i = 1; i <= 3; i += 1){
+			var pageDom = '<li>' + i + '</li>';
+			dom.append(pageDom);
+		}
+		dom.append('<li>...</li><li>' + total + '</li>');
+	}else if (total > 5 && page > total - 3){
+		dom.append('<li>1</li><li>...</li>');
+		for (var i = 2; i >= 0; i -= 1){
+			var pageDom = '<li>' + (total - i) + '</li>';
+			dom.append(pageDom);
+		}
+
+	}else if (total > 5 && page > 3 && page <= total - 3){
+		var pageDomLeft = '<li>1</li><li>...</li>';
+		var pageDomCenter = '<li>' + (page - 1) + '</li><li>' + page + '</li><li>' + (page + 1) + '</li>';
+		var pageDomRight = '<li>...</li><li>' + total + '</li>';
+		dom.append(pageDomLeft + pageDomCenter + pageDomRight);
+	}else{
+		dom.append('<li>1</li><li>...</li>');
+		for (var i = 3; i >= 0 ; i -= 1){
+			var pageDom = '<li>' + (total - i) + '</li>';
+			dom.append(pageDom);
+		}
+	}
+
+	dom.find('li').each(function (idnex,item){
+		if ($(item).text() == page){
+			$(item).addClass('active');
+		}
+	});
+	return dom;
+};
+
+$(function (){
+	if ($('#slidePage').length){
+		if (totalPage !== 1){
+			viewPage($('#slidePage'),currentPage,totalPage).on('click','li',function (){
+				filterUrl('currPage=' + $(this).text());
+			});
+		}
+	}
+});

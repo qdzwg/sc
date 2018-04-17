@@ -1,0 +1,20 @@
+extends layout/pageLayout
+block stylesheetpage
+	link(rel="stylesheet", href=baseUrl+'/stylesheets/mcommon.css')
+	link(rel="stylesheet", href=baseUrl+'/stylesheets/ticket_succ.css')
+block pagecontent
+	#content
+		.bh1.cf
+			.bhl 积分兑换
+		.czone
+			.step_t.cf
+				.t1 1、选择产品
+				.t2 2、填写订单
+				.t3 5、兑换成功
+			.cm_wrapper
+				.cm_title 支付状态
+				.cm_content.cf
+					.succ(style="background:url("+baseUrl+"/images/common/succ.gif) no-repeat 0 center;")
+							p 恭喜！兑换成功！
+							p 票型名称：#{items.info}
+							p 购买数量：#{items.initAmount}

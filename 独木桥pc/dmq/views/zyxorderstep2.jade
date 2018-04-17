@@ -1,0 +1,340 @@
+extends layout/pageLayout
+block stylesheetpage
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/common.css')
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/mcommon.css')
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/tip.css')
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/tour_step2.css')
+block pagecontent
+   include common/comFun
+   #main
+      input#zyxId(type='hidden', value='2166')
+      form#validateForm(method='post', novalidate='novalidate')
+            +breadcrumb(items.zyxName)
+            #main1
+               #c_wrapper
+                  .line_list_name.cf
+                     h2 产品信息
+                  ul.pro_info
+                     li
+                        span 线路名称：
+                        span=items.zyxName
+                     li
+                        span 出游日期：
+                        span=items.nowDate
+                        input(type='hidden', value=items.nowDate, name='playDate')
+                     li
+                        span 套数：
+                        span.cblue=items.amount
+                        input#ordNum(type='hidden', value=items.amount, name='ordNum')
+                     li
+                        span 订单金额：
+                        span#newPrice.cred="¥"+items.costPrice
+                        input(type='hidden', value=items.kid, name='kid')
+                        input(type='hidden', value=items.zyxTicketIds, name='zyxTicketIds')
+                        input(type='hidden', value=items.sci, name='sci')
+                        input(type='hidden', value=items.hotelIds, name='hotelIds')
+                        input(type='hidden', value=items.zyxShowIds, name='zyxShowIds')
+                        input(type='hidden', value=items.price, name='price')
+                  .tabl_tit.cblue 酒店信息：
+                  table.line_table(width='100%', cellspacing='0', cellpadding='0', border='0')
+                     thead
+                        tr
+                           th(width='150', align='left') 入住日期
+                           th(width='150', align='left') 退房日期
+                           th(width='250', align='left') 入住酒店
+                           th(width='100', align='left') 房型
+                           th(width='70', align='center') 间数
+                           th(align='center') 入住天数
+                     tbody
+                        -each item in items.hotels
+                           tr
+                              td
+                                 +getday(items.nowDate,item.enterNights-1)
+                              td
+                                 +getday(items.nowDate,item.enterNights+item.nights-1)
+                              td=item.hotelName
+                              td=item.roomName
+                              td(align='center')=item.num
+                              td(align='center')=item.nights
+                  .tabl_tit.cblue 门票信息：
+                  table.line_table(width='100%', cellspacing='0', cellpadding='0', border='0')
+                     thead
+                        tr
+                           th(width='150', align='left') 游玩日期
+                           th(width='350', align='left') 景区名称
+                           th(width='300', align='left') 门票名称
+                           th(align='center') 张数
+                     tbody
+                        -each item in items.tickets
+                           tr
+                              td=items.nowDate
+                              td=item.parkName
+                              td=item.ticketName
+                              td(align='center')=item.num
+                  .tabl_tit.cblue 演出信息：
+                  table.line_table(width='100%', cellspacing='0', cellpadding='0', border='0')
+                     thead
+                        tr
+                           th(width='150', align='left') 场次
+                           th(width='350', align='left') 景区名称
+                           th(width='300', align='left') 演出票名称
+                           th(align='center') 张数
+                     tbody
+                        -each item,i in items.shows
+                           tr
+                              td=typeof items.cangci=="string"?items.cangci:items.cangci[i]
+                              td=item.parkName
+                              td=item.showName
+                              td(align='center')=item.num
+                  #book_notes
+                     ul#book_ul.cf
+                        li.current 预订须知
+                        li 费用说明
+                        //-li 费用不包含
+                     #book_con
+                        .book_con(style='display:block;')
+                           div
+                              !=items.info
+                        .book_con
+                           div
+                              !=costinfo
+                        //.book_con
+                        //   div
+                        //      !=items.item.fee2InfoId
+                  .line_list_name.mt20.cf
+                     h2 联系人信息
+                     span.sub_info （请认真填写联系人的信息，以方便客服人员能顺利联系到您，及时确认订单）
+                  table.normal_t(cellpadding='0', cellspacing='0')
+                     tbody
+                        tr
+                           th
+                              strong *
+                              | 联系人姓名：
+                           td
+                              input#linkMan.text.text_s1.mr10(type='text', name='linkMan', validate='{required:true,minlength:2}')
+                              span.g_span （支持中英文名，请准确填写）
+                              input#save_person_1(type='checkbox', value='', name='')
+                              label(for='save_person_1') 保存为常用联系人
+                        tr
+                           th
+                              strong *
+                              | 手机号：
+                           td
+                              input#mobile.text.text_s1(type='text', name='linkMobile', validate='{required:true,minlength:11,mobile:true}')
+                              span.g_span （免费接收彩信，作为入园与取票凭证，请准确填写）
+                        tr
+                           th
+                              strong *
+                              | 证件类型：
+                           td
+                              select(name="certificateType")#certificateType
+                                 option(value="0")="身份证"
+                                 option(value="1")="护照"
+                                 option(value="2")="港澳通行证"
+                                 option(value="3")="台湾通行证"
+                        tr#ID(data-mold='zjh')
+                           th
+                              strong *
+                              span.lab-title="身份证："
+                           td
+                              input#idcard.text.text_s1(type='text', name='linkIdcard', maxlength='18', validate='{required:true,idcardno:true}')
+                        tr
+                           th 备注：
+                           td
+                              textarea#remark(name='orderInfo.remark', onblur="if(this.value==''){this.value='如护照证件号或特殊需求';this.style.color='#D1D1D1'}", onfocus="if(this.value=='如护照证件号或特殊需求'){this.value='';this.style.color='#000'}", rows='4', cols='35', style='resize:none;color: #d1d1d1;') 如护照证件号或特殊需求
+                  .line_list_name.mt20.cf
+                     h2 合同条款
+                  p.tip_p 请仔细阅读合同条款，该合同将在您付款成功后正式生效。（付款后，您可以在"会员中心->我的订单"中下载该合同）
+                  .contract_txt
+                     | 旅游者：_________等_________人  （名单可附页，需出境社和旅游者代表签名、盖章确认）。  旅行社：_________  旅行社业务经营许可证编号：_________  杭州市旅游委员会  杭州市工商行政管理局  使用说明  1、本合同根据《中华人民共和国合同法》、《旅行社条例》及《旅行社条例实施细则》等法律法规的规定，以国家旅游局、国家工商行政管理总局制定的《团队国内旅游合同》（示范文本）为蓝本，结合杭州市旅游发展要求制定。  2、本合同为示范文本，供住所地在杭州市行政区域内的旅行社与旅游者之间签订团队国内旅游（不含赴港、澳、台地区旅游及边境  	 旅游者：_________等_________人  （名单可附页，需出境社和旅游者代表签名、盖章确认）。  旅行社：_________  旅行社业务经营许可证编号：_________  杭州市旅游委员会  杭州市工商行政管理局  使用说明  1、本合同根据《中华人民共和国合同法》、《旅行社条例》及《旅行社条例实施细则》等法律法规的规定，以国家旅游局、国家工商行政管理总局制定的《团队国内旅游合同》（示范文本）为蓝本，结合杭州市旅游发展要求制定。  2、本合同为示范文本，供住所地在杭州市行政区域内的旅行社与旅游者之间签订团队国内旅游（不含赴港、澳、台地区旅游及边境
+                     | 旅游者：_________等_________人  （名单可附页，需出境社和旅游者代表签名、盖章确认）。  旅行社：_________  旅行社业务经营许可证编号：_________  杭州市旅游委员会  杭州市工商行政管理局  使用说明  1、本合同根据《中华人民共和国合同法》、《旅行社条例》及《旅行社条例实施细则》等法律法规的规定，以国家旅游局、国家工商行政管理总局制定的《团队国内旅游合同》（示范文本）为蓝本，结合杭州市旅游发展要求制定。  2、本合同为示范文本，供住所地在杭州市行政区域内的旅行社与旅游者之间签订团队国内旅游（不含赴港、澳、台地区旅游及边境
+                  p.mt10.cblue
+                     input#ac_check(type='checkbox', value='', name='', checked='')
+                     label(for='ac_check')  我已阅读并接受以上合同条款、补充条款、预订须知，及其他所有内容
+                  .cm_bto.cf
+                     img(src="/images/order/subbtnadd.png", alt="",style="vertical-align: middle; margin-right:15px;")#addCart
+                     input.btorange(type='submit', value='提交订单 ', name='')
+
+mixin getday(date,num)
+ -var mydate=new Date(date)
+ -mydate.setDate(mydate.getDate()+num)
+ =mydate.getFullYear()+"-"+(mydate.getMonth()+1)+"-"+mydate.getDate()
+
+block scriptspage
+   script(src=baseUrl + '/javascripts/jquery/jquery.form.js')
+   script(src=baseUrl + '/javascripts/jquery/jquery.validator.js')
+   script(src=baseUrl + '/javascripts/jquery/jquery.validate.js')
+   script(src=baseUrl + '/javascripts/jquery/validateExtend.js')
+   script(src=baseUrl + '/javascripts/jquery/jquery.metadata.js')
+   script(src=baseUrl + '/javascripts/formExtends.js')
+   script.
+      $(document).ready(function () {
+         $('#addCart').on('click', function () {
+            if ($("input[name=toType]").length == 0) {
+               $('#validateForm').append($('<input>', {
+                  'type': 'hidden',
+                  'name': 'toType',
+                  'value': 'cart'
+               }));
+            }
+            $('#validateForm').submit();
+         });
+         //init();
+         $("#validateForm").validate({
+            ignore: "",
+            submitHandler: function (form) {
+               if ($("#ac_check:checked").length > 0) {
+                  form.submit();
+               }
+               else {
+                  alert("接受合同条款后方能提交订单。");
+               }
+            }
+         });
+          $("#certificateType").change(function () {
+              var val = $(this).val(), zjh = $("*[data-mold='zjh']");
+              switch (val) {
+                  case "0":
+                      zjh.find(".lab-title").text("身份证");
+                      zjh.find("input[name=linkIdcard]").attr({
+                          "placeholder": "请填写身份证",
+                          "validate": "{required:true,idcardno:true}"
+                      });
+                      break;
+                  case "1":
+                      zjh.find(".lab-title").text("护照");
+                      zjh.find("input[name=linkIdcard]").attr({
+                          "placeholder": "请填写护照",
+                          "validate": "{required:true,isPassport:true}"
+                      });
+                      break;
+                  case "2":
+                      zjh.find(".lab-title").text("港澳通行证");
+                      zjh.find("input[name=linkIdcard]").attr({
+                          "placeholder": "请填写港澳通行证",
+                          "validate": "{required:true,isHKMacao:true}"
+                      });
+                      break;
+                  case "3":
+                      zjh.find(".lab-title").text("台湾通行证");
+                      zjh.find("input[name=linkIdcard]").attr({
+                          "placeholder": "请填写台湾通行证",
+                          "validate": "{required:true,isTaiwan:true}"
+                      });
+                      break;
+              }
+          });
+      });
+      function init() {
+         var ordNum = $("#ordNum").val();
+         var str = "";
+         for (var i = 1; i <= ordNum; i++) {
+            var daxie = converyNumToDaXie(i);
+            str = "<div class='sub_t'><span class='mr10'>第" + daxie + "个出游人</span><input name='marks' value='_size' type='checkbox'><label>保存为常用联系人</label></div><table cellpadding='0' cellspacing='0' class='normal_t'><tr><th><strong>*</strong>出游人姓名：</th><td><input type='text' class='text text_s1 mr10' name='contacts[_size].name' validate='{required:true,chcharacter:true}' id='visit_name_playNum' /></td></tr><tr><th><strong>*</strong>性别：</th><td><input type='radio'name='contacts[_size].sex'value='true' checked/>男&nbsp&nbsp&nbsp<input type='radio'name='contacts[_size].sex'value='false'/>女</td></tr><tr><th><strong>*</strong>手机号：</th><td><input type='text' class='text text_s1' name='contacts[_size].mobile' validate='{required:true,minlength:11,mobile:true}' id='visit_mobile_playNum'/></td></tr><tr><th><strong>*</strong>身份证号码：</th><td><input type='text' class='text text_s1' name='contacts[_size].cardNo' validate='{required:true,idcardno:true}' id='visit_card_playNum'/></td></tr></table>";
+            str = str.replace(eval("/playNum/ig"), i);
+            str = str.replace(eval("/_size/ig"), i - 1);
+            $("#tourist").append(str);
+         }
+         $("input[type=radio][value=0]").attr("checked", true);
+      }
+      function converyNumToDaXie(num) {
+         var first = "";
+         var second = "";
+         var third = "";
+         if (9 <= parseFloat(parseInt(num) / parseInt(10))) {
+            first = "九";
+            second = "十"
+         } else if (8 <= parseFloat(parseInt(num) / parseInt(10))) {
+            first = "八";
+            second = "十"
+         } else if (7 <= parseFloat(parseInt(num) / parseInt(10))) {
+            first = "七";
+            second = "十"
+         } else if (6 <= parseFloat(parseInt(num) / parseInt(10))) {
+            first = "六";
+            second = "十"
+         } else if (5 <= parseFloat(parseInt(num) / parseInt(10))) {
+            first = "五";
+            second = "十"
+         } else if (4 <= parseFloat(parseInt(num) / parseInt(10))) {
+            first = "四";
+            second = "十"
+         } else if (3 <= parseFloat(parseInt(num) / parseInt(10))) {
+            first = "三";
+            second = "十"
+         } else if (2 <= parseFloat(parseInt(num) / parseInt(10))) {
+            first = "二";
+            second = "十"
+         } else if (1 < parseFloat(parseInt(num) / parseInt(10))) {
+            second = "十"
+         }
+         if (parseInt(num) == 0) {
+            third = "零"
+         } else if (parseInt(num) % parseInt(10) == 1) {
+            third = "一"
+         } else if (parseInt(num) % parseInt(10) == 2) {
+            third = "二"
+         } else if (parseInt(num) % parseInt(10) == 3) {
+            third = "三"
+         } else if (parseInt(num) % parseInt(10) == 4) {
+            third = "四"
+         } else if (parseInt(num) % parseInt(10) == 5) {
+            third = "五"
+         } else if (parseInt(num) % parseInt(10) == 6) {
+            third = "六"
+         } else if (parseInt(num) % parseInt(10) == 7) {
+            third = "七"
+         } else if (parseInt(num) % parseInt(10) == 8) {
+            third = "八"
+         } else if (parseInt(num) % parseInt(10) == 9) {
+            third = "九"
+         } else {
+            third = "十"
+         }
+         return (first + second + third)
+      }
+      function plus(cash) {
+         var oldPrice = $("#totalSum").val();
+         var newPrice = oldPrice - cash;
+         if (newPrice > 0) {
+            $("#newPrice").html("￥" + newPrice);
+         } else {
+            $("#newPrice").html("￥0");
+         }
+      }
+      function addCash() {
+         var zyxId = $("#zyxId").val();
+         var cashNo = $("input[name=cashNo]").val();
+         $.ajax({
+            url: "/zyx/order_step2_" + zyxId + "!jihuo.htm?cashNo=" + cashNo,
+            dataType: 'json',
+            success: function (data) {
+               if (data.length == 1) {
+                  $("<tr><th><strong>*</strong>选择优惠券：</th><td id='choose'></td></tr>").insertBefore($("#cashInfo"));
+               }
+               $("#choose").empty();
+               $.each(data, function (i, res) {
+                  if (i == 0) {
+                     $("#choose").append("&nbsp;<input name='id' type='radio' value=" + res.id + " onclick=plus(" + res.cash + ")>&nbsp;优惠" + res.cash + "元,优惠券编号" + res.cashNo + "</input><br>");
+                  } else {
+                     $("#choose").append("<span class='w2'></span>&nbsp;<input name='id' type='radio' value=" + res.id + " onclick=plus(" + res.cash + ")>&nbsp;优惠" + res.cash + "元,优惠券编号" + res.cashNo + "</input><br>");
+                  }
+               });
+               $("#choose").append("<span class='w2'></span>&nbsp;<input name='id' type='radio' value='0' checked='checked' onclick='plus(0)' />&nbsp;暂不使用优惠券<br>");
+               $("input[name=cashNo]").val("");
+            },
+            error: function () {
+               alert("优惠券编号错误或已激活！");
+            }
+         });
+      }
+      var bcon_arr = $('.book_con');
+      $('#book_ul li').each(function (i) {
+         $(this).click(function () {
+            $(this).siblings().removeClass('current');
+            $(this).addClass('current');
+            $(bcon_arr).hide();
+            $(bcon_arr).eq(i).show();
+         });
+      });
+

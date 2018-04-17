@@ -1,0 +1,126 @@
+.draw {
+    width: 100%;
+    height: 887px;
+    background: url("../images/turntable/bg_02.jpg") no-repeat center
+}
+
+.draw-detail {
+    width: 1096px;
+    height: 632px;
+    position: relative;
+    top: 0;
+    left: 50%;
+    margin-left: -504px;
+    background: url("../images/turntable/award_bg_03.png") no-repeat center;
+    background-size: 100%;
+}
+.draw-wheel {
+    width: 454px;
+    height: 454px;
+    position: absolute;
+    background: url("../images/turntable/yuan_pan.png") no-repeat center;
+    /*background: rgba(0,0,0,0.5);*/
+    top: 97px;
+    left: 519px;
+    background-size: 100%;
+    z-index: 1;
+}
+.draw-arrow {
+    width: 109px;
+    height: 156px;
+    background: url("../images/turntable/center_arrow_06.png") no-repeat center;
+    background-size: 100%;
+    position: absolute;
+    top: 220px;
+    left: 692px;
+    z-index: 2;
+    cursor: pointer;
+}
+.draw-chance-num {
+    width: 244px;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    overflow: hidden;
+    color: #c14d00;
+    font-size: 16px;
+    position: absolute;
+    top: 232px;
+    left: 4px;
+}
+.draw-chance-num i {
+    font-style: normal;
+    color: white;
+    padding: 0 5px;
+}
+.draw-my-award {
+    line-height: 44px;
+    position: absolute;
+    top: 232px;
+    left: 286px;
+    font-size: 16px;
+    color: #dc2d2a;
+}
+.draw-text {
+    width: 430px;
+    height: 220px;
+    position: absolute;
+    padding: 20px;
+    top: 280px;
+    left: 6px;
+    color: #dc2d2a;
+    overflow: hidden;
+}
+.draw-text h2 {
+    font-size: 20px;
+    font-weight: 500;
+    padding-bottom: 10px;
+}
+.draw-text p {
+    font-size: 14px;
+    line-height: 2;
+}
+.draw-text p.award-info {
+    padding-bottom: 5px;
+}
+.draw-text p.award-info span {
+    padding-right: 10px;
+    color: #dc2d2a;
+}
+.draw-text p.award-info span em {
+    color: #25aa13;
+}
+.winning-box{z-index:101;position: fixed;width: 588px;height: 194px;top:160px;left: 50%;margin-left: -299px;background: url("../images/turntable/layer.png") no-repeat;background-size: 100%;padding-top: 328px;text-align: center;display: none;}
+.winning-box p{ font-size: 24px; color: #ff5645;  padding: 36px 0;}
+.winning-box a{ display: inline-block; width: 350px; height: 60px; line-height: 60px; background-color: #ff5645; font-size: 24px; border-radius: 10px; color: #fff;}
+.error-box{ width: 480px; height: 184px; top:220px; margin-left: -240px; background: url("../images/turntable/layer-error.png") no-repeat; background-size: 100%;  padding-top: 328px;display: none;}
+.error-box p{ color: #666; font-size: 16px;}
+.prize-list{ padding: 0 0.5rem;}
+.prize-list li{ background-color: #fff; border-radius: 0.25rem; height: 4.5rem; margin-bottom: 0.5rem; overflow: hidden;}
+.prize-list-icon{ width: 2.25rem; height: 2.25rem; border-radius: 100%;
+    /*background: url("../images/turntable/prize-icon.png") center center no-repeat;*/
+    background-size: 55% 55%; background-color: #ffc11e; margin-top: 1rem; margin-left: 0.7rem; float: left;}
+.prize-list-info{ margin-left: 2.95rem; margin-right: 3.4rem; padding: 1.1rem 0.5rem 0;}
+.prize-list-title{ font-size: 0.75rem; margin-bottom: 0.25rem;}
+.prize-list-info p{ font-size: 0.6rem;color: #999;}
+.prize-list-right{ width: 3.4rem; float: right; border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem; background-color: #ffe680; height: 4.5rem; font-size: 0.75rem; text-align: center; line-height: 4.5rem; color: #ff8a00;}
+.prize-list li.used .prize-list-icon{ background-color: #fff4c6;}
+.prize-list li.used .prize-list-right{ background-color: #fff4c6;}
+
+.price-info span{ display: inline-block;margin-right:0.5rem; }
+.price-info span em{color: #d8251e;}
+.mask {position: fixed;top: 0;bottom: 0;left: 0;right: 0;background:black;filter:alpha(opacity=50); -moz-opacity:0.5; opacity: 0.5;z-index: 100;display: none}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

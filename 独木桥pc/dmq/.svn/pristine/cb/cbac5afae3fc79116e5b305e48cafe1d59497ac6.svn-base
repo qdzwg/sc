@@ -1,0 +1,173 @@
+
+#breadcrumb{
+	width: 100%;
+	margin-bottom: 10px;
+}
+#breadcrumb a{
+	color: #0053AA;
+}
+
+#main{
+	width: 1000px;
+	margin: 10px auto;
+}
+#main input{
+    vertical-align: middle;
+}
+
+#c_wrapper{
+	border:1px solid #ccc;
+	padding: 15px;
+}
+
+.line_list_name {
+    border-bottom: 2px solid #E8E8E8;
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+.line_list_name h2 {
+    border-bottom: 2px solid #0E5788;
+    color: #222222;
+    float: left;
+    font-family:Microsoft Yahei;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: -2px;
+    margin-right: 10px;
+}
+.sub_info{
+	color: #999;
+	float: left;
+}
+
+ul.pro_info {
+    background-color: #FEFBEC;
+    border: 1px solid #FBECAC;
+    display: block;
+    margin: 0 0 20px;
+    padding: 8px 8px 15px 15px;
+}
+
+ul.pro_info li {
+    line-height: 30px;
+}
+
+table.line_table {
+    border: 1px solid #CCCCCC;
+    border-collapse: collapse;
+    color: #5B5B5B;
+    margin-bottom: 20px;
+}
+
+table.line_table th {
+    background-color: #FBFBFB;
+    border-bottom: 1px solid #CCCCCC;
+    height: 25px;
+    line-height: 25px;
+    padding: 6px;
+    white-space: nowrap;
+}
+table.line_table td {
+    height: 20px;
+    line-height: 20px;
+    padding: 6px;
+}
+
+.tabl_tit {
+    font-weight: bold;
+    font-size: 14px;
+    padding: 8px 0;
+}
+
+#book_ul li{
+	float: left;
+	float: left;
+    height: 24px;
+    line-height: 24px;
+    position: relative;
+    margin-right: -1px;
+    
+    padding: 0 15px;
+    border:1px solid #c1dae6;
+    border-bottom: none;
+    background: #EDF7FC;
+    cursor: pointer;
+}
+#book_ul li.current{
+	background: #fff;
+	height: 25px;
+	margin-bottom: -1px;
+}
+#book_con{
+	border:1px solid #c1dae6;
+	padding: 10px;
+}
+.book_con{display: none;line-height: 22px;}
+
+.normal_t th{
+    text-align: right;
+    width: 110px;
+    font-weight: normal;
+}
+.normal_t th,.normal_t td{
+    padding: 5px 0;
+}
+
+.normal_t th strong{color: #f00;}
+
+.text_s1 {
+    width: 200px;
+}
+.text {
+    border: 1px solid #ADACB1;
+    height: 22px;
+    line-height: 22px;
+    padding: 2px;
+}
+
+.sub_t{
+    background: #F2F2F2;
+    padding: 5px 0 5px 35px;
+    margin: 10px 0;
+}
+
+.tip_p{
+    padding: 0 0 10px;
+}
+
+.contract_txt{
+    padding: 5px;
+    border:1px solid #C1DAE6;
+    height: 120px;
+    overflow-y:scroll;
+}
+.cm_bto{
+    padding: 30px 0;
+    text-align: center;
+}
+
+.btorange {
+    background: url("../images/details/btn_orange.png") no-repeat scroll 0 0 transparent;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: Microsoft Yahei;
+    font-size: 18px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    width: 122px;
+    margin:0 auto;
+}
+
+.mr10{margin-right:10px;}
+
+.cblue{color:#0068B7}
+.cred{
+    font-size: 18px;
+    font-weight: bold;
+    color: #FF6600;
+}
+
+.g_span{color: #666666;}

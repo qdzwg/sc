@@ -1,0 +1,317 @@
+extends layout/pageLayout
+block stylesheetpage
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/common.css')
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/mcommon.css')
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/tip.css')
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/ticketbook.css')
+block pagecontent
+   #content
+      .bh1.cf
+         .bhl 演出票预订
+      .czone
+         .step_t.cf
+            .t1 1、选择景点
+            .t2 2、选择演出票
+            .t3.son 3、填写订单
+            .t4 4、在线支付
+         .cm_wrapper
+            .cm_title 您正在预订的是： 杭州宋城景区
+            .cm_content.cf
+               form#validateForm(method='post', novalidate='novalidate')
+                  input#ticketId(type='hidden', name='ticketId', value=code)
+                  input#showId(type='hidden', name='showId', value='1111')
+                  input#parkId(type='hidden', name='parkId', value='1000')
+                  input#uid(type='hidden', name='uid', value='')
+                  .ticket_w
+                     .cm_name.cf
+                        h2 预订信息
+                     .cm_spot
+                        ul.normal_list
+                           li
+                              span.w2 演出名称：
+                              =item.datas.showName
+                           li
+                              span.w2 演出票型名称：
+                              =item.datas.ticketName
+                           li
+                              span.w2 门票价格：
+                              -if(item.datas.stockPriceMap!=null)
+                                 span.bold.or.t18="￥"+item.datas.stockPriceMap[0].price
+                              -else
+                                 span.bold.or.t18="暂无价格"
+                           li
+                              span.w2 演出日期：
+                              select#playDate(name='playDate', style='width:105px', onchange='changePlayDate();', validate='{required:true}')
+                                 -if(item.datas.stockPriceMap!=null)
+                                    -each ditem in item.datas.stockPriceMap
+                                       option(value=ditem.date,data-price=ditem.price)=ditem.date
+                              span.g_span(style='color:red;') (请选择有效的游玩日期和演出场次)
+                           -if(item.datas.stockPriceMap!=null)
+                              input#price(type='hidden', name='price', value=item.datas.stockPriceMap[0].price)
+                           -else
+                              input#price(type='hidden', name='price')
+                           li.cf
+                              span.w2(style='float:left;') 演出场次：
+                              input#sessionId(type='hidden', name='sessionId', value='')
+                              #ft_w.ft_w.cf
+                           li#ticket_num
+                              span.w2 张数：
+                              select#amount(name='amount', style='width:105px', onchange='orderFill();', validate='{required:true}')
+                                 option(value='1') 1
+                                 option(value='2') 2
+                                 option(value='3') 3
+                                 option(value='4') 4
+                                 option(value='5') 5
+                                 option(value='6') 6
+                                 option(value='7') 7
+                                 option(value='8') 8
+                                 option(value='9') 9
+                                 option(value='10') 10
+                           li
+                              span.w2 选择惠券编号：
+                              input.text.text_s1(type='text', name='cashNo', validate='{minlength:6}')
+                              select#couponList(data-mold=mold data-proid=id)
+                           li
+                              span.w2 订单金额：
+                              -if(item.datas.stockPriceMap!=null)
+                                 span#sum.bold.or.t18=item.datas.stockPriceMap[0].price
+                              -else
+                                 span#sum.bold.or.t18
+                     .cm_name.cf
+                        h2 预订人信息
+                     .cm_spot
+                        ul.normal_list
+                           li
+                              span.w2
+                                 span(style='color:red;') *
+                                 | 取票人姓名：
+                              input#linkMan.text.text_s2(type='text', name='linkMan', maxlength='12', style='width:105px', validate='{required:true,minlength:2}')
+                              span.g_span  （支持中英文名，请准确填写）
+                           li
+                              span.w2
+                                 span(style='color:red;') *
+                                 | 证件类型：
+                              select(name="certificateType")#certificateType
+                                    option(value="0")="身份证"
+                                    option(value="1")="护照"
+                                    option(value="2")="港澳通行证"
+                                    option(value="3")="台湾通行证"
+                           li(data-mold='zjh')
+                              span.w2
+                                 span(style='color:red;') *
+                                 span.lab-title="身份证："
+                              input#idcard.text.text_s1(type='text', name='linkIdcard', maxlength='18', validate='{required:true,idcardno:true}')
+                           li
+                              span.w2
+                                 span(style='color:red;') *
+                                 | 取票人手机号码：
+                              input#mobile.text.text_s1(type='text', name='linkMobile', maxlength='11', validate='{required:true,minlength:11,mobile:true}')
+                              span.g_span （免费接收彩信，作为入园与取票凭证，请准确填写取票人手机号）
+                           li
+                              span.w2(style='vertical-align:top;') 备注：
+                              textarea#remark(name='orderInfo.remark', onblur="if(this.value==''){this.value='如护照证件号或特殊需求';this.style.color='#D1D1D1'}", onfocus="if(this.value=='如护照证件号或特殊需求'){this.value='';this.style.color='#000'}", rows='4', cols='35', style='resize:none;color: #d1d1d1;') 如护照证件号或特殊需求
+                        ul.normal_list.mt20
+                           li.pl140
+                              img(src=baseUrl+"/images/order/subbtnadd.png", alt="")#addCart
+                              input.order_b(type='submit', value=' ')
+
+block scriptspage
+   script(src=baseUrl+'/javascripts/jquery/jquery.form.js')
+   script(src=baseUrl+'/javascripts/jquery/jquery.validator.js')
+   script(src=baseUrl+'/javascripts/jquery/jquery.validate.js')
+   script(src=baseUrl+'/javascripts/jquery/validateExtend.js')
+   script(src=baseUrl+'/javascripts/jquery/jquery.metadata.js')
+   script(src=baseUrl+'/javascripts/formExtends.js')
+   script(src=baseUrl+'/javascripts/common/common.js')
+   script(src=baseUrl+'/javascripts/tip.js')
+   script(src=baseUrl+'/javascripts/ticket.js')
+   script.
+      $(document).ready(function () {
+         $('#addCart').on('click', function () {
+            if($("input[name=toType]").length==0){
+               $('#validateForm').append($('<input>', {
+                  'type': 'hidden',
+                  'name': 'toType',
+                  'value': 'cart'
+               }));
+            }
+            $('#validateForm').submit();
+         });
+         init();
+         $("#validateForm").validate();
+       $("#certificateType").change(function () {
+           var val=$(this).val(),zjh=$("*[data-mold='zjh']");
+           switch (val) {
+               case "0":
+                   zjh.find(".lab-title").text("身份证");
+                   zjh.find("input[name=linkIdcard]").attr({
+                       "placeholder": "请填写身份证",
+                       "validate": "{required:true,idcardno:true}"
+                   });
+                   break;
+               case "1":
+                   zjh.find(".lab-title").text("护照");
+                   zjh.find("input[name=linkIdcard]").attr({
+                       "placeholder": "请填写护照",
+                       "validate": "{required:true,isPassport:true}"
+                   });
+                   break;
+               case "2":
+                   zjh.find(".lab-title").text("港澳通行证");
+                   zjh.find("input[name=linkIdcard]").attr({
+                       "placeholder": "请填写港澳通行证",
+                       "validate": "{required:true,isHKMacao:true}"
+                   });
+                   break;
+               case "3":
+                   zjh.find(".lab-title").text("台湾通行证");
+                   zjh.find("input[name=linkIdcard]").attr({
+                       "placeholder": "请填写台湾通行证",
+                       "validate": "{required:true,isTaiwan:true}"
+                   });
+                   break;
+           }
+       });
+         //var fm = new ajaxSubmitForm("validateForm");
+      });
+      function init() {
+         $("#sessionId").val('');
+         orderFill();
+      }
+      function orderFill() {
+         var amount = $("#amount").val();
+         var price = $("#price").val();
+         var preObjet = $("#prePrice");
+         //不使用优惠券的情况
+         if ($("input:checked").val() == 0 || $("input[type=radio]").val() == null) {
+            //存在优惠价
+            if (preObjet.length > 0) {
+               var prePrice = $("#prePrice").val();
+               if (amount != "" && price != "") {
+                  $("#sum").html("￥" + amount * (price - prePrice));
+                  $("#prePriceSum").html("-￥" + amount * prePrice);
+               } else {
+                  $("#sum").html("￥0");
+                  $("#prePriceSum").html("￥0");
+               }
+            }
+            else {
+               if (amount != "" && price != "") {
+                  $("#sum").html("￥" + amount * price);
+               } else {
+                  $("#sum").html("￥0");
+               }
+            }
+         } else {//使用优惠券的情况
+            var cash = $("input:checked").val();//选中的优惠券
+            var cashNum = $("#cash" + cash).val();//优惠券的优惠金额
+            //存在优惠活动
+            if (preObjet.length > 0) {
+               var prePrice = $("#prePrice").val();
+               if (amount != "" && price != "") {
+                  if (amount * (price - prePrice) - cashNum > 0) {
+                     $("#sum").html("￥" + (amount * (price - prePrice) - cashNum));
+                  } else {
+                     $("#sum").html("￥0");
+                  }
+                  $("#prePriceSum").html("-￥" + amount * prePrice);
+               } else {
+                  $("#sum").html("￥0");
+                  $("#prePriceSum").html("￥0");
+               }
+            }
+            //不存在优惠活动
+            else {
+               if (amount != "" && price != "") {
+                  if (amount * price - cashNum > 0) {
+                     $("#sum").html("￥" + (amount * price - cashNum));
+                  } else {
+                     $("#sum").html("￥0");
+                  }
+               } else {
+                  $("#sum").html("￥0");
+               }
+            }
+         }
+      }
+      function changePlayDate() {
+         var playDate = $("#playDate").val();
+         var price=$("#playDate").find("option:selected").data("price");
+         if (playDate == null || playDate.length == 0) {
+            alert("该演出产品已下架，无法预订!");
+         }
+         else {
+            //location.href = "/ticket/park!showTicketInfo.htm?playTime=" + playDate + "&parkId=" + parkId + "&ticketId=" + ticketId;
+            getStock(playDate);
+            $("#price").val(price);
+         }
+      }
+      $('.ft2').live('click', function () {
+         $(this).parents(".ft_w").find('.ft2').removeClass('ft_sel');
+         $(this).addClass('ft_sel');
+         var sessionId = $(this).find("input[name='session']").val();
+         $(this).parents(".ft_w").eq(0).prev('#sessionId').val(sessionId);
+      });
+      function plus(cash) {
+         var amount = $("#amount").val();
+         var price = $("#price").val();
+         var preObjet = $("#prePrice");
+         //存在优惠价
+         if (preObjet.length > 0) {
+            var prePrice = $("#prePrice").val();
+            if (amount != "" && price != "") {
+               var price = amount * (price - prePrice) - cash;
+            }
+         }
+         //不存在优惠价
+         else {
+            if (amount != "" && price != "") {
+               var price = amount * price - cash;
+            }
+         }
+         if (price > 0) {
+            $("#sum").html("￥" + price);
+         } else {
+            $("#sum").html("￥0");
+         }
+      }
+      function addCash() {
+         var ticketId = $("#ticketId").val();
+         var cashNo = $("input[name=cashNo]").val();
+         $.ajax({
+            url: "/ticket/park!jiehuo.htm?cashNo=" + cashNo + "&ticketId=" + ticketId,
+            dataType: 'json',
+            success: function (data) {
+               if (data.length == 1) {
+                  $("<li class='cf'><span class='w2' style='float:left;'>选择优惠券：</span> <ul style='float:left;' id='choose'></ul></li>").insertAfter($('#ticket_num'));
+               }
+               $("#choose").empty();
+               $.each(data, function (i, res) {
+                  $("#choose").append("<li><input name='id' type='radio' value=" + res.id + " onclick=plus(" + res.cash + ");>&nbsp;优惠" + res.cash + "元,优惠券编号" + res.cashNo + "</input></li><input type='hidden' id=cash" + res.id + " value=" + res.cash + " />");
+               });
+               $("#choose").append("<li><input name='id' type='radio' value='0' checked='checked' onclick='plus(0)' />&nbsp;暂不使用优惠券</li>");
+               $("input[name=cashNo]").val("");
+            },
+            error: function () {
+               alert("优惠券编号错误或已激活！");
+            }
+         });
+      }
+      getStock($("#playDate").val());
+      //日历信息
+      function getStock(date) {
+         var mold = "!{mold}";
+         $.get('/order/getStock/' + mold, {id: !{code}, nowDate: date}, function (data) {
+            console.log(data[0].datas.session);
+            var html = "", obj = "";
+               $.each(data[0].datas.session, function (i) {
+                  html+='<div onclick="same('+i+');" class="ft2">' +
+                          '<input type="hidden" name="session" value='+data[0].datas.session[i].stockId+'>' +
+                          data[0].datas.session[i].playTime+' 场<br>余位'+data[0].datas.session[i].leftAmount+'</div>';
+               });
+             if(data[0].datas.session>0){
+                 $("#sessionId").val(data[0].datas.session[0].stockId);
+             }
+            $("#ft_w").html(html);
+         }, "json");
+      }

@@ -1,0 +1,27 @@
+extends layout/pageLayout
+block stylesheetpage
+	link(rel="stylesheet", href=baseUrl+'/stylesheets/mcommon.css')
+	link(rel="stylesheet", href=baseUrl+'/stylesheets/ticket_succ.css')
+block pagecontent
+	#content
+		.bh1.cf
+			.bhl 门票预订
+		.czone
+			.step_t.cf
+				.t1 1、选择景点
+				.t2 2、选择门票
+				.t3 3、填写订单
+				.t4.son 4、在线支付
+				.t5 5、预订成功
+				.t6 6、支付状态
+			.cm_wrapper
+				.cm_title 支付状态
+				.cm_content.cf
+					.succ(style="background:url(/images/common/"+(alipayData.sutatus==='1'?"err.jpg":"succ.gif")+") no-repeat 0 center;")
+						if alipayData.sutatus==='1'
+							p 抱歉！支付失败！
+							p=alipayData.msg
+						else
+							p 恭喜！支付成功！
+							p 票型名称：#{alipayData.name}
+							p 购买数量：#{alipayData.num}

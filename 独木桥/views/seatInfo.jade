@@ -1,0 +1,10 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/order.css')
+block content
+   div.seat-results
+      p="订单已经排座，无法选座。"
+   div.btn-bottom
+      .btn-handle
+         a(href="/").btn-RP 返回首页
+

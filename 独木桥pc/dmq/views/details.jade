@@ -1,0 +1,324 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/'+mold+'.css')
+block pagecontent
+    include common/comFun
+    include details/article
+    #main
+        +breadcrumb("杭州宋城烂苹果乐园")
+        #intro
+            #scroll_w
+                img(src="/images/demo/4b29eb2c-5da1-415a-ad4e-ca23604cc213.jpg")
+                img(src="/images/demo/ac94b5ae-22f4-4c0a-b1d0-956ab692bbd2.jpg")
+                img(src="/images/demo/58622840-1f54-45c1-8d5d-5dd10e3a949c.jpg")
+                img(src="/images/demo/d2f256ef-988a-4801-985a-e8347a32ee89.jpg")
+        -if(mold=="zyx")
+            .h_w.cf
+                h1="【杭州·西湖】宋城千古情+灵隐（飞来峰）景区双人自由行套餐(住宋城千古情主题酒店西湖店)"
+                .floatr
+                    span#sum_pri="总价："
+                        b#sum="¥728"
+                    a(href="#").book_btn="立即预订"
+            .tour_intro="【住千古情主题酒店，相约宋城，祈福灵隐】"
+                br
+                ="1.产品包含：宋城千古情演出贵宾席（含宋城景区）成人票2张，灵隐（飞来峰）成人票2张，千古情主题酒店高级房双标间1间1晚（含双早）"
+                br
+                ="3.咨询热线：400-8888-518."
+        -else
+                #imask
+                #intro_detail
+                    .hotel_name="杭州宋城烂苹果乐园"
+                    .bm_w.cf
+                        .bm_c4="虚拟4D过山车"
+                        .bm_c1="奇幻泡泡节"
+                        .bm_c2="全室内高科技亲子乐园"
+                        .bm_c3="魔幻世界"
+                        .bm_c4="亲子乐园"
+                    case mold
+                        when "ticket"
+                            ul.main_d
+                                li
+                                    b="所在地区："
+                                    ="杭州"
+                                li
+                                    b="详细地址："
+                                    ="杭州市萧山区风情大道2555号"
+                                li
+                                    b="营业时间："
+                                    ="双休日、法定节假日正常营业，营业时间为9:30-17:00"
+                        when "hotel"
+                            ul.main_d
+                                li
+                                    b="酒店星级："
+                                    ="5星级"
+                                li
+                                    b="所在地区："
+                                    ="杭州"
+                                li
+                                    b="详细地址："
+                                    ="风情大道2555号"
+                    .s_ul
+                        b="用户点评："
+                        .st_w
+                            #topAvg.st_w_i
+                        .s_sum="(0分，共1条点评)"
+                    .s_price.cf="价格："
+                        b="¥140"
+                        span="起"
+                    .d_btn.cf
+                        case mold
+                            when "ticket"
+                                a(href="#p2")="景区介绍"
+                                a(href="#p1")="预订须知"
+                                a(href="#p4")="用户点评"
+                            when "hotel"
+                                a(href="#p2")="酒店介绍"
+                                a(href="#p1")="酒店图片"
+                                a(href="#p4")="用户点评"
+                    #add_bs
+                        +share()
+        case mold
+            when "ticket"
+                #ticket_intro
+                    .list_h.cf
+                        .h_txt="产品列表"
+                        input(type="hidden",name="uid")#uid
+                    #ticket_intro_i
+                        -var tickettableHead=[{"title":"门票名称","className":"w1",dataKey:"name",islink:true},{"title":"支付方式","className":"w3",dataKey:"payMold"},{"title":"门市价","className":"w4",dataKey:"sellingPrice"},{"title":"网销价","className":"w5",dataKey:"price"},{"title":"点评返积分","className":"w6",dataKey:"score"},{"title":"操作","className":"w7",dataKey:"handle"}]
+                        -var ticketItems=[{"name":"宋城烂苹果乐园+杭州乐园湘湖宋城景区（含《西施恋歌》演出）成人联票","payMold":"","price":"220","sellingPrice":"240","score":"10"},{"name":"宋城烂苹果乐园+杭州乐园湘湖宋城景区（含《西施恋歌》演出）成人联票","payMold":"","price":"220","sellingPrice":"240","score":"10"}]
+                        -var packagesHead=[{"title":"套票名称","className":"w1",dataKey:"name",islink:true},{"title":"支付方式","className":"w3",dataKey:"payMold"},{"title":"门市价","className":"w4",dataKey:"sellingPrice"},{"title":"宋城旅游价","className":"w5",dataKey:"price"},{"title":"点评返积分","className":"w6",dataKey:"score"},{"title":"操作","className":"w7",dataKey:"handle"}]
+                        -var packagesItems=[{"name":"宋城烂苹果乐园+杭州乐园湘湖宋城景区（含《西施恋歌》演出）成人联票","payMold":"","price":"220","sellingPrice":"240","score":"10"},{"name":"宋城烂苹果乐园+杭州乐园湘湖宋城景区（含《西施恋歌》演出）成人联票","payMold":"","price":"220","sellingPrice":"240","score":"10"}]
+                        +subproList(tickettableHead,ticketItems)
+                        +subproList(packagesHead,packagesItems)
+                #tjcp_intro
+                    .list_h.cf
+                        .h_txt="产品推荐"
+                    #tjcp_intro_i.cf
+                        .tjcp_b_w
+                            -var recommendItems=[{"imagesUrl":"/images/demo/35a83a55-ef5a-4999-b6ec-54f817565cf7.jpg","title":"【杭州】宋城千古情演出贵宾席（含宋城景区）+宋城千古情主题酒店（西湖店）高级房1间1晚 单人套餐 ","price":"418"},{"imagesUrl":"/images/demo/6df60c1b-148b-4393-b8b7-85b08025d00f.jpg","title":"【杭州】宋城千古情演出贵宾席（含宋城景区）+宋城千古情主题酒店（西湖店）高级房1间1晚 双人套餐","price":"658"},{"imagesUrl":"/images/demo/b4e2925f-dee7-44c4-877b-21afe5b7cc25.jpg","title":"【杭州】宋城千古情演出贵宾席（含宋城景区）+宋城千古情主题酒店（西湖店）高级房1间1晚 大学生双人套餐","price":"416"},{"imagesUrl":"/images/demo/c0d589ba-1966-4100-acfe-d5ca7334d00b.jpg","title":"宋城浪漫情侣套餐","price":"798"},{"imagesUrl":"/images/demo/0c42f194-8a96-4e26-81f8-2974b6369336.jpg","title":"宋城超值滑梯套餐","price":"798"},{"imagesUrl":"/images/demo/a348520c-febb-4c81-a166-be3e1326a059.jpg","title":"宋城精华畅游套餐","price":"858"}]
+                            -each item in recommendItems
+                                .tjcp_b
+                                    a(href="#",target="_blank").tjcp_pic
+                                        img(src=item.imagesUrl)
+                                    a(href="#",target="_blank").tjcp_des=item.title
+                                    .tjcp_m.cf
+                                        strong=item.price+"元起"
+                                        a(href="#",target="_blank")="查看详情"
+                -var articeItems=[{"title":"预定须知","id":"hotel_intro","content":"1","mold":"notice"},{"title":"景区介绍","id":"pic_intro","content":"1","mold":"intro"},{"title":"交通信息","id":"jq_trafic","content":"1","mold":"trafic"},{"title":"用户点评","id":"comment","content":"1","mold":"comment"}]
+                +detailsArticle(articeItems)
+            when "hotel"
+                #room_intro
+                    #idate_w.cf
+                        form(action="#",method="post")
+                            input(type="hidden",value="1000").text
+                            #idate_l
+                                label="入住日期："
+                                input(type="text",name="begDate",onclick="WdatePicker({isShowClear:false,minDate:'%y-%M-%d',readOnly:true,dateFmt:'yyyy-MM-dd',skin:'blue',onpicked:function(){ var nn =$dp.$D('begDate',{d:1});var y = $dp.cal.getP('y'); var m = $dp.cal.getP('M'); var d = $dp.cal.getP('d');$('#endDate').val(nn.y + '-' + nn.M + '-' + nn.d);}})").Wdate#begDate
+                                label="退房日期："
+                                input(type="text",name="endDate",onclick="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd',skin:'blue',minDate:'#F{$dp.$D(\'begDate\',{d:1});}'})").Wdate#endDate
+                                input(type="submit",name="button",value="修改")#button.c_date_btn
+                        table(cellpadding="0",cellspacing="0",border="0").main_t
+                            tr
+                                th.w_hi="房型"
+                                th.w1="套餐"
+                                th.w2="床型"
+                                th.w3="早餐"
+                                th.w4="宽带"
+                                th.w5="房价"
+                                th.w6="是否有房"
+                                th.w7
+                            tr.last_room
+                                td(rowspan=1).w_main
+                                    span.main_type="陶艺DIY或绘画DIY二选一亲子套餐▼"
+                                td.w1
+                                    span.tc_type="标准价"
+                                    span.dj
+                                        span.f="返"
+                                        span.p="0积分"
+                                td.w2="双床"
+                                td.w3="双早"
+                                td.w4="无"
+                                td.w5
+                                    span.rjj="¥798"
+                                td.w6
+                                    span.cgreen="有房"
+                                td.w7
+                                    a(href="/order/hotel/1").book_link="预订"
+                            tr.fx_tr
+                                td(colspan="8")
+                                    .fx_Intro.cf
+                                        ul.fx_ul1
+                                            li="房　　型：陶艺DIY或绘画DIY二选一亲子套餐"
+                                            li="房间面积：20"
+                                            li="楼　　层："
+                                        ul.fx_ul2
+                                            li="床型：双床"
+                                            li="加床：不能"
+                                            li="宽带：无"
+                                        ul.fx_ul1
+                                            li="房型简介：1.主题酒店高级房1间1晚 2.泰香阁早餐3份 3.泰香阁自助晚餐消费券50元2张 4.泥巴王子陶艺DIY一次1件成品或彩绘天地 DIY（画帽子/画T恤/画扇子/画包+2件成品）任选一项 5.陶艺吧抵值券50元1张"
+                                        span.hide_fx="隐藏▲"
+                #hotel_intro_w
+                    a(name="p2")
+                    .list_h.cf
+                        .h_txt="酒店介绍"
+                    #hotel_intro_i
+                        .hotel_intro_b.jd_intro
+                            h3="◆  杭州宋城第一世界大酒店简介"
+                        .hotel_intro_b.facility_intro
+                            h3="◆ 设施服务"
+                        .hotel_intro_b.trafic_intro
+                            .trafic_zone.cf
+                                h3="◆ 交通信息"
+                                .tz_l
+                                .tz_r#dituContent
+                #pic_intro_w
+                    a(name="p1")
+                    .list_h.cf
+                        .h_txt="酒店图片"
+                    #pic_intro_i
+                        .pic_sel_zone.cf
+                            ul.sel_nav
+                                li.pic_sel="全部图片"
+                                li="酒店外观"
+                                li="公共区域"
+                                li="房型图片"
+                        .pic_sw_zone
+                            .pic_sw(style="display:block")
+                                .pic_div
+                                    img(src="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg",bsrc="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg")
+                                    span.pmask
+                                    span.ptxt="酒店全景"
+                            .pic_sw
+                                .pic_div
+                                    img(src="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg",bsrc="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg")
+                                    span.pmask
+                                    span.ptxt="酒店全景"
+                            .pic_sw
+                                .pic_div
+                                    img(src="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg",bsrc="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg")
+                                    span.pmask
+                                    span.ptxt="酒店全景"
+                            .pic_sw
+                                .pic_div
+                                    img(src="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg",bsrc="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg")
+                                    span.pmask
+                                    span.ptxt="酒店全景"
+                #comment
+                    a(name="p4")
+                    .list_h.cf
+                        .h_txt="游客点评"
+                    #comment_i.cf
+                        +comment()
+            when "zyx"
+                #room_intro
+                    #idate_w.cf
+                        form(action="#",method="post")
+                            input(type="hidden",value="1000").text
+                            #idate_l
+                                label="入住日期："
+                                input(type="text",name="begDate",onclick="WdatePicker({isShowClear:false,minDate:'%y-%M-%d',readOnly:true,dateFmt:'yyyy-MM-dd',skin:'blue',onpicked:function(){ var nn =$dp.$D('begDate',{d:1});var y = $dp.cal.getP('y'); var m = $dp.cal.getP('M'); var d = $dp.cal.getP('d');$('#endDate').val(nn.y + '-' + nn.M + '-' + nn.d);}})").Wdate#begDate
+                                label="退房日期："
+                                input(type="text",name="endDate",onclick="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd',skin:'blue',minDate:'#F{$dp.$D(\'begDate\',{d:1});}'})").Wdate#endDate
+                                input(type="submit",name="button",value="修改")#button.c_date_btn
+                        table(cellpadding="0",cellspacing="0",border="0").main_t
+                            tr
+                                th.w_hi="房型"
+                                th.w1="套餐"
+                                th.w2="床型"
+                                th.w3="早餐"
+                                th.w4="宽带"
+                                th.w5="房价"
+                                th.w6="是否有房"
+                                th.w7
+                            tr.last_room
+                                td(rowspan=1).w_main
+                                    span.main_type="陶艺DIY或绘画DIY二选一亲子套餐▼"
+                                td.w1
+                                    span.tc_type="标准价"
+                                    span.dj
+                                        span.f="返"
+                                        span.p="0积分"
+                                td.w2="双床"
+                                td.w3="双早"
+                                td.w4="无"
+                                td.w5
+                                    span.rjj="¥798"
+                                td.w6
+                                    span.cgreen="有房"
+                                td.w7
+                                    a(href="/order/hotel/1").book_link="预订"
+                            tr.fx_tr
+                                td(colspan="8")
+                                    .fx_Intro.cf
+                                        ul.fx_ul1
+                                            li="房　　型：陶艺DIY或绘画DIY二选一亲子套餐"
+                                            li="房间面积：20"
+                                            li="楼　　层："
+                                        ul.fx_ul2
+                                            li="床型：双床"
+                                            li="加床：不能"
+                                            li="宽带：无"
+                                        ul.fx_ul1
+                                            li="房型简介：1.主题酒店高级房1间1晚 2.泰香阁早餐3份 3.泰香阁自助晚餐消费券50元2张 4.泥巴王子陶艺DIY一次1件成品或彩绘天地 DIY（画帽子/画T恤/画扇子/画包+2件成品）任选一项 5.陶艺吧抵值券50元1张"
+                                        span.hide_fx="隐藏▲"
+                #hotel_intro_w
+                    a(name="p2")
+                    .list_h.cf
+                        .h_txt="酒店介绍"
+                    #hotel_intro_i
+                        .hotel_intro_b.jd_intro
+                            h3="◆  杭州宋城第一世界大酒店简介"
+                        .hotel_intro_b.facility_intro
+                            h3="◆ 设施服务"
+                        .hotel_intro_b.trafic_intro
+                            .trafic_zone.cf
+                                h3="◆ 交通信息"
+                                .tz_l
+                                .tz_r#dituContent
+                #pic_intro_w
+                    a(name="p1")
+                    .list_h.cf
+                        .h_txt="酒店图片"
+                    #pic_intro_i
+                        .pic_sel_zone.cf
+                            ul.sel_nav
+                                li.pic_sel="全部图片"
+                                li="酒店外观"
+                                li="公共区域"
+                                li="房型图片"
+                        .pic_sw_zone
+                            .pic_sw(style="display:block")
+                                .pic_div
+                                    img(src="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg",bsrc="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg")
+                                    span.pmask
+                                    span.ptxt="酒店全景"
+                            .pic_sw
+                                .pic_div
+                                    img(src="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg",bsrc="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg")
+                                    span.pmask
+                                    span.ptxt="酒店全景"
+                            .pic_sw
+                                .pic_div
+                                    img(src="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg",bsrc="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg")
+                                    span.pmask
+                                    span.ptxt="酒店全景"
+                            .pic_sw
+                                .pic_div
+                                    img(src="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg",bsrc="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg")
+                                    span.pmask
+                                    span.ptxt="酒店全景"
+                #comment
+                    a(name="p4")
+                    .list_h.cf
+                        .h_txt="游客点评"
+                    #comment_i.cf
+                        +comment()
+                -var articeItems=[{"title":"行程安排","id":"hotel_intro","content":"1","mold":"tour"},{"title":"费用说明","id":"pic_intro","content":"1","mold":"intro"},{"title":"交通信息","id":"jq_trafic","content":"1","mold":"trafic"},{"title":"用户点评","id":"comment","content":"1","mold":"comment"}]
+                +detailsArticle(articeItems)
+block scriptspage
+    script(src=baseUrl+'/javascripts/koobox.js')
+    script(src=baseUrl+'/javascripts/kooslide.js')
+    script(src=baseUrl+'/javascripts/datepicker/WdatePicker.js')
+    script(src=baseUrl+'/javascripts/comment.js')
+    script(src=baseUrl+'/javascripts/details.js')

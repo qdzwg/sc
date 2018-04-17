@@ -1,0 +1,32 @@
+extends layout
+block stylesheet
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/list.css')
+
+block content
+    ul.scored-list
+        each item in items.items
+            li
+                .scored-left
+                    -var contype=""
+                    case item.mtype
+                        when "ORDER"
+                            -contype="下单赠送"
+                        when "PRESENT"
+                            -contype="客服赠送"
+                        when "CONVERT"
+                            -contype="兑换"
+                        when "CUT"
+                            -contype="冲减"
+                    p=contype
+                    p=item.createTime
+                .scored-center
+                    img(src="/images/list/score-list.jpg")
+                .scored-info
+                    -var mark=""
+                    if(item.mtype=="CONVERT"||item.mtype=="CUT"||item.mtype=="WIN_CUT")
+                        -mark="-"
+                    else
+                        -mark="+"
+                    h3=mark+item.opScore
+                    p=item.leftScore
+block scripts

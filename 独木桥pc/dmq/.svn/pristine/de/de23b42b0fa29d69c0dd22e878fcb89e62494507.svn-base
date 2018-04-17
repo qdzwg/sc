@@ -1,0 +1,50 @@
+extends ../layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_common.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/usercenter.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_cinfo.css')
+block pagecontent
+    #uc_wrapper
+        include top
+        #uc_content.cf
+            include left
+            #uc_main
+                .t_w
+                    .t_head_w.cf
+                        .t_name 发表评论
+                    #info_w
+                        .info_cw
+                            ul.info_list.info_edit.cf(style='display:block;')
+                                form#newRouteForm(action='/user/comment/listComment/write', method='post')
+                                    input.input_1(name='orderId', type='hidden', value=orderDetail.orderId)
+                                    //- input.input_1(name='consumerComment.ctype', type='hidden', value='PARK')
+                                    //- input.input_1(name='consumerComment.orderNo', type='hidden', value='20150626000088021')
+                                    li
+                                        span
+                                            | 景区名称
+                                            | ：
+                                        | #{orderDetail.info}
+                                    li
+                                        span 订单编号：
+                                        | #{orderDetail.orderNo}
+                                    li
+                                        span 分数：
+                                        input#radio(type='radio', name='starNum', value='5')
+                                        label.sfor(for='num5') 5分
+                                        input#radio(type='radio', name='starNum', value='4')
+                                        label.sfor(for='num4') 4分
+                                        input#radio(type='radio', name='starNum', value='3')
+                                        label.sfor(for='num3') 3分
+                                        input#radio(type='radio', name='starNum', value='2')
+                                        label.sfor(for='num2') 2分
+                                        input#radio(type='radio', name='starNum', value='1')
+                                        label.sfor(for='num1') 1分
+                                    li
+                                        span 点评内容：
+                                        textarea.i_s(name='content', id='', style='height:84px;resize: none;', cols='50')
+                                    li.save
+                                        input.comfirm_btn(type='submit', value='确 定')
+                                        input.cancel_btn(type='button', value='取 消', onclick='history.back()')
+
+block scriptspage
+    script(src=baseUrl+'/javascripts/uc_common.js')

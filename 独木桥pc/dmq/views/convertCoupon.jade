@@ -1,0 +1,21 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_common.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/usercenter.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_detail.css')
+block pagecontent
+    include common/comFun
+    #uc_wrapper
+        include user/top
+        #uc_content.cf
+            include user/left
+            #uc_main
+                .t_w
+                    .t_head_w.cf
+                        .t_name 优惠券兑换
+                    form(action="" method="post").convert-form#info_w
+                        input(type="text" name="code" placehold="请输入优惠码").i_s
+                        input(type="submit" vlaue="确认兑换").comfirm_btn
+block scriptspage
+    script(src=baseUrl+'/javascripts/datepicker/WdatePicker.js')
+    script(src=baseUrl+'/javascripts/uc_common.js')

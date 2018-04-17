@@ -1,0 +1,216 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/common.css')
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/mcommon.css')
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/Exclusiveblog.css')
+block pagecontent
+    #content
+        .descript_con
+            .exc_text_tit
+                | 杭州宋城千古情主题酒店延续宋城“建筑为形，文化为魂”的理念:
+                span 以建筑为形，以文化为魂。在这个诗情画意的季节，来天堂杭州的宋城邂逅不一样的自己，感受不一样的千古情……
+            // exc_text_tit
+            .base_info
+                p
+                    span.name
+                        strong 宋城旅游
+                    |                    发表于 
+                    span.time_tag
+                        | 2016-01-11  星期一
+                p.tag_list
+                    | 标签：
+                    strong 独家探店
+                p
+                    | 目的地：
+                    strong 杭州
+                    |                   最佳出游时间：
+                    strong
+                        | 全年
+            // base_info
+            .text_content
+                p
+                    span(style='font-family: 宋体,SimSun; font-size: 16px;')
+                        | 杭州宋城千古情主题酒店延续宋城“建筑为形，文化为魂”的理念，不一样的酒店，不一样的居住体验！西湖店：毗邻宋城景区，有客房2000间，分为九寨千古情楼、丽江千古情楼和三亚千古情楼；湘湖店：毗邻宋城杭州乐园、宋城烂苹果乐园、宋城浪浪浪水公园和宋城云曼温泉。
+                p(style='line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun; font-size: 16px;')
+                    span(style='font-family: 宋体,SimSun; font-size: 16px;')
+                        | 酒店客房共2000间，由五栋楼组成：以藏族文化为主题的九寨千古情楼、以丽江文化为主题的丽江千古情楼、以滨海文化为主题的三亚千古情楼。无论是在大堂、过道、房间都能让宾客笼罩在浓浓的文化氛围之中，一样的酒店，不一样的旅行感受！
+                p(style='text-indent: 20pt; line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun;')
+                        span(style='font-family: 宋体,SimSun; font-size: 10pt;') 地址：杭州市西湖区之江路
+                        span(style='font-size: 10pt; font-family: Arial,sans-serif;', lang='EN-US') 148
+                        span(style='font-family: 宋体,SimSun; font-size: 10pt;') 号宋城景区旁
+                        span(style='font-size: 9pt; font-family: Arial,sans-serif;', lang='EN-US')
+                            o:p
+                p(style='text-indent: 18pt; line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun;')
+                        span(style='font-size: 9pt; font-family: Arial,sans-serif;', lang='EN-US')  
+                        span(style='font-family: 宋体,SimSun; font-size: 10pt;') 总机：
+                        span(style='font-size: 10pt; font-family: Arial,sans-serif;', lang='EN-US') 0571-56663888
+                        span(style='font-family: 宋体,SimSun; font-size: 10pt;') （预定电话）
+                        span(style='font-size: 9pt; font-family: Arial,sans-serif;', lang='EN-US')
+                            o:p
+                p(style='text-indent: 18pt; text-align: center; line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun; font-size: 16px;') 三亚千古情楼
+                p(style='text-indent: 18pt; text-align: center; line-height: 1.75em;')
+                    span(style='font-size: 9pt; text-indent: 18pt; font-family: 宋体,SimSun;') 三亚千古情楼以三亚文化为主题，酒店内设施齐全，文化氛围浓厚。旅途中的你可以在休息时感受浓郁的吴越文化，出门便可观看宋城千古情演出。
+                    span(style='font-family: 宋体,SimSun;')
+                        br
+                p(style='text-align: center; line-height: 1.75em;')
+                    span(style='font-size: 9pt; font-family: 宋体;') 酒店内布局清新典雅，空间宽敞。
+                p(style='text-align: center')
+                    img(src='/images/details/46571446189512901.JPG', title='三亚楼高级标间.jpg')
+                p(style='line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun;')
+                        span(style='font-size: 9pt; font-family: 宋体;')
+                        span(style='font-size: 9pt; font-family: Arial,sans-serif;', lang='EN-US')
+                            o:p
+                    br
+                p(style='text-align:center')
+                    img(src='/images/details/46571446189512901.JPG', title='吴越1(1).jpg')
+                p(style='text-align: center; line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun;')
+                        span(style='font-family: 宋体,SimSun; font-size: 9pt;') 清晨，在暖橙色的阳光中醒来，一杯清茶，伴着花香。又开始下一段旅程
+                        span(style='font-size: 9pt; font-family: Arial,sans-serif;', lang='EN-US') ......
+                    o:p
+                p(style='text-align: center')
+                    img(src='/images/details/46571446189512901.JPG', title='吴越2(1).JPG')
+                p(style='text-align: center; line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun;')
+                        span(style='font-family: 宋体,SimSun; font-size: 9pt;') 酒店内不同的三亚风情，时尚大气，您可以选择自己喜欢的主题风情。
+                        span(style='font-size: 9pt; font-family: Arial,sans-serif;', lang='EN-US')
+                            o:p
+                p(style='text-indent: 18pt; text-align: center; line-height: 1.75em;')
+                    img(src='/images/details/46571446189512901.JPG', title='wy3.JPG')
+                    span(style='font-family: 宋体,SimSun;')
+                        br
+                p(style='text-align: center; line-height: 1.75em;')
+                    span(style='font-size: 9pt; font-family: 宋体,SimSun;') 经典的黑白搭配，连洗漱用品都充满着文化色彩。
+                p(style='text-align: center')
+                    img(src='/images/details/46571446189512901.JPG', title='吴越4(1).JPG')
+                p(style='text-align: center; line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun;')
+                        span(style='font-family: 宋体,SimSun; font-size: 9pt;') 酒店里特有的洗漱香皂，除去一天的疲劳，给您一个舒适清香的美梦。
+                        span(style='font-size: 9pt; font-family: Arial,sans-serif;', lang='EN-US')
+                            o:p
+                p(style='text-align: center')
+                    img(src='/images/details/46571446189512901.JPG', title='吴越5(1).JPG')
+                p(style='text-indent: 18pt; text-align: center; line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun;')  
+                p(style='text-indent: 18pt; text-align: center; line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun; font-size: larger;')
+                        | 丽江千古情楼
+                        br
+                    span(style='font-family: 宋体,SimSun;')
+                        br
+                p(style='text-indent: 18pt; text-align: left; line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun; font-size: 18px;')
+                        span(style='font-family: 宋体,SimSun;') 千古情主题酒店具体优惠信息请在独木桥/独家热卖里查看抢票。
+                p(style='line-height: 1.75em;')
+                    strong
+                        span(style='font-family: 宋体,SimSun; font-size: 18px;') 综合设施
+                    span(style='font-family: 宋体,SimSun; font-size: 18px;')
+                        o:p
+                p(style='line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun; font-size: 18px;')
+                        | 中餐厅   咖啡厅   停车场   商场   自动取款机   收费停车场   有可无线上网的公共区域   大堂吧   电梯空调   中央空调   普通分体空调   有可无线上网的公共区域    免费大堂免费报纸   餐厅   多功能厅无烟          楼层
+                        o:p
+                p(style='line-height: 1.75em;')
+                    strong
+                        span(style='font-family: 宋体,SimSun; font-size: 18px;') 活动设施
+                    span(style='font-family: 宋体,SimSun; font-size: 18px;')
+                        o:p
+                p(style='line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun; font-size: 18px;')
+                        | 茶室   足浴   徒步旅行  酒店周边有繁华的商业街   主题酒吧   茶吧   电影院   书吧   静吧   盲人按摩
+                        o:p
+                p(style='line-height: 1.75em;')
+                    strong
+                        span(style='font-family: 宋体,SimSun; font-size: 18px;') 服务项目
+                    span(style='font-family: 宋体,SimSun; font-size: 18px;')
+                        o:p
+                p(style='line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun; font-size: 18px;')
+                        | 会议厅商务中心   洗衣服务医务室   邮政服务   专职行李员   行李寄存叫醒服务   礼宾服务管家服务   代客泊车   专职门童   商务服务
+                        o:p
+                p(style='line-height: 1.75em;')
+                    strong
+                        span(style='font-family: 宋体,SimSun; font-size: 18px;') 客房设施
+                    span(style='font-family: 宋体,SimSun; font-size: 18px;')
+                        o:p
+                p(style='line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun; font-size: 18px;')
+                        | 国内长途电话   拖鞋24小时   热水   免费洗漱用品(6样以上)   多种规格电源插座   独立淋浴间   电视机   单一规格电源插座   220V电压插座   遮光窗帘   唤醒服务   公用吹风机   沙发
+                p(style='line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun;')  
+                p(style='line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun;')  
+                p(style='line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun;')
+                        o:p
+                p(style='line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun;')  
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: x-small; font-family: 宋体,SimSun;')  
+                h3(style='margin: 0px 0px 10px; padding: 8px 0px; font-size: 14px; border-bottom: 1px solid rgb(201, 201, 201); font-family: arial,tahoma,宋体,sans-serif; line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun;') ◆ 交通信息
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 公共交通：
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 飞行指南:
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 乘坐飞机前来宋城旅游，可从杭州萧山国际机场转乘汽车到达景区，距离30公里。
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 杭州萧山国际机场——宋城
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 乘坐机场大巴→武林门民航售票处下（步行至武林门站）→换乘公交318路
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 机场电话：+86 571 86662539
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 火车指南:
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 杭州站（城站火车站）——宋城
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 乘坐地铁1号线(文泽路方向)→龙翔桥站下→换乘公交504路
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 杭州火车东站——宋城
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 乘坐地铁1号线（湘湖方向）→龙翔桥站下→换乘公交504路
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 汽车指南:
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 杭州汽车客运中心站——宋城
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 乘坐地铁1号线（湘湖方向）→龙翔桥站下→换乘公交504路
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 杭州汽车西站——宋城
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 乘坐公交102路→凤山门站下→换乘公交308路
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 杭州汽车北站——宋城
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 乘坐公交188路→延安路湖滨站下（步行至龙翔桥站）→换乘公交504路
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 杭州汽车南站——宋城
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 乘坐公交39路→复兴路北口站下→换乘公交308路
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 自驾指南:
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 市区方向：可经复兴路、虎跑路、梅岭南路、钱江一桥（钱塘江大桥）→之江路→往转塘方向
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 其他方向：可经杭州绕城高速→之江路→往转塘方向
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 公交指南:
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;') 市内可乘坐Y4、K308、K318、K354、K504、K510、夜间线202到宋城站下.
+                p(style='line-height: 1.75em;')
+                    span(style='font-size: small; font-family: 宋体,SimSun;')   
+                p(style='line-height: 1.75em;')
+                    span(style='font-family: 宋体,SimSun;')  
+                p(style='text-align: left; text-indent: 18pt; line-height: 1.75em;')
+                    span(style='font-size: 12pt; font-family: 宋体,SimSun;')
+                        o:p
+            // text_content
+        // descript_con
+block scriptspage

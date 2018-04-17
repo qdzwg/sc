@@ -1,0 +1,21 @@
+extends layout
+block stylesheet
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/turntable.css')
+
+block content
+    .header="我的奖品"
+    ul.prize-list
+        -var statusObj={}
+        each item in items
+            case item.status
+                when "0"
+                    -statusObj={"className":"","text":"未兑奖"}
+                when "1"
+                    -statusObj={"className":"used","text":"已兑奖"}
+            li(class=statusObj.className)
+                .prize-list-icon
+                .prize-list-right=statusObj.text
+                .prize-list-info
+                    h3.prize-list-title=item.productName
+                    p=item.winTime
+block scripts

@@ -1,0 +1,64 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_common.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/usercenter.css')
+    script.
+        var currentPage=#{orderList.currentPage};
+        var totalPage=#{orderList.totalPage};
+block pagecontent
+    include common/comFun
+    #uc_wrapper
+        include user/top
+        #uc_content.cf
+            include user/left
+            #uc_main
+                .date_sel_w.cf
+                    form#searchForm(method='get')
+                        input#orerStatusType(type='hidden', name='orerStatusType', value='4')
+                        label 下单时间
+                        .date_txt_w
+                            input#orderStarDate.date_txt(name='corderInfo.orderStarDate', type='text', value='', onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',skin:'blue'})")
+                            |  - 
+                            input#orderEndDate.date_txt(name='corderInfo.orderEndDate', type='text', value='', onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',skin:'blue'})")
+                        input#date_search_btn(type='button', name='button', value='查询')
+                .t_w
+                    .t_head_w.cf
+                        .t_name 积分订单
+                    table.common_t(cellpadding='0', cellspacing='0')
+                        tr
+                            th.c1 生成／兑换积分
+                            th.c2 积分值
+                            th.c4 兑换时间
+                        each item in orderList.items
+                            tr
+                                -var contype=""
+                                case item.mtype
+                                    when "ORDER"
+                                        -contype="下单赠送"
+                                    when "PRESENT"
+                                        -contype="客服赠送"
+                                    when "CONVERT"
+                                        -contype="兑换"
+                                    when "CUT"
+                                        -contype="冲减"
+                                    when "WIN_CUT"
+                                        -contype="转盘中奖扣除"
+                                    when "COMMENT"
+                                        -contype="评论"
+                                    when "SHARE"
+                                        -contype="分享"
+                                    when "PERFECTINFORMATION"
+                                        -contype="完善信息"
+                                td.c1=contype
+                                -var mark=""
+                                if(item.mtype=="CONVERT"||item.mtype=="CUT"||item.mtype=="WIN_CUT")
+                                    -mark="-"
+                                else
+                                    -mark="+"
+                                td.c2=mark+item.opScore
+                                td.c3=item.createTime
+                    .pagings
+                        ul.slide-page#slidePage
+block scriptspage
+    script(src=baseUrl+'/javascripts/datepicker/WdatePicker.js')
+    script(src=baseUrl+'/javascripts/uc_common.js')

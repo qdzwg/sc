@@ -1,0 +1,18 @@
+extends ../layout/pageLayout
+block stylesheetpage
+	link(rel="stylesheet", href=baseUrl+'/stylesheets/help.css')
+block pagecontent
+	include ../common/helpList
+	#main.cf
+		+helpList(page)
+		#help_c_zone
+			.help_t 旅游度假资质　Tourism qualification
+			.help_c
+				h2 杭州宋城旅游发展有限公司
+				p 企业类型：有限责任公司
+				p 经营许可证号：L-ZJ02205
+				p
+					| 经营范围：国内旅游业务；入境旅游业务；旅游信息咨询；国内航线除香港、澳门、台湾地区航线外各航空客运销售代购业务，国际航线或香港、澳门、台湾航线的航空客运销售代购业务，代客订房，代购火车票，商务咨询，会议服务。
+				p 法定代表人：董昕
+				p 旅游质量监督电话：0571-96123
+

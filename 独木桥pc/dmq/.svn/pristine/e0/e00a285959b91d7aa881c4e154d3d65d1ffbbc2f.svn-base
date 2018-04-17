@@ -1,0 +1,73 @@
+extends ../layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_common.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/usercenter.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_detail.css')
+block pagecontent
+    #uc_wrapper
+        include top
+        #uc_content.cf
+            include left
+            #uc_main
+                .t_w
+                    .t_head_w.cf
+                        .t_name
+                            | 当前订单状态：
+                            span.dor
+                                | 新建订单
+                        .t_name.lm30
+                            | 订单总金额：
+                            span.dor 45
+                        a.ogbtn(href='/order/pay.htm?orderId=1597330&payGate=alipay') 去付款
+                    #info_w
+                        .info_cw
+                            .info_chead
+                                b 基本信息
+                            ul.info_list.cf
+                                li
+                                    span 景区名称：
+                                    | 杭州宋城景区
+                                li
+                                    span 景区地址：
+                                    | 杭州市西湖区之江路148号
+                                li
+                                    span 子订单号：
+                                    | 20161024000061967
+                                li
+                                    span 门票名称：
+                                    | 10月22、29日杭州宋城景区夜游 17：00后入园成人票（不含《宋城千古情》演出）
+                                li
+                                    span 门票张数：
+                                    | 1
+                                li
+                                    span 游玩日期：
+                                    | 2016-10-29
+                                li
+                                    span 门票单价：
+                                    | 45
+                                li
+                                    span 订单总价：
+                                    | 45
+                                li
+                                    span 点评积分：
+                                    | 10
+                        .info_cw
+                            .info_chead
+                                b 联系人信息
+                            ul.info_list.cf
+                                li
+                                    span 联系人：
+                                    | 周小海
+                                li
+                                    span 手机号码：
+                                    | 13758297492
+                                li
+                                    span 身份证号码：
+                                    | 000000000000000000
+                        .info_cw
+                            ul.info_list.cf
+                                li.save
+                                    input.comfirm_btn(type='button', value='返回', onclick='history.back();')
+block scriptspage
+    
+    script(src=baseUrl+'/javascripts/uc_common.js')

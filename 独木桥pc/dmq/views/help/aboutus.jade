@@ -1,0 +1,11 @@
+extends ../layout/pageLayout
+block stylesheetpage
+	link(rel="stylesheet", href=baseUrl+'/stylesheets/help.css')
+block pagecontent
+	include ../common/helpList
+	#main.cf
+		+helpList(page)
+		#help_c_zone
+			.help_t 关于我们　About Us
+			.help_c
+				img(src=baseUrl+'/images/help/aboutus.jpg', width='774', border='0')

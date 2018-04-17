@@ -1,0 +1,40 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/login.css')
+
+block content
+   include common/msgTips
+   header.login-header
+   .login-tab
+      a(href="/quickLogin")="快捷登录"
+      a(href="/login").cur="普通登录"
+   div.login-panel
+      form(action="",method="post")#myform
+         ul.order-list
+            li
+               input(type="tel",name="tel",placeholder="请输入您的手机号码")
+            li
+               input(type="password",name="loginpassword",placeholder="请输入您的密码")
+            li
+               input(type="tel",name="checkCode",placeholder="请输入您的验证码")
+               a(href="javascript:;").checkCard#checkCard
+                  img(src=code)
+         div.page-line
+         div.login-handle.btn-handle
+            button(tyle="submit").btn.c-base
+               i.font-icon.icon-iconfont-login
+               | 登录
+         p.login-explian
+            a(href="/register")
+               i.font-icon.icon-iconfont-zhanghu
+               | 注册账号
+            a(href="/forgetPassword")
+               i.font-icon.icon-iconfont-suo
+               | 忘记密码
+   - if(error)
+      +msg(error)
+block scripts
+   script(src=baseUrl+'/javascripts/login.js')
+   script(src=baseUrl+'/javascripts/validate/jquery.validate.min.js')
+   script(src=baseUrl+'/javascripts/validate/messages_zh.min.js')
+   script(src=baseUrl+'/javascripts/validate/additional-methods.js')

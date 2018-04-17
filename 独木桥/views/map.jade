@@ -1,0 +1,42 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/details.css')
+
+
+block content
+   header(data-location=location)
+      div.map-header
+         a(href="javascript:;").fr.refresh-btn
+            i.font-icon.icon-iconfont-shuaxin
+         span 我的位置
+         | 到
+         span#addr
+   div#allmap
+   div.map-footer
+      a(href="javascript:;").map-btn#btn
+         i.font-icon.icon-iconfont-jiantou
+      ul.travel-mold.clearfix#travel
+         li
+            a(href="javascript:;",data-mold="transit").hover
+               i.font-icon.icon-iconfont-gongjiao
+               | 公交
+         li
+            a(href="javascript:;",data-mold="drive")
+               i.font-icon.icon-iconfont-qiche
+               | 驾车
+         li
+            a(href="javascript:;",data-mold="walk")
+               i.font-icon.icon-iconfont-iconfontllannotationwalk
+               | 步行
+      p.map-explian
+         span
+            i.font-icon.icon-iconfont-time
+            em#time
+         span
+            i.font-icon.icon-iconfont-lucheng
+            em#transit
+         span
+            em#walking
+block scripts
+   script(src='//api.map.baidu.com/api?ak=DE62ca2a357ccffe40770cf87cb63195&v=2.0&s=1')
+   script(src=baseUrl+'/javascripts/map.js')

@@ -1,0 +1,275 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/'+mold+'.css')
+block pagecontent
+    include common/comFun
+    include details/article
+    #main
+        +breadcrumb(hotelitem.productName)
+        #intro
+            #scroll_w
+                -each item in imgItems
+                 img(src=item.imgurl)
+            #imask
+            #intro_detail
+                .hotel_name=hotelitem.productName
+                .bm_w.cf
+                    -each bitem,i in hotelitem.tags
+                        div(class="bm_c"+((i+1)%4))=bitem
+                ul.main_d
+                    li
+                        b="酒店星级："
+                        =hotelitem.hotelLevel+"星级"
+                    li
+                        b="详细地址："
+                        =hotelitem.addr
+                .s_ul
+                    b="用户点评："
+                    .st_w
+                        - var percent=(hotelitem.commentScore/5)*100+"%"
+                        #topAvg.st_w_i(style="width:"+percent+";")
+                    .s_sum="("+hotelitem.commentScore+"分，共"+hotelitem.commentCount+"条点评)"
+                .s_price.cf="价格："
+                    b="¥"+hotelitem.startingPrice
+                    span="起"
+                .d_btn.cf
+                    a(href="#p2")="酒店介绍"
+                    a(href="#p1")="酒店图片"
+                    a(href="#p4")="用户点评"
+                #add_bs
+                    +share()
+        #room_intro
+            #idate_w.cf
+                input(type="hidden",value="1000").text
+                #idate_l
+                    label="入住日期："
+                    input(type="text",name="begDate",onclick="WdatePicker({isShowClear:false,minDate:'%y-%M-%d',readOnly:true,dateFmt:'yyyy-MM-dd',skin:'blue',onpicked:function(){ var nn =$dp.$D('begDate',{d:1});var y = $dp.cal.getP('y'); var m = $dp.cal.getP('M'); var d = $dp.cal.getP('d');$('#endDate').val(nn.y + '-' + nn.M + '-' + nn.d);}})",value=dates[0]).Wdate#begDate
+                    label="退房日期："
+                    input(type="text",name="endDate",onclick="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd',skin:'blue'})",value=dates[1]).Wdate#endDate
+                    input(type="button",name="button",value="修改")#button.c_date_btn
+            table(cellpadding="0",cellspacing="0",border="0").main_t
+                thead
+                    tr
+                        th.w_hi="房型"
+                        th.w1="套餐"
+                        th.w2="床型"
+                        th.w3="早餐"
+                        th.w4="宽带"
+                        th.w5="房价"
+                        th.w6="是否有房"
+                        th.w7
+                tbody
+                    -each item in hotelitem.rooms
+                        tr.last_room#1
+                            td(rowspan=1).w_main
+                                span.main_type=item.roomName+"▼"
+                            td.w1
+                                span.tc_type="标准价"
+                            td.w2
+                                +bedtype(item.bedType)
+                            td.w3
+                                +breakfast(item.isBreakfast)
+                            td.w4="无"
+                            td.w5
+                                span.rjj="¥"+item.avgPrice
+                            td.w6
+                                span.cgreen="有房"
+                            td.w7
+                                a(href="/order/hotel/"+item.id).book_link="预订"
+                        tr.fx_tr
+                            td(colspan="8")
+                                .fx_Intro.cf
+                                    ul.fx_ul1
+                                        li="房　　型："+item.roomName
+                                        li="房间面积："+item.buildingArea
+                                        li="楼　　层："+item.buildingFlow
+                                    ul.fx_ul2
+                                        li="床型："
+                                            +bedtype(item.bedType)
+                                        li="加床：不能"
+                                        li="宽带：无"
+                                    ul.fx_ul1
+                                        li=item.roomDetail
+                                    span.hide_fx="隐藏▲"
+        #hotel_intro_w
+            a(name="p2")
+            .list_h.cf
+                .h_txt="酒店介绍"
+            #hotel_intro_i
+                #{hotelitem.desc}
+        #pic_intro_w
+            a(name="p1")
+            .list_h.cf
+                .h_txt="酒店图片"
+            #pic_intro_i
+                .pic_sel_zone.cf
+                    ul.sel_nav
+                        li.pic_sel="全部图片"
+                        li="酒店外观"
+                        li="公共区域"
+                        li="房型图片"
+                .pic_sw_zone
+                    .pic_sw(style="display:block")
+                        .pic_div
+                            img(src="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg",bsrc="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg")
+                            span.pmask
+                            span.ptxt="酒店全景"
+                    .pic_sw
+                        .pic_div
+                            img(src="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg",bsrc="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg")
+                            span.pmask
+                            span.ptxt="酒店全景"
+                    .pic_sw
+                        .pic_div
+                            img(src="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg",bsrc="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg")
+                            span.pmask
+                            span.ptxt="酒店全景"
+                    .pic_sw
+                        .pic_div
+                            img(src="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg",bsrc="/images/demo/0872d2f5-dd60-4c2e-bf5e-a0a9ccc67640.jpg")
+                            span.pmask
+                            span.ptxt="酒店全景"
+        #comment
+            a(name="p4")
+            .list_h.cf
+                .h_txt="游客点评"
+            #comment_i.cf
+                +comment(commentItems.datas)
+block scriptspage
+    script(src=baseUrl+'/javascripts/koobox.js')
+    script(src=baseUrl+'/javascripts/kooslide.js')
+    script(src=baseUrl+'/javascripts/datepicker/WdatePicker.js')
+    script(src=baseUrl+'/javascripts/comment.js')
+    script(src=baseUrl+'/javascripts/details.js')
+    script.
+        $(function () {
+            commonFloat(1000, false);
+            $('#scroll_w').kooslide();
+            $("#button").click(function(){
+                $.get("/details/itemlist",{BeginDate:$("#begDate").val(),endDate:$("#endDate").val(),code:#{code}},function(data){
+                    console.log(data);
+                    if(data.itemdata.length>0){
+                        $(".main_t").find("tbody").html(list(data.itemdata));
+                    }else{
+                        $(".main_t").find("tbody").html("<div class='no-info'>暂无信息！</div>");
+                    }
+                },"json");
+            });
+        });
+        $(function () {
+            $('.main_type').toggle(function () {
+                $(this).parents('.f_room,.last_room').eq(0).nextAll('.fx_tr').eq(0).toggle();
+                $(this).html($(this).html().replace('▼', '▲'));
+            }, function () {
+                $(this).parents('.f_room,.last_room').eq(0).nextAll('.fx_tr').eq(0).toggle();
+                $(this).html($(this).html().replace('▲', '▼'));
+            });
+            $('.hide_fx').click(function () {
+                $(this).parents('.fx_tr').eq(0).prevAll('#1').eq(0).find('.main_type').click();
+            });
+        });
+        $(function () {
+            $('.lw').each(function () {
+                $(this).hover(function () {
+                    check_lw();
+                    $('#lw_txt').html($(this).siblings('.lw_txt').eq(0).html());
+                    var pos = $(this).offset();
+                    $('#lw_pop').css({'left': pos.left + 25, 'top': pos.top - 10}).show();
+                }, function () {
+                    $('#lw_pop').hide();
+                });
+            });
+        });
+        function check_lw() {
+            if ($('#lw_pop').length == 0) {
+                $('<div id="lw_pop"><div id="lw_txt"></div><div id="lw_arrow"></div></div>').appendTo('body');
+            }
+        }
+        function check_day() {
+            WdatePicker({
+                isShowClear: false, readOnly: true, dateFmt: 'yyyy-MM-dd', skin: 'blue', minDate: '%y-%M-%d',
+                onpicked: function () {
+                    var nn = $dp.$D('txtCheckIn', {d: 1});
+                    var y = $dp.cal.getP('y');
+                    var m = $dp.cal.getP('M');
+                    var d = $dp.cal.getP('d');
+                    $('#txtCheckOut').val(nn.y + '-' + nn.M + '-' + nn.d);
+                }
+            });
+        }
+        $(function () {
+            var sel_nav_arr = $('.sel_nav li');
+            var pic_sw_arr = $('.pic_sw');
+            $(sel_nav_arr).each(function (i) {
+                $(this).click(function () {
+                    $(sel_nav_arr).removeClass('pic_sel');
+                    $(this).addClass('pic_sel');
+                    $(pic_sw_arr).hide();
+                    $(pic_sw_arr).eq(i).show();
+                });
+            });
+        });
+        $(function () {
+            /*$('.pic_sw').each(function(){
+             $(this).find('img').koobox();
+             });*/
+            $('.pic_sw').find('img').koobox({
+                'close_pic_bg': 'url(http://www.51dmq.com/template/w/hoteldetail/img/text_pic_close.png) no-repeat 0 0',
+                'left_pic_bg': 'url(http://www.51dmq.com/template/w/hoteldetail/img/text_pic_control.png) no-repeat scroll left top',
+                'right_pic_bg': 'url(http://www.51dmq.com/template/w/hoteldetail/img/text_pic_control.png) no-repeat scroll right top'
+            });
+        });
+        function list(data){
+            var html="";
+            $.each(data,function(i){
+                html+='<tr id="1" class="last_room">';
+                html+='<td rowspan="1" class="w_main"><span class="main_type">'+data[i].roomName+'▼</span></td>';
+                html+='<td class="w1"><span class="tc_type">标准价</span></td><td class="w2">'+bedtype(data[i].bedType)+'</td>';
+                html+='<td class="w3">'+breakfast(data[i].isBreakfast)+'</td><td class="w4">无</td><td class="w5"><span class="rjj">¥'+data[i].avgPrice+'</span></td>';
+                html+='<td class="w6"><span class="cgreen">有房</span></td>';
+                html+='<td class="w7"><a href="/order/hotel/'+data[i].id+'" class="book_link">预订</a></td></tr>';
+                html+='<tr class="fx_tr"><td colspan="8"><div class="fx_Intro cf">';
+                html+='<ul class="fx_ul1"><li>房　　型：'+data[i].roomName+'</li>';
+                html+='<li>房间面积：'+data[i].buildingArea+'</li><li>楼　　层：'+data[i].buildingFlow+'</li></ul>';
+                html+='<ul class="fx_ul2"><li>床型：'+bedtype(data[i].bedType)+'</li>';
+                html+='<li>加床：不能</li>';
+                html+='<li>宽带：无</li></ul>';
+                html+='<ul class="fx_ul1"><li>'+data[i].roomDetail+'</li></ul>';
+                html+='<span class="hide_fx">隐藏▲</span></div></td></tr>'
+            });
+            return html;
+        }
+        function breakfast(num) {
+            var s = "";
+            switch (num) {
+                case "0":
+                    s = "无早";
+                    break;
+                case "1":
+                    s = "单早";
+                    break;
+                case "2":
+                    s = "双早";
+                    break;
+                case "3":
+                    s = "三早";
+                    break;
+            }
+            return s;
+        }
+        function bedtype(num) {
+            var s = "";
+            switch (num) {
+                case "0":
+                    s = "大床";
+                    break;
+                case "1":
+                    s = "双床";
+                    break;
+                case "2":
+                    s = "三床";
+                    break;
+                    break;
+            }
+            return s;
+        }

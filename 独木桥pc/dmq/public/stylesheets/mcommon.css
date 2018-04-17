@@ -1,0 +1,153 @@
+
+.czone {
+	border: 1px solid #eee;
+	position: relative;
+	padding: 10px 0 10px;
+}
+
+.step,.step_t{
+	width: 960px;
+	height: 51px;
+	position: relative;
+	left: -11px;
+}
+.step{background: url(../images/common/ydbar1.gif) no-repeat 0 0;}
+.step_t{background: url(../images/common/ydbar2.gif) no-repeat 0 0;}
+.step div,.step_t div{
+	float: left;
+	line-height: 40px;
+	color: #fff;
+	font-size: 14px;
+	text-align: center;
+}
+.s1{width: 130px;}
+.s2{width: 140px;}
+.s3{width: 130px;}
+.s4{width: 135px;}
+.s5{width: 160px;}
+.s6{width: 145px;}
+
+.t1{width: 135px;}
+.t2{width: 135px;}
+.t3{width: 130px;}
+.t4{width: 135px;}
+.t5{width: 140px;}
+.t6{width: 130px;}
+.t7{width: 115px;}
+
+.step .son,.step_t .son{font-weight: bold;font-size: 16px;}
+
+.cm_title{
+	line-height: 30px;
+}
+
+.cm_wrapper{
+	width: 938px;
+	margin: 0 auto;
+}
+.cm_content{
+	width: 932px;
+	border: 3px solid #BAD7E7;
+}
+
+.cm_sp{	background: url(../images/common/re.gif) repeat-y 190px 0;
+}
+.cm_cl{
+	float: left;
+	width: 240px;
+}
+.cm_cr{
+    width: 670px;
+    float: right;
+    padding: 10px 0;
+    margin-right: 10px;
+    _display:inline;
+}
+
+.cm_cli{
+	width: 220px;
+	margin: 0 auto;
+	padding: 10px 0;
+}
+
+
+.cm_name{
+	border-bottom: 2px solid #DDDDDD;
+}
+.cm_name h2{
+	font-family: Microsoft Yahei;
+	font-size: 18px;
+	border-bottom: 2px solid #0E5788;
+	margin-bottom: -2px;
+	float: left;
+	font-weight: normal;
+}
+
+
+.cm_spot{
+	padding-top: 20px;
+	margin-bottom: 20px;
+}
+
+
+ul.normal_list li {
+    padding-bottom:10px;
+    font-size:13px;
+}
+
+ul.normal_list li span {
+    display: inline-block;
+}
+.g_span{color: #666666;}
+
+.wl {
+    padding-right: 5px;
+    text-align: right;
+    width: 105px;
+}
+.w2 {
+    padding-right: 5px;
+    text-align: right;
+    width: 135px;
+}
+
+.text{
+	border: 1px solid #ADACB1;
+	padding: 2px;
+	height:22px;
+	line-height: 22px;
+}
+.text_s1{width: 176px;}
+.text_s2{width: 88px;}
+.pagings { overflow: hidden;}
+
+.calendar-panel{ background-color: #fff; position: relative; padding: 10px;}
+.calendar-head{ text-align:center; font-size: 14px; }
+.calendar-head ul{padding:15px 10px;}
+.calendar-head ul li{display:inline-block; margin: 0 0.25rem;}
+.calendar-head ul li:nth-child(2){ float: left;}
+.calendar-head ul li:nth-child(4){ float: right;}
+.calendar-contnet{ overflow-y: auto;}
+.calendar-contnet table{ border-collapse:collapse;}
+.calendar-contnet table td,.calendar-contnet table th{padding:5px 0; border: 1px solid #dcdcdc;}
+.calendar-contnet table th{ background-color: #e5e5e5; border-bottom:1px solid #eee; border-top:1px solid #eee; }
+.calendar-contnet table td{ cursor: pointer; text-align: center; height: 32px; line-height: 140%; font-size: 0.6rem; width:14%;}
+.calendar-contnet table td.today{ background-color:rgba(255,102,102,0.4); color: #fff;}
+.calendar-contnet table td.weekend{ color: #149d34;}
+.calendar-contnet table td.selected{ background-color:#f66; color: #fff;}
+.calendar-contnet table td.selected .price strong{ color: #fff;}
+.calendar-contnet table td.other{ color:#ccc; cursor: default;}
+.calendar-contnet table td.selecteds{ background-color: rgba(255,102,102,0.7); color: #fff;}
+.calendar-contnet table td p{ height: 0.75rem; line-height: 0.75rem; padding: 0.25rem 0;}
+.icon-angle-left:before{content: "\e61d";}
+.icon-angle-right:before{content: "\e617";}
+.calendar-day{ position:absolute; top:0; left: 0; width: 100%; overflow: hidden; background-color: #fff; border-bottom: 1px solid #eee;}
+.calendar-day li{ display: block; width:14%; height: 2.1rem; line-height: 2.1rem; float: left; text-align: center; font-size: 0.6rem;}
+.monthPrev,.monthNext{ display: inline-block; width: 16px; height: 23px; background: url("../images/order/arrow-left.png") no-repeat;}
+.monthNext{background: url("../images/order/arrow-right.png") no-repeat;}
+.calendar-explian .price strong{ font-size: 0.5rem;}
+.calendar-contnet table td.selecteds .price strong,.calendar-contnet table td.selecteds .price em{ color: #fff;}
+.calendar-colse{ text-align: right; display: block; color: #fff; padding: 0 0.75rem;}
+.calendar-box{ position: fixed; width: 600px;height: 400px; background-color: #fff; border: 1px solid #dcdcdc; top:50%; left: 50%; margin: -200px 0 0 -300px; z-index: 10; display: none;}
+
+.mask{ position: fixed; width: 100%; height: 100%; background-color: #000; opacity: .3; top:0; left: 0; z-index: 9; display: none;}

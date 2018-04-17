@@ -1,0 +1,60 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/order.css')
+
+block content
+   div(data-dates=dates,data-mold=mold).zyx-calendar#travelcalendar
+   - var id=""
+   - if(mold=="route")
+      - id="route-list"
+   ul(id=id).order-list.myorder-list.bt
+      li
+         label.lab-title 已选日期
+         div.order-item
+            - if(dates.length==0)
+               span.order-time#ordertime
+            -else
+               span.order-time#ordertime=dates[0].date
+      li
+         label.lab-title 购买份数
+         div.order-item
+            - if(mold=="route")
+               div.order-copies.route-price.clearfix
+                  span 成人
+                  span.price
+                     em ￥
+                     strong#adultprice=dates[0].adultPrice
+                  span
+                     - var max=dates[0].adultLeftNum>num.maxNum?num.maxNum:dates[0].adultLeftNum
+                     input(type="tel",value=num.minNum,data-min=num.minNum,data-max=max).number.adult-number
+               div.order-copies.route-price.copies-last.clearfix
+                  span 儿童
+                  span.price
+                     em ￥
+                     strong#childrenprice=dates[0].childrenPrice
+                  span
+                     - var max=dates[0].childrenLeftNum>num.maxNum?num.maxNum:dates[0].childrenLeftNum
+                     input(type="tel",value="0",data-min="0",data-max=max).number.children-number
+            - else
+               span.order-time
+                  em="￥"
+                  strong#price=dates[0].price
+               span.fr
+                  - var max=dates[0].leftNum>num.maxNum?num.maxNum:dates[0].leftNum
+                  input(type="tel",value=num.minNum,data-min=num.minNum,data-max=max).number
+      li
+         label.lab-title 购买说明
+         div.order-item="您最晚要在游玩"+beforeDay+"前天下单"
+   div.page-line
+   footer.order-footer
+      div.order-total.float-layer
+         a(href="javascript:;",data-url="/order/"+mold+"/"+code+"?stockDate="+dates[0].date).fr.btn-order.background-base#next-btn 下一步
+         p.total-price
+            | 订单总金额：
+            span.price
+               em ￥
+               strong#totalprice 2180
+block scripts
+   script(src=baseUrl+'/javascripts/pageItem.js')
+   script(src=baseUrl+'/javascripts/jquery.calendar.js')
+   script(src=baseUrl+'/javascripts/order.js')

@@ -1,0 +1,154 @@
+extends layout
+block stylesheet
+  link(rel='stylesheet', href=baseUrl+'/stylesheets/index.css')
+  link(rel='stylesheet', href=baseUrl+'/stylesheets/swiper.min.css')
+block content
+  include common/commonFun
+  .swiper-banner.home-banner
+    .swiper-wrapper
+      -if(items.topImage.length>0)
+        -each item in items.topImage
+          .swiper-slide
+            a(href=item.infoUrl)
+              img(src=item.showUrl.replace('http://odl5az86x.bkt.clouddn.com','//static.51dmq.com')+"?imageMogr2/thumbnail/640x/strip/quality/50")
+    .swiper-pagination
+  nav.nav-swiper
+    .swiper-slide
+      a(href="/list/promotion")
+        strong.nav-bg7
+          i
+        span="促销"
+      a(href="/list/ticket")
+        strong.nav-bg1
+          i
+        span="景区"
+      a(href="/list/hotel")
+        strong.nav-bg2
+          i
+        span="酒店"
+      a(href="/list/line")
+        strong.nav-bg4
+          i
+        span="周边游"
+      a(href="/list/goods")
+        strong.nav-bg3
+          i
+        span="书籍"
+  .page-line
+  h3.home-tit.clearfix.borb0
+    i.index-hot-icon
+    ="热门推荐"
+  .hot-content
+    ul.hot-list.clearfix
+      li
+        a(href='/detail/ticket/5304')
+          .hot-img
+            img(src='/images/index/20180206175201.jpg?imageMogr2/thumbnail/640x/strip/quality/50')
+          h4.hot-title="三亚千古情景区"
+          p.hot-explian
+            span.price
+              em="￥"
+              strong=280
+            del="￥300"
+          .hot-tag="景区"
+      li
+        a(href='/detail/ticket/5304')
+          .hot-img
+            img(src='/images/index/20170807161101.jpg?imageMogr2/thumbnail/640x/strip/quality/50')
+          h4.hot-title="宋城炭河古城"
+          p.hot-explian
+            span.price
+              em="￥"
+              strong=120
+            del="￥160"
+          .hot-tag="景区"
+      li
+        a(href='/detail/ticket/5300')
+          .hot-img
+            img(src='https://static.51dmq.com/20164519034524203.jpg?imageMogr2/thumbnail/640x/strip/quality/50')
+          h4.hot-title="杭州宋城景区"
+          p.hot-explian
+            span.price
+              em="￥"
+              strong=280
+            del="￥300"
+          .hot-tag="景区"
+        li
+          a(href='/detail/ticket/5302')
+            .hot-img
+              img(src='https://static.51dmq.com/20163913043937332.jpg?imageMogr2/thumbnail/640x/strip/quality/50')
+            h4.hot-title="杭州宋城烂苹果乐园"
+            p.hot-explian
+              span.price
+                em="￥"
+                
+                strong=140
+              del="￥160"
+            .hot-tag="景区"
+        li
+          a(href='/detail/ticket/5303')
+            .hot-img
+              img(src='https://static.51dmq.com/20160719060755113.jpg?imageMogr2/thumbnail/640x/strip/quality/50')
+            h4.hot-title="丽江宋城旅游区"
+            p.hot-explian
+              span.price
+                em="￥"
+                strong=340
+              del="￥360"
+            .hot-tag="景区"
+        li
+          a(href='/detail/hotel/5241')
+            .hot-img
+              img(src='https://static.51dmq.com/20160602030636227.jpg?imageMogr2/thumbnail/640x/strip/quality/50')
+            h4.hot-title="宋城千古情主题酒店（西湖店）"
+            p.hot-explian
+              span.price
+                em="￥"
+                strong=880
+            .hot-tag="酒店"
+  .page-line
+  .adsense
+    a(href="/user/turntable/1")
+      img(src="/images/index/banner.jpg")
+  .page-line
+  .find_nav
+    .find_nav_left
+      .find_nav_list#pagenavi1
+        ul
+          -each item,i in items.area
+            -var className=""
+            -if(i==0)
+              -className="find_nav_cur"
+            li(class=className)
+              a(href="javascript:;")=item.sliceName
+          li.sideline
+  .swipe#slider1
+    ul.box01_list
+      -each item,i in items.area
+        li.li_list
+          -each sitem in item.sliceList
+            .rec-img
+              a(href=sitem.infoUrl)
+                img(src=sitem.showUrl.replace('http://odl5az86x.bkt.clouddn.com', '//static.51dmq.com') + "?imageMogr2/thumbnail/640x/strip/quality/50")
+            .buying-info
+              h3
+                span.pro-title=sitem.title
+              p.hot-explian="简介：" + sitem.specialContent
+                span.fr
+                  span.price
+                    em="￥"
+                    strong=sitem.productPrice
+                  del="￥" + sitem.showPrice
+  .page-line
+  include common/footer
+  include common/toTop
+  #adv-layer.adv-layer
+    .header
+      a(href="javascript:;")#close="X"
+    a(href="https://51dmq.com/order/ticket/5621")
+      img(src="/images/index/adv.png")
+  #mask(style="display:block;").mask
+  block scripts
+    script(src=baseUrl+'/javascripts/swiper.min.js')
+    script(src=baseUrl+'/javascripts/touchslider.js')
+    script(src=baseUrl+'/javascripts/index.js')

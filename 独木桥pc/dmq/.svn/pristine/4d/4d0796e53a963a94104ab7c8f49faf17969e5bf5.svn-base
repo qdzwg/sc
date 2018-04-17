@@ -1,0 +1,7 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/common.css')
+block pagecontent
+    #main
+        .error-img
+        p.error-content="哎呀！您访问的页面找不到啦..."

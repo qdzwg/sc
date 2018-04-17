@@ -1,0 +1,6 @@
+mixin helpList(page)
+	-var pageList=[{url:"/help/aboutus",title:"关于我们"},{url:"/help/contactus",title:"联系我们"},{url:"/help/agreement",title:"用户协议"},{url:"/help/privacy",title:"隐私保护"},{url:"/help/helpcenter",title:"帮助中心"},{url:"/help/qualification",title:"旅游度假资质"},{url:"/help/service",title:"营业执照"},{url:"/help/sitemap",title:"网站地图"}]
+	ul#help_side_nav
+		each item in pageList
+			li
+				a(class=(page==(item.url.split('/')[2])?'s_sel':'') href=item.url)=item.title

@@ -1,0 +1,16 @@
+extends layout
+block stylesheet
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/details.css')
+
+block content
+    div.article-body
+        div.artice-header
+            h3.article-title=item.title
+            p.article-tags
+                span="作者："+item.operName
+                span="发布日期："+item.createTime
+        div.page-line
+        div.article-info
+            !{item.content}
+block scripts
+    script(src=baseUrl+'/javascripts/details.js')

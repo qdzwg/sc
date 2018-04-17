@@ -1,0 +1,35 @@
+extends ../../layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl + '/stylesheets/help.css')
+block pagecontent
+    include ../../common/helpList
+    #main.cf
+        +helpList(page)
+        #help_c_zone
+            .help_t 帮助中心　Help Center
+            .help_c.help_tvb
+                .bread
+                    a(href='/help/helpcenter') 帮助中心首页
+                    |  > 退款、退换货问题：
+                dl
+                    dt
+                        a(name='q1') 1、门票退票及改签说明
+                    dd
+                        | 您好，宋城电子票订单需退改签，请至少在订单预订的游玩日期前一天致电客服400－8888－518，或通过页面右方”QQ交谈”与客服联系，如遇节假日或客服不在线，请至少提前一天系统留言注明需退票的订单号，退票手续费为：10元/张 ；如有特殊情况游玩日期当天确实无法入园，只能退还30%订单票款。
+                dl
+                    dt
+                        a(name='q2') 2、酒店退房及改签说明
+                    dd
+                        | 您好，酒店客房如需退房，请至少在入住日期前2天致电客服400－8888－518，或通过页面右方”QQ交谈”与客服联系，退房手续费为：10元/间夜。
+                dl
+                    dt
+                        a(name='q3') 3、退款多长时间能返回到我的银行账户？
+                    dd
+                        | 您好，从您提交退款申请开始，预计需要10个工作日左右的时间，退款才能返回到您的银行账户。
+                dl
+                    dt
+                        a(name='q4') 4、退换货需要手续费吗？
+                    dd
+                        | 您好，更改订单不需要手续费，退货需要支付10元/笔的手续费，我们会直接从退款中扣除手续费，将余额返还给您。
+
+

@@ -1,0 +1,128 @@
+extends ../layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_common.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/usercenter.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_cinfo.css')
+block pagecontent
+    #uc_wrapper
+        include top
+        #uc_content.cf
+            include left
+            #uc_main
+                .t_w
+                    input#flag(type='hidden', value=flag)
+                    .t_head_w.cf
+                        .t_name 个人资料管理
+                    #info_w
+                        .info_1.cf
+                            #u_img2.u_img
+                                img(src='/images/common/person.jpg', alt='')
+                                span.u_img_mask
+                                span.u_img_txt 修改头像
+                            .show_name
+                                b 独木桥测试
+                                a.chang_pw.chang_pw_op(href='javascript:void(0)') 修改密码
+                        .info_sp
+                        .info_cw
+                            .info_chead
+                                b 基本信息
+                                a.c_op(href='javascript:void(0)') 修改
+                            ul.info_list.cf
+                                li
+                                    span 用户名：
+                                    | #{member.accName}
+                                li
+                                    span 真实姓名：
+                                    | #{member.realName}
+                                li
+                                    span 性别：
+                                    | #{member.sex}
+                                li
+                                    span 生日：
+                                    | #{member.birthday}
+                                li
+                                    span 身份证号码：
+                                    | #{member.accIdentification}
+                                //- li
+                                    span 固定电话：
+                                    | #{member.sex}
+                                //- li
+                                    span 常用出发城市：
+                                    | #{member.sex}
+                            ul.info_list.info_edit.cf
+                                form#validateForm(action='/user/userInfo/change', name='validateForm', method='post')
+                                    li
+                                        span 用户名：
+                                        | #{member.accName}
+                                    li
+                                        span 真实姓名：
+                                        input.i_s(name='consumer', type='text', style='width:150px;', value=member.realName, validate='{required:true, chcharacter:true}')
+                                    li
+                                        span 性别：
+                                        input#sex1(type='radio', value='0', name='sex', checked='')
+                                        label.sfor(for='sex1') 男
+                                        input#sex2(type='radio', value='1', name='sex')
+                                        label.sfor(for='sex2') 女
+                                    li
+                                        span 生日：
+                                        input.i_s(name='birthday', type='text', style='width:150px;color:#999;', onclick="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd',skin:'blue'})", value=member.birthday)
+                                    li
+                                        span 身份证号码：
+                                        input.i_s(name='accIdentification', type='text', style='width:170px;', value=member.accIdentification, validate='{idcardno:true}')
+                                    //- li
+                                        span 固定电话：
+                                        input#tel.i_s.ph(name='consumerInfo.tel', type='text', maxlength='13', value='', validate='{phone:true}')
+                                    //- li
+                                        span 居住城市：
+                                        select#country.city(name='country')
+                                        select#city.city(name='city')
+                                        select#province.city(name='province')
+                                        input#areaCode(type='hidden', name='consumerInfo.areaCode', value='001001001')
+                                    li.save
+                                        input.comfirm_btn(type='submit', value='确定')
+                                        a.cancel_btn(href='javascript:void(0)') 取 消
+                        #phone_cw.info_cw
+                            .info_chead
+                                b 绑定手机
+                                a.c_op(href='javascript:void(0)') 修改
+                            ul.info_list.cf
+                                li
+                                    span 手机：
+                                    | 139****9294
+                            ul.info_list.info_edit.cf
+                                form#validatePhoneForm(action='/user/mobile', method='get')
+                                    li
+                                        span 手机号：
+                                        input#mobile_bind.i_s(name='mobile', type='text', style='width:180px;', validate='{mobile:true}')
+                                    li
+                                        span 验证码：
+                                        input.i_s(type='text', name='checkCode', style='width:80px;', maxlength='4', value='')
+                                        a.getCode(href='javascript:void(0)') 免费获取
+                                    li.save
+                                        input.comfirm_btn(type='submit', value='确定')
+                                        a.cancel_btn(href='javascript:void(0)') 取 消
+                        #email_cw.info_cw
+                            .info_chead
+                                b 绑定邮箱
+                                a.c_op(href='javascript:void(0)') 修改
+                            ul.info_list.cf
+                                li
+                                    span 邮箱：
+                                    | info@51dmq.com
+                            ul.info_list.info_edit.cf
+                                form#validateEmailForm(action='/user/email', method='get')
+                                    li
+                                        span 邮箱：
+                                        input.i_s(name='email', type='text', style='width:180px;', validate='{required:true, email:true}')
+                                    li
+                                        span 验证码：
+                                        input.i_s(type='text', name='checkCode', style='width:80px;', maxlength='4', value='')
+                                        a.getCode(href='javascript:void(0)') 免费获取
+                                    li.save
+                                        input.comfirm_btn(type='submit', value='确定')
+                                        a.cancel_btn(href='javascript:void(0)') 取 消
+block scriptspage
+    script(src=baseUrl+'/javascripts/datepicker/WdatePicker.js')
+    
+    script(src=baseUrl+'/javascripts/uc_common.js')
+    script(src=baseUrl+'/javascripts/userInfo.js')

@@ -1,0 +1,17 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/order.css')
+
+block content
+   include pay/header
+   include pay/paymold
+   include common/msgTips
+   include common/commonFun
+   +payheader(mold,proitems)
+   +orderdetail(mold,proitems)
+   +paymold(mold,proitems)
+   - if(error!="")
+      +msg(error)
+   +goreturn("other","","","")
+block scripts
+   script(src=baseUrl+'/javascripts/pay.js')

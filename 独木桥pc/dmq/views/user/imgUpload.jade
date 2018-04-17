@@ -1,0 +1,47 @@
+extends ../layout/layout
+block stylesheet
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/uc_common.css')
+block content
+    // change_pic_box begin
+    .asbox
+        #c_upload_w.cf
+            .c_pos
+                a#uploadBtn.c_upbtn(href='javascript:void(0);') 上传图像
+            .cp_tip 仅支持jpg,gif,png格式图片，且文件小于2M。
+        #change_pic_w.cf
+            form#validateForm(action='/user/userImgUpload!uploadUserImg.htm', onsubmit='submitForm()')
+                .cpw_1
+                    table(style='height:330px;width:400px;align:center;')
+                        tbody
+                            tr
+                                td.bigimg
+                                    img#bigimg(tsrc='', src='http://www.51dmq.com/template/b/account/w/addon/img/photo.jpg', style='')
+                .cpw_2
+                    #scp_pic1
+                        img#crop_obj1.crop_obj(src='http://www.51dmq.com/template/b/account/w/addon/img/person.jpg', alt='')
+                    #scp_t1 180x180像素
+                    .cf
+                        .scp_box.sbo1
+                            #scp_pic2
+                                img#crop_obj2.crop_obj(src='http://www.51dmq.com/template/b/account/w/addon/img/person.jpg', alt='')
+                                input#img_hid(name='headImg', type='hidden')
+                            .scp_ct 100x100像素
+                        .scp_box.sbo2
+                            #scp_pic3
+                                img#crop_obj3.crop_obj(src='http://www.51dmq.com/template/b/account/w/addon/img/person.jpg', alt='')
+                            .scp_ct 50x50像素
+                        .scp_box.sbo3
+                            #scp_pic4
+                                img#crop_obj4.crop_obj(src='http://www.51dmq.com/template/b/account/w/addon/img/person.jpg', alt='')
+                            .scp_ct 30x30像素
+        input#x(type='hidden', name='x')
+        input#y(type='hidden', name='y')
+        input#w(type='hidden', name='width')
+        input#h(type='hidden', name='height')
+        ul.info_list.info_edit.cf(style='display: block;padding:30px 0 20px 0;')
+            li.save(style='padding-left:240px;')
+                input.comfirm_btn(type='submit', value='确定提交')
+                a.cancel_btn(href='javascript:void(0)') 取消修改
+block scripts
+    script(src=baseUrl+'/javascripts/ajaxupload.3.5.js')
+    script(src=baseUrl+'/javascripts/ajaxSubmit.js')

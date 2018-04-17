@@ -1,0 +1,42 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/common.css')
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/mcommon.css')
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/register.css')
+block pagecontent
+    .loginwarp
+        .loginbg
+            .loginarea
+                .logintit
+                    h4="宋城旅游会员登录"
+                    span
+                        a(href="/register")="免费注册"
+                form(method="post",name="validateForm" onSubmit="return doLogin()")#validateForm
+                    .loginlist
+                        ul
+                            li#login_error_w
+                                -if(error)
+                                    #login_error=error
+                            li
+                                label="用户名："
+                                input(type="text",name="loginName",onchange="checkName()").text2.wid180#login_name
+                            li
+                                label="密 码："
+                                input(type="password",name="password").text2.wid180#password
+                            li
+                                label="验证码："
+                                input(type="text",name="checkCode").text2.wid70#checkcode
+                                span.yzmdl
+                                    img(src=code,align="absmiddle" onclick="changeCode();",width="48" height="18")#checkCodeImg
+                                a(href="javascript:;",onclick="changeCode('http://www.51dmq.com');")="换一张"
+                            li
+                                label
+                                input(name="record",type="checkbox",value="true",align="bottom")#input
+                                ="保存一周登录信息"
+                            li
+                                label
+                                input(type="submit",value="登 录").btnlogin#loginBtn
+                                span.inlineblock.wid60.tealgnr
+                                    a(href="#")="忘记密码"
+block scriptspage
+    script(src=baseUrl+'/javascripts/login.js')

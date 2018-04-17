@@ -1,0 +1,76 @@
+mixin breadcrumb(title)
+   #breadcrumb.cf
+      .bc_l
+         ="您的位置："
+         a(href="#")="首页"
+         =">"+title
+mixin share()
+   #bdshare.bdshare_t.bds_tools.get-codes-bdshare
+      span.bds_more="分享到："
+      a.bds_qzone
+      a.bds_tsina
+      a.bds_tqq
+      a.bds_renren
+      a.bds_t163
+   script(type="text/javascript",data="type=tools&amp;uid=0")#bdshare_js
+   script(type="text/javascript")#bdshell_js
+   script.
+      document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+
+mixin subproList(tableHead,ticketItems,mold)
+   -if(ticketItems.length>0)
+      table.main_t
+         tr
+            -each item in tableHead
+               th(class=item.className)=item.title
+         -each item in ticketItems
+            -if(mold!="show")
+               tr
+                  -each sitem in tableHead
+                     -if(sitem.islink)
+                        td
+                           a(href="#").nbook_link=item[sitem.dataKey]
+                     -else if(sitem.dataKey=="handle")
+                        td
+                           a(href="/order/"+mold+"/"+item.id).book_link="立即预订"
+                     -else if(sitem.dataKey=="price"||sitem.dataKey=="sellingPrice"||sitem.dataKey=="originalPrice"||sitem.dataKey=="showPrice")
+                        td="¥"+item[sitem.dataKey]
+                     -else
+                        td=item[sitem.dataKey]
+            -else
+               -each titem in item.ticketList
+                  tr
+                     -each sitem in tableHead
+                        -if(sitem.islink)
+                           td
+                              a(href="#").nbook_link=item[sitem.dataKey]+titem.ticketName
+                        -else if(sitem.dataKey=="handle")
+                           td
+                              a(href="/order/"+mold+"/"+titem.id).book_link="立即预订"
+                        -else if(sitem.dataKey=="price"||sitem.dataKey=="sellingPrice"||sitem.dataKey=="originalPrice"||sitem.dataKey=="showPrice")
+                           td="¥"+titem[sitem.dataKey]
+                        -else
+                           td=titem[sitem.dataKey]
+
+mixin formatDate(time)
+   -var date=new Date(time)
+   =date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()
+
+mixin breakfast(num)
+   case num
+      when "0"
+         | 无早
+      when "1"
+         | 单早
+      when "2"
+         | 双早
+      when "3"
+         | 三早
+mixin bedtype(num)
+   case num
+      when "0"
+         ="大床"
+      when "1"
+         ="双床"
+      when "2"
+         ="三床"

@@ -1,0 +1,219 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/'+mold+'book.css')
+block pagecontent
+    include common/comFun
+    include details/article
+    #main
+        +breadcrumb(item.zyxName)
+        #intro
+            #scroll_w
+                //each imgitem in imgItems
+                //    img(src=item.imgurl)
+        form#validateForm(method='post', autocomplete='off')
+            input(type="hidden",value=code)#h_code
+            #c_wrapper.cf
+                .list_h.cf
+                    .h_txt 组合列表
+                .group_w.cf
+                    #sum_w
+                        #sum_l
+                            label 选择您的出游日期：
+                            input(type="hidden",value=item.stockPriceMap[0].kid,name="kid")#kid
+                            input(type="hidden",name="zyxTicketIds")#zyxTicketIds
+                            select#playDate.dateCheck(name='playDate', onchange='changePro();')
+                                each stock in item.stockPriceMap
+                                    - if(hrefquery.playDate == stock.date)
+                                        option(value='#{stock.date}',selected,data-price='#{stock.price}',kid='#{stock.kid}')= stock.date
+                                    - else
+                                        option(value='#{stock.date}',data-price='#{stock.price}',kid='#{stock.kid}')= stock.date
+                            label 套数：
+                            select#ordNum(name='ordNum', onchange='changePro();')
+                                each item,i in new Array(8)
+                                    - if(hrefquery.ordNum == i+1)
+                                        option(value= i+1,selected)= i+1
+                                    - else
+                                        option(value= i+1)= i+1
+                        #sum_r
+                            span.sum_pri
+                                input#price(type='hidden', value='#{item.marketPrice}', name='price')
+                                | 							网络价：
+                                b#sum ¥#{item.marketPrice}
+                            a#next_link.next_link(href='javascript:void(0);') 下一步
+                    .group_list_w
+                        .group_h.cf
+                            .g_h_l
+                                strong 景区信息
+                            .g_h_r
+                                span.kx
+                                a#park_change.change_btn(href='javascript:void(0)') 更改▲
+                        .sel_t.cf(flag='park')
+                            each ticketitem,i in item.tickets
+                                .sel_t_i.cf
+                                    span.st_1
+                                    span.st_2=ticketitem.parkName
+                                    span.st_3= ticketitem.ticketName
+                                    span.st_4 #{ticketitem.num}张
+                                    span.st_5= ticketitem.kucDate
+                        #park_hidden_field
+                            each ticketitem,i in item.tickets
+                                div(id="p_#{ticketitem.id}" flag='p_ticket')
+                                    input(type='hidden', name='ticket_id', value='#{ticketitem.id}')
+                                    input(type='hidden', name='ticket_num', value='#{ticketitem.num}')
+                                    input(type='hidden', name='ticket_price', value='#{ticketitem.price}')
+                                    input(type='hidden', name='park_ticket_name', value='#{ticketitem.parkName}')
+                                    input(type='hidden', name='ticket_name', value='#{ticketitem.ticketName}')
+                        .h_s_w
+                            each ticketitem,i in item.tickets
+                                .g_con_w.cf
+                                    .g_con_l
+                                        img.g_pic(src='', alt='')
+                                    .g_con_r
+                                        .g_con_t.cf
+                                            strong=ticketitem.parkName
+                                        .g_address 浙江省杭州市西湖区法云弄1号
+                                        table.table_t(cellspacing='0', cellpadding='0', border='0')
+                                            tbody
+                                                tr
+                                                    th(width='442', align='left') 门票类型
+                                                    th(width='178', align='left') 游玩日期
+                                                    th(width='93', align='center') 预订张数
+                                                    th(width='93', align='center') 选择票型
+                                                tr(id="#{ticketitem.id}",flag='TICKET')
+                                                    td.td_name= ticketitem.ticketName
+                                                    td.td_ticket_date
+                                                        #{ticketitem.kucDate}
+                                                    td(align='center')
+                                                        | #{ticketitem.num}
+                                                        input(type='hidden', value='#{ticketitem.num}', name='ticket_num')
+                                                    td(align='center')
+                                                        input(type='hidden', value='', name='ticket_price')
+                                                        input(type='checkbox', value='#{ticketitem.id}', flag='ticket_checkbox', name='ticket_radio_1048', checked='')
+                            .bto_cz.cf
+                                input#park_save.comfirm_btn(type='button', value='保存')
+                                a#park_cancel.cancel_btn(href='javascript:void(0)') 取消
+                    .group_list_w
+                        .group_h.cf
+                            .g_h_l
+                                strong 演艺信息
+                            .g_h_r
+                                span.kx
+                                a#show_change.change_btn(href='javascript:void(0)') 更改▲
+                        .sel_t.cf(flag='show')
+                            each showtitem,i in item.shows
+                                .sel_t_i.cf
+                                    span.st_1
+                                    span.st_2= showtitem.ticketName
+                                    span.st_3= showtitem.showName
+                                    span.st_4 #{showtitem.num}张
+                                    span.st_5="请选择演出场次游玩"
+                        #show_hidden_field
+                            each showsItem,i in item.shows
+                                div(id="#{showsItem.id}",flag='p_show')
+                                    input(type='hidden', name='show_id', value='#{showsItem.showId}')
+                                    input(type='hidden', name='session_id', value='#{showsItem.id}')
+                                    input(type='hidden', name='show_num', value='#{showsItem.num}')
+                                    input(type='hidden', name='ticket_price', value='#{showsItem.num}')
+                                    input(type='hidden', name='park_show_name', value='#{showsItem.parkName}')
+                                    input(type='hidden', name='show_name', value='#{showsItem.showName}')
+                                    input(type='hidden', name='show_date', value='#{showsItem.changci}')
+                        .h_s_w
+                            each showsItem,i in item.shows
+                                .g_con_w.cf
+                                    .g_con_l
+                                        img.g_pic(src='', alt='')
+                                    .g_con_r
+                                        .g_con_t.cf
+                                            strong=showsItem.parkName
+                                        .g_address 浙江省杭州市西湖区法云弄1号
+                                        table.table_t(cellspacing='0', cellpadding='0', border='0')
+                                            tbody
+                                                tr
+                                                    th(width='442', align='left') 门票类型
+                                                    th(width='178', align='left') 游玩日期
+                                                    th(width='93', align='center') 预订张数
+                                                    th(width='93', align='center') 选择票型
+
+                                                tr(id="#{showsItem.id}",flag='show')
+                                                    td.td_name= showsItem.showName
+                                                    td
+                                                        input(type="hidden",name="cangci")#cangci
+                                                        select.ticket_date(name='ticket_play_date')
+                                                            option(value='') 请选择演出场次
+                                                    td(align='center')
+                                                        | #{showsItem.num}
+                                                        input(type='hidden', value='#{showsItem.num}', name='ticket_num')
+                                                    td(align='center')
+                                                        input(type='hidden', value='', name='ticket_price')
+                                                        input(type='checkbox', value='#{showsItem.id}', flag='show_checkbox', name='show_radio_1048', checked='')
+                            .bto_cz.cf
+                                input#show_save.comfirm_btn(type='button', value='保存')
+                                a#show_cancel.cancel_btn(href='javascript:void(0)') 取消
+                    .group_list_w
+                        .group_h.cf
+                            .g_h_l
+                                strong 酒店信息
+                            .g_h_r
+                                span.kx
+                                a#hotel_change.change_btn(href='javascript:void(0)') 更改▲
+                        .sel_t.cf(flag='hotel')
+                            -each hotelItem in item.hotels
+                                .sel_t_i.cf
+                                    span.st_1
+                                    span.st_2=hotelItem.hotelName
+                                    span.st_3 高级双标间
+                                    span.st_4=hotelItem.num+"间"
+                                    span.st_5="第"+hotelItem.enterNights+"晚"
+                                    span.st_6=hotelItem.nights+"夜"
+                        #hotel_hidden_field
+                            -each hotelItem in item.hotels
+                                div(flag='h_room',id="h_"+hotelItem.id)
+                                    input(type='hidden', name='room_num', value=hotelItem.num)
+                                    input(type='hidden', name='room_id', value=hotelItem.id)
+                                    input(type='hidden', name='room_price', value='')
+                                    input(type='hidden', name='hotel_name', value=hotelItem.hotelName)
+                                    input(type='hidden', name='room_name', value=hotelItem.roomName)
+                        .h_s_w
+                            -each hotelItem,i in item.hotels
+                                .g_con_w.cf
+                                    .g_con_l
+                                        img.g_pic(src='/upload/201409/0d8695db-0e9a-40db-a4f0-1475f32ad8be.jpg', alt='')
+                                    .g_con_r
+                                        .g_con_t.cf
+                                            strong=hotelItem.hotelName
+                                        .g_address 杭州市西湖区之江路148号宋城景区旁边
+                                        table.table_t(cellspacing='0', cellpadding='0', border='0')
+                                            tbody
+                                                tr
+                                                    th(width='200', align='left') 房型
+                                                    th(width='100', align='left') 床型
+                                                    th(width='80', align='left') 早餐
+                                                    th(width='100', align='left') 第几晚入住
+                                                    th(width='100', align='left') 住几夜
+                                                    th(width='100', align='center') 预订间数
+                                                    th(width='80', align='left') 差价
+                                                    th(width='93', align='center') 选择房型
+                                                tr(flag='ROOM',id=hotelItem.id)
+                                                    td.td_name=hotelItem.roomName
+                                                    td
+                                                        | 双床
+                                                    td
+                                                        | 双早
+                                                    td.td_dayIn="第"+hotelItem.enterNights+"晚"
+                                                    td.td_days=hotelItem.nights+"夜"
+                                                    td(align='center')
+                                                        =hotelItem.num
+                                                        input(type='hidden', value=hotelItem.num, name='room_num')
+                                                    td.or
+                                                    td(align='center')
+                                                        input(type='hidden', value='', name='room_price')
+                                                        input(type='radio', value=hotelItem.id, name='room_radio_1052', checked='')
+                            .bto_cz.cf
+                                input#hotel_save.comfirm_btn(type='button', value='保存')
+                                a#hotel_cancel.cancel_btn(href='javascript:void(0)') 取消
+
+block scriptspage
+    script(src=baseUrl+'/javascripts/koobox.js')
+    script(src=baseUrl+'/javascripts/kooslide.js')
+    script(src=baseUrl+'/javascripts/MathUtil.js')
+    script(src=baseUrl+'/javascripts/zyx.js')

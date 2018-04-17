@@ -1,0 +1,66 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/order.css')
+block content
+   div.pay-results
+      case mold
+         when "0"
+            img(src="/images/member/success.png").font-icon
+            p 支付成功
+         when "1"
+            img(src="/images/member/fail.png").font-icon
+            p 支付失败
+         when "2"
+            img(src="/images/member/error.png").font-icon
+            p 操作失败
+   div.results-info
+      case mold
+         when "0"
+            p
+               =orderitem.name
+               | *
+               =orderitem.num
+            p
+               | 已成功提交，请查收您的
+               em.c-base 短信
+         when "1"
+            | 支付失败，请重新购买！
+   div.btn-bottom
+      case mold
+         when "0"
+            - if(workMold!="cart")
+               if(isshow.status=="true")
+                  if(isshow.syncStatus=="true"&&isshow.isShouquan)
+                     .btn-handle
+                        a(href="/seatArea?orderNo=" + isshow.orderNo).btn-RP 进入选座
+                  else
+                     .btn-handle
+                        a(href="javascript:;").btn-RP.btn-disabled="系统正在处理，请稍后选座"
+               div.btn-handle
+                  a(href="/user/myorderDetails/"+workMold+"/"+orderitem.orderId).btn-RP 查看订单
+               div.btn-handle
+                  -if(workMold=="show")
+                     a(href="/list/ticket").btn-RP 继续购买
+                  -else if(workMold=="cart")
+                     a(href="/").btn-RP 继续购买
+                  -else
+                     a(href="/list/"+workMold).btn-RP 继续购买
+            - else
+               //-if(isshow.status=="true")
+               //-   .btn-handle
+               //-      a(href="/seats?orderNo="+isshow.orderNo).btn-RP 进入选座
+               div.btn-handle
+                  a(href="/user/myorder/all").btn-RP 查看订单
+               div.btn-handle
+                  -if(workMold=="show")
+                     a(href="/list/ticket").btn-RP 继续购买
+                  -else if(workMold=="cart")
+                     a(href="/").btn-RP 继续购买
+                  -else
+                     a(href="/list/" + workMold).btn-RP 继续购买
+         when "1"
+            div.btn-handle
+               a(href="/").btn-RP 重新购买
+            div.btn-handle
+               a(href="/").btn 返回首页
+

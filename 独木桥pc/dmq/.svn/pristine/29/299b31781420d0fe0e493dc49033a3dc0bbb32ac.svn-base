@@ -1,0 +1,88 @@
+mixin breadcrumb(title)
+   #breadcrumb.cf
+      .bc_l
+         ="您的位置："
+         a(href="#")="首页"
+         =">"+title
+
+mixin subproList(tableHead,ticketItems,mold)
+   -if(ticketItems!=null&&ticketItems.length>0)
+      table.main_t
+         tr
+            -each item in tableHead
+               th(class=item.className)=item.title
+         -each item in ticketItems
+            -if(mold!="show")
+               tr
+                  -each sitem in tableHead
+                     -if(sitem.islink)
+                        td
+                           a(href="#").nbook_link=item[sitem.dataKey]
+                     -else if(sitem.dataKey=="handle")
+                        td
+                           a(href="/order/"+mold+"/"+item.id).book_link="立即预订"
+                     -else if(sitem.dataKey=="price"||sitem.dataKey=="sellingPrice"||sitem.dataKey=="originalPrice"||sitem.dataKey=="showPrice")
+                        td="¥"+item[sitem.dataKey]
+                     -else
+                        td=item[sitem.dataKey]
+            -else
+               -each titem in item.ticketList
+                  tr
+                     -each sitem in tableHead
+                        -if(sitem.islink)
+                           td
+                              a(href="#").nbook_link=titem[sitem.dataKey]
+                        -else if(sitem.dataKey=="handle")
+                           td
+                              a(href="/order/"+mold+"/"+titem.id).book_link="立即预订"
+                        -else if(sitem.dataKey=="price"||sitem.dataKey=="sellingPrice"||sitem.dataKey=="originalPrice"||sitem.dataKey=="showPrice")
+                           td="¥"+titem[sitem.dataKey]
+                        -else
+                           td=titem[sitem.dataKey]
+
+
+mixin formatDate(time,format)
+   -var date=new Date(time)
+   -var hours=date.getHours()>9?date.getHours():"0"+date.getHours()
+   -var minutes=date.getMinutes()>9?date.getMinutes():"0"+date.getMinutes()
+   -var seconds=date.getSeconds()>9?date.getSeconds():"0"+date.getSeconds()
+   case format
+      when "yyyy-mm-dd"
+         =date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
+      when "yyyy-mm-dd hh.mm.ss"
+         =date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+' '+hours+':'+minutes+':'+seconds
+      default
+         =date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
+
+
+mixin breakfast(num)
+   case num
+      when "0"
+         | 无早
+      when "1"
+         | 单早
+      when "2"
+         | 双早
+      when "3"
+         | 三早
+mixin bedtype(num)
+   case num
+      when "0"
+         ="大床"
+      when "1"
+         ="双床"
+      when "2"
+         ="三床"
+
+mixin strcut(str,num)
+   - if(str.length>num)
+      = str.substr(0, num)+"..."
+   -else
+      = str
+
+mixin getDate(num)
+   -var date=new Date()
+   - date.setDate(date.getDate()+num)
+   -var month=(date.getMonth()+1)>9?(date.getMonth()+1):"0"+(date.getMonth()+1)
+   -var day=date.getDate()>9?date.getDate():"0"+date.getDate()
+   =date.getFullYear()+"-"+month+"-"+day

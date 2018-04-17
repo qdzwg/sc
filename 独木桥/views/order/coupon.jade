@@ -1,0 +1,16 @@
+mixin coupon(mold,code)
+   ul.order-list.myorder-list
+      li
+         label.lab-title 优惠券
+         div.order-item
+            a(href="javascript:;" data-mold=mold data-code=code)#couponBtn
+               span 优惠券选择
+               i.font-icon.icon-iconfont-jiantou
+            input(type="hidden",name="couponAccId")#couponId
+   .coupon-layer#couponPanel
+       ul.coupon-list.coupon-layer-list
+       .coupon-handle
+           a(href="javascript:;").btn.btn-save="确定"
+           a(href="javascript:;").btn.btn-cancel="取消"
+
+

@@ -1,0 +1,176 @@
+.myorder-tab{ position: fixed; z-index: 33; top:0; left:0; width: 100%;}
+.myorder-tab li{ width: 20%;}
+.myorder-tab li a{ height: 1.45rem; line-height: 1.45rem;}
+.myorder-tab li a.c-base{ color: #f00;}
+
+/*ÏÂÀ­²éÑ¯*/
+.tab-search-panel{ position: fixed; background-color: #fff; width: 100%; left: 0; z-index: 21;}
+.tab-search-panel li{ border-bottom: 1px solid #eee;}
+.tab-search-panel li a{ display: block; padding: 0.75rem; font-size: 0.6rem;}
+.filter-item{ padding: 0.75rem; border-bottom: 1px solid #dcdcdc;}
+.filter-title{ font-size: 0.65rem;}
+.filter-list{ margin-top: 0.25rem; font-size: 0;}
+.filter-list span{ display: inline-block; height: 1rem; line-height: 1rem; min-width: 2.25rem; width: auto; padding: 0 0.3rem; border: 1px solid #ccc; font-size: 0.55rem; border-radius: 0.25rem; color: #666; margin: 0.3rem; text-align: center;}
+.filter-list span.c-base{ color: #f66;}
+.filter-handle{ height: 2.1rem; line-height: 2.1rem; font-size: 0.7rem; text-align: center;}
+.filter-handle a{ display: block;}
+
+/*ÎÒµÄ¶©µ¥ÁÐ±í*/
+.myorder-item{ background-color: #fff; padding: 0 1rem; font-size: 0.6rem;}
+.myorder-header{ padding: 0.55rem 0 0.3rem 0; overflow: hidden; border-bottom: 1px solid #eee; font-size: 0.5rem; color: #666;}
+.myorder-header .price{ color: #f00; font-size: 0.6rem;}
+.order-info i{ margin-right: 0.25rem; font-size: 0.75rem; color: #333; vertical-align: middle;}
+.order-info em{ margin: 0 0.25rem;}
+.order-time{ margin-left: 0.6rem;}
+.myorder-item a{ display: block; color: #666; padding: 0.5rem 0;}
+.myorder-item-title{ font-size: 0.7rem; color: #333;}
+.myorder-item a p{ padding-top: 0.25rem;}
+.myorder-item a p em{ margin-right: 0.25rem;}
+.myorder-item a p em:last-child{ margin-left: 0.5rem;}
+
+/*ÎÞÊý¾Ý*/
+.no-data{ width: 6.5rem; margin: 2.5rem auto; font-size: 0.75rem; color: #999; }
+.no-data i{ float: left; font-size: 0.75rem; margin-top: 0.125rem;}
+.no-data p{ margin-left: 1.5rem; line-height: 100%; text-shadow: 1px 2px 2px #fff; font-size: 0.6rem;}
+.no-data p em{ font-size: 0.4rem; display: block;}
+
+/*ÁÐ±íÇÐ»»*/
+.ticket-tab{ position: fixed; z-index: 33; top:0; left:0; width: 100%; border-bottom: 1px solid #eee;}
+.ticket-tab li{ width: 50%;}
+.ticket-tab li a{ height: 1.45rem; line-height: 1.45rem;}
+.ticket-tab li a span{ display: block; word-break:keep-all; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; padding: 0 0.25rem;}
+
+/*攻略搜索*/
+.raider-tab{position: fixed; z-index: 33; top:0; left:0; width: 100%; border-bottom: 1px solid #eee;}
+.raider-tab li{ padding: 0 0.5rem;}
+.raider-tab li a{height: 1.45rem; line-height: 1.45rem;}
+
+/*Ò³ÃæÁÐ±í*/
+.page-list{ background-color: #fff;}
+.page-list li{ border-bottom: 1px solid #eee; padding:0.5rem;}
+.page-list li a{ display: block;}
+.page-list-img{ width: 5.5rem; height: 4rem; float: left; overflow: hidden;}
+.page-list-img img{ height: 100%; max-width: none; background: url("../images/list/list-bg.jpg") center center no-repeat; background-size: cover;}
+.page-list-info{ margin-left:6rem; min-height: 4rem; height: auto; }
+.page-list-title{ font-size: 0.7rem; color: #333; min-height: 1rem; line-height: 0.75rem; overflow: hidden; word-break:break-all;}
+.page-list-title span{ margin-left: 0.25rem;}
+.page-list-article{ font-size: 0.55rem; line-height: 160%; min-height: 0.75rem; color: #999; margin-top: 0.25rem;}
+.page-list-foods{ font-size: 0.55rem; line-height: 160%; color: #999; margin-top: 0.25rem;}
+.page-list-explian{ margin-top: 0.4rem; font-size: 0.55rem; color: #999; height: 0.6rem; line-height: 0.6rem; }
+.page-list-explian .price{font-size: 0.55rem;}
+.page-list-explian .price strong{ margin-right: 0.25rem;}
+.page-list-explian .original-price{margin-top: 0.05rem; margin-right: 0.25rem;}
+.score-mark{ position: absolute; top:0; left: 0; display: block; background-color: #ff962c; border-radius:0.25rem; padding: 0.15rem 0.25rem; font-size: 0.5rem; color: #fff;}
+
+
+.zyx-list .page-list-title{ overflow: auto; min-height: 2.2rem; height: auto; line-height: 140%;}
+.repast-list .page-list-title{ height: 1.8rem; line-height: 140%;}
+
+/*¹ºÂòÈËÊýÑùÊ½*/
+.page-list-num{ margin-right: 0.5rem; display: inline-block; vertical-align: middle;}
+
+/*±ß¿òÁÐ±íÑùÊ½*/
+.list-border{ margin: 0 0.5rem;}
+.list-border .page-list-img{ width: 4.25rem;}
+.list-border .page-list-info{ margin-left: 4.75rem;}
+
+/*商品*/
+.goods-list{ background-color: #fff;}
+.goods-list li{ float: left; width: 50%; border-right: 1px solid #eee; box-sizing: border-box;}
+.goods-list li:nth-child(even){ border-right: none;}
+.goods-list .page-list-img{ float: none; width: 6rem; height: 6rem; margin: 0 auto;}
+.goods-list .page-list-info{ margin: 0 auto; min-height: auto; width: 6rem;}
+.goods-list .page-list-title{ margin: 0.5rem 0; min-height: 1.5rem; font-size: 0.6rem;}
+.goods-list a{ position: relative;}
+
+/*攻略*/
+.raiders-list li{ padding: 0; margin-bottom: 0.5rem;}
+.raiders-list li:last-child{ margin-bottom: 0;}
+.raiders-list li img{ width: 100%;background: url("../images/list/list-bg.jpg") center center no-repeat; background-size: cover; height: 6rem;}
+.raiders-list li a{ position: relative;}
+.raiders-info{ position: absolute;bottom: 0; width: 100%; background-color: rgba(0,0,0,0.4); height: 2.2rem; line-height: 2.2rem;}
+.raiders-title{ padding: 0 0.5rem; color: #fff; font-size: 0.65rem;}
+
+/*新版列表*/
+.list-item{ margin: 0.5rem 0.75rem; position: relative;}
+.list-item img{ width: 100%; height: 6.65rem;}
+.pageList-title{ position: absolute; bottom: 0; left: 0; width: 100%; background-color: rgba(0,0,0,.5); height:2.1rem; line-height: 2.1rem; padding: 0 0.75rem; font-size: 0.65rem; color: #fff; box-sizing: border-box; white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis;}
+.pageList li{ padding: 0.75rem; display: -moz-box; display: -webkit-box;display: box; font-size: 0.6rem; -webkit-box-orient: horizontal; border-bottom: 1px solid #dcdcdc;}
+.pageList li span{ display:block; font-family: "Microsoft YaHei";}
+.pageList li span.price{ width: 3rem; color: #ff6600;}
+.pageList li del{ display: block; width: 3rem; font-family: "Microsoft YaHei"; color: #999;}
+.pageList li a{ display: block; width: 2rem;}
+.btn-order{ height: 1rem; line-height: 1rem; background-color: #f60; color: #fff; text-align: center; margin: 0; font-size: 0.6rem;}
+.flex1{-moz-box-flex: 1; -webkit-box-flex: 1; box-flex: 1;}
+.flex2{-moz-box-flex: 2; -webkit-box-flex: 2; box-flex: 2;}
+.flex3{-moz-box-flex: 3; -webkit-box-flex: 3; box-flex: 3;}
+
+.cart-list{ padding: 0.35rem;}
+.cart-list li{ background-color: #fff; border: 1px solid #dcdcdc; border-radius: 2px; font-size: 0.6rem; margin-bottom: 0.35rem; position: relative;}
+.cart-info{display: -moz-box; display: -webkit-box;display: box; -webkit-box-orient: horizontal; margin-bottom: 0.25rem; border-bottom: 1px solid #dcdcdc; padding: 0.3rem;}
+.cart-info .page-icon{ font-size: 0.75rem; margin-top: 1.2rem; margin-right: 0.35rem; color: #999;}
+.cart-info .icon-checkbox-checked{ color: #f66;}
+.cart-img{ width: 3rem; height: 2.8rem; margin-right: 0.45rem;}
+.cart-img img{ width: 100%; height: 100%; border-radius: 5px;}
+.cart-title{ font-size: 0.65rem; color: #333; padding-right: 1.5rem;}
+.cart-content p{ margin-top: 0.35rem; font-size: 0.55rem; color: #999;}
+.cart-explian{ padding: 0.35rem;}
+.cart-explian .price{ color: #f66;}
+.cart-explian .num{ float: right; color: #666;}
+.del-btn{ position: absolute; right: 0.25rem; top:0.25rem; font-size: 1rem; color: #000;}
+
+.footer-layer{ height: 2rem; line-height: 2rem; background-color: #fff; border: 1px solid #dcdcdc; position: fixed; bottom: 0; left: 0; width:100%; display: -moz-box; display: -webkit-box;display: box; -webkit-box-orient: horizontal;}
+.settle-btn{ width: 5.4rem; height: 2rem; text-align: center; color: #fff; background-color: #ddd; display: block; font-size: 0.75rem;}
+.settle-btn-operable{ background-color: #000;}
+.total-price-box{ padding: 0 0.35rem; font-size: 0.6rem; color: #333;}
+.total-price-box .page-icon{ font-size: 0.75rem; vertical-align: middle; margin-right: 0.25rem; color: #666;}
+.total-price-box .price{ float: right;}
+.total-price-box .icon-checkbox-checked{ color: #f66;}
+.footer-layer form{ width: 5.4rem;}
+
+.area-title{ padding: 0.75rem 0 0 0.75rem; font-size: 0.65rem;}
+
+.raiders-list{ padding: 0.5rem;}
+.raiders-list li{ position: relative;}
+.raiders-list li a{ display: block;}
+.raiders-list-title{ height: 1.4rem; line-height: 1.4rem; position: absolute; width: 100%; bottom: 0; left: 0; background-color: rgba(0,0,0,0.6); color: #fff; font-size: 0.6rem; padding: 0 0.5rem; box-sizing: border-box;}
+
+.list-tab{ position: fixed; background-color: #f66; border-bottom: 1px solid #dcdcdc; top:0; left: 0; width: 100%; z-index: 20;}
+.list-tab a{ font-size: 0.55rem; display: inline-block; width: 16.6%; padding: 0 0.25rem; box-sizing: border-box; text-align: center; vertical-align: middle; line-height: 2rem; color: #fff; border-left: 1px solid #fff; height: 2rem;}
+.list-tab p{ height: 1px; background-color: #fff; overflow: hidden;}
+.list-tab p:first-child{ height: 0;}
+.list-tab a.active{ background-color: #fff; color: #f66;}
+.list-panel .list-panel-item{ display: none;}
+.list-panel .list-panel-item.active{ display: block;}
+.ticket-tab a{ width: 14.2%;}
+
+.line-tab{ position: fixed; top:0; left:0; width:100%; background-color: #f36; height: 2rem; line-height: 2rem; z-index: 20;}
+.line-tab a{ display: inline-block; width: 50%; text-align: center; font-size: 0.6rem; box-sizing: border-box; color: #fff; vertical-align: top; line-height: 2.1rem;}
+.line-tab a:first-child{ border-right: 1px solid #dcdcdc;}
+.line-tab a.cur{ background-color: #fff; color: #f36;}
+.line-head-tab{top:2rem; border-top: 1px solid #dcdcdc;}
+
+.line-list-tab a{ display: table-cell; width: 33%; padding: 0.25rem;line-height: 160%;}
+
+.combo-panel{ padding-top: 2rem;}
+.combo-title{ font-size: 0.55rem; line-height: 0.8rem; padding-top: 0.25rem;}
+.exchange-btn{ display: inline-block; width: 2.5rem; height: 1rem; line-height: 1rem; color: #fff; background-color: #007aff; border-radius: 0.15rem; text-align: center; margin-top: -0.2rem; font-size: 0.5rem;}
+.unbuy .exchange-btn{ background-color: #a0a0a0;}
+
+.scored-list{ padding-left: 0.5rem; background-color: #fff;}
+.scored-list li{ border-bottom: 1px solid #ebebeb; padding: 0.75rem 0; overflow: hidden;}
+.scored-left{ float: left; width: 6rem; font-size: 0.55rem; color: #666;}
+.scored-left p:first-child{ font-size: 0.6rem; margin-bottom: 0.3rem;}
+.scored-center{ width: 1.4rem; height: 1.4rem; float: left; margin: 0 0.5rem;}
+.scored-info{ margin-left: 9.4rem; font-size: 0.6rem;}
+.scored-info p{ color: #666; margin-top: 0.3rem;}
+
+/*积分列表*/
+.score-list{ padding: 0.55rem;}
+.score-list li{ width: 15.275rem; height: 3.125rem; background: url("../images/coupon/score-bg.png") no-repeat; background-size: contain; margin-bottom: 0.25rem;}
+.score-list-left{ width: 9.95rem; float: left; padding: 0.5rem 0.75rem; font-size: 0.5rem;}
+.score-list-title{ font-size: 0.75rem;}
+.score-list-left p{ color: #666; margin-top: 0.25rem;}
+.score-list-right{ line-height: 3.125rem; color: #cd0303; font-size: 0.5rem; text-align: center;}
+.score-list-right span{ margin: 0 0.125rem; font-size: 0.85rem;}
+.scoreDetails-inner{ padding: 0.5rem;}

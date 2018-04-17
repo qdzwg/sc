@@ -1,0 +1,86 @@
+mixin handle(status,mold,orderId,ticketId,iscomment,retreatNum,refundStatus,allRefund,isshow,receiptFlag,orderNo)
+   div.btn-handle
+      -if(status==0)
+         a(href="/pay/"+mold+"?orderId="+orderId).btn 去支付
+         a(href="javascript:;" data-orderid=orderId).btn-RP#cancelOrder 取消订单
+      -if(receiptFlag==1)
+         a(href="http://receipt.51dmq.com/receipt/single.htm?orderno=" + orderNo + "&chanel=0").btn-RP 开票
+      -if(isshow.status=="true")
+         if(isshow.syncStatus == "true"&&isshow.isShouquan)
+            .btn-handle
+               a(href="/seatArea?orderNo=" + isshow.orderNo).btn-RP 进入选座
+         else
+            .btn-handle
+               a(href="javascript:;").btn-RP.btn-disabled="系统正在处理，请稍后选座"
+      - if(refundStatus==1)
+         a(href="javascript:;").btn-RP#btn-refund 申请退款
+         p="当天退款需联系客服人员：400-8888-518"
+         +refundForm(retreatNum,orderId,allRefund)
+      - if(iscomment)
+         a(href="javascript:;").btn-RP#btn-comment 评价
+         +commentForm(mold,orderId)
+
+//- 评价表单
+mixin commentForm(mold,orderId)
+   div.comment-form#comments
+      form(method="post",action="/user/myorderDetails/"+mold+"/"+orderId+"?status=comment")
+         p.details-comment
+            span.comment-score
+               strong 评分：
+               i.font-icon.icon-iconfont-aixin
+               i.font-icon.icon-iconfont-aixin
+               i.font-icon.icon-iconfont-aixin
+               i.font-icon.icon-iconfont-aixin
+               i.font-icon.icon-iconfont-aixin
+               input(type="hidden",name="score")#score
+            a(href="javascript:;").close
+               i.font-icon.icon-iconfont-32pxchaxian
+         div.page-line
+         div.comment-content
+            textArea(rows="7",placeholder="请填写您的评价",name="content").order-textarea
+            //#uploader
+            //    .uploader-list#fileList
+            //    #filePicker
+            //        i.font-icon.icon-iconfont-camera
+            //        p="添加图片"
+            //    .uploadBtn.state-ready#uploadBtn
+            //        i.score-icon.icon-upload
+            //        p="立即上传"
+         div.comment-handle
+            button(type="submit").btn.btn-small 立即评价
+   div.mask#mask
+
+//-退款表单
+mixin refundForm(retreatNum,orderId,allRefund)
+   div.comment-form#refund
+      form(method="post",action="/user/myorderDetails/"+mold+"/"+orderId+"?status=refund")
+         ul.order-list.myorder-list
+            li
+               label.lab-title 可退数
+               div.order-item
+                  span#retreatNum=retreatNum
+            li
+               label.lab-title 需退数
+               div.order-item
+                  -if(allRefund==0)
+                     span
+                        input(type="tel",value=retreatNum,name="number",data-max=retreatNum,data-min=1,data-mold="refund").number
+                  -if(allRefund==1)
+                     input(type="hidden",value=retreatNum,name="number")
+                     span=retreatNum
+            li
+               label.lab-title 手续费
+               div.order-item
+                  span#fee="未获取到手续费，请重新刷新！"
+         .page-line
+         div.refund-handle
+            button(type="submit").btn 确认退款
+   div.mask#mask
+
+mixin scoreHnadle(order)
+    div.btn-handle
+        if(order.dealResult=="1")
+            if(order.productType!="entity"&&order.productType!="coupon")
+                a(href="/user/myorderDetails/"+order.productType+"/"+order.orderId).btn 查看订单
+        else
+            p="你的兑换订单暂未下单，请联系在线客服下单"

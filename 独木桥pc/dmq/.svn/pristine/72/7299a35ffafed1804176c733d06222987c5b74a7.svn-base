@@ -1,0 +1,66 @@
+#main{
+	background:#F1F3E6;
+}
+
+#topbn{
+    height: 398px;
+    background:url(../images/common/topbn_1.jpg) no-repeat center top;
+}
+
+
+.lz{width:1000px;margin:0 auto;background:url(../img/loading.png)}
+
+.hold{
+	margin:0 auto;
+	width: 1000px;
+	height: 100%;
+	position: relative;
+	display: none;
+}
+.f_pic{
+    position: absolute;
+}
+.f_pic img{
+    vertical-align: top;
+}
+
+.f_w{
+    position: absolute;
+}
+.f_t,a.f_t{
+    line-height: 30px;
+    font-size: 24px;
+    font-family: Microsoft Yahei;
+    color: #f79c0d;
+    text-decoration: none;
+}
+.f_t2,a.f_t2{
+    font-size: 24px;
+    font-family: Microsoft Yahei;
+    color: #f79c0d;
+    text-decoration: none;
+}
+a.f_t2:hover,a.f_t:hover{text-decoration: underline;}
+.f_c{
+    line-height: 22px;
+    font-size: 14px;
+    font-family: Microsoft Yahei;
+    color: #51260b;
+}
+.f_m{
+    line-height: 30px;
+    font-size: 14px;
+    font-family: Microsoft Yahei;
+    text-align: right;
+}
+.f_m a{
+    color: #933f00;
+}
+#c1{height: 509px;}
+#c2{height: 471px;}
+#c3{height: 579px;}
+#c4{height: 536px;}
+#c5{height: 707px;}
+
+
+

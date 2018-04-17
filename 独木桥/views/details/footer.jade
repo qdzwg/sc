@@ -1,0 +1,14 @@
+mixin footer(mold,code,freight)
+   footer.order-footer
+      div(class=mold+"-layer").order-total.float-layer
+         - if(freight=="2"||freight=="3")
+            a(href="javascript:;").fr.btn-order.background-base#goods-btn 提交订单
+         -else if(mold=="goods")
+            a(href="/order/"+mold+"/"+code+"?freight=0").fr.btn-order.background-base 提交订单
+         -else
+            a(href="/order/calendar/"+mold+"/"+code).fr.btn-order.background-base 提交订单
+         - if(mold!="goods")
+            p.total-price
+               a(href="tel:400-100-100").details-tel
+                  i.font-icon.icon-iconfont-dianhua
+                  | 电话咨询

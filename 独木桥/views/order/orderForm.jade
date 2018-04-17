@@ -1,0 +1,603 @@
+mixin form(mold,proitems,userdata,code,stockPriceMap,civ)
+   input(type="hidden",name="productType",value=proitems.productType)
+   div.page-line
+   +handle(mold,proitems,code,stockPriceMap,civ)
+   if(mold=="line")
+      -if(proitems.tickets.length>0)
+         div.page-line
+         +ticketItem(proitems.tickets)
+      -if(proitems.shows.length>0)
+         div.page-line
+         +showItem(proitems.shows)
+      -if(proitems.hotels.length>0)
+         div.page-line
+         +hotelItem(proitems.hotels)
+   if(mold=="combo")
+      -if(proitems.tickets.length>0)
+         div.page-line
+         +ticketItem(proitems.tickets)
+      -if(proitems.shows.length>0)
+         div.page-line
+         +showItem(proitems.shows)
+   div.page-line
+   if(proitems.productType!="coupon")
+       +person(mold,userdata,proitems)
+       div.page-line
+       +remark(mold,proitems)
+
+mixin handle(mold,proitems,code,stockPriceMap,civ)
+   ul.order-list.myorder-list
+      case mold
+         when "ticket"
+            li
+               label.lab-title 使用日期
+               div.order-item
+                  -if(proitems.stockPriceMap.length>0)
+                     a(href="javascript:;",data-code=code,data-mold=mold)#calendar-btn
+                        span.order-time=proitems.stockPriceMap[0].date
+                        i.font-icon.icon-iconfont-jiantou
+                     input(type="hidden",name="stockDate",id="hid-stockDate",value=proitems.stockPriceMap[0].date)
+                  - else
+                     span="暂无预定日期"
+            li
+               label.lab-title 购买份数
+               div.order-item
+                  -if(proitems.stockPriceMap.length>0)
+                     input(type="hidden",name="price",id="hid-price",value=proitems.stockPriceMap[0].price)
+                     span.order-time ￥
+                     span.order-time#price=proitems.stockPriceMap[0].price
+                     span.fr
+                        input(type="tel",value=proitems.minNum,name="number",data-max=proitems.maxNum,data-min=proitems.minNum,data-mold=mold).number
+         when "hotel"
+            li
+               label.lab-title 入住日期
+               div.order-item
+                  -if(proitems.stockPriceMap.length>0)
+                     a(href="javascript:;",data-code=code,data-mold=mold)#calendar-btn
+                        if(defaultDate.beginDate!=null)
+                           span
+                              em#beginDate=defaultDate.beginDate
+                              | 至
+                              em#endDate=defaultDate.endDate
+                              em#differDay="1"
+                              |晚
+                        else
+                           span
+                              em#beginDate=proitems.stockPriceMap[0].date
+                              | 至
+                              em#endDate=proitems.stockPriceMap[1].date
+                              em#differDay="1"
+                              | 晚
+                        i.font-icon.icon-iconfont-jiantou
+                     if(defaultDate.beginDate!=null)
+                        input(type="hidden",name="stockDate",id="hid-beginDate",value=defaultDate.beginDate)
+                        input(type="hidden",name="endDate",id="hid-endDate",value=defaultDate.endDate)
+                     else
+                        input(type="hidden",name="stockDate",id="hid-beginDate",value=proitems.stockPriceMap[0].date)
+                        input(type="hidden",name="endDate",id="hid-endDate",value=proitems.stockPriceMap[1].date)
+                  - else
+                     span="暂无预定日期"
+            li
+               label.lab-title 房间数量
+               div.order-item
+                  -if(proitems.stockPriceMap.length>0)
+                     //-var avgPrice=proitems.stockPriceMap[0].price
+                     //input(type="hidden",name="price",id="hid-price",value=avgPrice)
+                     //span.order-time ￥
+                     //span.order-time#price=avgPrice
+                     -var maxNum=proitems.stockPriceMap[0].leftNum
+                     -maxNum=maxNum>proitems.maxNum?proitems.maxNum:maxNum
+                     span.fr
+                        input(type="tel",value=proitems.minNum,name="number",data-max=maxNum,data-min=proitems.minNum,data-mold=mold).number
+            li
+               label.lab-title 费用明细
+               div.order-item
+                  a(href="javascript:;")#costDetail
+                     span.fr="查看明细"
+                     i.font-icon.icon-iconfont-jiantou
+         when "show"
+            li
+               label.lab-title 使用日期
+               div.order-item
+                  -if(proitems.datas.stockPriceMap.length>0)
+                     a(href="javascript:;",data-code=code,data-mold=mold)#calendar-btn
+                        span.order-time=proitems.datas.stockPriceMap[0].date
+                        i.font-icon.icon-iconfont-jiantou
+                     input(type="hidden",name="stockDate",id="hid-stockDate",value=proitems.datas.stockPriceMap[0].date)
+                  -else
+                     span="暂无预定日期"
+            li
+               label.lab-title 场次
+               div.order-item
+                  a(href="javascript:;").season-btn
+                     span="请选择场次"
+                     i.font-icon.icon-iconfont-jiantou
+                  input(name="zyxShowIds",type="hidden")
+               +seasonShow()
+            li
+               label.lab-title 购买份数
+               div.order-item
+                  -if(proitems.datas.stockPriceMap.length>0)
+                     input(type="hidden",name="price",id="hid-price",value=proitems.datas.stockPriceMap[0].price)
+                     span.order-time ￥
+                     span.order-time#price=proitems.datas.stockPriceMap[0].price
+                     span.fr
+                        input(type="tel",value=proitems.datas.minAmount,name="number",data-max=proitems.datas.maxAmount,data-min=proitems.datas.minAmount,data-mold=mold).number
+         when "route"
+            li
+               label.lab-title 出发日期
+               div.order-item
+                  span=proitems.stockDate
+                  input(type="hidden",name="stockDate",id="hid-stockDate",value=proitems.stockDate)
+            li
+               label.lab-title 购买份数
+               div.order-item#route-item
+                  input(type="hidden",name="adultLeftNum",id="hid-adultLeftNum",value=proitems.adult)
+                  input(type="hidden",name="childrenLeftNum",id="hid-childrenLeftNum",value=proitems.children)
+                  input(type="hidden",name="adultPrice",id="hid-adultPrice",value=proitems.adultPrice)
+                  input(type="hidden",name="childrenPrice",id="hid-childrenPrice",value=proitems.childrenPrice)
+                  div.order-copies
+                     span="成人"
+                     span.price
+                        em ￥
+                        strong#adultprice=proitems.adultPrice
+                     span
+                        em.num=proitems.adult
+                        ="份"
+                  div.order-copies
+                     span="儿童"
+                     span.price
+                        em ￥
+                        strong#childrenprice=proitems.childrenPrice
+                     span
+                        em.num=proitems.children
+                        ="份"
+         when "line"
+            li
+               label.lab-title 使用日期
+               div.order-item
+                  -if(proitems.stockPriceMap.length>0)
+                     a(href="javascript:;",data-code=code,data-mold=mold)#calendar-btn
+                        span.order-time=proitems.stockPriceMap[0].date
+                        i.font-icon.icon-iconfont-jiantou
+                     input(type="hidden",name="stockDate",id="hid-stockDate",value=proitems.stockPriceMap[0].date)
+                     input(type="hidden",name="kid",id="hid-kid",value=proitems.stockPriceMap[0].kid)
+                  -else
+                     span="暂无预定日期"
+            li
+               label.lab-title 购买份数
+               div.order-item#line-item
+                  -if(proitems.stockPriceMap.length>0)
+                     input(type="hidden",name="price",id="hid-price",value=proitems.stockPriceMap[0].price)
+                     span.price
+                        em="￥"
+                        strong#price=proitems.stockPriceMap[0].price
+                     span.fr
+                        input(type="tel",value=1,name="number",data-max=5,data-min=1,data-mold=mold).number
+         when "combo"
+            li
+               label.lab-title 使用日期
+               div.order-item
+                  -if(proitems.stockPriceMap.length>0)
+                     a(href="javascript:;",data-code=code,data-mold=mold)#calendar-btn
+                        span.order-time=proitems.stockPriceMap[0].date
+                        i.font-icon.icon-iconfont-jiantou
+                     input(type="hidden",name="stockDate",id="hid-stockDate",value=proitems.stockPriceMap[0].date)
+                     input(type="hidden",name="kid",id="hid-kid",value=proitems.stockPriceMap[0].kid)
+                  -else
+                     span="暂无预定日期"
+            li
+               label.lab-title 购买份数
+               div.order-item#line-item
+                  -if(proitems.stockPriceMap.length>0)
+                     input(type="hidden",name="price",id="hid-price",value=proitems.stockPriceMap[0].price)
+                     span.price
+                        em="￥"
+                        strong#price=proitems.stockPriceMap[0].price
+                     span.fr
+                        input(type="tel",value=1,name="number",data-max=5,data-min=1,data-mold=mold).number
+         when "repast"
+            li
+               label.lab-title 有效期
+               div.order-item
+                  span=proitems.beginDate+"至"+proitems.endDate
+            li
+               label.lab-title 购买份数
+               div.order-item
+                  input(type="hidden",name="price",id="hid-price",value=proitems.closePrice)
+                  span.order-time ￥
+                  span.order-time#price=proitems.closePrice
+                  span.fr
+                     input(type="tel",value=proitems.minNum,name="number",data-max=proitems.maxNum,data-min=proitems.minNum).number
+         when "goods"
+            -if(proitems.skuId!=null)
+               li
+                  label.lab-title 选择分类
+                  div.order-item
+                     span=proitems.modelName
+                     input(type="hidden",name="stockDate",id="hid-stockDate",value=proitems.initTime)
+            li
+               label.lab-title 购买数量
+                  a(href="javascript:;",data-code=code,data-mold=mold)#calendar-btn
+               div.order-item
+                  - var max=proitems.maxNum>proitems.stockLeft?proitems.stockLeft:proitems.maxNum
+                  input(type="hidden",name="price",id="hid-price",value=proitems.price)
+                  input(type="hidden",name="stockId",id="hid-stockId",value=proitems.stockId)
+                  span.order-time ￥
+                  span.order-time#price=proitems.price
+                  span(style="margin-right:0.75rem;").fr
+                     - if(proitems.stockLeft<proitems.minNum)
+                        ="库存不足"
+                     -else
+                        input(type="tel",value=proitems.minNum,name="number",data-max=max,data-min=proitems.minNum,data-mold=mold).number
+         when "score"
+            -var mydate=new Date()
+            -var month=(mydate.getMonth()+1)>9?(mydate.getMonth()+1):"0"+(mydate.getMonth()+1)
+            -var day=mydate.getDate()>9?mydate.getDate():"0"+mydate.getDate()
+            -var today=mydate.getFullYear() + "-" + month + "-" + day
+            -mydate.setDate(mydate.getDate()+1)
+            -var month1=(mydate.getMonth()+1)>9?(mydate.getMonth()+1):"0"+(mydate.getMonth()+1)
+            -var day1=mydate.getDate()>9?mydate.getDate():"0"+mydate.getDate()
+            -var today1=mydate.getFullYear() + "-" + month1 + "-" + day1
+            case proitems.productType
+                when "ticket"
+                  li
+                     label.lab-title 使用时间
+                     .order-item
+                         if(stockPriceMap.length>0)
+                            a(href="javascript:;",data-mold="ticket",data-type="score",data-code=proitems.productCode)#calendar-btn
+                               span.order-time
+                                    =stockPriceMap[0].date
+                               i.font-icon.icon-iconfont-jiantou
+                            input(type="hidden",name="stockDate",id="hid-stockDate",value=stockPriceMap[0].date)
+                         else
+                            span="暂无预定日期"
+                when "hotel"
+                    li
+                        label.lab-title 使用时间
+                        .order-item
+                            if(stockPriceMap)
+                                if(stockPriceMap.length>0)
+                                    a(href="javascript:;",data-mold="hotel",data-type="score",data-code=proitems.productCode)#calendar-btn
+                                        span
+                                            em#beginDate
+                                                =stockPriceMap[0].date
+                                            | 至
+                                            em#endDate
+                                                =stockPriceMap[1].date
+                                            em#differDay="1"
+                                            | 晚
+                                    input(type="hidden",name="stockDate",id="hid-beginDate",value=stockPriceMap[0].date)
+                                    input(type="hidden",name="endDate",id="hid-endDate",value=stockPriceMap[1].date)
+                                else
+                                    span="暂无预定日期"
+                            else
+                                span="暂无预定日期"
+                when "show"
+                    li
+                        label.lab-title 使用日期
+                        div.order-item
+                            if(stockPriceMap.length>0)
+                                a(href="javascript:;",data-type="score",data-mold="show",data-code=proitems.productCode)#calendar-btn
+                                    span.order-time
+                                        =stockPriceMap[0].date
+                                    i.font-icon.icon-iconfont-jiantou
+                                input(type="hidden",name="stockDate",id="hid-stockDate",value=stockPriceMap[0].date)
+                            else
+                                span="暂无预定日期"
+                    li
+                        label.lab-title 场次
+                        div.order-item
+                            a(href="javascript:;").season-btn
+                                span="请选择场次"
+                                i.font-icon.icon-iconfont-jiantou
+                            input(name="zyxShowIds",type="hidden")#showtimes
+                        +seasonShow()
+                when "combo"
+                    li
+                        label.lab-title 使用日期
+                        div.order-item
+                            if(stockPriceMap.length>0)
+                                a(href="javascript:;",data-type="score",data-mold="combo",data-code=proitems.productCode)#calendar-btn
+                                    span.order-time
+                                        =stockPriceMap[0].date
+                                    i.font-icon.icon-iconfont-jiantou
+                                input(type="hidden",name="stockDate",id="hid-stockDate",value=stockPriceMap[0].date)
+                                input(type="hidden",name="kid",id="hid-kid")
+                            else
+                                span="暂无预定日期"
+                when "line"
+                    li
+                        label.lab-title 使用日期
+                        div.order-item
+                            if(stockPriceMap.length>0)
+                                a(href="javascript:;",data-type="score",data-mold="line",data-code=proitems.productCode)#calendar-btn
+                                    span.order-time
+                                    i.font-icon.icon-iconfont-jiantou
+                                input(type="hidden",name="stockDate",id="hid-stockDate",value=stockPriceMap[0].date)
+                                input(type="hidden",name="kid",id="hid-kid")
+                            else
+                                span="暂无预定日期"
+                when "coupon"
+                    li
+                        label.lab-title 优惠类型
+                        .order-item="满"+civ.limitSum+"减"+civ.cutSum
+                when "specialGoods"
+                    //li
+                    //    label.lab-title 优惠类型
+                        //.order-item="满" + civ.limitSum + "减" + civ.cutSum
+            li
+               label.lab-title 兑换份数
+               div.order-item
+                    span.order-time
+                        em#price=proitems.price
+                        ="积分/份"
+                    if(proitems.leftAmount==0&&proitems.productType=="entity")
+                        span(style="margin-right:0.75rem;").fr="暂无库存"
+                    else
+                        span(style="margin-right:0.75rem;").fr
+                            -var amount=proitems.leftAmount
+                            if(proitems.leftAmount>proitems.maxNum)
+                                -amount=proitems.maxNum
+                            if(proitems.productType=="entity")
+                                input(type="tel",value=1,name="number",data-max=amount,data-min=1).number
+                            else if(proitems.productType=="goods")
+                                input(type="tel",value=1,name="number",data-max=stockPriceMap.stockLeft>proitems.maxNum?proitems.maxNum:stockPriceMap.stockLeft,data-min=1).number
+                            else if(proitems.productType=="show"||proitems.productType=="specialGoods")
+                                input(type="tel",value=1,name="number",data-max=proitems.maxNum,data-min=1).number
+                            else if(proitems.productType=="coupon")
+                                =""
+                            else
+                                input(type="tel",value=1,name="number",data-max=stockPriceMap[0].leftNum>proitems.maxNum?proitems.maxNum:stockPriceMap[0].leftNum,data-min=1).number
+
+            li
+               label.lab-title 有效期
+               div.order-item
+                  span
+                    em#termBegin
+                      +formatDate(proitems.beginDate)
+                    =" 至 "
+                    em#termEnd
+                        +formatDate(proitems.endDate)
+
+mixin person(mold,userdata,proitems)
+   -if(mold!="goods")
+      -var persontitle={"user":"联系人","tel":"手机号","accid":"身份证"}
+   -else
+      -if(proitems.freight=="0")
+         -var persontitle={"user":"收货人","tel":"手机号"}
+      -else
+         -var persontitle={"user":"提货人","tel":"手机号"}
+   if(mold=="score")
+       -var user={"user":userdata.realName,"tel":userdata.mobile,"card":userdata.idCard}
+   else
+       -var user=userdata
+   ul.order-list.myorder-list#user
+      li
+         label.lab-title=persontitle.user
+         div.order-item
+            input(type="text",placeholder="请填写姓名",name="consumer",value=user.user,required).order-text
+            i.font-icon.fr.icon-iconfont-xie
+      li
+         label.lab-title=persontitle.tel
+         div.order-item
+            input(type="tel",placeholder="请填写手机号",name="mobile",value=user.tel,required).order-text
+            i.font-icon.fr.icon-iconfont-xie
+      - if(mold!="repast"&&mold!="goods"&&mold!="score")
+         li
+            label.lab-title="证件类型"
+            div.order-item
+               select(name="certificateType").select-item
+                  if(user.certificateType==0)
+                     option(value="0",selected="selected")="身份证"
+                  else
+                     option(value="0")="身份证"
+                  if(user.certificateType==1)
+                     option(value="1",selected="selected")="护照"
+                  else
+                     option(value="1")="护照"
+                  if(user.certificateType==2)
+                     option(value="2",selected="selected")="港澳通行证"
+                  else
+                     option(value="2")="港澳通行证"
+                  if(user.certificateType==3)
+                     option(value="3",selected="selected")="台湾通行证"
+                  else
+                     option(value="3")="台湾通行证"
+         li(data-mold="zjh" data-idcard=user.card)#idcard
+            -var text="身份证",yz={"isIdCardNo":"true"}
+            case user.certificateType
+               when "0"
+                  -text="身份证"
+                  -yz={"isIdCardNo":"true"}
+               when "1"
+                  -text="护照"
+                  -yz={"isPassport":"true"}
+               when "2"
+                  -text="港澳通行证"
+                  -yz={"isHKMacao":"true"}
+               when "3"
+                  -text="台湾通行证"
+                  -yz={"isTaiwan":"true"}
+            label.lab-title=text
+            -var centStatus=1
+            if(mold=="show"||mold=="combo"||mold=="line")
+               -centStatus=1
+            else
+               -centStatus=proitems.centStatus
+            div.order-item
+               -if(centStatus==1)
+                  input(type="text",placeholder="请填写身份证",name="accIdentification",value=user.card,required,).order-text&attributes(yz)
+               -else
+                  input(type="text",placeholder="请填写身份证",name="accIdentification",value=user.card).order-text&attributes(yz)
+               i.font-icon.fr.icon-iconfont-xie
+      -else if(mold=="score")
+        -if(proitems.isSelf=="false")
+            li
+                label.lab-title="身份证"
+                .order-item
+                    input(type="text",placeholder="请填写身份证",name="accIdentification",value=user.card,required,).order-text
+                    i.font-icon.fr.icon-iconfont-xie
+        -else
+            li
+                label.lab-title="身份证"
+                .order-item=user.card
+                input(type="hidden",name="accIdentification",value=user.card).order-text
+      -if(proitems.freight=="0"||proitems.productType=="goods"||proitems.productType=="entity")
+         li
+            label.lab-title 收货地区
+            div.order-item
+               input(type="text",placeholder="选择省、市、区",name="area",readonly="readonly",required).order-text#txt_area
+               i.font-icon.fr.icon-iconfont-xie
+         li
+            label.lab-title 详细地址
+            div.order-item
+               input(type="text",placeholder="填写详细信息",name="address",required).order-text
+               i.font-icon.fr.icon-iconfont-xie
+
+mixin remark(mold,item)
+   -if(item.freight==1)
+      ul.order-list.myorder-list
+         li
+            label.lab-title 提货地址
+            div.order-item
+               a(href="javascript:;",data-id=item.id)#address-btn
+                  input(type="text",name="address",id="add",placeholder="请选择提货地址",readonly="readonly",required)
+                  i.font-icon.icon-iconfont-jiantou
+                  input(type="hidden",name="sinceId",id="hid-sinceId")
+         li
+            label.lab-title 提货时间
+            div.order-item
+               span#time
+      div.page-line
+      div.article-panel#address
+         h3.article-title="自提地址"
+            a(href="javascript:;").close
+               i.font-icon.icon-iconfont-32pxchaxian
+         div.article-content.address-content
+   - if(mold=="hotel"||mold=="goods"||mold=="list")
+      ul.order-list.myorder-list
+         -if(item.freight==0)
+            li
+               input(type="hidden",name="skuId",id="hid-skuId",value=item.skuId)
+               input(type="hidden",name="postId",id="hid-postId")
+               label.lab-title 配送方式
+               div.order-item
+                  +postType(item.postTypeStatus)
+                  - if(item.postTypeStatus==0)
+                     span.price.post-price
+                        em.c-base ￥
+                        strong#postPrice
+         li
+            label.lab-title 备注
+            div.order-item
+               input(type="text",placeholder="若有其他要求，请在备注说明",name="remark").order-text.remark-text
+   if(mold=="score")
+       ul.order-list.myorder-list
+           li
+               label.lab-title 备注
+               div.order-item
+                   input(type="text",placeholder="若有其他要求，请在备注说明",name="remark").order-text.remark-text
+mixin costDetai(mold,items,defaultDate,min)
+   div.article-panel.cost-panel#cost
+      h3.article-title="费用明细"
+         a(href="javascript:;").close
+            i.font-icon.icon-iconfont-32pxchaxian
+      div.article-content.cost-content
+         ul
+            - var total=0
+            -if(defaultDate.beginDate!=null)
+               -each item,i in items
+                  -if(item.date==defaultDate.beginDate||item.date>defaultDate.beginDate&&item.date<defaultDate.endDate)
+                     li
+                        span.cost-data=item.date
+                        span.price
+                           em ￥
+                           strong=item.price
+                        span.cost-num="*"+min
+                        -total+=item.price*min
+            -else
+               li
+                  span.cost-data=items[0].date
+                  span.price
+                     em ￥
+                     strong=items[0].price
+                  span.cost-num="*" + min
+                  -total+=items[0].price*min
+            li(data-total=total)#cost-total
+               | 订单总额：
+               span.price
+                  em ￥
+                  strong=total
+
+mixin ticketItem(items)
+   -each item in items
+      input(type="hidden",name="zyxTicketIds",id="hid-zyxTicketIds")
+      ul.order-list.myorder-list
+         li
+            label.lab-title 景点名称
+            div.order-item
+               span=item.parkName
+         li
+            label.lab-title 票型
+            div.order-item
+               span=item.ticketName
+         li
+            label.lab-title 数量
+            div.order-item
+               span.cNum=item.num
+               | 张
+
+mixin hotelItem(items)
+   -each item in items
+      input(type="hidden",name="hotelIds",id="hid-hotelIds",value=item.id)
+      ul.order-list.myorder-list
+         li
+            label.lab-title 酒店名称
+            div.order-item
+               span=item.hotelName
+         li
+            label.lab-title 房型
+            div.order-item
+               span=item.roomName
+         li
+            label.lab-title 数量
+            div.order-item
+               span.cNum=item.num
+               | 间
+         li
+            div.order-item
+               span="第"+item.enterNights+"晚入住，住"+item.nights+"晚"
+
+mixin showItem(items)
+   -each item in items
+      ul.order-list.myorder-list
+         li
+            label.lab-title 演出名
+            div.order-item
+               span=item.showName
+         li
+            label.lab-title 票型
+            div.order-item
+               span=item.ticketName
+         li
+            label.lab-title 数量
+            div.order-item
+               span.cNum=item.num
+               | 张
+         li
+            label.lab-title 场次
+            input(name="sci",type="hidden",value=item.ticketId)
+            div.order-item
+               a(href="javascript:;",data-ticketid=item.ticketId).season-btn
+                  span="请选择场次"
+                  i.font-icon.icon-iconfont-jiantou
+               input(name="zyxShowIds",type="hidden")
+            +seasonShow()
+
+mixin seasonShow()
+   .season-box
+      .season-list
+      .season-handle
+         a(href='javascript:;').btn.btn-save="确定"
+         a(href='javascript:;').btn.btn-cancel="取消"

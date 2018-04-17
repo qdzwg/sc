@@ -1,0 +1,20 @@
+extends ../layout/pageLayout
+block stylesheetpage
+	link(rel="stylesheet", href=baseUrl+'/stylesheets/help.css')
+block pagecontent
+	include ../common/helpList
+	#main.cf
+		+helpList(page)
+		#help_c_zone
+			.help_t
+				| 营业执照　Commercial Introduction
+			.help_c
+				img(src=baseUrl+'/images/help/yingyezhizhao.jpg', width='400', height='590', border='0')
+				p
+					| 如您要验证该营业执照合法性，请参照下列步骤进行：
+					br
+					| 1. 登陆
+					a(href='http://www.hzaic.gov.cn/', target='_blank') 杭州市工商行政管理局网站
+					br
+					| 2. 网上办事大厅---办事查询---企业状态查询--输入“工商注册号”查询
+		

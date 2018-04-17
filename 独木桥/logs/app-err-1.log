@@ -1,0 +1,44 @@
+2017-01-22 18:46:37: (node:15065) DeprecationWarning
+2017-01-22 18:57:27: (node:15442) DeprecationWarning
+2017-01-22 18:59:04: (node:15533) DeprecationWarning
+2017-01-22 19:02:27: (node:15684) DeprecationWarning
+2017-01-22 11:01:47: (node:15851) DeprecationWarning
+2017-01-22 11:11:49: (node:16831) DeprecationWarning
+2017-01-23 16:14:43: (node:1812) DeprecationWarning
+2017-02-07 05:02:11: (node:14788) DeprecationWarning
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:346:11)
+    at ServerResponse.header (/home/apps/node_server/dmqwap3000/node_modules/express/lib/response.js:718:10)
+    at ServerResponse.location (/home/apps/node_server/dmqwap3000/node_modules/express/lib/response.js:835:8)
+    at ServerResponse.redirect (/home/apps/node_server/dmqwap3000/node_modules/express/lib/response.js:874:8)
+    at /home/apps/node_server/dmqwap3000/common_modules/common.js:46:17
+    at done (/home/apps/node_server/dmqwap3000/node_modules/needle/lib/needle.js:377:14)
+    at PassThrough.<anonymous> (/home/apps/node_server/dmqwap3000/node_modules/needle/lib/needle.js:576:9)
+    at emitNone (events.js:91:20)
+    at PassThrough.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+2017-02-07 09:41:20: (node:23101) DeprecationWarning
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:346:11)
+    at ServerResponse.header (/home/apps/node_server/dmqwap3000/node_modules/express/lib/response.js:718:10)
+    at ServerResponse.location (/home/apps/node_server/dmqwap3000/node_modules/express/lib/response.js:835:8)
+    at ServerResponse.redirect (/home/apps/node_server/dmqwap3000/node_modules/express/lib/response.js:874:8)
+    at /home/apps/node_server/dmqwap3000/common_modules/common.js:46:17
+    at done (/home/apps/node_server/dmqwap3000/node_modules/needle/lib/needle.js:377:14)
+    at PassThrough.<anonymous> (/home/apps/node_server/dmqwap3000/node_modules/needle/lib/needle.js:576:9)
+    at emitNone (events.js:91:20)
+    at PassThrough.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+2017-02-07 09:41:59: (node:23147) DeprecationWarning
+TypeError: Cannot read property 'RowCounts' of undefined
+    at /home/apps/node_server/dmqwap3000/routes/index.js:204:50
+    at /home/apps/node_server/dmqwap3000/node_modules/async/lib/async.js:52:16
+    at /home/apps/node_server/dmqwap3000/node_modules/async/lib/async.js:1209:30
+    at /home/apps/node_server/dmqwap3000/common_modules/common.js:42:21
+    at done (/home/apps/node_server/dmqwap3000/node_modules/needle/lib/needle.js:377:14)
+    at PassThrough.<anonymous> (/home/apps/node_server/dmqwap3000/node_modules/needle/lib/needle.js:576:9)
+    at emitNone (events.js:91:20)
+    at PassThrough.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+2017-02-07 09:48:50: (node:23378) DeprecationWarning

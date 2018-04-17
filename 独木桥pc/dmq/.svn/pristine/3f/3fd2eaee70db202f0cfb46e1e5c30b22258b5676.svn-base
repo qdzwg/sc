@@ -1,0 +1,90 @@
+{
+  "_args": [
+    [
+      "timekit@0.1.8",
+      "E:\\工作区\\nodejs\\myfirstproject\\node_modules\\nodefly"
+    ]
+  ],
+  "_defaultsLoaded": true,
+  "_engineSupported": true,
+  "_from": "timekit@0.1.8",
+  "_id": "timekit@0.1.8",
+  "_inCache": true,
+  "_location": "/timekit",
+  "_nodeVersion": "v0.6.11",
+  "_npmUser": {
+    "email": "dmitri@rapidlogix.com",
+    "name": "rapidlogix"
+  },
+  "_npmVersion": "1.1.15",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "timekit",
+    "raw": "timekit@0.1.8",
+    "rawSpec": "0.1.8",
+    "scope": null,
+    "spec": "0.1.8",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "/nodefly"
+  ],
+  "_resolved": "https://registry.npmjs.org/timekit/-/timekit-0.1.8.tgz",
+  "_shasum": "13aa4884ee020a2b9ccdf98b6f886e62b409f450",
+  "_shrinkwrap": null,
+  "_spec": "timekit@0.1.8",
+  "_where": "E:\\工作区\\nodejs\\myfirstproject\\node_modules\\nodefly",
+  "author": {
+    "email": "dmitri@rapidlogix.com",
+    "name": "Dmitri Melikyan"
+  },
+  "contributors": [],
+  "dependencies": {
+    "bindings": "*"
+  },
+  "description": "Time related C bindings",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "13aa4884ee020a2b9ccdf98b6f886e62b409f450",
+    "tarball": "https://registry.npmjs.org/timekit/-/timekit-0.1.8.tgz"
+  },
+  "engines": {
+    "node": ">=0.6.0"
+  },
+  "installable": true,
+  "keywords": [
+    "V8 profiler",
+    "cpu time",
+    "getrusage",
+    "gettimeofday",
+    "microseconds",
+    "posix",
+    "profiler",
+    "time",
+    "windows"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/dmelikyan/node-timekit/raw/master/LICENSE"
+    }
+  ],
+  "main": "./index.js",
+  "maintainers": [
+    {
+      "name": "rapidlogix",
+      "email": "dmitri@rapidlogix.com"
+    }
+  ],
+  "name": "timekit",
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dmelikyan/node-timekit.git"
+  },
+  "scripts": {
+    "install": "node-gyp rebuild"
+  },
+  "version": "0.1.8"
+}

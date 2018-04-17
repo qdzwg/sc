@@ -1,0 +1,280 @@
+mixin detaileList(mold,items,mainitem)
+   case mold
+      when "ticket"
+         h3.details-list-title 票型
+      when "hotel"
+         div.page-calendar
+            a(href="javascript:;",data-service="detail",data-code=mainitem.code)#calendar-btn
+               | 入住
+               span.c-base#beginDate=mainitem.BeginDate
+               | 离店
+               span.c-base#endDate=mainitem.endDate
+               em#days 1
+               | 晚
+               i.font-icon.icon-iconfont-jiantou.fr
+   +list(mold,items)
+
+//- 详细页面列表展现
+mixin list(mold,items,i)
+   div(class=mold+"-detailsList")#detailsList
+      - if(mold!="show"&&items==""||items==null)
+         div(id="detail"+i).no-info="暂无信息！"
+      - else
+         ul(id="detail"+i).details-list
+            - each item,i in items
+               li
+                  div.pro-info
+                     case mold
+                        when "ticket"
+                           h4.pro-info-title=item.name
+                           p.pro-info-explian
+                              a(href="javascript:;" data-title=item.name).c-base.pro-item-btn 查看详情>
+                              input(type="hidden",value=item.desc)
+                           //-+article(item.name,item.desc,mold+"List"+i)
+                        when "hotel"
+                           +hotelmian(item,i)
+                           //-+article(item.name,item.desc,mold+"List"+i)
+                        when "repast"
+                           h4.pro-info-title=item.name
+                        when "show"
+                           h4.pro-info-title=item.ticketName
+                        when "combo"
+                           h4.pro-info-title=item.comboName
+                        when "line"
+                           h4.pro-info-title=item.zyxName
+                  div.pro-price
+                     span.price
+                        em ￥
+                        case mold
+                           when "ticket"
+                              strong=item.price
+                           when "hotel"
+                              strong=item.avgPrice
+                           when "repast"
+                              strong=item.price
+                           when "show"
+                              strong=item.price
+                           when "combo"
+                              strong=item.price
+                           when "line"
+                              strong=item.price
+                     span.original-price
+                        em
+                           | ￥
+                           case mold
+                              when "ticket"
+                                 =item.originalPrice
+                              when "hotel"
+                                 =item.marketPrice
+                              when "repast"
+                                 =item.originalPrice
+                              when "show"
+                                 =item.showPrice
+                              when "combo"
+                                 =item.showPrice
+                              when "line"
+                                 =item.showPrice
+                  div.pro-price
+                        a(href="/order/"+mold+"/"+item.id) 预订
+
+mixin showlist(item)
+   li
+      div.pro-info
+         h4.pro-info-title=item.ticketName
+      div.pro-price
+         span.price
+            em ￥
+            strong=item.price
+         span.original-price
+            em
+               | ￥
+               =item.showPrice
+      div.pro-price
+         a(href="/order/show/" + item.id) 预订
+
+mixin hotelmian(item,i)
+   div.pro-img
+      a(href="javascript:;",data-url="hotelList"+i).article-btn
+         if(item.wapMainUrl!=null)
+            img(src=item.wapMainUrl.replace('http://odl5az86x.bkt.clouddn.com','//static.51dmq.com')+"?imageMogr2/thumbnail/640x/strip/quality/50")
+         else
+            img(src=item.wapMainUrl)
+   div.hotel-info
+      h4.pro-info-title=item.roomName
+      p.pro-info-explian
+         span
+            +bedtype(item.bedType)
+         span
+            +breakfast(item.isBreakfast)
+         span
+            i.font-icon
+      p.pro-info-explian
+         a(href="javascript:;",data-title=item.roomName).c-base.pro-item-btn 房型介绍>
+         input(type="hidden",value=item.roomDetail)
+
+//- 详细页面文章切换
+mixin detaisarticle(items)
+   - var tabclass=""
+   case items.length
+      when 1
+         - tabclass="tabs-one"
+      when 2
+         - tabclass="tabs-two"
+      when 3
+         - tabclass="tabs-tree"
+   div(class=tabclass).tabs
+      -each item,i in items
+         -var classname=""
+         -if(i==0)
+            - classname="active"
+         a(href="#",hidefocus="true",class=classname)=item.title
+   div.swiper-container
+      div.swiper-wrapper
+         -each item,i in items
+            div.swiper-slide
+               div(class="con")
+                  -if(typeof item.content=="object"&&item.content!=null)
+                     +travel(item.content)
+                  -else
+                     .article
+                        !=item.content
+
+mixin travel(items)
+   -each item in items
+      h4.travel-title
+         span.c-base="第"+item.day+"天"
+      div.travel-info!=item.content
+
+//- 商品分类
+mixin goodsMold(freight,id)
+   div.goods-mold-panel#goodsPanel
+      - if(freight=="2"||freight=="3")
+         div.goods-mold-footer
+            h4.goods-footer-title 配送方式
+            p.goods-footer-tab#delivery
+                  a(href="javascript:;",data-freight="0").cur
+                     i.font-icon.icon-iconfont-express
+                     | 快递
+                  a(href="javascript:;",data-freight="1")
+                     i.font-icon.icon-iconfont-door-buster
+                     | 自提
+      div.goods-mold-handle.btn-handle
+         a(href="javascript:;",data-url="/order/goods/"+id).btn#pay-btn 立即购买
+
+
+mixin tabList(items)
+   - var tabclass=""
+   case items.length
+      when 1
+         - tabclass="tabs-one"
+      when 2
+         - tabclass="tabs-two"
+      when 3
+         - tabclass="tabs-tree"
+   div(class=tabclass).tabs
+      -each item,i in items
+         -var classname=""
+         -if(i==0)
+            - classname="active"
+         a(href="#",hidefocus="true",class=classname)=item.title
+   div.swiper-container
+      div.swiper-wrapper
+         -each item,i in items
+            div.swiper-slide
+               div(class="con")
+                  -if(item.mold=="show")
+                     - if(item.content.length==0)
+                        div.no-info 暂无信息！
+                     -else
+                        div(class=mold+"-detailsList")#detailsList
+                           ul.details-list
+                              -each titem in item.content
+                                 -if(titem.ticketList.length>0)
+                                    -each sitem in titem.ticketList
+                                       +showlist(sitem)
+                  -else if(item.mold=="hotel")
+                     div.page-calendar
+                        a(href="javascript:;",data-service="detail",data-code=item.content.id)#calendar-btn
+                           | 入住
+                           span.c-base#beginDate
+                              +getDate(0)
+                           | 离店
+                           span.c-base#endDate
+                              +getDate(1)
+                           em#days 1
+                           | 晚
+                           i.font-icon.icon-iconfont-jiantou.fr
+                     +list(item.mold,item.content.rooms)
+                  -else
+                     +list(item.mold,item.content)
+
+mixin newtabList(items)
+   - var tabclass=""
+   case items.length
+      when 1
+         - tabclass="tabs-one"
+      when 2
+         - tabclass="tabs-two"
+      when 3
+         - tabclass="tabs-tree"
+   .detail-menu-box
+      ul(class=tabclass).ticket-details-tab.tab.clearfix.details-tab#detailmenu
+         -each item,i in items
+            -var classname=""
+            -if(i==0)
+               - classname="active"
+            li
+               a(href="#detail"+i,class=classname)=item.title
+   -each item,i in items
+      -if(i!=0)
+         .page-line
+         h3.page-title
+            strong=item.title
+      -if(item.mold=="show")
+         - if(item.content.length==0)
+            div.no-info 暂无信息！
+         -else
+            div(class=mold + "-detailsList")#detailsList
+               ul(id="detail"+i).details-list
+                  -each titem in item.content
+                     -if(titem.ticketList.length>0)
+                        -each sitem in titem.ticketList
+                           +showlist(sitem,i)
+      -else if(item.mold=="hotel")
+         div.page-calendar
+            a(href="javascript:;",data-service="detail",data-code=item.content.id)#calendar-btn
+               | 入住
+               span.c-base#beginDate
+                  +getDate(0)
+               | 离店
+               span.c-base#endDate
+                  +getDate(1)
+               em#days 1
+               | 晚
+               i.font-icon.icon-iconfont-jiantou.fr
+         +list(item.mold,item.content.rooms,i)
+      -else
+         +list(item.mold,item.content,i)
+
+//自由行套餐列表
+mixin zyxDetailsList(items)
+   .page-line
+   -if(items!="")
+      -each item,i in items
+         h4.zyx-title=item.name
+            a(href="javascript:;",data-url="fysm"+i).zyx-article-btn="费用说明"
+         +article("费用说明",item.introduction,"fysm"+i)
+         ul.details-list
+            -each sitem in item.zyxInfos
+               li
+                  div.pro-info
+                     h4.pro-info-title=sitem.zyxName
+                     p.pro-info-explian
+                        span.price
+                           em ￥
+                           strong=sitem.price
+                        span.original-price="￥"+sitem.showPrice
+                  div.pro-price
+                     a(href="/order/" + mold + "/" + sitem.id) 预订
+   -else
+      .no-info 暂无信息！

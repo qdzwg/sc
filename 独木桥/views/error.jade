@@ -1,0 +1,13 @@
+extends layout
+block stylesheet
+  link(rel='stylesheet', href=baseUrl+'/stylesheets/order.css')
+
+block content
+  div.pay-results
+    img(src="/images/member/error.png").font-icon
+    p="糟糕，出错了！"
+  div.results-only
+    =message
+  div.btn-bottom
+    div.btn-handle
+      a(href="/").btn 返回首页

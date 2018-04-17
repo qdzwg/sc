@@ -1,0 +1,68 @@
+mixin detailsArticle(items)
+   -each item,i in items
+      div(id=item.id)
+         a(name="p"+i).pos
+         - if(i==0)
+            .list_h.f_nav_w.cf
+               ul#f_nav
+                  -each sitem,j in items
+                     li
+                        -var className=""
+                        -if(j==0)
+                           -className="f_sel"
+                        a(href="#p"+j,class=className)=sitem.title
+         -else
+            .list_h.cf
+               .h_txt=item.title
+         div(id=item.id+"_i").cf
+            case (item.mold)
+               when "notice"
+                  .hotel_intro_b.facility_intro
+                     !{item.content}
+               when "comment"
+                  +comment(item.content)
+               when "tour"
+                  +tour(item.content)
+               default
+                  !{item.content}
+
+mixin comment(items)
+   -if(typeof items.data!="undefined")
+      #comment_l
+         .t_info
+            .star_sum.cf
+               - var percent=(items.score/5)*100+"%"
+               .st_w2
+                  .st_w2_i(style='width: '+percent+';')
+               .sum=items.count+"条评论，平均"+items.score+"星"
+         .u_ct="最有用的评论"
+         .comment_list_w
+            -each item,i in items.data
+               div(id="comment_list_"+i).comment_list_b
+                  .cm_p1.cf
+                     .st_w
+                        - var percent=(item.score/5)*100+"%"
+                        #w_score.st_w_i(style='width: '+percent+';')
+                     span.st_p1 390/766 人认为此评论有用
+                     span.st_p2="发表人："+item.commentName
+                     span.st_p3="编辑时间："+item.commentTime
+                  #cm_conten.cm_p2.cf=item.commentContent
+                  .cm_p3.cf
+                     .st1_txt 这条评论对您有用吗？
+                     a.y_btn(href='javascript:void(0);') 是
+                     a.n_btn(href='javascript:void(0);') 否
+         .take_comment
+            a(href="javascript:;",value="all").c_more.cblue#viewAll
+            a(href="#").pb_btn="发表您的评论"
+   - else
+      #comment_l
+         .t_info
+            p 暂无评论
+mixin tour(items)
+   .journey_d
+      .jt
+         em="D1"
+         span.jt_i="各地/杭州"
+      .jt_content
+         !{items}
+

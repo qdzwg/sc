@@ -1,0 +1,13 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/dropload.css')
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/list.css')
+
+block content
+   ul.raiders-list
+      -each item in listitems
+         li
+            a(href="/detail/raiders/"+item.id)
+               img(src=item.mainUrl+"?imageMogr2/thumbnail/640x/strip/quality/50")
+               h4.raiders-list-title=item.title
+   include common/footer

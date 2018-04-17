@@ -1,0 +1,29 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/'+mold+'.css')
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/tour_detail.css')
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/tour_detail1.css')
+block pagecontent
+    include common/comFun
+    include details/article
+    #main
+        +breadcrumb(item.zyxName)
+        #intro
+            #scroll_w
+                -each item in imgItems
+                    img(src=item.imgurl)
+        .h_w.cf
+            h1= item.zyxName
+            .floatr
+                span#sum_pri="总价："
+                    b#sum ¥#{item.price}
+                a(href="/order/line/#{item.id}?step=1").book_btn="立即预订"
+        .tour_intro!= item.cinfo
+        -var articeItems=[{"title":"行程安排","id":"hotel_intro","content":item.notice,"mold":"tour"},{"title":"费用说明","id":"pic_intro","content":item.costInfo,"mold":"intro"},{"title":"交通信息","id":"jq_trafic","content":"交通","mold":"trafic"},{"title":"用户点评","id":"comment","content":commentItems,"mold":"comment"}]
+        +detailsArticle(articeItems)
+block scriptspage
+    script(src=baseUrl+'/javascripts/koobox.js')
+    script(src=baseUrl+'/javascripts/kooslide.js')
+    script(src=baseUrl+'/javascripts/datepicker/WdatePicker.js')
+    script(src=baseUrl+'/javascripts/comment.js')
+    script(src=baseUrl+'/javascripts/details.js')

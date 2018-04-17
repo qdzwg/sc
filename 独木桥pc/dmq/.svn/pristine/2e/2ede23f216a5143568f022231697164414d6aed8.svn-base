@@ -1,0 +1,37 @@
+extends ../layout/pageLayout
+block stylesheetpage
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/uc_common.css')
+    link(rel="stylesheet", href=baseUrl+'/stylesheets/usercenter.css')
+    script.
+        var currentPage=#{listDta.currentPage};
+        var totalPage=#{listDta.totalPage};
+block pagecontent
+    #uc_wrapper
+        include top
+        #uc_content.cf
+            include left
+            #uc_main
+                .t_w
+                    .t_head_w.cf
+                        .t_name 我的评论
+                    #t_filter.filter
+                        a.f_sel(href='/user/comment/commentOrder') 未点评
+                        em |
+                        a(href='/user/comment/commentList') 已点评
+                    table.common_t(cellpadding='0', cellspacing='0')
+                        tr
+                            th.c1 订单编号
+                            th.c2 产品名称
+                            th.c3 点评积分
+                            th.c4 操作
+                        each item in listDta.items
+                            tr
+                                td.c1=item.orderNo
+                                td.c2=item.info
+                                td.c3=item.starNum
+                                td.c4
+                                    a.blue(href='/user/comment/listComment/'+item.id) 发表点评
+                    .pagings
+                        ul.slide-page#slidePage
+block scriptspage
+    script(src=baseUrl+'/javascripts/uc_common.js')

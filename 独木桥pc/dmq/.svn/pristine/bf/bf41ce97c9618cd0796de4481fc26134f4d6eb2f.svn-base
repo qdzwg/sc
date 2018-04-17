@@ -1,0 +1,36 @@
+/**
+ * 公用方法
+ */
+var common = new function(){
+	/**
+	 * 提交url，完成后刷新页面
+	 * message为提交的确认信息。
+	 */
+	this.doPost = function(url,message){
+		if(confirm(message)){
+			var url=url;
+			var options={};
+			options.url=url;
+			options.dataType="text";
+			options.success=function(text){
+					var obj=eval(text);
+					alert(obj.message[0]); 
+					if(obj.flag=="success"){
+						location.reload();
+						}
+					};
+			$.ajax(options);
+		}
+	}
+}
+
+
+$(function(){
+	if($('.dat tbody tr').length != 0){
+		$('.dat tbody tr').hover(function(){
+	        $(this).addClass('tuchu');
+	    },function(){
+	        $(this).removeClass('tuchu');
+	    });
+	}
+});

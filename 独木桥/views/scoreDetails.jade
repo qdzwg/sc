@@ -1,0 +1,56 @@
+extends layout
+block stylesheet
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/list.css')
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/dropload.css')
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/coupon.css')
+block content
+    header.header-tab.mycoupon-header-tab
+        ul.tab.clearfix.mycoupon-tab
+            li
+                a(href="/user/scoreorder") 积分订单
+            li
+                a(href="/user/scoreDetails").c-base 积分明细
+    .scoreDetails-inner
+        - if(items.items.length!=0)
+            ul(data-mold="scoreDetails").scored-list.inner
+                each item in items.items
+                    li.opacity
+                        .scored-left
+                            -var contype=""
+                            case item.mtype
+                                when "ORDER"
+                                    -contype="下单赠送"
+                                when "PRESENT"
+                                    -contype="客服赠送"
+                                when "CONVERT"
+                                    -contype="兑换"
+                                when "CUT"
+                                    -contype="冲减"
+                                when "WIN_CUT"
+                                    -contype="转盘中奖扣除"
+                                when "COMMENT"
+                                    -contype="评论"
+                                when "SHARE"
+                                    -contype="分享"
+                                when "PERFECTINFORMATION"
+                                    -contype="完善信息"
+                            p=contype
+                            p=item.createTime
+                        .scored-center
+                            img(src="/images/list/score-list.jpg")
+                        .scored-info
+                            -var mark=""
+                            if(item.mtype=="CONVERT"||item.mtype=="CUT"||item.mtype=="WIN_CUT")
+                                -mark="-"
+                            else
+                                -mark="+"
+                            h3=mark+item.opScore
+                            p=item.leftScore
+        - else
+            div.no-data
+                i.font-icon.icon-iconfont-gantanhaom
+                p 您还没有订单
+                    em you do not have order
+block scripts
+    script(src=baseUrl+'/javascripts/dropload.min.js')
+    script(src=baseUrl+'/javascripts/list.js')

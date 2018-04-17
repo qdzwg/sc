@@ -1,0 +1,79 @@
+extends layout/pageLayout
+block stylesheetpage
+    link(rel='stylesheet', href=baseUrl+'/stylesheets/'+mold+'.css')
+block pagecontent
+    include common/comFun
+    include details/article
+    #main
+        +breadcrumb(item.parkName)
+        #intro
+            #scroll_w
+                -each item in imgItems
+                    img(src=item.imgurl)
+            #imask
+            #intro_detail
+                .hotel_name=item.parkName
+                .bm_w.cf
+                    -each bitem,i in item.tags
+                        div(class="bm_c"+((i+1)%4))=bitem
+                ul.main_d
+                    li
+                        b="所在地区："
+                        =item.regionName
+                    li
+                        b="详细地址："
+                        =item.address
+                    li
+                        b="营业时间："
+                        =item.openTime
+                .s_ul
+                    b="用户点评："
+                    .st_w
+                        - var percent=(item.commentScore/5)*100+"%"
+                        #topAvg.st_w_i(style="width:"+percent+";")
+                    .s_sum="("+item.commentScore+"分，共"+item.commentCount+"条点评)"
+                .s_price.cf="价格："
+                    b="¥"+item.startingPrice
+                    span="起"
+                .d_btn.cf
+                    a(href="#p2")="景区介绍"
+                    a(href="#p1")="预订须知"
+                    a(href="#p4")="用户点评"
+                #add_bs
+                    +share()
+        #ticket_intro
+            .list_h.cf
+                .h_txt="产品列表"
+                input(type="hidden",name="uid")#uid
+            #ticket_intro_i
+                -var tickettableHead=[{"title":"门票名称","className":"w1",dataKey:"name",islink:true},{"title":"支付方式","className":"w3",dataKey:"payMold"},{"title":"门市价","className":"w4",dataKey:"originalPrice"},{"title":"网销价","className":"w5",dataKey:"price"},{"title":"点评返积分","className":"w6",dataKey:"score"},{"title":"操作","className":"w7",dataKey:"handle"}]
+                -var ticketItems=[{"name":"宋城烂苹果乐园+杭州乐园湘湖宋城景区（含《西施恋歌》演出）成人联票","payMold":"","price":"220","sellingPrice":"240","score":"10","id":"5141"},{"name":"宋城烂苹果乐园+杭州乐园湘湖宋城景区（含《西施恋歌》演出）成人联票","payMold":"","price":"220","sellingPrice":"240","score":"10","id":"5160"}]
+                -var showtableHead=[{"title":"演出门票名称","className":"w1",dataKey:"theaterName",islink:true},{"title":"支付方式","className":"w3",dataKey:"payMold"},{"title":"门市价","className":"w4",dataKey:"showPrice"},{"title":"网销价","className":"w5",dataKey:"price"},{"title":"点评返积分","className":"w6",dataKey:"score"},{"title":"操作","className":"w7",dataKey:"handle"}]
+                -var showItems1=[{"name":"宋城烂苹果乐园+杭州乐园湘湖宋城景区（含《西施恋歌》演出）成人联票","payMold":"","price":"220","sellingPrice":"240","score":"10","id":"5141"},{"name":"宋城烂苹果乐园+杭州乐园湘湖宋城景区（含《西施恋歌》演出）成人联票","payMold":"","price":"220","sellingPrice":"240","score":"10","id":"5160"}]
+                -var packagesHead=[{"title":"套票名称","className":"w1",dataKey:"comboName",islink:true},{"title":"支付方式","className":"w3",dataKey:"payMold"},{"title":"门市价","className":"w4",dataKey:"showPrice"},{"title":"宋城旅游价","className":"w5",dataKey:"price"},{"title":"点评返积分","className":"w6",dataKey:"score"},{"title":"操作","className":"w7",dataKey:"handle"}]
+                -var packagesItems=[{"name":"宋城烂苹果乐园+杭州乐园湘湖宋城景区（含《西施恋歌》演出）成人联票","payMold":"","price":"220","sellingPrice":"240","score":"10","id":"5000"},{"name":"宋城烂苹果乐园+杭州乐园湘湖宋城景区（含《西施恋歌》演出）成人联票","payMold":"","price":"220","sellingPrice":"240","score":"10","id":"5087"}]
+                +subproList(tickettableHead,item.ticketModelInfos,"ticket")
+                +subproList(showtableHead,showItems.items,"show")
+                +subproList(packagesHead,comboItems,"combo")
+        #tjcp_intro
+            .list_h.cf
+                .h_txt="产品推荐"
+            #tjcp_intro_i.cf
+                .tjcp_b_w
+                    -var recommendItems=[{"imagesUrl":"/images/demo/35a83a55-ef5a-4999-b6ec-54f817565cf7.jpg","title":"【杭州】宋城千古情演出贵宾席（含宋城景区）+宋城千古情主题酒店（西湖店）高级房1间1晚 单人套餐 ","price":"418"},{"imagesUrl":"/images/demo/6df60c1b-148b-4393-b8b7-85b08025d00f.jpg","title":"【杭州】宋城千古情演出贵宾席（含宋城景区）+宋城千古情主题酒店（西湖店）高级房1间1晚 双人套餐","price":"658"},{"imagesUrl":"/images/demo/b4e2925f-dee7-44c4-877b-21afe5b7cc25.jpg","title":"【杭州】宋城千古情演出贵宾席（含宋城景区）+宋城千古情主题酒店（西湖店）高级房1间1晚 大学生双人套餐","price":"416"},{"imagesUrl":"/images/demo/c0d589ba-1966-4100-acfe-d5ca7334d00b.jpg","title":"宋城浪漫情侣套餐","price":"798"},{"imagesUrl":"/images/demo/0c42f194-8a96-4e26-81f8-2974b6369336.jpg","title":"宋城超值滑梯套餐","price":"798"},{"imagesUrl":"/images/demo/a348520c-febb-4c81-a166-be3e1326a059.jpg","title":"宋城精华畅游套餐","price":"858"}]
+                    -each item in recommendItems
+                        .tjcp_b
+                            a(href="#",target="_blank").tjcp_pic
+                                img(src=item.imagesUrl)
+                            a(href="#",target="_blank").tjcp_des=item.title
+                            .tjcp_m.cf
+                                strong=item.price+"元起"
+                                a(href="#",target="_blank")="查看详情"
+        -var articeItems=[{"title":"预定须知","id":"hotel_intro","content":item.ordrNotice,"mold":"notice"},{"title":"景区介绍","id":"pic_intro","content":item.desc,"mold":"intro"},{"title":"交通信息","id":"jq_trafic","content":"1","mold":"trafic"},{"title":"用户点评","id":"comment","content":commentItems.datas,"mold":"comment"}]
+        +detailsArticle(articeItems)
+block scriptspage
+    script(src=baseUrl+'/javascripts/koobox.js')
+    script(src=baseUrl+'/javascripts/kooslide.js')
+    script(src=baseUrl+'/javascripts/datepicker/WdatePicker.js')
+    script(src=baseUrl+'/javascripts/comment.js')
+    script(src=baseUrl+'/javascripts/details.js')

@@ -1,0 +1,68 @@
+mixin userFrom(mold,formdata)
+   div.page-line
+   form(method="post")#orderForm
+      ul.order-list-big.order-list.form-list
+         case mold
+            when "base"
+               li
+                  input(type="text",placeholder="请输入您的姓名",name="realName",value=formdata.realName).w100
+                  p.order-explian 不超过8个字
+               li.sex-panel
+                  -if(formdata.sex==1)
+                     a(href="javascript:;",data-value="1").sex.selected
+                        i.font-icon.icon-iconfont-nan
+                        | 男
+                     a(href="javascript:;",data-value="0").sex
+                        i.font-icon.icon-iconfont-nv
+                        | 女
+                  -else
+                     a(href="javascript:;",data-value="1").sex
+                        i.font-icon.icon-iconfont-nan
+                        | 男
+                     a(href="javascript:;",data-value="0").sex.selected
+                        i.font-icon.icon-iconfont-nv
+                        | 女
+                  input(type="hidden",name="sex",value=formdata.sex)
+            when "tel"
+               li
+                  input(type="tel",placeholder="请输入您的手机号码",name="mobile",value=formdata.mobile).w100
+               li
+                  input(type="tel",placeholder="请输入您的验证码",name="checkCode")
+                  input(type="button",value="发送验证码",data-mold="tel").card-btn#cardBtn
+            when "idcard"
+               li
+                  -var flag=false
+                  -if(formdata.idCardBundFlag==1)
+                     -flag=true
+                  input(type="text",placeholder="请输入您的身份证号",name="accIdentification",value=formdata.idCard,readonly=flag).w100
+            when "addr"
+               li
+                  input(type="text",placeholder="选择省、市、区",name="area",readonly="readonly",required,value=formdata.area).order-text#area
+               li
+                  input(type="text",placeholder="请输入您的详细地址",name="address",value=formdata.address).w100
+            when "carNumber"
+               li
+                  input(type="text",placeholder="请输入您的车牌号",name="carNumber",value=formdata.carNumber).w100
+            when "email"
+               li
+                  input(type="email",placeholder="请输入您的E-mail",name="email",value=formdata.email).w100
+               li
+                  input(type="tel",placeholder="请输入您的验证码",name="checkCode")
+                  input(type="button",value="发送验证码",data-mold="email").card-btn#cardBtn
+            when "password"
+               li(style="line-height:1.5rem;")
+                  =formdata.mobile
+               li
+                  input(type="tel",placeholder="请输入您的验证码",name="mobileCode",value=checkCode)
+                  input(type="button",value="发送验证码",data-mold="password").card-btn#cardBtn
+               li
+                  input(type="password",placeholder="请输入您的新密码",name="loginPass",id="newsPass").w100
+               li
+                  input(type="password",placeholder="请确认您的新密码",id="enterPass",name="enterPass").w100
+                  p.order-explian 6-20位字母、数字或符号
+      div.member-handle.btn-handle
+         -if(mold=="idcard"||mold=="tel"||mold=="email")
+            -if(formdata.idCardBundFlag==0||!formdata.idCardBundFlag)
+               button(type="button").btn#saveBtn 绑定
+         -else
+            button(type="button").btn#saveBtn 确认修改

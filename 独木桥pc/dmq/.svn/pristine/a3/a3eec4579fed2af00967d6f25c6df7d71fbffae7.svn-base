@@ -1,0 +1,12 @@
+extends layout/pageLayout
+
+block pagecontent
+    #main
+block scriptspage
+    script(type="text/javascript").
+        $(function () {
+            var url="/html/#{mold}.html";
+            $("#main").load(url);
+        });
+
+

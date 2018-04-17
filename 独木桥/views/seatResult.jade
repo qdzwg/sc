@@ -1,0 +1,21 @@
+extends layout
+block stylesheet
+   link(rel='stylesheet', href=baseUrl+'/stylesheets/order.css')
+block content
+   div.seat-results
+      p="您已在线选座成功，祝您游玩愉快！"
+   div.seat-results-info
+      each item in seatInfo
+         .seat-info
+            lable="座位号为："
+            .sinfo
+               each sitem in item.seatName
+                  p=sitem
+         .seat-info
+            lable="观看日期："
+            .sinfo
+               p=item.travelDate+" "+item.showSessionTime
+   div.btn-bottom
+      .btn-handle
+         a(href="/").btn-RP 返回首页
+

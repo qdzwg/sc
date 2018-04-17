@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>My97日期控件</title>
+<link href="skin/WdatePicker.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript" type="text/javascript" src="WdatePicker.js"></script>
+<script language="JavaScript" type="text/javascript" src="calendar.js"></script>
+<script language="JavaScript" type="text/javascript" src="config.js"></script>
+</head>
+
+<body>
+
+方法 1：事件到text内
+ <input id="d12" type="text"/>
+            <img src="skin/datePicker.gif" width="16" height="22" align="absmiddle" style="cursor:pointer" onClick="WdatePicker({el:$dp.$('d12')})" />
+			<br>
+方法2：text点击事件
+	<input id="d121" type="text" onfocus="WdatePicker({isShowWeek:true})"/>
+			<br>
+方法3：<input type="text" class="Wdate" id="d122" onFocus="WdatePicker({isShowWeek:true,onpicked:function() {$dp.$('d122_1').value=$dp.cal.getP('W','W');$dp.$('d122_2').value=$dp.cal.getP('W','WW');}})" size="14"/>
+<br />
+		
+方法4：
+<input class="Wdate" type="text" id="d15" onFocus="WdatePicker({isShowClear:false,readOnly:true,skin:'blue'})"/>
+<br />
+方法5:
+<input class="Wdate" type="text" id="d16" onfocus="WdatePicker({position:{left:100,top:50}})"/>
+<br />
+方法6：将日期返回到span中
+<span id="demospan">2008-01-01</span> 
+<img onClick="WdatePicker({el:'demospan'})" src="skin/datePicker.gif" width="16" height="22" align="absmiddle" style="cursor:pointer" />
+<br />
+方法7:
+年月日使用当年当月的1日,时分秒使用00:00:00作为起始时间
+<input type="text" id="d233" onFocus="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true,skin:'blue'})"/>
+<br/>
+
+<br />
+<input id="d322" class="Wdate" type="text" onfocus="WdatePicker({skin:'blue'})"/>
+<br />
+<input id="d3212" class="Wdate" type="text" onfocus="WdatePicker({skin:'YcloudRed'})"/>
+
+</body>
+</html>

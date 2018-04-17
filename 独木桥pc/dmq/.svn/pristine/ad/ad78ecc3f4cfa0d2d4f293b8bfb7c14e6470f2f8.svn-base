@@ -1,0 +1,49 @@
+
+#content{
+	width: 960px;
+	margin:10px auto;
+}
+
+
+.succ{
+    width: 650px;
+    margin:100px auto 50px;
+    padding-left: 120px;
+    min-height: 120px;
+    background: url(../images/common/succ.gif) no-repeat 0 center;
+}
+.succ p{
+    font-size: 18px;
+    font-family: Microsoft Yahei;
+    text-indent: 2em;
+    line-height: 36px;
+}
+
+.book_table{
+    width: 900px;
+    margin:0 auto 100px;
+    border-collapse: collapse;
+}
+.book_table th{
+    background: #F5F5F5;
+}
+.book_table th,.book_table td{
+    border: 1px solid #DFDFDF;
+    text-align: center;
+    padding: 5px 0;
+}
+.td_tool a{
+    color: #0074FF;
+    margin-right:5px;
+}
+.cyquan{
+	width:831px;
+	height:51px;
+	line-height:51px;
+	font-family:Microsoft Yahei;
+	font-size:12px;
+	text-indent:260px;
+	margin:0 auto 50px;
+	background: url(../img/quan.png) no-repeat 0 0;
+}
+

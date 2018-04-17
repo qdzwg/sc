@@ -1,0 +1,70 @@
+mixin headerTab(mold,sortitem,filteritem)
+   section.header-tab
+      ul.tab.clearfix.ticket-tab#searchtab
+         li(data-div="filter")
+            a(href="javascript:;")
+               - var text="",flag=false
+               - each fitem in filteritem
+                  -each ditem in fitem.data
+                     -if(ditem.selected)
+                        - text+=ditem.title+","
+                        - flag=true
+               - if(flag)
+                  span=text.replace(/,$/g,"")
+               -else
+                  span="筛选"
+         li(data-div="sort")
+            a(href="javascript:;")
+               - var flag="默认排序"
+               - each sitem in sortitem
+                  - if (sitem.selected)
+                     - flag=sitem.title
+               span=flag
+
+mixin tabPanel(mold,items)
+   - var url="/list/"+mold+"?"
+   - if (typeof items[0].type=="undefined")
+      ul.tab-search-panel#sort
+         - each list in items
+            li
+               - if(list.selected)
+                  +link(mold,list,"c-base")
+               -else
+                  +link(mold,list,"")
+   - else
+      div.tab-search-panel.filter-panel#filter
+         - each item in items
+            +filterItme(item)
+         div.filter-handle
+            a(href="javascript:;").c-base 确认
+
+
+mixin link(mold,item,classname)
+   -var url=""
+   -each val,key in item
+      - if(key!="title"&&key!="selected"&&key!="id")
+         - url+=key+"="+val+"&"
+   a(href='javascript:;',data-url=url,class=classname)=item.title
+
+mixin filterItme(item)
+   div.filter-item
+      h4.filter-title.c-base=item.title
+      p.filter-list.clearfix
+         - each list in item.data
+            - var classname=""
+            - if(list.selected)
+               - classname="c-base"
+            - else
+               - classname=""
+            - each val,key in list
+               - if(key!="title"&&key!="selected")
+                  span(data-url=key+"="+val+"&",class=classname)=list.title
+
+//- 攻略搜索
+mixin raiderSearch(items)
+   section.header-tab
+      - if (items.length!=0)
+         ul.tab.clearfix.raider-tab
+            - each item in items
+               li
+                  a(href="?"+item.paramColumn+"="+item.strategTagId)=item.name
